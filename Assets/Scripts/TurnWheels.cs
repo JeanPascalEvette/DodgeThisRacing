@@ -2,10 +2,8 @@
 using System.Collections;
 
 public class TurnWheels : MonoBehaviour {
-
-    public float turnX = 0.0f;
-    public float turnY = 20.0f;
-    public float turnZ = 0.0f;
+    
+    public float turn = 20.0f;
     // Use this for initialization
     void Start () {
 	
@@ -18,9 +16,9 @@ public class TurnWheels : MonoBehaviour {
          
         Transform wheel1 = transform.GetChild(0).transform;
         Transform wheel2 = transform.GetChild(1).transform;
-        wheel1.eulerAngles = new Vector3(turnX, turnY, turnZ);
-        wheel2.eulerAngles = new Vector3(turnX, turnY, turnZ);
-        //wheel1.Rotate(0, carRotation * 2 * Mathf.Deg2Rad, );
-        //wheel2.Rotate(0, carRotation * 2 * Mathf.Deg2Rad, -carSpeed * 6 * Time.deltaTime);
+        //wheel1.eulerAngles = new Vector3(wheel1.eulerAngles.x, wheel1.eulerAngles.y, turnZ);
+        //wheel2.eulerAngles = new Vector3(wheel1.eulerAngles.x, wheel1.eulerAngles.y, turnZ);
+        wheel1.Rotate(turn * Mathf.Deg2Rad,0 ,0);
+        wheel2.Rotate(turn * Mathf.Deg2Rad,0 ,0);
     }
 }
