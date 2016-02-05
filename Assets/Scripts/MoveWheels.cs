@@ -11,10 +11,11 @@ public class MoveWheels : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
     {
-        return;
+        
         float carSpeed = this.GetComponentInParent<CarProperties>().carSpeed;
-        transform.GetChild(0).transform.Rotate(0, 0, - carSpeed * 6 * Time.deltaTime);
-        transform.GetChild(1).transform.Rotate(0, 0, - carSpeed * 6 * Time.deltaTime);
+        transform.GetChild(0).transform.Rotate(0, 0, - carSpeed * 12 * Time.deltaTime);
+        transform.GetChild(1).transform.Rotate(0, 0, - carSpeed * 12 * Time.deltaTime);
+        //transform.GetComponent<Rigidbody>().velocity = new Vector3(1, 0, 0);
 
     }
-}
+} 

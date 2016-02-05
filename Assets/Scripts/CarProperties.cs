@@ -13,12 +13,14 @@ public class CarProperties : MonoBehaviour {
     void Start () {
         carBody = this.transform.Find("Body").gameObject;
         JointMotor newMotor = new JointMotor();
-        newMotor.targetVelocity = -motorTargetVelocity;
-        newMotor.force = motorForce;
-        
+        //newMotor.targetVelocity = -motorTargetVelocity;
+        //newMotor.force = motorForce;
+        newMotor.freeSpin = true;
+
         JointMotor newMotor2 = new JointMotor();
-        newMotor2.targetVelocity = motorTargetVelocity;
-        newMotor2.force = motorForce;
+        //newMotor2.targetVelocity = motorTargetVelocity;
+        //newMotor2.force = motorForce;
+        newMotor2.freeSpin = true;
 
         var hinge1 = transform.Find("Motion Wheels").GetComponents<HingeJoint>()[0];
         var hinge2 = transform.Find("Motion Wheels").GetComponents<HingeJoint>()[1];
@@ -30,6 +32,6 @@ public class CarProperties : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-	
+
 	}
 }
