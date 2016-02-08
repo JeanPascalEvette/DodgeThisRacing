@@ -830,11 +830,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e95a9cffe5d640649b643d9f69bf76be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  springJoinDistance: 2
   carSpeed: 10
   carRotation: 0
-  motorTargetVelocity: 100
-  motorForce: 50
+  springSpring: 2
+  springDamper: 0.2
+  springMinDistance: 0.01
+  springMaxDistance: 0.01
+  springTolerance: 0
+  carBodyMass: 10
+  wheelsMass: 1
 --- !u!138 &1200638572
 FixedJoint:
   m_ObjectHideFlags: 0
