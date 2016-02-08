@@ -9,9 +9,7 @@ public class CarProperties : MonoBehaviour {
 
     public float springSpring;
     public float springDamper;
-    public float springMinDistance;
-    public float springMaxDistance;
-    public float springTolerance;
+
     public float carBodyMass;
     public float wheelsMass;
 
@@ -19,15 +17,15 @@ public class CarProperties : MonoBehaviour {
     void Start () {
         carBody = this.transform.Find("Body").gameObject;
 
-        var springs = carBody.GetComponents<SpringJoint>();
+        var joints = carBody.GetComponents<HingeJoint>();
 
-        foreach(SpringJoint spring in springs)
+        JointSpring jSpring = new JointSpring();
+        jSpring.spring = springSpring;
+        jSpring.damper = springDamper;
+
+        foreach(HingeJoint joint in joints)
         {
-            spring.spring = springSpring;
-            spring.damper = springDamper;
-            spring.minDistance = springMinDistance;
-            spring.maxDistance= springMaxDistance;
-            spring.tolerance = springTolerance;
+            joint.spring = jSpring;
         }
 
         carBody.GetComponent<Rigidbody>().mass = carBodyMass;
