@@ -11,6 +11,7 @@ public class TurnWheels : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+        return;
         float carRotation = this.GetComponentInParent<CarProperties>().carRotation;
         float carSpeed = this.GetComponentInParent<CarProperties>().carSpeed;
         Transform wheel1 = transform.GetChild(0).transform;
