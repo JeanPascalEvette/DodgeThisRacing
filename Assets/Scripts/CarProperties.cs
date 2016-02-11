@@ -21,11 +21,23 @@ public class CarProperties : MonoBehaviour {
         
 
         carBody.GetComponent<Rigidbody>().mass = carBodyMass;
-        
+
+
+
+
+        var springs = carBody.GetComponents<SpringJoint>();
+        foreach(SpringJoint spring in springs)
+        {
+            spring.spring = 1000;
+            spring.minDistance= 2;
+            spring.maxDistance= 3;
+            spring.damper= 2;
+            spring.tolerance = 0.05f;
+        }
+
     }
 	
 	// Update is called once per frame
 	void Update () {
-
-	}
+    }
 }
