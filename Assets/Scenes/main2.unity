@@ -115,7 +115,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1755157389}
-  m_RootOrder: 4
+  m_RootOrder: 3
 --- !u!23 &12381406
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -172,6 +172,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fdac52015d8c8a141b0a04990869754b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mFrictionCoef: 1
 --- !u!1 &236826317
 GameObject:
   m_ObjectHideFlags: 0
@@ -186,7 +187,7 @@ GameObject:
   - 114: {fileID: 236826323}
   - 114: {fileID: 236826322}
   m_Layer: 0
-  m_Name: BackLeftWheel
+  m_Name: RearLeftWheel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -260,6 +261,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fdac52015d8c8a141b0a04990869754b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mFrictionCoef: 1
 --- !u!114 &236826323
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -271,6 +273,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fdac52015d8c8a141b0a04990869754b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mFrictionCoef: 1
 --- !u!1 &358987774
 GameObject:
   m_ObjectHideFlags: 0
@@ -362,7 +365,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1755157389}
-  m_RootOrder: 3
+  m_RootOrder: 4
 --- !u!23 &551090477
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -419,6 +422,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fdac52015d8c8a141b0a04990869754b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mFrictionCoef: 1
 --- !u!1 &725117346
 GameObject:
   m_ObjectHideFlags: 0
@@ -677,8 +681,8 @@ Transform:
   - {fileID: 1188904523}
   - {fileID: 236826318}
   - {fileID: 1804544192}
-  - {fileID: 551090476}
   - {fileID: 12381405}
+  - {fileID: 551090476}
   m_Father: {fileID: 0}
   m_RootOrder: 3
 --- !u!114 &1755157390
@@ -696,10 +700,18 @@ MonoBehaviour:
   mCDrag: 0.4257
   mCRolRes: 12.8
   mCBrake: 3
-  tractionForce: {x: 0, y: 0, z: 0}
-  dragForce: {x: 0, y: 0, z: 0}
-  rollingResistance: {x: 0, y: 0, z: 0}
-  longtitudinalForce: {x: 0, y: 0, z: 0}
+  RearLeftWheel: {fileID: 236826318}
+  RearRightWheel: {fileID: 1804544192}
+  FrontLeftWheel: {fileID: 12381405}
+  FrontRightWheel: {fileID: 551090476}
+  CenterOfGravity: {x: 0, y: 0.5, z: 0}
+  TractionForce: {x: 0, y: 0, z: 0}
+  DragForce: {x: 0, y: 0, z: 0}
+  RollingResistance: {x: 0, y: 0, z: 0}
+  LongtitudinalForce: {x: 0, y: 0, z: 0}
+  Acceleration: {x: 0, y: 0, z: 0}
+  WeightOnFrontWheels: 0
+  WeightOnRearWheels: 0
 --- !u!54 &1755157391
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -728,7 +740,7 @@ GameObject:
   - 135: {fileID: 1804544194}
   - 114: {fileID: 1804544196}
   m_Layer: 0
-  m_Name: BackRightWheel
+  m_Name: RearRightWheel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -802,3 +814,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fdac52015d8c8a141b0a04990869754b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mFrictionCoef: 1
