@@ -173,6 +173,26 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mFrictionCoef: 1
+  wheelMass: 0
+  isRearWheel: 0
+  angularVelocity: 0
+  wheelLinearVelocity: 0
+  wheelRadius: 0
+  slipRatio: 0
+  tyreLoad: 0
+  longtitudinalForce: 0
+  normLongForce: 0
+  tractionConstant: 0
+  maxLongForce: 0
+  tractionTorque: 0
+  driveTorque: 0
+  brakeTorque: 0
+  angularAcceleration: 0
+  wheelInertia: 0
+  carModel: {fileID: 1755157391}
+  carSpeed: 0
+  slipCurve: {fileID: 0}
+  longtitudinalForceCurve: {fileID: 0}
 --- !u!1 &236826317
 GameObject:
   m_ObjectHideFlags: 0
@@ -185,7 +205,6 @@ GameObject:
   - 23: {fileID: 236826319}
   - 135: {fileID: 236826320}
   - 114: {fileID: 236826323}
-  - 114: {fileID: 236826322}
   m_Layer: 0
   m_Name: RearLeftWheel
   m_TagString: Untagged
@@ -250,18 +269,6 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 236826317}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &236826322
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 236826317}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fdac52015d8c8a141b0a04990869754b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mFrictionCoef: 1
 --- !u!114 &236826323
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -274,6 +281,26 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mFrictionCoef: 1
+  wheelMass: 0
+  isRearWheel: 0
+  angularVelocity: 0
+  wheelLinearVelocity: 0
+  wheelRadius: 0
+  slipRatio: 0
+  tyreLoad: 0
+  longtitudinalForce: 0
+  normLongForce: 0
+  tractionConstant: 0
+  maxLongForce: 0
+  tractionTorque: 0
+  driveTorque: 0
+  brakeTorque: 0
+  angularAcceleration: 0
+  wheelInertia: 0
+  carModel: {fileID: 1755157391}
+  carSpeed: 0
+  slipCurve: {fileID: 0}
+  longtitudinalForceCurve: {fileID: 0}
 --- !u!1 &358987774
 GameObject:
   m_ObjectHideFlags: 0
@@ -423,6 +450,26 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mFrictionCoef: 1
+  wheelMass: 0
+  isRearWheel: 0
+  angularVelocity: 0
+  wheelLinearVelocity: 0
+  wheelRadius: 0
+  slipRatio: 0
+  tyreLoad: 0
+  longtitudinalForce: 0
+  normLongForce: 0
+  tractionConstant: 0
+  maxLongForce: 0
+  tractionTorque: 0
+  driveTorque: 0
+  brakeTorque: 0
+  angularAcceleration: 0
+  wheelInertia: 0
+  carModel: {fileID: 1755157391}
+  carSpeed: 0
+  slipCurve: {fileID: 0}
+  longtitudinalForceCurve: {fileID: 0}
 --- !u!1 &725117346
 GameObject:
   m_ObjectHideFlags: 0
@@ -700,11 +747,12 @@ MonoBehaviour:
   mCDrag: 0.4257
   mCRolRes: 12.8
   mCBrake: 3
-  RearLeftWheel: {fileID: 236826318}
-  RearRightWheel: {fileID: 1804544192}
-  FrontLeftWheel: {fileID: 12381405}
-  FrontRightWheel: {fileID: 551090476}
   CenterOfGravity: {x: 0, y: 0.5, z: 0}
+  rearLeftWheel: {fileID: 236826323}
+  rearRightWheel: {fileID: 1804544196}
+  frontLeftWheel: {fileID: 12381409}
+  frontRightWheel: {fileID: 551090480}
+  rearAxleTorque: 0
   TractionForce: {x: 0, y: 0, z: 0}
   DragForce: {x: 0, y: 0, z: 0}
   RollingResistance: {x: 0, y: 0, z: 0}
@@ -815,3 +863,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mFrictionCoef: 1
+  wheelMass: 0
+  isRearWheel: 0
+  angularVelocity: 0
+  wheelLinearVelocity: 0
+  wheelRadius: 0
+  slipRatio: 0
+  tyreLoad: 0
+  longtitudinalForce: 0
+  normLongForce: 0
+  tractionConstant: 0
+  maxLongForce: 0
+  tractionTorque: 0
+  driveTorque: 0
+  brakeTorque: 0
+  angularAcceleration: 0
+  wheelInertia: 0
+  carModel: {fileID: 1755157391}
+  carSpeed: 0
+  slipCurve: {fileID: 0}
+  longtitudinalForceCurve: {fileID: 0}

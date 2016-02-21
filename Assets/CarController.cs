@@ -14,21 +14,23 @@ public class CarController : MonoBehaviour {
     [SerializeField]
     private float mCBrake = 3.0f;
     [SerializeField]
-    private Transform RearLeftWheel;
-    [SerializeField]
-    private Transform RearRightWheel;
-    [SerializeField]
-    private Transform FrontLeftWheel;
-    [SerializeField]
-    private Transform FrontRightWheel;
-    [SerializeField]
-    private Vector3 CenterOfGravity = new Vector3(0.2f,0.5f,0);
+    private Vector3 CenterOfGravity = new Vector3(0.2f, 0.5f, 0);
+
+    // Wheels declaration
+    public WheelController rearLeftWheel;
+    public WheelController rearRightWheel;
+    public WheelController frontLeftWheel;
+    public WheelController frontRightWheel; 
+
+    // Wheels Position Variables
+    private float frontRightPosition;
+    private float rearRightPosition;
 
 
-
+    // Variable to calculate the total amount of Torque in the car
+    public float rearAxleTorque;
 
     private float direction = 0.0f;
-
 
     private Rigidbody rb;
 
@@ -49,6 +51,22 @@ public class CarController : MonoBehaviour {
     // Use this for initialization
     void Start () {
         rb = GetComponent<Rigidbody>();
+
+        // We find the Wheels
+        rearLeftWheel = transform.parent.FindChild("RearLeftWheel").GetComponent<WheelController>();
+        rearRightWheel = transform.parent.FindChild("RearRightWheel").GetComponent<WheelController>();
+        frontLeftWheel = transform.parent.FindChild("FrontLeftWheel").GetComponent<WheelController>();
+        frontRightWheel = transform.parent.FindChild("FrontRightWheel").GetComponent<WheelController>();
+
+        // We set the boolean variables of the wheels
+        rearLeftWheel.isRearWheel = true;
+        rearRightWheel.isRearWheel = true;
+        frontLeftWheel.isRearWheel = false;
+        frontRightWheel.isRearWheel = false;
+
+        // We obtain the position of the wheels to calculate the different weights
+        frontRightPosition = transform.parent.FindChild("FrontRightWheel").localPosition.z;
+        rearRightPosition = transform.parent.FindChild("RearRightWheel").localPosition.z;
 
     }
 	
@@ -82,16 +100,43 @@ public class CarController : MonoBehaviour {
 
         rb.velocity = rb.velocity + Time.deltaTime * Acceleration;
 
+        WeightOnFrontWheels = GetMassOnAxle(frontRightPosition) - (CenterOfGravity.y / (frontRightPosition - rearRightPosition)) * rb.mass * Acceleration.x;
+        WeightOnRearWheels = GetMassOnAxle(rearRightPosition) + (CenterOfGravity.y / (frontRightPosition - rearRightPosition)) * rb.mass * Acceleration.x;
 
-        WeightOnFrontWheels = GetMassOnAxle(FrontRightWheel.localPosition.z) - (CenterOfGravity.y / (FrontRightWheel.localPosition.z - RearRightWheel.localPosition.z)) * rb.mass * Acceleration.x;
-        WeightOnRearWheels = GetMassOnAxle(RearRightWheel.localPosition.z) + (CenterOfGravity.y / (FrontRightWheel.localPosition.z - RearRightWheel.localPosition.z)) * rb.mass * Acceleration.x;
+        //*********************** TORQUE REAR AXLE ***********************//
+
+        // Net Torque in the REAR AXLE
+
+        // Drive Torque from both wheels or only one
+        float driveTorqueTotal = rearLeftWheel.driveTorque + rearRightWheel.driveTorque;
+        // Traction Torque from both rear wheels
+        float tractionTorqueTotal = rearLeftWheel.tractionTorque + rearRightWheel.tractionTorque;
+        // Brake Torque from both rear wheels
+        float brakeTorqueTotal = rearLeftWheel.brakeTorque + rearRightWheel.brakeTorque;
+        // Total Net Torque
+        rearAxleTorque = driveTorqueTotal + tractionTorqueTotal + brakeTorqueTotal;
+
+        //*********************** END TORQUE REAR AXLE ***********************//
+
+        //*********************** ANGULAR ACCELERATION TO BE APPLIED TO DRIVE WHEELS ***********************//
+
+        // Rear Wheel Inertia
+        float rearInertiaTotal = rearLeftWheel.wheelInertia + rearRightWheel.wheelInertia;
+        // Angular Acceleration to be applied to rear wheels
+        float angularAcceleration = rearAxleTorque / rearInertiaTotal;
+
+        // We apply this force to the rear wheels (Divided by 2 because we split equally the total force between both wheels)
+        rearLeftWheel.angularAcceleration = angularAcceleration / 2;
+        rearRightWheel.angularAcceleration = angularAcceleration / 2;
+
+        //*********************** END ANGULAR ACCELERATION TO BE APPLIED TO DRIVE WHEELS ***********************//
 
     }
 
     public float GetMassOnAxle(float zCoord)
     {
         float distance = Mathf.Abs(zCoord - CenterOfGravity.z);
-        float wheelDist = RearRightWheel.localPosition.z - FrontRightWheel.localPosition.z;
+        float wheelDist = rearRightPosition - frontRightPosition;
         return (distance / wheelDist) * rb.mass;
     }
 }
