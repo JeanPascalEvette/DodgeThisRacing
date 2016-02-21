@@ -53,10 +53,10 @@ public class CarController : MonoBehaviour {
         rb = GetComponent<Rigidbody>();
 
         // We find the Wheels
-        rearLeftWheel = transform.parent.FindChild("RearLeftWheel").GetComponent<WheelController>();
-        rearRightWheel = transform.parent.FindChild("RearRightWheel").GetComponent<WheelController>();
-        frontLeftWheel = transform.parent.FindChild("FrontLeftWheel").GetComponent<WheelController>();
-        frontRightWheel = transform.parent.FindChild("FrontRightWheel").GetComponent<WheelController>();
+        rearLeftWheel = transform.Find("RearLeftWheel").GetComponent<WheelController>();
+        rearRightWheel = transform.Find("RearRightWheel").GetComponent<WheelController>();
+        frontLeftWheel = transform.Find("FrontLeftWheel").GetComponent<WheelController>();
+        frontRightWheel = transform.Find("FrontRightWheel").GetComponent<WheelController>();
 
         // We set the boolean variables of the wheels
         rearLeftWheel.isRearWheel = true;
@@ -65,8 +65,8 @@ public class CarController : MonoBehaviour {
         frontRightWheel.isRearWheel = false;
 
         // We obtain the position of the wheels to calculate the different weights
-        frontRightPosition = transform.parent.FindChild("FrontRightWheel").localPosition.z;
-        rearRightPosition = transform.parent.FindChild("RearRightWheel").localPosition.z;
+        frontRightPosition = transform.Find("FrontRightWheel").localPosition.z;
+        rearRightPosition = transform.Find("RearRightWheel").localPosition.z;
 
     }
 	
