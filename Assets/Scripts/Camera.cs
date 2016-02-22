@@ -15,7 +15,7 @@ public class Camera : MonoBehaviour {
 	void Update ()
     {
         var targetPos = target.transform.position;
-        var dir = (target.transform.forward) - targetPos;
+        var dir = (target.transform.position  +  target.transform.forward) - targetPos;
         dir.Normalize();
         dir *= xDist;
         dir.y = yDist;
