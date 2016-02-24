@@ -97,6 +97,7 @@ public class CarController : MonoBehaviour {
     // Update is called once per frame
     void Update ()
     {
+        if (!IsOnGround()) return;
         direction = 0.0f;						//speed of object
         if (Input.GetKey(KeyCode.W))
             direction = 1.0f;
@@ -160,6 +161,11 @@ public class CarController : MonoBehaviour {
         float distance = Mathf.Abs(zCoord - CenterOfGravity.z);
         float wheelDist = rearRightPosition - frontRightPosition;
         return (distance / wheelDist) * rb.mass;
+    }
+
+    private bool IsOnGround()
+    {
+        return rearRightWheel.isOnGround || rearLeftWheel.isOnGround || frontLeftWheel.isOnGround || frontRightWheel.isOnGround;
     }
 }
 

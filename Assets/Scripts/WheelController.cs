@@ -9,6 +9,7 @@ public class WheelController : MonoBehaviour {
     // Variables of a wheel
     public float wheelMass;
     public bool isRearWheel;
+    public bool isOnGround;
 
     // Variables for Slip Ratio
     public float angularVelocity;
@@ -111,5 +112,19 @@ public class WheelController : MonoBehaviour {
 
         //*********************** END WHEEL INERTIA ***********************//
 
+        CheckWheelsAreOnGround();
+    }
+
+    private void CheckWheelsAreOnGround()
+    {
+        float wheelHeight = GetComponent<MeshRenderer>().bounds.size.y;
+        Vector3 direction = new Vector3(0, -wheelHeight / 1.9f, 0);
+        direction = GetComponent<Collider>().transform.root.rotation * direction;
+        Debug.DrawLine(transform.position, transform.position + direction, Color.green);
+        Ray myRay = new Ray(transform.position, direction);
+        if (Physics.Raycast(myRay, wheelHeight / 1.9f))
+            isOnGround = true;
+        else
+            isOnGround = false;
     }
 }
