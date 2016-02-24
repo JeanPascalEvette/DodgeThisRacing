@@ -47,6 +47,7 @@ public class CarController : MonoBehaviour {
     public float rearAxleTorque;
     private float direction = 0.0f;
 
+    public float turning = 1;
 
     private Rigidbody rb;
 
@@ -99,15 +100,30 @@ public class CarController : MonoBehaviour {
     {
         if (!IsOnGround()) return;
         direction = 0.0f;						//speed of object
+        float maxTurn = turning * Input.GetAxis("Horizontal");
         if (Input.GetKey(KeyCode.W))
             direction = 1.0f;
         else if (Input.GetKey(KeyCode.S))
             direction = -1.0f;
         if (direction >= 0)														// the traction force is the force delivered by the engine via the rear wheels
+        {
             TractionForce = transform.forward * direction * mEngineForce;		// when braking this should be replaced by a braking force
-				// Ftraction = u * Enginforce									// which is oriented in the opposite direction.
+            gameObject.transform.Rotate(new Vector3(0, maxTurn, 0));
+        }		// Ftraction = u * Enginforce									// which is oriented in the opposite direction.
         else
+        {
             TractionForce = transform.forward * -mCBrake;
+            gameObject.transform.Rotate(new Vector3(0, -maxTurn, 0));
+        }
+
+        if(Input.GetKey(KeyCode.LeftArrow)||Input.GetKey(KeyCode.RightArrow))
+        {
+            frontLeftWheel.transform.rotation = frontRightWheel.transform.rotation = gameObject.transform.rotation * Quaternion.AngleAxis(maxTurn * 30, new Vector3(0, 1, 0));
+        }
+        else
+        {
+            frontLeftWheel.transform.rotation = frontRightWheel.transform.rotation = gameObject.transform.rotation;
+        }
         var speed = Mathf.Sqrt(TractionForce.x * TractionForce.x + TractionForce.z * TractionForce.z);
         DragForce = new Vector3(-mCDrag * TractionForce.x * speed, -mCDrag * TractionForce.z * speed, 0);
         speedForStefanos = speed;// ERASE THIS SOON JUST FOR NOW																									// fdrag.y = Cdrag * v.y * speed
