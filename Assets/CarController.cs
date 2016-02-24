@@ -16,12 +16,28 @@ public class CarController : MonoBehaviour {
     [SerializeField]
     private Vector3 CenterOfGravity = new Vector3(0.2f, 0.5f, 0);
 
+
+    //
+
+    public float currentGear;
+	public float gearOne = 2.66f;		// gears should be applied to the equation to get from engine torque to drive force (Fdrive = u * Tengine * gear *xd * transmission efficiency/wheel radius)
+	public float gearTwo = 1.78f;		// however I will apply it to the traction force that we currently have
+	public float gearThree = 1.3f;
+	public float gearFour = 1.0f;
+	public float gearFive = 0.74f;
+	public float gearSix = 0.5f;
+	public float reverse = 2.9f;
+
+	// public float throttlePosition = 0;   This will not be needed since when user hits key we assume that the throttle pedal is full down.
+	public float rpm;
+
+	public float differentialRatio = 3.42f;     // for off road performance we should increase this parameter (like to 4.10f)
+                                               
     // Wheels declaration
     public WheelController rearLeftWheel;
     public WheelController rearRightWheel;
     public WheelController frontLeftWheel;
-    public WheelController frontRightWheel; 
-
+    public WheelController frontRightWheel;
     // Wheels Position Variables
     private float frontRightPosition;
     private float rearRightPosition;
@@ -29,8 +45,8 @@ public class CarController : MonoBehaviour {
 
     // Variable to calculate the total amount of Torque in the car
     public float rearAxleTorque;
-
     private float direction = 0.0f;
+
 
     private Rigidbody rb;
 
@@ -48,15 +64,16 @@ public class CarController : MonoBehaviour {
     private float WeightOnFrontWheels;
     [SerializeField]
     private float WeightOnRearWheels;
+
+
+    public float speedForStefanos;	// ERASE THIS SOON JUST FOR NOW
+
+
     // Use this for initialization
     void Start () {
-        rb = GetComponent<Rigidbody>();
 
-        // We find the Wheels
-        //rearLeftWheel = transform.Find("RearLeftWheel").GetComponent<WheelController>();
-        //rearRightWheel = transform.Find("RearRightWheel").GetComponent<WheelController>();
-        //frontLeftWheel = transform.Find("FrontLeftWheel").GetComponent<WheelController>();
-        //frontRightWheel = transform.Find("FrontRightWheel").GetComponent<WheelController>();
+		currentGear = gearOne; 			// bound to change in future // still in testing phase
+        rb = GetComponent<Rigidbody>();
 
         // We set the boolean variables of the wheels
         rearLeftWheel.isRearWheel = true;
@@ -67,38 +84,43 @@ public class CarController : MonoBehaviour {
         // We obtain the position of the wheels to calculate the different weights
         frontRightPosition = frontRightWheel.transform.localPosition.z;
         rearRightPosition = rearRightWheel.transform.localPosition.z;
-
     }
-	
+
     void OnDrawGizmos()
     {
 
         Gizmos.color = Color.red;
-        Gizmos.DrawSphere(transform.position+CenterOfGravity, 0.1f);
+        Gizmos.DrawSphere(transform.position + CenterOfGravity, 0.1f);
 
     }
 
     // Update is called once per frame
     void Update ()
     {
-        direction = 0.0f;
+        direction = 0.0f;						//speed of object
         if (Input.GetKey(KeyCode.W))
             direction = 1.0f;
         else if (Input.GetKey(KeyCode.S))
             direction = -1.0f;
-        if (direction >= 0)
-            TractionForce = transform.forward * direction * mEngineForce;
+        if (direction >= 0)														// the traction force is the force delivered by the engine via the rear wheels
+            TractionForce = transform.forward * direction * mEngineForce;		// when braking this should be replaced by a braking force
+				// Ftraction = u * Enginforce									// which is oriented in the opposite direction.
         else
             TractionForce = transform.forward * -mCBrake;
         var speed = Mathf.Sqrt(TractionForce.x * TractionForce.x + TractionForce.z * TractionForce.z);
         DragForce = new Vector3(-mCDrag * TractionForce.x * speed, -mCDrag * TractionForce.z * speed, 0);
+        speedForStefanos = speed;// ERASE THIS SOON JUST FOR NOW																									// fdrag.y = Cdrag * v.y * speed
         RollingResistance = -mCRolRes * TractionForce;
 
 
-        LongtitudinalForce = TractionForce + DragForce + RollingResistance;
-        Acceleration = LongtitudinalForce / rb.mass;
+        LongtitudinalForce = TractionForce + DragForce + RollingResistance; //Flong = Ftraction + Fdrag + Frr
+        Acceleration = LongtitudinalForce / rb.mass;                    // a = F + M
 
-        rb.velocity = rb.velocity + Time.deltaTime * Acceleration;
+        rb.velocity = rb.velocity + Time.deltaTime * Acceleration;          // v = v + dt * a
+
+
+
+        rpm = speed * currentGear * differentialRatio * 60.0f / 6.28f;		// 6.28 occurs from 2pi . Correct?
 
         WeightOnFrontWheels = GetMassOnAxle(frontRightPosition) - (CenterOfGravity.y / (frontRightPosition - rearRightPosition)) * rb.mass * Acceleration.x;
         WeightOnRearWheels = GetMassOnAxle(rearRightPosition) + (CenterOfGravity.y / (frontRightPosition - rearRightPosition)) * rb.mass * Acceleration.x;
@@ -140,3 +162,21 @@ public class CarController : MonoBehaviour {
         return (distance / wheelDist) * rb.mass;
     }
 }
+
+
+// car's position -- p = p + dt * v
+// torque is equal to force * distance (if you apply a 10Newton force at 0.3 meters of the axis of rotation, the torque = 10 * 0.3 = 3 N.m)
+// hp = torque * rpm/5252
+
+// the gearing multiplies the torque from the engine by a factor depending on the gear ratios
+
+/*    
+Fdrive = u * Tengine * xg * xd * n / Rw 
+	where 
+u is a unit vector which reflects the car's orientation, 
+Tengine is the torque of the engine at a given rpm,
+xg is the gear ratio,
+xd is the differential ratio,
+n is transmission efficiency and 
+Rw is wheel radius.  
+*/
