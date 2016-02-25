@@ -53,8 +53,10 @@ public class WheelController : MonoBehaviour {
     }
 	
 	// Update is called once per frame
-	void Update () {
-	}
+	void Update ()
+    {
+        CheckWheelsAreOnGround();
+    }
 
     public float GetFrictionLimit()
     {
@@ -112,7 +114,6 @@ public class WheelController : MonoBehaviour {
 
         //*********************** END WHEEL INERTIA ***********************//
 
-        CheckWheelsAreOnGround();
     }
 
     private void CheckWheelsAreOnGround()

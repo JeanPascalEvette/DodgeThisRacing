@@ -15,6 +15,7 @@ public class CarController : MonoBehaviour {
     private float mCBrake = 3.0f;
     [SerializeField]
     private Vector3 CenterOfGravity = new Vector3(0.2f, 0.5f, 0);
+    private Vector3 currentCenterOfGravity = new Vector3(0.2f, 0.5f, 0);
 
 
     //
@@ -91,13 +92,16 @@ public class CarController : MonoBehaviour {
     {
 
         Gizmos.color = Color.red;
-        Gizmos.DrawSphere(transform.position + CenterOfGravity, 0.1f);
+        Gizmos.DrawSphere(transform.position + currentCenterOfGravity, 0.1f);
 
     }
 
     // Update is called once per frame
     void Update ()
     {
+        //Update CoG
+        currentCenterOfGravity = transform.rotation * CenterOfGravity;
+
         if (!IsOnGround()) return;
         direction = 0.0f;						//speed of object
         float maxTurn = turning * Input.GetAxis("Horizontal");
@@ -139,8 +143,8 @@ public class CarController : MonoBehaviour {
 
         rpm = speed * currentGear * differentialRatio * 60.0f / 6.28f;		// 6.28 occurs from 2pi . Correct?
 
-        WeightOnFrontWheels = GetMassOnAxle(frontRightPosition) - (CenterOfGravity.y / (frontRightPosition - rearRightPosition)) * rb.mass * Acceleration.x;
-        WeightOnRearWheels = GetMassOnAxle(rearRightPosition) + (CenterOfGravity.y / (frontRightPosition - rearRightPosition)) * rb.mass * Acceleration.x;
+        WeightOnFrontWheels = GetMassOnAxle(frontRightPosition) - (currentCenterOfGravity.y / (frontRightPosition - rearRightPosition)) * rb.mass * Acceleration.x;
+        WeightOnRearWheels = GetMassOnAxle(rearRightPosition) + (currentCenterOfGravity.y / (frontRightPosition - rearRightPosition)) * rb.mass * Acceleration.x;
 
         //*********************** TORQUE REAR AXLE ***********************//
 
@@ -174,7 +178,7 @@ public class CarController : MonoBehaviour {
 
     public float GetMassOnAxle(float zCoord)
     {
-        float distance = Mathf.Abs(zCoord - CenterOfGravity.z);
+        float distance = Mathf.Abs(zCoord - currentCenterOfGravity.z);
         float wheelDist = rearRightPosition - frontRightPosition;
         return (distance / wheelDist) * rb.mass;
     }
