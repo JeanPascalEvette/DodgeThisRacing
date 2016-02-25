@@ -15,7 +15,6 @@ public class WheelController : MonoBehaviour {
     public float angularVelocity;
     // Regarding formula linearVelocity = angularVeloctiy * Radius
     public float wheelLinearVelocity;
-    public float wheelRadius = 0.6f; // Wheel radius constant
     public float slipRatio;
 
     // Traction force variables
@@ -46,10 +45,12 @@ public class WheelController : MonoBehaviour {
     // Object to call information of Car Controller Object
     private CarController mCarController;
 
-	// Use this for initialization
-	void Start () {
-        mCarController = transform.parent.GetComponent<CarController>();
+    private float wheelRadius;
 
+    // Use this for initialization
+    void Start () {
+        mCarController = transform.parent.GetComponent<CarController>();
+        wheelRadius = GetComponent<MeshRenderer>().bounds.size.y / 2;
     }
 	
 	// Update is called once per frame
