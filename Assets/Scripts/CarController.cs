@@ -135,12 +135,27 @@ public class CarController : MonoBehaviour {
 
         rb.velocity = rb.velocity + Time.deltaTime * Acceleration;          // v = v + dt * a
 
+        // Local velocity 
+        Vector3 localVelocity = transform.InverseTransformDirection(rb.velocity);
+        localVelocity.x = 0;
+        rb.velocity = transform.TransformDirection(localVelocity);
 
 
         rpm = speed * currentGear * differentialRatio * 60.0f / 6.28f;		// 6.28 occurs from 2pi . Correct?
 
         WeightOnFrontWheels = GetMassOnAxle(frontRightPosition) - (CenterOfGravity.y / (frontRightPosition - rearRightPosition)) * rb.mass * Acceleration.x;
         WeightOnRearWheels = GetMassOnAxle(rearRightPosition) + (CenterOfGravity.y / (frontRightPosition - rearRightPosition)) * rb.mass * Acceleration.x;
+
+        // We set the mass of each wheels
+        frontLeftWheel.wheelMass = WeightOnFrontWheels / 2;
+        frontRightWheel.wheelMass = WeightOnFrontWheels / 2;
+        rearLeftWheel.wheelMass = WeightOnRearWheels / 2;
+        rearRightWheel.wheelMass = WeightOnRearWheels / 2;
+
+        frontLeftWheel.tyreLoad = WeightOnFrontWheels / 2;
+        frontRightWheel.tyreLoad = WeightOnFrontWheels / 2;
+        rearLeftWheel.tyreLoad = WeightOnRearWheels / 2;
+        rearRightWheel.tyreLoad = WeightOnRearWheels / 2;
 
         //*********************** TORQUE REAR AXLE ***********************//
 
