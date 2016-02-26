@@ -117,7 +117,7 @@ public class CarController : MonoBehaviour {
         }		// Ftraction = u * Enginforce									// which is oriented in the opposite direction.
         else
         {
-            TractionForce = transform.forward * -mCBrake;
+            TractionForce = transform.InverseTransformDirection(transform.forward) * -mCBrake;
         }
 
         if (transform.InverseTransformDirection(rb.velocity).magnitude > 0.1f)
