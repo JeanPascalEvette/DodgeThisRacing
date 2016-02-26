@@ -39,6 +39,7 @@ ModelImporter:
     100062: Tires
     100064: WindShield_L
     100066: WindShield_R
+    100068: polySurface41
     400000: BackMirror
     400002: BackPlate
     400004: BackWheel
@@ -73,6 +74,7 @@ ModelImporter:
     400062: Tires
     400064: WindShield_L
     400066: WindShield_R
+    400068: polySurface41
     2300000: BackMirror
     2300002: BackPlate
     2300004: BackWheel
@@ -105,6 +107,7 @@ ModelImporter:
     2300058: SteeringWheel
     2300060: WindShield_L
     2300062: WindShield_R
+    2300064: polySurface41
     3300000: BackMirror
     3300002: BackPlate
     3300004: BackWheel
@@ -137,6 +140,7 @@ ModelImporter:
     3300058: SteeringWheel
     3300060: WindShield_L
     3300062: WindShield_R
+    3300064: polySurface41
     4300000: BonnetDown_R
     4300002: BonnetDown_L
     4300004: MidFender_R
@@ -169,6 +173,7 @@ ModelImporter:
     4300058: RearWheel_L
     4300060: BackWheel
     4300062: Radiator
+    4300064: polySurface41
   materials:
     importMaterials: 1
     materialName: 0

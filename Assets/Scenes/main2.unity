@@ -312,14 +312,14 @@ MonoBehaviour:
   isOnGround: 0
   angularVelocity: 0
   wheelLinearVelocity: 0
-  wheelRadius: 0
+  wheelRadius: 0.6
   slipRatio: 0
   tyreLoad: 0
   longtitudinalForce: 0
   normLongForce: 0
   tractionConstant: 0
   maxLongForce: 0
-  tractionTorque: 0
+  tractionTorque: 0.2
   driveTorque: 0
   brakeTorque: 0
   angularAcceleration: 0
@@ -431,14 +431,14 @@ MonoBehaviour:
   isOnGround: 0
   angularVelocity: 0
   wheelLinearVelocity: 0
-  wheelRadius: 0
+  wheelRadius: 0.6
   slipRatio: 0
   tyreLoad: 0
   longtitudinalForce: 0
   normLongForce: 0
   tractionConstant: 0
   maxLongForce: 0
-  tractionTorque: 0
+  tractionTorque: 0.2
   driveTorque: 0
   brakeTorque: 0
   angularAcceleration: 0
@@ -581,12 +581,12 @@ MonoBehaviour:
   isOnGround: 0
   angularVelocity: 0
   wheelLinearVelocity: 0
-  wheelRadius: 0
+  wheelRadius: 0.6
   slipRatio: 0
   tyreLoad: 0
   longtitudinalForce: 0
   normLongForce: 0
-  tractionConstant: 0
+  tractionConstant: 0.2
   maxLongForce: 0
   tractionTorque: 0
   driveTorque: 0
@@ -630,12 +630,12 @@ MonoBehaviour:
   isOnGround: 0
   angularVelocity: 0
   wheelLinearVelocity: 0
-  wheelRadius: 0
+  wheelRadius: 0.6
   slipRatio: 0
   tyreLoad: 0
   longtitudinalForce: 0
   normLongForce: 0
-  tractionConstant: 0
+  tractionConstant: 0.2
   maxLongForce: 0
   tractionTorque: 0
   driveTorque: 0
@@ -794,6 +794,74 @@ Prefab:
     - target: {fileID: 400038, guid: d3ee1d389575ff84abd80cb5da1c9e3f, type: 3}
       propertyPath: m_LocalScale.z
       value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 400066, guid: d3ee1d389575ff84abd80cb5da1c9e3f, type: 3}
+      propertyPath: m_RootOrder
+      value: 22
+      objectReference: {fileID: 0}
+    - target: {fileID: 400064, guid: d3ee1d389575ff84abd80cb5da1c9e3f, type: 3}
+      propertyPath: m_RootOrder
+      value: 21
+      objectReference: {fileID: 0}
+    - target: {fileID: 400062, guid: d3ee1d389575ff84abd80cb5da1c9e3f, type: 3}
+      propertyPath: m_RootOrder
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 400060, guid: d3ee1d389575ff84abd80cb5da1c9e3f, type: 3}
+      propertyPath: m_RootOrder
+      value: 19
+      objectReference: {fileID: 0}
+    - target: {fileID: 400058, guid: d3ee1d389575ff84abd80cb5da1c9e3f, type: 3}
+      propertyPath: m_RootOrder
+      value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 400052, guid: d3ee1d389575ff84abd80cb5da1c9e3f, type: 3}
+      propertyPath: m_RootOrder
+      value: 17
+      objectReference: {fileID: 0}
+    - target: {fileID: 400050, guid: d3ee1d389575ff84abd80cb5da1c9e3f, type: 3}
+      propertyPath: m_RootOrder
+      value: 16
+      objectReference: {fileID: 0}
+    - target: {fileID: 400068, guid: d3ee1d389575ff84abd80cb5da1c9e3f, type: 3}
+      propertyPath: m_RootOrder
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 400046, guid: d3ee1d389575ff84abd80cb5da1c9e3f, type: 3}
+      propertyPath: m_RootOrder
+      value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 400044, guid: d3ee1d389575ff84abd80cb5da1c9e3f, type: 3}
+      propertyPath: m_RootOrder
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 400042, guid: d3ee1d389575ff84abd80cb5da1c9e3f, type: 3}
+      propertyPath: m_RootOrder
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 400040, guid: d3ee1d389575ff84abd80cb5da1c9e3f, type: 3}
+      propertyPath: m_RootOrder
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 400036, guid: d3ee1d389575ff84abd80cb5da1c9e3f, type: 3}
+      propertyPath: m_RootOrder
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 400030, guid: d3ee1d389575ff84abd80cb5da1c9e3f, type: 3}
+      propertyPath: m_RootOrder
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 400028, guid: d3ee1d389575ff84abd80cb5da1c9e3f, type: 3}
+      propertyPath: m_RootOrder
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 400026, guid: d3ee1d389575ff84abd80cb5da1c9e3f, type: 3}
+      propertyPath: m_RootOrder
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 400020, guid: d3ee1d389575ff84abd80cb5da1c9e3f, type: 3}
+      propertyPath: m_RootOrder
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d3ee1d389575ff84abd80cb5da1c9e3f, type: 3}

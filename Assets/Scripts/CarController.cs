@@ -109,14 +109,23 @@ public class CarController : MonoBehaviour {
             direction = 1.0f;
         else if (Input.GetKey(KeyCode.S))
             direction = -1.0f;
+
         if (direction >= 0)														// the traction force is the force delivered by the engine via the rear wheels
         {
             TractionForce = transform.forward * direction * mEngineForce;		// when braking this should be replaced by a braking force
-            gameObject.transform.Rotate(new Vector3(0, maxTurn, 0));
+            
         }		// Ftraction = u * Enginforce									// which is oriented in the opposite direction.
         else
         {
             TractionForce = transform.forward * -mCBrake;
+        }
+
+        if(transform.InverseTransformDirection(rb.velocity).z < 0)
+        {
+            gameObject.transform.Rotate(new Vector3(0, maxTurn, 0));
+        }
+        else
+        {
             gameObject.transform.Rotate(new Vector3(0, -maxTurn, 0));
         }
 
@@ -139,12 +148,27 @@ public class CarController : MonoBehaviour {
 
         rb.velocity = rb.velocity + Time.deltaTime * Acceleration;          // v = v + dt * a
 
+        // Dampening X element in local velocity
+        Vector3 localVelocity = transform.InverseTransformDirection(rb.velocity);
+        localVelocity.x *= 0.5f;
+        rb.velocity = transform.TransformDirection(localVelocity);
 
 
         rpm = speed * currentGear * differentialRatio * 60.0f / 6.28f;		// 6.28 occurs from 2pi . Correct?
 
         WeightOnFrontWheels = GetMassOnAxle(frontRightPosition) - (currentCenterOfGravity.y / (frontRightPosition - rearRightPosition)) * rb.mass * Acceleration.x;
         WeightOnRearWheels = GetMassOnAxle(rearRightPosition) + (currentCenterOfGravity.y / (frontRightPosition - rearRightPosition)) * rb.mass * Acceleration.x;
+
+        // We set the mass of each wheels
+        frontLeftWheel.wheelMass = WeightOnFrontWheels / 2;
+        frontRightWheel.wheelMass = WeightOnFrontWheels / 2;
+        rearLeftWheel.wheelMass = WeightOnRearWheels / 2;
+        rearRightWheel.wheelMass = WeightOnRearWheels / 2;
+
+        frontLeftWheel.tyreLoad = WeightOnFrontWheels / 2;
+        frontRightWheel.tyreLoad = WeightOnFrontWheels / 2;
+        rearLeftWheel.tyreLoad = WeightOnRearWheels / 2;
+        rearRightWheel.tyreLoad = WeightOnRearWheels / 2;
 
         //*********************** TORQUE REAR AXLE ***********************//
 

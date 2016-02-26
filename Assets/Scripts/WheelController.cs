@@ -14,8 +14,7 @@ public class WheelController : MonoBehaviour {
     // Variables for Slip Ratio
     public float angularVelocity;
     // Regarding formula linearVelocity = angularVeloctiy * Radius
-    public float wheelLinearVelocity; 
-    public float wheelRadius;
+    public float wheelLinearVelocity;
     public float slipRatio;
 
     // Traction force variables
@@ -39,17 +38,19 @@ public class WheelController : MonoBehaviour {
     public Rigidbody carModel;
     public float carSpeed;
 
-    public Animation slipCurve;
-    public Animation longtitudinalForceCurve;
+    public AnimationCurve slipCurve;
+    public AnimationCurve longtitudinalForceCurve;
 
 
     // Object to call information of Car Controller Object
     private CarController mCarController;
 
-	// Use this for initialization
-	void Start () {
-        mCarController = transform.parent.GetComponent<CarController>();
+    private float wheelRadius;
 
+    // Use this for initialization
+    void Start () {
+        mCarController = transform.parent.GetComponent<CarController>();
+        wheelRadius = GetComponent<MeshRenderer>().bounds.size.y / 2;
     }
 	
 	// Update is called once per frame
@@ -80,10 +81,13 @@ public class WheelController : MonoBehaviour {
 
         //*********************** SLIP RATIO ***********************//
 
-        // Wheel linear velocity 
-        wheelLinearVelocity = angularVelocity * wheelRadius;
         // Car velocity (Find out which direction to use) (negative sign as before the speed was opposite it should be)
         carSpeed = -carModel.velocity.z;
+        // Wheel linear velocity 
+        angularVelocity = carSpeed / wheelRadius;
+
+        wheelLinearVelocity = angularVelocity * wheelRadius;
+       
         // Slip ratio
         slipRatio = (wheelLinearVelocity - carSpeed) / Mathf.Abs(carSpeed);
 
