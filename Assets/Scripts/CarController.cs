@@ -138,7 +138,7 @@ public class CarController : MonoBehaviour {
         }
         else
         {
-            //frontLeftWheel.transform.rotation = frontRightWheel.transform.rotation = gameObject.transform.rotation * Quaternion.Euler(new Vector3(0,180,0));
+            frontLeftWheel.transform.localRotation = frontRightWheel.transform.localRotation = Quaternion.AngleAxis(0, new Vector3(0, 1, 0));
         }
         var speed = Mathf.Sqrt(TractionForce.x * TractionForce.x + TractionForce.z * TractionForce.z);
         DragForce = new Vector3(-mCDrag * TractionForce.x * speed, 0, -mCDrag * TractionForce.z * speed);

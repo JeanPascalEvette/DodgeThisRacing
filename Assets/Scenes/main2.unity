@@ -578,6 +578,7 @@ MonoBehaviour:
   target: {fileID: 1755157388}
   xDist: 10
   yDist: 3
+  myCameraType: 1
 --- !u!1 &1447095053 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 100054, guid: d3ee1d389575ff84abd80cb5da1c9e3f, type: 3}
