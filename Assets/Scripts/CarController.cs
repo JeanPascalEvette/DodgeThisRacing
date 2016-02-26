@@ -134,7 +134,7 @@ public class CarController : MonoBehaviour {
 
         if(Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D))
         {
-            frontLeftWheel.transform.rotation = frontRightWheel.transform.rotation = gameObject.transform.rotation * Quaternion.AngleAxis(maxTurn * 30, new Vector3(0, 1, 0));
+            frontLeftWheel.transform.localRotation = frontRightWheel.transform.localRotation = Quaternion.AngleAxis(maxTurn * 30, new Vector3(0, 1, 0));
         }
         else
         {
