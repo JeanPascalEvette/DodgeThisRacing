@@ -128,7 +128,7 @@ public class CarController : MonoBehaviour {
         if(Input.GetKey(KeyCode.LeftArrow)||Input.GetKey(KeyCode.RightArrow))
         {
             frontLeftWheel.transform.rotation = frontRightWheel.transform.rotation = gameObject.transform.rotation * Quaternion.AngleAxis(maxTurn * 30, new Vector3(0, 1, 0));
-        }
+        }//Bla
         else
         {
             frontLeftWheel.transform.rotation = frontRightWheel.transform.rotation = gameObject.transform.rotation;
