@@ -112,7 +112,7 @@ public class CarController : MonoBehaviour {
 
         if (direction >= 0)														// the traction force is the force delivered by the engine via the rear wheels
         {
-            TractionForce = transform.forward * direction * mEngineForce;		// when braking this should be replaced by a braking force
+            TractionForce = transform.InverseTransformDirection(transform.forward) * direction * mEngineForce;		// when braking this should be replaced by a braking force
             
         }		// Ftraction = u * Enginforce									// which is oriented in the opposite direction.
         else
@@ -120,29 +120,25 @@ public class CarController : MonoBehaviour {
             TractionForce = transform.forward * -mCBrake;
         }
 
-        if(Mathf.Abs(transform.InverseTransformDirection(rb.velocity).z) > 0.5f)
+        if (transform.InverseTransformDirection(rb.velocity).magnitude > 0.1f)
         {
-            float speedMult = Mathf.Abs(transform.InverseTransformDirection(rb.velocity).z) * 0.1f;
-            int i;
-            if (Mathf.Abs(transform.InverseTransformDirection(rb.velocity).z) > 50.0f)
-                i = 0;
             if (transform.InverseTransformDirection(rb.velocity).z < 0)
-            {
-                gameObject.transform.Rotate(new Vector3(0, maxTurn * speedMult, 0));
-            }
-            else
-            {
-                gameObject.transform.Rotate(new Vector3(0, -maxTurn * speedMult, 0));
-            }
+        {
+            gameObject.transform.Rotate(new Vector3(0, maxTurn, 0));
+        }
+        else
+        {
+            gameObject.transform.Rotate(new Vector3(0, -maxTurn, 0));
+        }
         }
 
-        if(Input.GetKey(KeyCode.LeftArrow)||Input.GetKey(KeyCode.RightArrow))
+        if(Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D))
         {
             frontLeftWheel.transform.rotation = frontRightWheel.transform.rotation = gameObject.transform.rotation * Quaternion.AngleAxis(maxTurn * 30, new Vector3(0, 1, 0));
         }
         else
         {
-            //frontLeftWheel.transform.rotation = frontRightWheel.transform.rotation = gameObject.transform.rotation;
+            //frontLeftWheel.transform.rotation = frontRightWheel.transform.rotation = gameObject.transform.rotation * Quaternion.Euler(new Vector3(0,180,0));
         }
         var speed = Mathf.Sqrt(TractionForce.x * TractionForce.x + TractionForce.z * TractionForce.z);
         DragForce = new Vector3(-mCDrag * TractionForce.x * speed, 0, -mCDrag * TractionForce.z * speed);
@@ -153,7 +149,7 @@ public class CarController : MonoBehaviour {
         LongtitudinalForce = TractionForce + DragForce + RollingResistance; //Flong = Ftraction + Fdrag + Frr
         Acceleration = LongtitudinalForce / rb.mass;                    // a = F + M
 
-        rb.velocity = rb.velocity + Time.deltaTime * Acceleration;          // v = v + dt * a
+        rb.velocity = rb.velocity + Time.deltaTime * transform.TransformDirection(Acceleration);          // v = v + dt * a
 
         if (Acceleration == new Vector3(0, 0, 0))
         {
