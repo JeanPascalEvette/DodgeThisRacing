@@ -69,6 +69,8 @@ public class WheelController : MonoBehaviour {
     // Fixed Update Function
     void FixedUpdate()
     {
+        transform.localRotation = Quaternion.identity;
+
         //*********************** ANGULAR VELOCITY SECTION ***********************//
 
         // We need to know if the wheel is front or rear as we need to apply some rear wheel acceleration previously calculated
@@ -82,7 +84,7 @@ public class WheelController : MonoBehaviour {
         //*********************** SLIP RATIO ***********************//
 
         // Car velocity (Find out which direction to use) (negative sign as before the speed was opposite it should be)
-        carSpeed = -carModel.velocity.z;
+        carSpeed = -carModel.transform.InverseTransformDirection(carModel.velocity).z;
         // Wheel linear velocity 
         angularVelocity = carSpeed / wheelRadius;
 
