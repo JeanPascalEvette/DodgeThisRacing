@@ -221,6 +221,72 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 2
+--- !u!1 &370259442
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 370259443}
+  - 135: {fileID: 370259446}
+  - 135: {fileID: 370259445}
+  - 135: {fileID: 370259444}
+  m_Layer: 0
+  m_Name: Colliders
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &370259443
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 370259442}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1755157389}
+  m_RootOrder: 1
+--- !u!135 &370259444
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 370259442}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0.5, z: -1}
+--- !u!135 &370259445
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 370259442}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0.5, z: 0}
+--- !u!135 &370259446
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 370259442}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0.5, z: 1}
 --- !u!4 &503021590 stripped
 Transform:
   m_PrefabParentObject: {fileID: 400038, guid: d3ee1d389575ff84abd80cb5da1c9e3f, type: 3}
@@ -246,7 +312,6 @@ MonoBehaviour:
   isOnGround: 0
   angularVelocity: 0
   wheelLinearVelocity: 0
-  wheelRadius: 0.6
   slipRatio: 0
   tyreLoad: 0
   longtitudinalForce: 0
@@ -260,8 +325,18 @@ MonoBehaviour:
   wheelInertia: 0
   carModel: {fileID: 1755157391}
   carSpeed: 0
-  slipCurve: {fileID: 0}
-  longtitudinalForceCurve: {fileID: 0}
+  slipCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  longtitudinalForceCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!135 &667251654
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -297,7 +372,7 @@ TerrainCollider:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 725117346}
-  m_Material: {fileID: 13400000, guid: e09f94e0d346e2d47be98e5c56d45237, type: 2}
+  m_Material: {fileID: 13400000, guid: 828b8339e15900d4f9e2159aaadb538a, type: 2}
   m_Enabled: 1
   m_TerrainData: {fileID: 15600000, guid: 51963876a3af92b4d8ed8698fe869450, type: 2}
   m_EnableTreeColliders: 1
@@ -365,7 +440,6 @@ MonoBehaviour:
   isOnGround: 0
   angularVelocity: 0
   wheelLinearVelocity: 0
-  wheelRadius: 0.6
   slipRatio: 0
   tyreLoad: 0
   longtitudinalForce: 0
@@ -379,8 +453,18 @@ MonoBehaviour:
   wheelInertia: 0
   carModel: {fileID: 1755157391}
   carSpeed: 0
-  slipCurve: {fileID: 0}
-  longtitudinalForceCurve: {fileID: 0}
+  slipCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  longtitudinalForceCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!135 &792088170
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -515,7 +599,6 @@ MonoBehaviour:
   isOnGround: 0
   angularVelocity: 0
   wheelLinearVelocity: 0
-  wheelRadius: 0.6
   slipRatio: 0
   tyreLoad: 0
   longtitudinalForce: 0
@@ -529,8 +612,18 @@ MonoBehaviour:
   wheelInertia: 0
   carModel: {fileID: 1755157391}
   carSpeed: 0
-  slipCurve: {fileID: 0}
-  longtitudinalForceCurve: {fileID: 0}
+  slipCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  longtitudinalForceCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!135 &1447095056
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -564,7 +657,6 @@ MonoBehaviour:
   isOnGround: 0
   angularVelocity: 0
   wheelLinearVelocity: 0
-  wheelRadius: 0.6
   slipRatio: 0
   tyreLoad: 0
   longtitudinalForce: 0
@@ -578,8 +670,18 @@ MonoBehaviour:
   wheelInertia: 0
   carModel: {fileID: 1755157391}
   carSpeed: 0
-  slipCurve: {fileID: 0}
-  longtitudinalForceCurve: {fileID: 0}
+  slipCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  longtitudinalForceCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!135 &1475984880
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -620,6 +722,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 503021590}
+  - {fileID: 370259443}
   m_Father: {fileID: 0}
   m_RootOrder: 3
 --- !u!114 &1755157390
@@ -633,10 +736,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33869ced2a494f74fbdec3da3f640475, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mEngineForce: 3
+  mEngineForce: 100
   mCDrag: 0.4257
   mCRolRes: 12.8
-  mCBrake: 3
+  mCBrake: 100
   CenterOfGravity: {x: 0, y: 0.5, z: 0}
   currentGear: 0
   gearOne: 2.66
@@ -669,7 +772,7 @@ Rigidbody:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1755157388}
   serializedVersion: 2
-  m_Mass: 1
+  m_Mass: 100
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 1

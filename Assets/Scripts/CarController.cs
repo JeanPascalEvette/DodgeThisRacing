@@ -15,6 +15,7 @@ public class CarController : MonoBehaviour {
     private float mCBrake = 3.0f;
     [SerializeField]
     private Vector3 CenterOfGravity = new Vector3(0.2f, 0.5f, 0);
+    private Vector3 currentCenterOfGravity = new Vector3(0.2f, 0.5f, 0);
 
 
     //
@@ -91,13 +92,16 @@ public class CarController : MonoBehaviour {
     {
 
         Gizmos.color = Color.red;
-        Gizmos.DrawSphere(transform.position + CenterOfGravity, 0.1f);
+        Gizmos.DrawSphere(transform.position + currentCenterOfGravity, 0.1f);
 
     }
 
     // Update is called once per frame
-    void Update ()
+    void FixedUpdate ()
     {
+        //Update CoG
+        currentCenterOfGravity = transform.rotation * CenterOfGravity;
+
         if (!IsOnGround()) return;
         direction = 0.0f;						//speed of object
         float maxTurn = turning * Input.GetAxis("Horizontal");
@@ -108,7 +112,7 @@ public class CarController : MonoBehaviour {
 
         if (direction >= 0)														// the traction force is the force delivered by the engine via the rear wheels
         {
-            TractionForce = transform.forward * direction * mEngineForce;		// when braking this should be replaced by a braking force
+            TractionForce = transform.InverseTransformDirection(transform.forward) * direction * mEngineForce;		// when braking this should be replaced by a braking force
             
         }		// Ftraction = u * Enginforce									// which is oriented in the opposite direction.
         else
@@ -116,7 +120,9 @@ public class CarController : MonoBehaviour {
             TractionForce = transform.forward * -mCBrake;
         }
 
-        if(transform.InverseTransformDirection(rb.velocity).z < 0)
+        if (transform.InverseTransformDirection(rb.velocity).magnitude > 0.1f)
+        {
+            if (transform.InverseTransformDirection(rb.velocity).z < 0)
         {
             gameObject.transform.Rotate(new Vector3(0, maxTurn, 0));
         }
@@ -124,14 +130,15 @@ public class CarController : MonoBehaviour {
         {
             gameObject.transform.Rotate(new Vector3(0, -maxTurn, 0));
         }
+        }
 
-        if(Input.GetKey(KeyCode.LeftArrow)||Input.GetKey(KeyCode.RightArrow))
+        if(Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D))
         {
-            frontLeftWheel.transform.rotation = frontRightWheel.transform.rotation = gameObject.transform.rotation * Quaternion.AngleAxis(maxTurn * 30, new Vector3(0, 1, 0));
-        }//Bla
+            frontLeftWheel.transform.localRotation = frontRightWheel.transform.localRotation = Quaternion.AngleAxis(maxTurn * 30, new Vector3(0, 1, 0));
+        }
         else
         {
-            frontLeftWheel.transform.rotation = frontRightWheel.transform.rotation = gameObject.transform.rotation;
+            //frontLeftWheel.transform.rotation = frontRightWheel.transform.rotation = gameObject.transform.rotation * Quaternion.Euler(new Vector3(0,180,0));
         }
         var speed = Mathf.Sqrt(TractionForce.x * TractionForce.x + TractionForce.z * TractionForce.z);
         DragForce = new Vector3(-mCDrag * TractionForce.x * speed, 0, -mCDrag * TractionForce.z * speed);
@@ -142,8 +149,15 @@ public class CarController : MonoBehaviour {
         LongtitudinalForce = TractionForce + DragForce + RollingResistance; //Flong = Ftraction + Fdrag + Frr
         Acceleration = LongtitudinalForce / rb.mass;                    // a = F + M
 
-        rb.velocity = rb.velocity + Time.deltaTime * Acceleration;          // v = v + dt * a
+        rb.velocity = rb.velocity + Time.deltaTime * transform.TransformDirection(Acceleration);          // v = v + dt * a
 
+        if (Acceleration == new Vector3(0, 0, 0))
+        {
+            if (Mathf.Abs(rb.velocity.x) < 0.1f)
+                rb.velocity = new Vector3(0f, rb.velocity.y, rb.velocity.z);
+            if (Mathf.Abs(rb.velocity.z) < 0.1f)
+                rb.velocity = new Vector3(rb.velocity.x, rb.velocity.y, 0f);
+        }
         // Dampening X element in local velocity
         Vector3 localVelocity = transform.InverseTransformDirection(rb.velocity);
         localVelocity.x *= 0.5f;
@@ -198,7 +212,7 @@ public class CarController : MonoBehaviour {
 
     public float GetMassOnAxle(float zCoord)
     {
-        float distance = Mathf.Abs(zCoord - CenterOfGravity.z);
+        float distance = Mathf.Abs(zCoord - currentCenterOfGravity.z);
         float wheelDist = rearRightPosition - frontRightPosition;
         return (distance / wheelDist) * rb.mass;
     }
