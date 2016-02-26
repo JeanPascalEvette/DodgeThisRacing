@@ -132,13 +132,13 @@ public class CarController : MonoBehaviour {
             }
         }
 
-        if(Input.GetKey(KeyCode.LeftArrow)||Input.GetKey(KeyCode.RightArrow))
+        if(Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D))
         {
             frontLeftWheel.transform.rotation = frontRightWheel.transform.rotation = gameObject.transform.rotation * Quaternion.AngleAxis(maxTurn * 30, new Vector3(0, 1, 0));
         }
         else
         {
-            frontLeftWheel.transform.rotation = frontRightWheel.transform.rotation = gameObject.transform.rotation;
+            //frontLeftWheel.transform.rotation = frontRightWheel.transform.rotation = gameObject.transform.rotation * Quaternion.Euler(new Vector3(0,180,0));
         }
         var speed = Mathf.Sqrt(TractionForce.x * TractionForce.x + TractionForce.z * TractionForce.z);
         DragForce = new Vector3(-mCDrag * TractionForce.x * speed, 0, -mCDrag * TractionForce.z * speed);

@@ -46,6 +46,7 @@ public class WheelController : MonoBehaviour {
     private CarController mCarController;
 
     private float wheelRadius;
+    private float spinningSpeed = 10;
 
     // Use this for initialization
     void Start () {
@@ -69,6 +70,8 @@ public class WheelController : MonoBehaviour {
     // Fixed Update Function
     void FixedUpdate()
     {
+        transform.localRotation = transform.localRotation * Quaternion.Euler(spinningSpeed,0,0);
+
         //*********************** ANGULAR VELOCITY SECTION ***********************//
 
         // We need to know if the wheel is front or rear as we need to apply some rear wheel acceleration previously calculated
