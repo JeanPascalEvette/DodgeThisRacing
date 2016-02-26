@@ -138,7 +138,7 @@ public class CarController : MonoBehaviour {
             frontLeftWheel.transform.rotation = frontRightWheel.transform.rotation = gameObject.transform.rotation;
         }
         var speed = Mathf.Sqrt(TractionForce.x * TractionForce.x + TractionForce.z * TractionForce.z);
-        DragForce = new Vector3(-mCDrag * TractionForce.x * speed, -mCDrag * TractionForce.z * speed, 0);
+        DragForce = new Vector3(-mCDrag * TractionForce.x * speed, 0, -mCDrag * TractionForce.z * speed);
         speedForStefanos = speed;// ERASE THIS SOON JUST FOR NOW																									// fdrag.y = Cdrag * v.y * speed
         RollingResistance = -mCRolRes * TractionForce;
 
@@ -156,8 +156,8 @@ public class CarController : MonoBehaviour {
 
         rpm = speed * currentGear * differentialRatio * 60.0f / 6.28f;		// 6.28 occurs from 2pi . Correct?
 
-        WeightOnFrontWheels = GetMassOnAxle(frontRightPosition) - (currentCenterOfGravity.y / (frontRightPosition - rearRightPosition)) * rb.mass * Acceleration.x;
-        WeightOnRearWheels = GetMassOnAxle(rearRightPosition) + (currentCenterOfGravity.y / (frontRightPosition - rearRightPosition)) * rb.mass * Acceleration.x;
+        WeightOnFrontWheels = GetMassOnAxle(frontRightPosition) - (CenterOfGravity.y / (frontRightPosition - rearRightPosition)) * rb.mass * Acceleration.magnitude;
+        WeightOnRearWheels = GetMassOnAxle(rearRightPosition) + (CenterOfGravity.y / (frontRightPosition - rearRightPosition)) * rb.mass * Acceleration.magnitude;
 
         // We set the mass of each wheels
         frontLeftWheel.wheelMass = WeightOnFrontWheels / 2;
