@@ -31,6 +31,12 @@ public class CarController : MonoBehaviour {
 
 	// public float throttlePosition = 0;   This will not be needed since when user hits key we assume that the throttle pedal is full down.
 	public float rpm;
+    // We set the min and max values of rpm
+    public float rpmMin = 1000.0f;
+    public float rpmMax = 6000.0f;
+    // Animation Curve for the RPM Torque in which an engine best operated
+    public AnimationCurve rpmTorqueCurve;
+    public float engineTorque;
 
 	public float differentialRatio = 3.42f;     // for off road performance we should increase this parameter (like to 4.10f)
                                                
@@ -43,10 +49,11 @@ public class CarController : MonoBehaviour {
     private float frontRightPosition;
     private float rearRightPosition;
 
-
     // Variable to calculate the total amount of Torque in the car
     public float rearAxleTorque;
     private float direction = 0.0f;
+    // Brake torque / power
+    public float brakeForce;
 
     public float turning = 1;
 
@@ -105,10 +112,21 @@ public class CarController : MonoBehaviour {
         if (!IsOnGround()) return;
         direction = 0.0f;						//speed of object
         float maxTurn = turning * Input.GetAxis("Horizontal");
-        if (Input.GetKey(KeyCode.W))
+        if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))
+        {
             direction = 1.0f;
-        else if (Input.GetKey(KeyCode.S))
+            // We set the brake force to 0 as we are accelerating
+            brakeForce = 0.0f;
+        }
+           
+        else if (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow))
+        {
+            // We apply a force in the different direction as it was
             direction = -1.0f;
+            // We set the braking force to apply in the wheels
+            brakeForce = 50.0f;
+        }
+            
 
         if (direction >= 0)														// the traction force is the force delivered by the engine via the rear wheels
         {
@@ -140,6 +158,7 @@ public class CarController : MonoBehaviour {
         {
             frontLeftWheel.transform.localRotation = frontRightWheel.transform.localRotation = Quaternion.AngleAxis(0, new Vector3(0, 1, 0));
         }
+
         var speed = Mathf.Sqrt(TractionForce.x * TractionForce.x + TractionForce.z * TractionForce.z);
         DragForce = new Vector3(-mCDrag * TractionForce.x * speed, 0, -mCDrag * TractionForce.z * speed);
         speedForStefanos = speed;// ERASE THIS SOON JUST FOR NOW																									// fdrag.y = Cdrag * v.y * speed
@@ -163,26 +182,40 @@ public class CarController : MonoBehaviour {
         localVelocity.x *= 0.5f;
         rb.velocity = transform.TransformDirection(localVelocity);
 
-
+        //*********************** RPM CALCULATION ***********************//
         rpm = speed * currentGear * differentialRatio * 60.0f / 6.28f;		// 6.28 occurs from 2pi . Correct?
+        // Clamp the rpm between its min and max
+        rpm = Mathf.Clamp(rpm, rpmMin, rpmMax);
 
+        // We calculate the Engine Torque that will end up in the rear Wheels as Drive Torque (RPM is needed)
+        // We use the curve of the Torque RPM in the page
+        float maxEngineTorque = rpmTorqueCurve.Evaluate(rpm / rpmMax) * mEngineForce;
+        // The engine Torque is going to depend on the Throttle
+        engineTorque = Input.GetAxis("Vertical") * maxEngineTorque;
+
+        // We send this engineTorque to the rear wheels only
+        rearLeftWheel.driveTorque = engineTorque;
+        rearRightWheel.driveTorque = engineTorque;
+        //*********************** END OF RPM CALCULATION ***********************//
+
+        // We calculate the weights on each axle to see the tyre load of each wheel
         WeightOnFrontWheels = GetMassOnAxle(frontRightPosition) - (CenterOfGravity.y / (frontRightPosition - rearRightPosition)) * rb.mass * Acceleration.magnitude;
         WeightOnRearWheels = GetMassOnAxle(rearRightPosition) + (CenterOfGravity.y / (frontRightPosition - rearRightPosition)) * rb.mass * Acceleration.magnitude;
 
-        // We set the mass of each wheels
-        frontLeftWheel.wheelMass = WeightOnFrontWheels / 2;
-        frontRightWheel.wheelMass = WeightOnFrontWheels / 2;
-        rearLeftWheel.wheelMass = WeightOnRearWheels / 2;
-        rearRightWheel.wheelMass = WeightOnRearWheels / 2;
-
+        // We set the load on each tyre depending on the weight
         frontLeftWheel.tyreLoad = WeightOnFrontWheels / 2;
         frontRightWheel.tyreLoad = WeightOnFrontWheels / 2;
         rearLeftWheel.tyreLoad = WeightOnRearWheels / 2;
         rearRightWheel.tyreLoad = WeightOnRearWheels / 2;
 
-        //*********************** TORQUE REAR AXLE ***********************//
+        // We set the brake force to the wheels now
+        frontLeftWheel.brakeTorque = brakeForce;
+        frontRightWheel.brakeTorque = brakeForce;
+        rearLeftWheel.brakeTorque = brakeForce;
+        rearRightWheel.brakeTorque = brakeForce;
 
-        // Net Torque in the REAR AXLE
+
+        //*********************** TORQUE REAR AXLE ***********************//
 
         // Drive Torque from both wheels or only one
         float driveTorqueTotal = rearLeftWheel.driveTorque + rearRightWheel.driveTorque;

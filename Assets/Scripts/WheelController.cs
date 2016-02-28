@@ -72,8 +72,19 @@ public class WheelController : MonoBehaviour {
     {
         transform.localRotation = transform.localRotation * Quaternion.Euler(spinningSpeed,0,0);
 
-        //*********************** ANGULAR VELOCITY SECTION ***********************//
+        // Car velocity (Find out which direction to use) (negative sign as before the speed was opposite it should be)
+        carSpeed = -carModel.transform.InverseTransformDirection(carModel.velocity).z;
+        spinningSpeed = carSpeed;
 
+        //*********************** WHEEL INERTIA ***********************//
+        wheelInertia = (wheelMass * wheelRadius * wheelRadius) / 2;
+        //*********************** END WHEEL INERTIA ***********************//
+
+        //*********************** ANGULAR ACCELERATION ***********************//
+
+        //*********************** END ANGULAR ACCELERATION ***********************//
+
+        //*********************** ANGULAR VELOCITY SECTION ***********************//
         // We need to know if the wheel is front or rear as we need to apply some rear wheel acceleration previously calculated
         if (isRearWheel){
             // We add to the angular velocity the angular acceleration * time between each frame
@@ -84,17 +95,23 @@ public class WheelController : MonoBehaviour {
 
         //*********************** SLIP RATIO ***********************//
 
-        // Car velocity (Find out which direction to use) (negative sign as before the speed was opposite it should be)
-        carSpeed = -carModel.transform.InverseTransformDirection(carModel.velocity).z;
-        spinningSpeed = carSpeed;
         // Wheel linear velocity 
         angularVelocity = carSpeed / wheelRadius;
 
         wheelLinearVelocity = angularVelocity * wheelRadius;
        
-        // Slip ratio
+        // Slip ratio using the wheel velocity and the car speed
         slipRatio = (wheelLinearVelocity - carSpeed) / Mathf.Abs(carSpeed);
 
+        // We check particular cases of Slip Ratio
+        // 0/0 division
+        if (float.IsNaN(slipRatio)) {
+            slipRatio = 0.0f;
+        }
+        // X/0 division
+        else if (float.IsInfinity(slipRatio)){
+            slipRatio = 1.0f * Mathf.Sign(slipRatio);
+        }
         //*********************** END SLIP RATIO ***********************//
 
         //*********************** TRACTION OR LONGTITUDINAL FORCE ***********************//
@@ -115,13 +132,7 @@ public class WheelController : MonoBehaviour {
 
         //*********************** END TRACTION TORQUE ON DRIVE WHEELS ***********************//
 
-        //*********************** WHEEL INERTIA ***********************//
-
-        // Wheel inertia
-        wheelInertia = (wheelMass * (wheelRadius * wheelRadius)) / 2;
-
-        //*********************** END WHEEL INERTIA ***********************//
-
+       
     }
 
     private void CheckWheelsAreOnGround()
