@@ -48,6 +48,8 @@ public class WheelController : MonoBehaviour {
     private float wheelRadius;
     private float spinningSpeed = 10;
 
+    private Vector3 currentRotation = new Vector3(0, 0, 0);
+
     // Use this for initialization
     void Start () {
         mCarController = transform.parent.GetComponent<CarController>();
@@ -70,8 +72,22 @@ public class WheelController : MonoBehaviour {
     // Fixed Update Function
     void FixedUpdate()
     {
-        transform.localRotation = transform.localRotation * Quaternion.Euler(spinningSpeed,0,0);
+        currentRotation.x += spinningSpeed;
+        if (!isRearWheel)
+        {
+            float maxTurn = Input.GetAxis("Horizontal");
+            if (Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D))
+            {
+                currentRotation = new Vector3(currentRotation.x, maxTurn * 30, currentRotation.z);
+            }
+            else
+            {
+                currentRotation = new Vector3(currentRotation.x, 0, currentRotation.z);
+            }
+            
+        }
 
+        transform.localRotation = Quaternion.Euler(currentRotation);
         //*********************** ANGULAR VELOCITY SECTION ***********************//
 
         // We need to know if the wheel is front or rear as we need to apply some rear wheel acceleration previously calculated
