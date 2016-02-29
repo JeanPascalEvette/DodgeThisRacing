@@ -21,6 +21,7 @@ public class DetachableElementBehaviour : MonoBehaviour {
 	    if(isHanging && timerBreak == -1f)
         {
             rb.constraints = RigidbodyConstraints.None;
+            rb.mass = 1;
             timerBreak = timeToBreak;
         }
         else if(isHanging)
