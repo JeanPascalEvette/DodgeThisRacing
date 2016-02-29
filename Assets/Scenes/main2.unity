@@ -307,7 +307,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mFrictionCoef: 1
-  wheelMass: 0
+  wheelMass: 30
   isRearWheel: 0
   isOnGround: 0
   angularVelocity: 0
@@ -435,7 +435,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mFrictionCoef: 1
-  wheelMass: 0
+  wheelMass: 30
   isRearWheel: 0
   isOnGround: 0
   angularVelocity: 0
@@ -595,7 +595,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mFrictionCoef: 1
-  wheelMass: 0
+  wheelMass: 30
   isRearWheel: 0
   isOnGround: 0
   angularVelocity: 0
@@ -653,7 +653,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mFrictionCoef: 1
-  wheelMass: 0
+  wheelMass: 30
   isRearWheel: 0
   isOnGround: 0
   angularVelocity: 0
@@ -751,6 +751,24 @@ MonoBehaviour:
   gearSix: 0.5
   reverse: 2.9
   rpm: 0
+  rpmMin: 1000
+  rpmMax: 6000
+  rpmTorqueCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0.49999982
+      inSlope: -0.06382912
+      outSlope: -0.06382912
+      tangentMode: 0
+    - time: 1.0041668
+      value: 0.49374998
+      inSlope: -1.6666633
+      outSlope: -1.6666633
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
   differentialRatio: 3.42
   rearLeftWheel: {fileID: 1447095055}
   rearRightWheel: {fileID: 792088169}

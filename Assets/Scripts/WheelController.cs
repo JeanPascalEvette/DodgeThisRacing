@@ -90,6 +90,15 @@ public class WheelController : MonoBehaviour {
         transform.localRotation = Quaternion.Euler(currentRotation);
         //*********************** ANGULAR VELOCITY SECTION ***********************//
 
+        //*********************** WHEEL INERTIA ***********************//
+        wheelInertia = (wheelMass * wheelRadius * wheelRadius) / 2;
+        //*********************** END WHEEL INERTIA ***********************//
+
+        //*********************** ANGULAR ACCELERATION ***********************//
+
+        //*********************** END ANGULAR ACCELERATION ***********************//
+
+        //*********************** ANGULAR VELOCITY SECTION ***********************//
         // We need to know if the wheel is front or rear as we need to apply some rear wheel acceleration previously calculated
         if (isRearWheel){
             // We add to the angular velocity the angular acceleration * time between each frame
@@ -108,9 +117,18 @@ public class WheelController : MonoBehaviour {
 
         wheelLinearVelocity = angularVelocity * wheelRadius;
        
-        // Slip ratio
+        // Slip ratio using the wheel velocity and the car speed
         slipRatio = (wheelLinearVelocity - carSpeed) / Mathf.Abs(carSpeed);
 
+        // We check particular cases of Slip Ratio
+        // 0/0 division
+        if (float.IsNaN(slipRatio)) {
+            slipRatio = 0.0f;
+        }
+        // X/0 division
+        else if (float.IsInfinity(slipRatio)){
+            slipRatio = 1.0f * Mathf.Sign(slipRatio);
+        }
         //*********************** END SLIP RATIO ***********************//
 
         //*********************** TRACTION OR LONGTITUDINAL FORCE ***********************//
@@ -131,12 +149,6 @@ public class WheelController : MonoBehaviour {
 
         //*********************** END TRACTION TORQUE ON DRIVE WHEELS ***********************//
 
-        //*********************** WHEEL INERTIA ***********************//
-
-        // Wheel inertia
-        wheelInertia = (wheelMass * (wheelRadius * wheelRadius)) / 2;
-
-        //*********************** END WHEEL INERTIA ***********************//
 
     }
 
