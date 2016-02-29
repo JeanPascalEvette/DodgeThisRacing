@@ -124,7 +124,7 @@ public class CarController : MonoBehaviour {
             // We apply a force in the different direction as it was
             direction = -1.0f;
             // We set the braking force to apply in the wheels
-            brakeForce = 50.0f;
+            brakeForce = -50.0f;
         }
             
 
@@ -198,6 +198,7 @@ public class CarController : MonoBehaviour {
         rearRightWheel.driveTorque = engineTorque;
         //*********************** END OF RPM CALCULATION ***********************//
 
+        //*********************** WEIGTH CALCULATION ***********************//
         // We calculate the weights on each axle to see the tyre load of each wheel
         WeightOnFrontWheels = GetMassOnAxle(frontRightPosition) - (CenterOfGravity.y / (frontRightPosition - rearRightPosition)) * rb.mass * Acceleration.magnitude;
         WeightOnRearWheels = GetMassOnAxle(rearRightPosition) + (CenterOfGravity.y / (frontRightPosition - rearRightPosition)) * rb.mass * Acceleration.magnitude;
@@ -213,34 +214,7 @@ public class CarController : MonoBehaviour {
         frontRightWheel.brakeTorque = brakeForce;
         rearLeftWheel.brakeTorque = brakeForce;
         rearRightWheel.brakeTorque = brakeForce;
-
-
-        //*********************** TORQUE REAR AXLE ***********************//
-
-        // Drive Torque from both wheels or only one
-        float driveTorqueTotal = rearLeftWheel.driveTorque + rearRightWheel.driveTorque;
-        // Traction Torque from both rear wheels
-        float tractionTorqueTotal = rearLeftWheel.tractionTorque + rearRightWheel.tractionTorque;
-        // Brake Torque from both rear wheels
-        float brakeTorqueTotal = rearLeftWheel.brakeTorque + rearRightWheel.brakeTorque;
-        // Total Net Torque
-        rearAxleTorque = driveTorqueTotal + tractionTorqueTotal + brakeTorqueTotal;
-
-        //*********************** END TORQUE REAR AXLE ***********************//
-
-        //*********************** ANGULAR ACCELERATION TO BE APPLIED TO DRIVE WHEELS ***********************//
-
-        // Rear Wheel Inertia
-        float rearInertiaTotal = rearLeftWheel.wheelInertia + rearRightWheel.wheelInertia;
-        // Angular Acceleration to be applied to rear wheels
-        float angularAcceleration = rearAxleTorque / rearInertiaTotal;
-
-        // We apply this force to the rear wheels (Divided by 2 because we split equally the total force between both wheels)
-        rearLeftWheel.angularAcceleration = angularAcceleration / 2;
-        rearRightWheel.angularAcceleration = angularAcceleration / 2;
-
-        //*********************** END ANGULAR ACCELERATION TO BE APPLIED TO DRIVE WHEELS ***********************//
-
+        //*********************** END WEIGTH CALCULATION ***********************//
     }
 
     public float GetMassOnAxle(float zCoord)

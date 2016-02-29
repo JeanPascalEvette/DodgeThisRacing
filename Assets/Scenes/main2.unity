@@ -316,9 +316,9 @@ MonoBehaviour:
   tyreLoad: 0
   longtitudinalForce: 0
   normLongForce: 0
-  tractionConstant: 0
+  tractionConstant: 0.2
   maxLongForce: 0
-  tractionTorque: 0.2
+  tractionTorque: 0
   driveTorque: 0
   brakeTorque: 0
   angularAcceleration: 0
@@ -444,9 +444,9 @@ MonoBehaviour:
   tyreLoad: 0
   longtitudinalForce: 0
   normLongForce: 0
-  tractionConstant: 0
+  tractionConstant: 0.2
   maxLongForce: 0
-  tractionTorque: 0.2
+  tractionTorque: 0
   driveTorque: 0
   brakeTorque: 0
   angularAcceleration: 0
@@ -769,12 +769,14 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
+  engineTorque: 0
   differentialRatio: 3.42
   rearLeftWheel: {fileID: 1447095055}
   rearRightWheel: {fileID: 792088169}
   frontLeftWheel: {fileID: 667251653}
   frontRightWheel: {fileID: 1475984879}
   rearAxleTorque: 0
+  brakeForce: 0
   turning: 1
   TractionForce: {x: 0, y: 0, z: 0}
   DragForce: {x: 0, y: 0, z: 0}
