@@ -87,24 +87,32 @@ public class WheelController : MonoBehaviour {
             
         }
 
-        transform.localRotation = Quaternion.Euler(currentRotation);
-        //*********************** ANGULAR VELOCITY SECTION ***********************//
+        // Car velocity (Find out which direction to use) (negative sign as before the speed was opposite it should be)
+        carSpeed = carModel.transform.InverseTransformDirection(carModel.velocity).z;
+        spinningSpeed = carSpeed;
 
         //*********************** WHEEL INERTIA ***********************//
         wheelInertia = (wheelMass * wheelRadius * wheelRadius) / 2;
         //*********************** END WHEEL INERTIA ***********************//
 
         //*********************** ANGULAR ACCELERATION ***********************//
-
+        // We calculate the total torque to be applied in case we need this for the angular velocity
+        float totalTorque = driveTorque + brakeTorque + tractionTorque;
+        // We calculate now the angular acceleration to be applied
+        angularAcceleration = totalTorque / wheelInertia;        
         //*********************** END ANGULAR ACCELERATION ***********************//
 
         //*********************** ANGULAR VELOCITY SECTION ***********************//
         // We need to know if the wheel is front or rear as we need to apply some rear wheel acceleration previously calculated
         if (isRearWheel){
             // We add to the angular velocity the angular acceleration * time between each frame
-            angularVelocity += angularAcceleration * Time.deltaTime;
+            angularVelocity += angularAcceleration * Time.fixedDeltaTime;
+        } else {
+            // We are in front wheels and the wheels spin free with angular velocity = car speed / 2 PI Radius
+            angularVelocity = carSpeed / (6.28f * wheelRadius);
         }
-
+        // We calculate the lineal velocity of the wheel with the previous angular velocity
+        wheelLinearVelocity = angularVelocity * wheelRadius;
         //*********************** END ANGULAR VELOCITY SECTION ***********************//
 
         //*********************** SLIP RATIO ***********************//
@@ -132,24 +140,24 @@ public class WheelController : MonoBehaviour {
         //*********************** END SLIP RATIO ***********************//
 
         //*********************** TRACTION OR LONGTITUDINAL FORCE ***********************//
-
         // Longtitudinal force
         longtitudinalForce = tractionConstant * slipRatio;
         // Normalized Longtitudinal Force
         normLongForce = longtitudinalForce / tyreLoad;
-
+        // We create a vector to apply the force into the car
+        //Vector3 tractionVector = carModel.transform.forward * normLongForce;
+        // We should apply this force to the car itself
+        //carModel.AddForceAtPosition(tractionVector, carModel.position);
         //*********************** END TRACTION OR LONGTITUDINAL FORCE ***********************//
 
         //*********************** TRACTION TORQUE ON DRIVE WHEELS ***********************//
 
         // Traction Torque
         tractionTorque = longtitudinalForce * wheelRadius;
-        // Drive Torque
-        driveTorque = -(tractionTorque);
-
+        // We calculate the sign of this force as it has to be opposite to the drive torque
+        float signTractionTorque = Mathf.Sign(driveTorque);
+        tractionTorque = (-1) * signTractionTorque * tractionTorque;
         //*********************** END TRACTION TORQUE ON DRIVE WHEELS ***********************//
-
-
     }
 
     private void CheckWheelsAreOnGround()
