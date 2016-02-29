@@ -155,7 +155,7 @@ public class WheelController : MonoBehaviour {
     private void CheckWheelsAreOnGround()
     {
         float wheelHeight = transform.GetChild(0).GetComponent<MeshRenderer>().bounds.size.y;
-        Vector3 direction = new Vector3(0, -wheelHeight / 1.9f, 0);
+        Vector3 direction = new Vector3(0, -wheelHeight / 1.999f, 0);
         direction = GetComponent<Collider>().transform.root.rotation * direction;
         Debug.DrawLine(transform.position, transform.position + direction, Color.green);
         Ray myRay = new Ray(transform.position, direction);
