@@ -115,10 +115,10 @@ public class WheelController : MonoBehaviour {
         // Wheel linear velocity 
         angularVelocity = carSpeed / wheelRadius;
 
-        wheelLinearVelocity = angularVelocity * wheelRadius;
        
         // Slip ratio using the wheel velocity and the car speed
-        slipRatio = (wheelLinearVelocity - carSpeed) / Mathf.Abs(carSpeed);
+        slipRatio = -(wheelLinearVelocity - carSpeed) / Mathf.Abs(carSpeed);
+        wheelLinearVelocity = angularVelocity * wheelRadius;
 
         // We check particular cases of Slip Ratio
         // 0/0 division
