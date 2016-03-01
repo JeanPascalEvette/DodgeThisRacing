@@ -31,14 +31,14 @@ public class CarController : MonoBehaviour {
     private float reverse = 2.9f;
     */
     public float newVehicleSpeed;
-    public float rpm;
+	public float rpm;
     private float differentialRatio = 3.42f;     // for off road performance we should increase this parameter (like to 4.10f)         
     public float rpmToTorque; // This is needed to measure the Tengine which is used in the final formula
     private bool isPedalDown = false;   // checks to see if pedal is down in order to set a minimum rpm of 1000
     // Animation Curve for the RPM Torque in which an engine best operated
     public AnimationCurve rpmTorqueCurve;
     public float engineTorque;
-                                            
+
     // Wheels declaration
     public WheelController rearLeftWheel;
     public WheelController rearRightWheel;
@@ -117,7 +117,7 @@ public class CarController : MonoBehaviour {
             {       // checks that car isn't moving so that rpm can have a minimum of 1000 when it starts movign from inactivity
                 rpm = 1000.0f;
                 isPedalDown = false;
-            }
+        }
         }
            
         else if (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow))
@@ -142,8 +142,8 @@ public class CarController : MonoBehaviour {
         {
             if (rpm < 5500)
             {                                           //set a maximum speed that vehicle will reverse
-                TractionForce = transform.InverseTransformDirection(transform.forward) * -mCBrake;
-            }
+            TractionForce = transform.InverseTransformDirection(transform.forward) * -mCBrake;
+        }
             else
             {
                 TractionForce = transform.InverseTransformDirection(transform.forward) * direction;
@@ -236,6 +236,7 @@ public class CarController : MonoBehaviour {
         rearRightWheel.driveTorque = engineTorque;
         //*********************** END OF RPM CALCULATION ***********************//
 
+        //*********************** WEIGTH CALCULATION ***********************//
         // We calculate the weights on each axle to see the tyre load of each wheel
         WeightOnFrontWheels = GetMassOnAxle(frontRightPosition) - (CenterOfGravity.y / (frontRightPosition - rearRightPosition)) * rb.mass * Acceleration.magnitude;
         WeightOnRearWheels = GetMassOnAxle(rearRightPosition) + (CenterOfGravity.y / (frontRightPosition - rearRightPosition)) * rb.mass * Acceleration.magnitude;
@@ -245,7 +246,7 @@ public class CarController : MonoBehaviour {
         frontRightWheel.tyreLoad = WeightOnFrontWheels / 2;
         rearLeftWheel.tyreLoad = WeightOnRearWheels / 2;
         rearRightWheel.tyreLoad = WeightOnRearWheels / 2;
-        
+
 
 
         //*********************** TORQUE REAR AXLE ***********************//
