@@ -20,26 +20,25 @@ public class CarController : MonoBehaviour {
 
     //
 
-    public float currentGear;
-	public float gearOne = 2.66f;		// gears should be applied to the equation to get from engine torque to drive force (Fdrive = u * Tengine * gear *xd * transmission efficiency/wheel radius)
-	public float gearTwo = 1.78f;		// however I will apply it to the traction force that we currently have
-	public float gearThree = 1.3f;
-	public float gearFour = 1.0f;
-	public float gearFive = 0.74f;
-	public float gearSix = 0.5f;
-	public float reverse = 2.9f;
-
-	// public float throttlePosition = 0;   This will not be needed since when user hits key we assume that the throttle pedal is full down.
-	public float rpm;
-    // We set the min and max values of rpm
-    public float rpmMin = 1000.0f;
-    public float rpmMax = 6000.0f;
+    public int currentGear;
+    private float[] gears = { 2.9f, 2.66f, 1.78f, 1.3f, 1.0f, 0.74f, 0.5f }; //0 = Reverse
+	/*private float gearOne = 2.66f;      // gears should be applied to the equation to get from engine torque to drive force (Fdrive = u * Tengine * gear *xd * transmission efficiency/wheel radius)
+    private float gearTwo = 1.78f;      // however I will apply it to the traction force that we currently have
+    private float gearThree = 1.3f;
+    private float gearFour = 1.0f;
+    private float gearFive = 0.74f;
+    private float gearSix = 0.5f;
+    private float reverse = 2.9f;
+    */
+    public float newVehicleSpeed;
+    public float rpm;
+    private float differentialRatio = 3.42f;     // for off road performance we should increase this parameter (like to 4.10f)         
+    public float rpmToTorque; // This is needed to measure the Tengine which is used in the final formula
+    private bool isPedalDown = false;   // checks to see if pedal is down in order to set a minimum rpm of 1000
     // Animation Curve for the RPM Torque in which an engine best operated
     public AnimationCurve rpmTorqueCurve;
     public float engineTorque;
-
-	public float differentialRatio = 3.42f;     // for off road performance we should increase this parameter (like to 4.10f)
-                                               
+                                            
     // Wheels declaration
     public WheelController rearLeftWheel;
     public WheelController rearRightWheel;
@@ -52,8 +51,6 @@ public class CarController : MonoBehaviour {
     // Variable to calculate the total amount of Torque in the car
     public float rearAxleTorque;
     private float direction = 0.0f;
-    // Brake torque / power
-    public float brakeForce;
 
     public float turning = 1;
 
@@ -74,14 +71,14 @@ public class CarController : MonoBehaviour {
     [SerializeField]
     private float WeightOnRearWheels;
 
-
-    public float speedForStefanos;	// ERASE THIS SOON JUST FOR NOW
+    [SerializeField]
+    private AnimationCurve testRpmResistance;
 
 
     // Use this for initialization
     void Start () {
 
-		currentGear = gearOne; 			// bound to change in future // still in testing phase
+		currentGear = 1; 			// bound to change in future // still in testing phase
         rb = GetComponent<Rigidbody>();
 
         // We set the boolean variables of the wheels
@@ -115,27 +112,42 @@ public class CarController : MonoBehaviour {
         if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))
         {
             direction = 1.0f;
-            // We set the brake force to 0 as we are accelerating
-            brakeForce = 0.0f;
+            isPedalDown = true;
+            if (isPedalDown == true && rpm < 1000.0f)
+            {       // checks that car isn't moving so that rpm can have a minimum of 1000 when it starts movign from inactivity
+                rpm = 1000.0f;
+                isPedalDown = false;
+            }
         }
            
         else if (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow))
         {
             // We apply a force in the different direction as it was
             direction = -1.0f;
-            // We set the braking force to apply in the wheels
-            brakeForce = 50.0f;
         }
             
 
         if (direction >= 0)														// the traction force is the force delivered by the engine via the rear wheels
         {
-            TractionForce = transform.InverseTransformDirection(transform.forward) * direction * mEngineForce;		// when braking this should be replaced by a braking force
-            
+            if (rpm < 6000)
+            {                                               // car has a maximum traction force when in gear six and has an rpm of 6000
+                TractionForce = transform.InverseTransformDirection(transform.forward) * direction * (rpmToTorque * gears[currentGear] * differentialRatio * 0.7f * 0.34f) * testRpmResistance.Evaluate((float)currentGear/6);
+            }
+            else
+            {
+                TractionForce = transform.InverseTransformDirection(transform.forward) * direction;
+            }
         }		// Ftraction = u * Enginforce									// which is oriented in the opposite direction.
         else
         {
-            TractionForce = transform.InverseTransformDirection(transform.forward) * -mCBrake;
+            if (rpm < 5500)
+            {                                           //set a maximum speed that vehicle will reverse
+                TractionForce = transform.InverseTransformDirection(transform.forward) * -mCBrake;
+            }
+            else
+            {
+                TractionForce = transform.InverseTransformDirection(transform.forward) * direction;
+            }
         }
 
         if (transform.InverseTransformDirection(rb.velocity).magnitude > 0.1f)
@@ -153,7 +165,6 @@ public class CarController : MonoBehaviour {
         
         var speed = Mathf.Sqrt(TractionForce.x * TractionForce.x + TractionForce.z * TractionForce.z);
         DragForce = new Vector3(-mCDrag * TractionForce.x * speed, 0, -mCDrag * TractionForce.z * speed);
-        speedForStefanos = speed;// ERASE THIS SOON JUST FOR NOW																									// fdrag.y = Cdrag * v.y * speed
         RollingResistance = -mCRolRes * TractionForce;
 
 
@@ -175,13 +186,48 @@ public class CarController : MonoBehaviour {
         rb.velocity = transform.TransformDirection(localVelocity);
 
         //*********************** RPM CALCULATION ***********************//
-        rpm = speed * currentGear * differentialRatio * 60.0f / 6.28f;		// 6.28 occurs from 2pi . Correct?
+        //rpm = speed * currentGear * differentialRatio * 60.0f / 6.28f;		// 6.28 occurs from 2pi . Correct?
         // Clamp the rpm between its min and max
-        rpm = Mathf.Clamp(rpm, rpmMin, rpmMax);
+        //rpm = Mathf.Clamp(rpm, 1000, rpmMax);
 
         // We calculate the Engine Torque that will end up in the rear Wheels as Drive Torque (RPM is needed)
         // We use the curve of the Torque RPM in the page
-        float maxEngineTorque = rpmTorqueCurve.Evaluate(rpm / rpmMax) * mEngineForce;
+        //float maxEngineTorque = rpmTorqueCurve.Evaluate(rpm / rpmMax) * mEngineForce;
+
+        // **************************** RPM MEASUREMENTS ****************************** //
+        newVehicleSpeed = rb.velocity.magnitude;        // used as helper to measure exact speed vehicle is moving 
+
+        if (speed > 0)
+        {
+            rpm = (newVehicleSpeed * 2.5f) * gears[currentGear] * differentialRatio * 60.0f / 6.28f;           //rpm measurement
+        }
+
+        if (rpm >= 1000.0f && rpm < 5000.0f)
+        {
+            rpmToTorque = ((rpm - 1000.0f) * 0.012f) + 300.0f;                                          // rpm converter to torque from 1000- 5000 rpm
+        }
+
+
+        if (rpm >= 5000.0f && rpm <= 6000.0f)
+        {                                                           // rpm converter to torque from 5000-6000 rpm
+            rpmToTorque = 300.0f - (rpm * 0.05f) + 300.0f;
+        }
+
+        if (rpm < 1000.0f && speed != 0)
+        {                                                               // when rpm gets below 1000 gear is decreased
+            decreaseGear();
+        }
+
+
+        if (rpm > 6000.0f)
+        {                                                                           // when rpm gets above 6000 gear is increased
+            increaseGear();
+        }
+
+        float maxEngineTorque = rpmToTorque;
+
+        // **************************** END RPM MEASUREMENTS ****************************** //
+
         // The engine Torque is going to depend on the Throttle
         engineTorque = Input.GetAxis("Vertical") * maxEngineTorque;
 
@@ -199,12 +245,7 @@ public class CarController : MonoBehaviour {
         frontRightWheel.tyreLoad = WeightOnFrontWheels / 2;
         rearLeftWheel.tyreLoad = WeightOnRearWheels / 2;
         rearRightWheel.tyreLoad = WeightOnRearWheels / 2;
-
-        // We set the brake force to the wheels now
-        frontLeftWheel.brakeTorque = brakeForce;
-        frontRightWheel.brakeTorque = brakeForce;
-        rearLeftWheel.brakeTorque = brakeForce;
-        rearRightWheel.brakeTorque = brakeForce;
+        
 
 
         //*********************** TORQUE REAR AXLE ***********************//
@@ -233,6 +274,9 @@ public class CarController : MonoBehaviour {
 
         //*********************** END ANGULAR ACCELERATION TO BE APPLIED TO DRIVE WHEELS ***********************//
 
+
+        
+
     }
 
     public float GetMassOnAxle(float zCoord)
@@ -246,6 +290,25 @@ public class CarController : MonoBehaviour {
     {
         return rearRightWheel.isOnGround || rearLeftWheel.isOnGround || frontLeftWheel.isOnGround || frontRightWheel.isOnGround;
     }
+
+    public void increaseGear()
+    {
+        if (currentGear >= 6) return;
+        currentGear++;
+        rpm = 1000;
+    }
+
+    public void decreaseGear()
+    {
+        if (currentGear <= 1) return;
+        currentGear--;
+        rpm = 6000;
+    }
+    public float GearValue()
+    {
+        return gears[currentGear];
+    }
+
 }
 
 
