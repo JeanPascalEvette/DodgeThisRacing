@@ -1,0 +1,287 @@
+fileFormatVersion: 2
+guid: f67261c01c793ce4ebf7896638982d3c
+timeCreated: 1456690944
+licenseType: Free
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: BackLightPlate
+    100002: BackMirror
+    100004: BackSeatCanvas
+    100006: BackTire
+    100008: Body
+    100010: Body 1
+    100012: Bonnet_L
+    100014: Bonnet_R
+    100016: Bonnet_Top
+    100018: BrakeDrum_L
+    100020: BrakeDrum_R
+    100022: Chassis
+    100024: DetachableBodyComponent
+    100026: Door_L
+    100028: Door_R
+    100030: Engine
+    100032: FrontFender_L
+    100034: FrontFender_R
+    100036: FrontTire_L
+    100038: FrontTire_L 1
+    100040: FrontTire_R
+    100042: FrontTire_R 1
+    100044: FrontWheel_L
+    100046: FrontWheel_R
+    100048: FuelTank
+    100050: GearBrake
+    100052: HeadLights
+    100054: //RootNode
+    100056: MidFender_L
+    100058: MidFender_R
+    100060: Mirror_L
+    100062: Mirror_R
+    100064: Radiator
+    100066: RearFender_L
+    100068: RearFender_R
+    100070: RearTire_L
+    100072: RearTire_L 1
+    100074: RearTire_R
+    100076: RearTire_R 1
+    100078: RearWheel_L
+    100080: RearWheel_R
+    100082: Seat
+    100084: SteeringWheel
+    100086: Tires
+    100088: WindShield_L
+    100090: WindShield_R
+    100092: WindShieldFrame_L
+    100094: WindShieldFrame_R
+    400000: BackLightPlate
+    400002: BackMirror
+    400004: BackSeatCanvas
+    400006: BackTire
+    400008: Body
+    400010: Body 1
+    400012: Bonnet_L
+    400014: Bonnet_R
+    400016: Bonnet_Top
+    400018: BrakeDrum_L
+    400020: BrakeDrum_R
+    400022: Chassis
+    400024: DetachableBodyComponent
+    400026: Door_L
+    400028: Door_R
+    400030: Engine
+    400032: FrontFender_L
+    400034: FrontFender_R
+    400036: FrontTire_L
+    400038: FrontTire_L 1
+    400040: FrontTire_R
+    400042: FrontTire_R 1
+    400044: FrontWheel_L
+    400046: FrontWheel_R
+    400048: FuelTank
+    400050: GearBrake
+    400052: HeadLights
+    400054: //RootNode
+    400056: MidFender_L
+    400058: MidFender_R
+    400060: Mirror_L
+    400062: Mirror_R
+    400064: Radiator
+    400066: RearFender_L
+    400068: RearFender_R
+    400070: RearTire_L
+    400072: RearTire_L 1
+    400074: RearTire_R
+    400076: RearTire_R 1
+    400078: RearWheel_L
+    400080: RearWheel_R
+    400082: Seat
+    400084: SteeringWheel
+    400086: Tires
+    400088: WindShield_L
+    400090: WindShield_R
+    400092: WindShieldFrame_L
+    400094: WindShieldFrame_R
+    2300000: BackLightPlate
+    2300002: BackMirror
+    2300004: BackSeatCanvas
+    2300006: BackTire
+    2300008: Body 1
+    2300010: Bonnet_L
+    2300012: Bonnet_R
+    2300014: Bonnet_Top
+    2300016: BrakeDrum_L
+    2300018: BrakeDrum_R
+    2300020: Chassis
+    2300022: Door_L
+    2300024: Door_R
+    2300026: Engine
+    2300028: FrontFender_L
+    2300030: FrontFender_R
+    2300032: FrontTire_L 1
+    2300034: FrontTire_R 1
+    2300036: FrontWheel_L
+    2300038: FrontWheel_R
+    2300040: FuelTank
+    2300042: GearBrake
+    2300044: HeadLights
+    2300046: MidFender_L
+    2300048: MidFender_R
+    2300050: Mirror_L
+    2300052: Mirror_R
+    2300054: Radiator
+    2300056: RearFender_L
+    2300058: RearFender_R
+    2300060: RearTire_L 1
+    2300062: RearTire_R 1
+    2300064: RearWheel_L
+    2300066: RearWheel_R
+    2300068: Seat
+    2300070: SteeringWheel
+    2300072: WindShield_L
+    2300074: WindShield_R
+    2300076: WindShieldFrame_L
+    2300078: WindShieldFrame_R
+    3300000: BackLightPlate
+    3300002: BackMirror
+    3300004: BackSeatCanvas
+    3300006: BackTire
+    3300008: Body 1
+    3300010: Bonnet_L
+    3300012: Bonnet_R
+    3300014: Bonnet_Top
+    3300016: BrakeDrum_L
+    3300018: BrakeDrum_R
+    3300020: Chassis
+    3300022: Door_L
+    3300024: Door_R
+    3300026: Engine
+    3300028: FrontFender_L
+    3300030: FrontFender_R
+    3300032: FrontTire_L 1
+    3300034: FrontTire_R 1
+    3300036: FrontWheel_L
+    3300038: FrontWheel_R
+    3300040: FuelTank
+    3300042: GearBrake
+    3300044: HeadLights
+    3300046: MidFender_L
+    3300048: MidFender_R
+    3300050: Mirror_L
+    3300052: Mirror_R
+    3300054: Radiator
+    3300056: RearFender_L
+    3300058: RearFender_R
+    3300060: RearTire_L 1
+    3300062: RearTire_R 1
+    3300064: RearWheel_L
+    3300066: RearWheel_R
+    3300068: Seat
+    3300070: SteeringWheel
+    3300072: WindShield_L
+    3300074: WindShield_R
+    3300076: WindShieldFrame_L
+    3300078: WindShieldFrame_R
+    4300000: RearWheel_L
+    4300002: RearTire_L
+    4300004: BackTire
+    4300006: BrakeDrum_R
+    4300008: FrontWheel_R
+    4300010: FrontTire_R
+    4300012: RearTire_R
+    4300014: RearWheel_R
+    4300016: FrontTire_L
+    4300018: BrakeDrum_L
+    4300020: FrontWheel_L
+    4300022: Bonnet_Top
+    4300024: WindShield_R
+    4300026: WindShield_L
+    4300028: Seat
+    4300030: BackSeatCanvas
+    4300032: Body
+    4300034: HeadLights
+    4300036: Radiator
+    4300038: GearBrake
+    4300040: FuelTank
+    4300042: WindShieldFrame_L
+    4300044: WindShieldFrame_R
+    4300046: BackMirror
+    4300048: Engine
+    4300050: FrontFender_L
+    4300052: FrontFender_R
+    4300054: MidFender_L
+    4300056: RearFender_L
+    4300058: RearFender_R
+    4300060: MidFender_R
+    4300062: Mirror_R
+    4300064: Mirror_L
+    4300066: BackLightPlate
+    4300068: Bonnet_R
+    4300070: Bonnet_L
+    4300072: Door_L
+    4300074: Door_R
+    4300076: Chassis
+    4300078: SteeringWheel
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleRotations: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
