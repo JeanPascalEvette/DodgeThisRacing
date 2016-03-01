@@ -87,6 +87,8 @@ public class WheelController : MonoBehaviour {
             
         }
 
+        transform.localRotation = Quaternion.Euler(currentRotation);
+
         // Car velocity (Find out which direction to use) (negative sign as before the speed was opposite it should be)
         carSpeed = carModel.transform.InverseTransformDirection(carModel.velocity).z;
         spinningSpeed = carSpeed;
