@@ -74,9 +74,13 @@ public class CarController : MonoBehaviour {
     [SerializeField]
     private AnimationCurve testRpmResistance;
 
-
+    private HTNPlanner planner;
+    
     // Use this for initialization
     void Start () {
+
+        planner = new HTNPlanner(gameObject, 3.0f);
+
 
 		currentGear = 1; 			// bound to change in future // still in testing phase
         rb = GetComponent<Rigidbody>();
@@ -103,6 +107,15 @@ public class CarController : MonoBehaviour {
     // Update is called once per frame
     void FixedUpdate ()
     {
+
+        
+        string[] plan = planner.GetPlan();
+        string debugPlan = "";
+        foreach (string timeStep in plan)
+            debugPlan += timeStep + ",";
+        debugPlan = debugPlan.Substring(0, debugPlan.Length - 1);
+        Debug.Log(debugPlan);
+
         //Update CoG
         currentCenterOfGravity = transform.rotation * CenterOfGravity;
 
@@ -132,6 +145,7 @@ public class CarController : MonoBehaviour {
             if (rpm < 6000)
             {                                               // car has a maximum traction force when in gear six and has an rpm of 6000
                 TractionForce = transform.InverseTransformDirection(transform.forward) * direction * (rpmToTorque * gears[currentGear] * differentialRatio * 0.7f * 0.34f) * testRpmResistance.Evaluate((float)currentGear/6);
+
             }
             else
             {
@@ -153,13 +167,13 @@ public class CarController : MonoBehaviour {
         if (transform.InverseTransformDirection(rb.velocity).magnitude > 0.1f)
         {
             if (transform.InverseTransformDirection(rb.velocity).z < 0)
-        {
-            gameObject.transform.Rotate(new Vector3(0, maxTurn, 0));
-        }
-        else
-        {
-            gameObject.transform.Rotate(new Vector3(0, -maxTurn, 0));
-        }
+            {
+                gameObject.transform.Rotate(new Vector3(0, maxTurn, 0));
+            }
+            else
+            {
+                gameObject.transform.Rotate(new Vector3(0, -maxTurn, 0));
+            }
         }
 
         
@@ -310,6 +324,10 @@ public class CarController : MonoBehaviour {
         return gears[currentGear];
     }
 
+    public bool IsAtMaxSpeed()
+    {
+        return currentGear == 6 && rpm > 5800;
+    }
 }
 
 
