@@ -19,15 +19,19 @@ using System;
 
     */
 
-
-public class GameObjectState
+public class CarState
 {
-    public GameObjectState()
-    {
-
-    }
-    public Vector3 mPosition;
-    public Quaternion mRotation;
+    public CarState(Vector3 pos, Vector3 vel, Quaternion rot) { myPosition = pos; myVelocity = vel; myRotation = rot; }
+    public CarState() { }
+    public Vector3 myPosition;
+    public Vector3 myVelocity;
+    public Quaternion myRotation;
+}
+public class State
+{
+    public State() { }
+    public CarState myCar;
+    public CarState[] otherCars;
 }
 
 public class HTNPlanner {
@@ -36,6 +40,7 @@ public class HTNPlanner {
     private const float minAngleSharpTurn = 60.0f; // Angle in degrees at which you are braking
     private const float minAngleNormalTurn = 30.0f; //Angle in degrees at which you are not accelerating
     private const float rotationAmount = 1.0f; // amount of degrees added per frame on rotations
+    private const int timeStepPerDecision = 10; //Number of time steps processed between each state check
 
 
     private GameObject myCar;
@@ -56,7 +61,7 @@ public class HTNPlanner {
     private int currentIteration;
     private float lastTurn;
 
-    private GameObjectState currentState;
+    private State currentState;
     char[][] plan;
 
     
@@ -69,6 +74,8 @@ public class HTNPlanner {
         Dictionary<string, MethodInfo[]> myDict = new Dictionary<string, MethodInfo[]>();
         MethodInfo[] moveInfos = new MethodInfo[] { this.GetType().GetMethod("MoveTo_m") };
         myDict.Add("MoveTo", moveInfos);
+        MethodInfo[] moveStepInfos = new MethodInfo[] { this.GetType().GetMethod("MoveStep_m") };
+        myDict.Add("MoveStep", moveStepInfos);
 
         DeclareOperators();
         foreach (KeyValuePair<string, MethodInfo[]> method in myDict)
@@ -100,9 +107,19 @@ public class HTNPlanner {
         List<List<string>> tasks = new List<List<string>>();
         tasks.Add(new List<string>(new string[2] { "MoveTo", myTarget.ToString() }));
 
-        currentState = new GameObjectState();
-        currentState.mPosition = myCar.transform.position;
-        currentState.mRotation = myCar.transform.rotation;
+        currentState = new State();
+        currentState.myCar = new CarState(myCar.transform.position, myCar.GetComponent<Rigidbody>().velocity, myCar.transform.rotation);
+        GameObject[] otherCars = GameObject.FindGameObjectsWithTag("Player");
+        if (otherCars.Length > 0)
+        {
+            currentState.otherCars = new CarState[otherCars.Length - 1];
+            int otherCarCount = 0;
+            foreach (GameObject car in otherCars)
+            {
+                if (car == myCar) continue;
+                currentState.otherCars[otherCarCount++] = new CarState(car.transform.position, car.GetComponent<Rigidbody>().velocity, car.transform.rotation);
+            }
+        }
         plan = new char[numberTimeSteps][];
         for(int i = 0; i < plan.Length; i++)
         {
@@ -117,7 +134,7 @@ public class HTNPlanner {
     }
 
     //Recursive function generating the plan
-    public char[][] SeekPlan(GameObjectState state, List<List<string>> tasks)
+    public char[][] SeekPlan(State state, List<List<string>> tasks)
     {
         if (tasks.Count == 0)
             return plan;
@@ -132,13 +149,11 @@ public class HTNPlanner {
             {
                 int x = 1;
                 List<string> paramets = task.GetRange(1, (task.Count - 1));
-                foreach (string param in paramets)
-                {
-                    parameters[x] = float.Parse(param);
-                    x++;
-                }
+                parameters[x++] = float.Parse(paramets[0]);
+                parameters[x++] = int.Parse(paramets[1]);
+
             }
-            GameObjectState newState = (GameObjectState)info.Invoke(this, parameters);
+            State newState = (State)info.Invoke(this, parameters);
             SeekPlan(newState, tasks.GetRange(1, (tasks.Count - 1)));
         }
         else if (methods.ContainsKey(task[0]))
@@ -199,7 +214,7 @@ public class HTNPlanner {
 
         foreach (MethodInfo info in methodInfos)
         {
-            if (info.ReturnType.Name.Equals("GameObjectState"))
+            if (info.ReturnType.Name.Equals("State"))
             {
                 string methodName = info.Name;
                 if (!operators.Contains(methodName))
@@ -235,7 +250,18 @@ public class HTNPlanner {
     /// <param name="state">The current internal state</param>
     /// <param name="room">The room to which the robot needs to travel to</param>
     /// <returns>A list of subtasks to get from the current room to the room given in the parameters if a path can be found, else it returns null</returns>
-    public List<List<string>> MoveTo_m(GameObjectState state, string strTargetPosition)
+    public List<List<string>> MoveTo_m(State state, string strTargetPosition)
+    {
+        List<List<string>> returnVal = new List<List<string>>();
+
+        for(int i = 0; i < timeStepPerDecision; i++)
+            returnVal.Add(new List<string> { "MoveStep", strTargetPosition, i.ToString() });
+
+
+        return returnVal;
+    }
+
+    public List<List<string>> MoveStep_m(State state, string strTargetPosition, string currentStep)
     {
         string[] targetPosSplit = strTargetPosition.Substring(1, strTargetPosition.Length - 2).Split(',');
         Vector3 targetPosition = new Vector3(float.Parse(targetPosSplit[0]), float.Parse(targetPosSplit[1]), float.Parse(targetPosSplit[2]));
@@ -249,32 +275,33 @@ public class HTNPlanner {
         float angle = Mathf.Acos(dotP) * Mathf.Rad2Deg;
         Vector3 cross = Vector3.Cross(v1, v2);
         if (Vector3.Dot(Vector3.up, cross) < 0)
-        { 
+        {
             angle = -angle;
         }
 
-        returnVal.Add(new List<string> { "Rotate", Mathf.RoundToInt(angle).ToString() });
-        returnVal.Add(new List<string> { "GoForward", myDisplacement.magnitude.ToString() });
+
+        returnVal.Add(new List<string> { "Rotate", Mathf.RoundToInt(angle).ToString(), currentStep });
+        returnVal.Add(new List<string> { "GoForward", myDisplacement.magnitude.ToString(), currentStep });
 
         return returnVal;
     }
 
-    public GameObjectState GoForward(GameObjectState state, float distance)
-    {
-        GameObjectState newState = currentState;
+    public State GoForward(State state, float distance, int currentStep)
+    { 
+        State newState = currentState;
         bool isAtMaxSpeed = myCar.GetComponent<CarController>().IsAtMaxSpeed();
         //Do stuff
         Debug.Log("Going forward by " + distance);
-        foreach(char[] timestep in plan)
+        for(int i = currentStep * 10; i < (currentStep + 1)*10;i++)
         {
             if (myCar.GetComponent<Rigidbody>().velocity.magnitude < minSpeedToForceAccel) //If going very slowly, then always accelrate
-                timestep[0] = 'W';
+                plan[i][0] = 'W';
             else if(lastTurn > minAngleSharpTurn || false) // If currently in a very sharp turn  - slow
-                timestep[0] = 'S';
+                plan[i][0] = 'S';
             else if(lastTurn > minAngleNormalTurn) //If currently in a fairly sharp turn, don't accelerate
-                timestep[0] = 'X';
+                plan[i][0] = 'X';
             else // Else accelerate
-                timestep[0] = 'W';
+                plan[i][0] = 'W';
 
             if (lastTurn > 0) //Reduce lastTurn by one on each frame to simulate the rotation of the car
                 lastTurn--;
@@ -285,22 +312,22 @@ public class HTNPlanner {
         return newState;
     }
 
-    public GameObjectState Rotate(GameObjectState state, float angle)
+    public State Rotate(State state, float angle, int currentStep)
     {
-        GameObjectState newState = currentState;
+        State newState = currentState;
         lastTurn = Mathf.Abs(angle);
         //Do stuff
         Debug.Log("Rotating by " + angle);
 
         int numberRotation = Mathf.Abs(Mathf.CeilToInt(angle / rotationAmount));
-        foreach (char[] timestep in plan)
+        for (int i = currentStep * 10; i < (currentStep + 1) * 10; i++)
         {
             if (angle > 0 && numberRotation-- > 0)
-                timestep[1] = 'D';
+                plan[i][1] = 'D';
             else if (angle < 0 && numberRotation-- > 0)
-                timestep[1] = 'A';
+                plan[i][1] = 'A';
             else
-                timestep[1] = 'X';
+                plan[i][1] = 'X';
         }
         //Do stuff
 

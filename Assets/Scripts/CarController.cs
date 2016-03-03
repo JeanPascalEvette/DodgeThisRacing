@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Threading;
 
 public class CarController : MonoBehaviour {
 
@@ -75,14 +76,15 @@ public class CarController : MonoBehaviour {
     private AnimationCurve testRpmResistance;
 
     private HTNPlanner planner;
+    private Thread plannerThread;
     
     // Use this for initialization
     void Start () {
 
         planner = new HTNPlanner(gameObject, 3.0f);
+        plannerThread = new Thread(); // TODO IMPLEMENT THREADING
 
-
-		currentGear = 1; 			// bound to change in future // still in testing phase
+        currentGear = 1; 			// bound to change in future // still in testing phase
         rb = GetComponent<Rigidbody>();
 
         // We set the boolean variables of the wheels
