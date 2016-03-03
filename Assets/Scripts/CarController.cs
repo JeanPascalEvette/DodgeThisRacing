@@ -90,6 +90,9 @@ public class CarController : MonoBehaviour {
         // We obtain the position of the wheels to calculate the different weights
         frontRightPosition = frontRightWheel.transform.localPosition.z;
         rearRightPosition = rearRightWheel.transform.localPosition.z;
+
+        Physics.IgnoreLayerCollision(LayerMask.NameToLayer("DetachableObjects"), LayerMask.NameToLayer("CarCollisionHitbox"), true);
+
     }
 
     void OnDrawGizmos()
@@ -109,6 +112,13 @@ public class CarController : MonoBehaviour {
         if (!IsOnGround()) return;
         direction = 0.0f;						//speed of object
         float maxTurn = turning * Input.GetAxis("Horizontal");
+        if (Input.GetKey(KeyCode.E))
+        {
+            foreach(var deb in GetComponentsInChildren<DetachableElementBehaviour>())
+            {
+                deb.isHanging = true;
+            }
+        }
         if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))
         {
             direction = 1.0f;
