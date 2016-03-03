@@ -20,8 +20,8 @@ public class CarController : MonoBehaviour {
 
     //
 
-    public int currentGear;
-    private float[] gears = { 2.9f, 2.66f, 1.78f, 1.3f, 1.0f, 0.74f, 0.5f }; //0 = Reverse
+    public int currentGear;  
+    private float[] gears = { 2.9f, 1.20f, 0.92f, 0.85f, 0.83f, 0.80f, 0.78f }; //0 = Reverse
 	/*private float gearOne = 2.66f;      // gears should be applied to the equation to get from engine torque to drive force (Fdrive = u * Tengine * gear *xd * transmission efficiency/wheel radius)
     private float gearTwo = 1.78f;      // however I will apply it to the traction force that we currently have
     private float gearThree = 1.3f;
@@ -90,6 +90,7 @@ public class CarController : MonoBehaviour {
         // We obtain the position of the wheels to calculate the different weights
         frontRightPosition = frontRightWheel.transform.localPosition.z;
         rearRightPosition = rearRightWheel.transform.localPosition.z;
+        
     }
 
     void OnDrawGizmos()
@@ -131,7 +132,7 @@ public class CarController : MonoBehaviour {
         {
             if (rpm < 6000)
             {                                               // car has a maximum traction force when in gear six and has an rpm of 6000
-                TractionForce = transform.InverseTransformDirection(transform.forward) * direction * (rpmToTorque * gears[currentGear] * differentialRatio * 0.7f * 0.34f) * testRpmResistance.Evaluate((float)currentGear/6);
+                TractionForce = transform.InverseTransformDirection(transform.forward) * direction * (rpmToTorque * gears[currentGear] * differentialRatio * 0.7f * 0.34f);// * testRpmResistance.Evaluate((float)currentGear/6);
             }
             else
             {
