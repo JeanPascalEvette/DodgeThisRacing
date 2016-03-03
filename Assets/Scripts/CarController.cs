@@ -75,7 +75,8 @@ public class CarController : MonoBehaviour
 
     [SerializeField]
     private AnimationCurve testRpmResistance;
-
+    private string[] plan;
+    private int frameGenerated;
     private HTNPlanner planner;
     private Thread plannerThread;
     private readonly EventWaitHandle waitHandle = new AutoResetEvent(false);
@@ -113,7 +114,19 @@ public class CarController : MonoBehaviour
 
         Gizmos.color = Color.red;
         Gizmos.DrawSphere(transform.position + currentCenterOfGravity, 0.1f);
-
+        if (plan != null && plan.Length > frameCounter - frameGenerated && frameCounter - frameGenerated >= 0)
+        {
+            var style = new GUIStyle();
+            style.fontSize = 24;
+            style.normal.textColor = Color.red;
+            style.alignment = TextAnchor.MiddleCenter;
+            var tex = new Texture2D(5, 5);
+            style.border = new RectOffset(2, 2, 2, 2);
+            var textPlan = "";
+            for (int i = 0; i < 5; i++)
+                textPlan = textPlan + plan[frameCounter - frameGenerated+i] + "\n";
+              UnityEditor.Handles.Label(transform.position, textPlan, style);
+        }
     }
 
     void retrievePlanner()
@@ -124,7 +137,8 @@ public class CarController : MonoBehaviour
 
 
 
-            string[] plan = planner.GetPlan(currentState);
+            plan = planner.GetPlan(currentState);
+            frameGenerated = frameCounter;
             string debugPlan = "";
             foreach (string timeStep in plan)
                 debugPlan += timeStep + ",";
@@ -137,6 +151,8 @@ public class CarController : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+
+        //AI STUFF
         if (frameCounter++ % (int)(1.0f / Time.fixedDeltaTime) == 0)
         {
             currentState = new State();
@@ -152,7 +168,10 @@ public class CarController : MonoBehaviour
                 }
             }
             waitHandle.Set();
+            
         }
+
+        //END AI STUFF
         //Update CoG
         currentCenterOfGravity = transform.rotation * CenterOfGravity;
 

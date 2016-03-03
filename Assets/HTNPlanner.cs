@@ -255,6 +255,7 @@ public class HTNPlanner {
         Vector3 myDisplacement = (targetPosition - state.myCar.myPosition);
         List<List<string>> returnVal = new List<List<string>>();
 
+
         myDisplacement.y = 0;
         Vector3 v1 = -state.myCar.forward.normalized;
         Vector3 v2 = myDisplacement.normalized;

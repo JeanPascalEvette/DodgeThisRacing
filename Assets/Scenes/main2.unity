@@ -1509,6 +1509,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
+  toolTipFont: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!4 &1400459007
 Transform:
   m_ObjectHideFlags: 0
@@ -1712,6 +1713,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
+  toolTipFont: {fileID: 0}
 --- !u!4 &1480514262
 Transform:
   m_ObjectHideFlags: 0
@@ -1887,6 +1889,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
+  toolTipFont: {fileID: 0}
 --- !u!54 &1755157391
 Rigidbody:
   m_ObjectHideFlags: 0
