@@ -20,7 +20,7 @@ public class CarController : MonoBehaviour {
 
     //
 
-    public int currentGear;  
+    public int currentGear;
     private float[] gears = { 2.9f, 1.20f, 0.92f, 0.85f, 0.83f, 0.80f, 0.78f }; //0 = Reverse
 	/*private float gearOne = 2.66f;      // gears should be applied to the equation to get from engine torque to drive force (Fdrive = u * Tengine * gear *xd * transmission efficiency/wheel radius)
     private float gearTwo = 1.78f;      // however I will apply it to the traction force that we currently have
@@ -90,7 +90,9 @@ public class CarController : MonoBehaviour {
         // We obtain the position of the wheels to calculate the different weights
         frontRightPosition = frontRightWheel.transform.localPosition.z;
         rearRightPosition = rearRightWheel.transform.localPosition.z;
-        
+
+  Physics.IgnoreLayerCollision(LayerMask.NameToLayer("DetachableObjects"), LayerMask.NameToLayer("CarCollisionHitbox"), true);
+
     }
 
     void OnDrawGizmos()
@@ -110,6 +112,13 @@ public class CarController : MonoBehaviour {
         if (!IsOnGround()) return;
         direction = 0.0f;						//speed of object
         float maxTurn = turning * Input.GetAxis("Horizontal");
+        if (Input.GetKey(KeyCode.E))
+        {
+            foreach(var deb in GetComponentsInChildren<DetachableElementBehaviour>())
+            {
+                deb.isHanging = true;
+            }
+        }
         if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))
         {
             direction = 1.0f;

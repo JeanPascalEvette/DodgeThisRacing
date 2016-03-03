@@ -14,25 +14,42 @@ public class DetachableElementBehaviour : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         rb = GetComponent<Rigidbody>();
-	}
+        if (DebrisHolder == null)
+            DebrisHolder = GameObject.Find("DebrisHolder").transform;
+        setColliders(false);
+
+    }
 	
-	// Update is called once per frame
-	void Update () {
-	    if(isHanging && timerBreak == -1f)
+    private void setColliders(bool isEnabled)
+    {
+        foreach (BoxCollider col in GetComponents<BoxCollider>())
+            col.enabled = isEnabled;
+        foreach (BoxCollider col in GetComponentsInChildren<BoxCollider>())
+            col.enabled = isEnabled;
+    }
+
+    // Update is called once per frame
+    void Update() {
+        if (isHanging && timerBreak == -1f)
         {
+            timerBreak = timeToBreak;
             rb.constraints = RigidbodyConstraints.None;
             rb.mass = 1;
-            timerBreak = timeToBreak;
+            setColliders(true);
         }
         else if(isHanging)
         {
             timerBreak -= Time.deltaTime;
-            if(timerBreak <= 0.0f)
+            if (timerBreak <= 0.0f)
             {
                 SpringJoint[] components = transform.GetComponents<SpringJoint>();
                 foreach (SpringJoint sj in components)
                     Destroy(sj);
                 transform.parent = DebrisHolder;
+            }
+            else if (timerBreak < timeToBreak / 2)
+            {
+
             }
         }
 	}
