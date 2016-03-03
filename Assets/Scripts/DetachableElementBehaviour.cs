@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+
 public class DetachableElementBehaviour : MonoBehaviour {
 
     public bool isHanging = false;
@@ -45,6 +46,12 @@ public class DetachableElementBehaviour : MonoBehaviour {
                 SpringJoint[] components = transform.GetComponents<SpringJoint>();
                 foreach (SpringJoint sj in components)
                     Destroy(sj);
+                HingeJoint[] hjs = transform.GetComponents<HingeJoint>();
+                foreach (HingeJoint hj in hjs)
+                    Destroy(hj);
+                FixedJoint[] fjs = transform.GetComponents<FixedJoint>();
+                foreach (FixedJoint fj in fjs)
+                    Destroy(fj);
                 transform.parent = DebrisHolder;
             }
             else if (timerBreak < timeToBreak / 2)
