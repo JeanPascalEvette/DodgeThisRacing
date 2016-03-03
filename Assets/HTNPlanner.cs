@@ -21,11 +21,12 @@ using System;
 
 public class CarState
 {
-    public CarState(Vector3 pos, Vector3 vel, Quaternion rot) { myPosition = pos; myVelocity = vel; myRotation = rot; }
+    public CarState(string name, Vector3 pos, Vector3 vel, Vector3 fwd) { myName = name; myPosition = pos; myVelocity = vel; forward = fwd; }
     public CarState() { }
     public Vector3 myPosition;
     public Vector3 myVelocity;
-    public Quaternion myRotation;
+    public Vector3 forward;
+    public string myName;
 }
 public class State
 {
@@ -42,9 +43,8 @@ public class HTNPlanner {
     private const float rotationAmount = 1.0f; // amount of degrees added per frame on rotations
     private const int timeStepPerDecision = 10; //Number of time steps processed between each state check
 
-
-    private GameObject myCar;
-    private GameObject targetCar;
+    
+    private CarState targetCar;
     /// <summary>
     /// A list containing the names of all tasks of the given planning domain for which there are primitive actions
     /// </summary>
@@ -65,9 +65,8 @@ public class HTNPlanner {
     char[][] plan;
 
     
-    public HTNPlanner(GameObject myCar, float planningTime)
+    public HTNPlanner(float planningTime)
     {
-        this.myCar = myCar;
         this.planningTime = planningTime;
         currentIteration = 0;
         numberTimeSteps = Mathf.RoundToInt(planningTime * (1.0f / Time.fixedDeltaTime));
@@ -86,40 +85,28 @@ public class HTNPlanner {
 
 
     //Function called by AIController to Get an update version of the Input Keys pressed by the AI
-    public string[] GetPlan()
+    public string[] GetPlan(State newState)
     {
         Vector3 myTarget;
         lastTurn = 0.0f;
+        currentState = newState;
         if (currentIteration++ % 5 != 0)
         {
-            Debug.Log("Repeat");
-            myTarget = targetCar.transform.position;
+            myTarget = targetCar.myPosition;
         }
         else
         {
             //Here query the Utility section for a goal
             //Then convert it into a Vector3 Target
             //For now let's take an artificial target
-            targetCar = GameObject.Find("Ramp");
-            myTarget = targetCar.transform.position;
+            targetCar = currentState.otherCars[0];
+            myTarget = targetCar.myPosition;
         }
 
         List<List<string>> tasks = new List<List<string>>();
         tasks.Add(new List<string>(new string[2] { "MoveTo", myTarget.ToString() }));
 
-        currentState = new State();
-        currentState.myCar = new CarState(myCar.transform.position, myCar.GetComponent<Rigidbody>().velocity, myCar.transform.rotation);
-        GameObject[] otherCars = GameObject.FindGameObjectsWithTag("Player");
-        if (otherCars.Length > 0)
-        {
-            currentState.otherCars = new CarState[otherCars.Length - 1];
-            int otherCarCount = 0;
-            foreach (GameObject car in otherCars)
-            {
-                if (car == myCar) continue;
-                currentState.otherCars[otherCarCount++] = new CarState(car.transform.position, car.GetComponent<Rigidbody>().velocity, car.transform.rotation);
-            }
-        }
+        
         plan = new char[numberTimeSteps][];
         for(int i = 0; i < plan.Length; i++)
         {
@@ -265,11 +252,11 @@ public class HTNPlanner {
     {
         string[] targetPosSplit = strTargetPosition.Substring(1, strTargetPosition.Length - 2).Split(',');
         Vector3 targetPosition = new Vector3(float.Parse(targetPosSplit[0]), float.Parse(targetPosSplit[1]), float.Parse(targetPosSplit[2]));
-        Vector3 myDisplacement = (targetPosition - myCar.transform.position);
+        Vector3 myDisplacement = (targetPosition - state.myCar.myPosition);
         List<List<string>> returnVal = new List<List<string>>();
 
         myDisplacement.y = 0;
-        Vector3 v1 = -myCar.transform.forward.normalized;
+        Vector3 v1 = -state.myCar.forward.normalized;
         Vector3 v2 = myDisplacement.normalized;
         float dotP = Vector3.Dot(v1, v2);
         float angle = Mathf.Acos(dotP) * Mathf.Rad2Deg;
@@ -289,12 +276,10 @@ public class HTNPlanner {
     public State GoForward(State state, float distance, int currentStep)
     { 
         State newState = currentState;
-        bool isAtMaxSpeed = myCar.GetComponent<CarController>().IsAtMaxSpeed();
         //Do stuff
-        Debug.Log("Going forward by " + distance);
         for(int i = currentStep * 10; i < (currentStep + 1)*10;i++)
         {
-            if (myCar.GetComponent<Rigidbody>().velocity.magnitude < minSpeedToForceAccel) //If going very slowly, then always accelrate
+            if (state.myCar.myVelocity.magnitude < minSpeedToForceAccel) //If going very slowly, then always accelrate
                 plan[i][0] = 'W';
             else if(lastTurn > minAngleSharpTurn || false) // If currently in a very sharp turn  - slow
                 plan[i][0] = 'S';
@@ -317,7 +302,6 @@ public class HTNPlanner {
         State newState = currentState;
         lastTurn = Mathf.Abs(angle);
         //Do stuff
-        Debug.Log("Rotating by " + angle);
 
         int numberRotation = Mathf.Abs(Mathf.CeilToInt(angle / rotationAmount));
         for (int i = currentStep * 10; i < (currentStep + 1) * 10; i++)
