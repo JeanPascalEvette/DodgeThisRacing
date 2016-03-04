@@ -238,6 +238,66 @@ Prefab:
       propertyPath: DebrisHolder
       value: 
       objectReference: {fileID: 263384326}
+    - target: {fileID: 13524762, guid: 20b0295d5b89fc64a9c477e4bf6e2c8e, type: 2}
+      propertyPath: m_Center.y
+      value: 0.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 13527740, guid: 20b0295d5b89fc64a9c477e4bf6e2c8e, type: 2}
+      propertyPath: m_Center.y
+      value: 0.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 13558794, guid: 20b0295d5b89fc64a9c477e4bf6e2c8e, type: 2}
+      propertyPath: m_Center.y
+      value: 0.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5491584, guid: 20b0295d5b89fc64a9c477e4bf6e2c8e, type: 2}
+      propertyPath: m_Constraints
+      value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 5480136, guid: 20b0295d5b89fc64a9c477e4bf6e2c8e, type: 2}
+      propertyPath: m_Constraints
+      value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 5478244, guid: 20b0295d5b89fc64a9c477e4bf6e2c8e, type: 2}
+      propertyPath: m_Constraints
+      value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 5461370, guid: 20b0295d5b89fc64a9c477e4bf6e2c8e, type: 2}
+      propertyPath: m_Constraints
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5456368, guid: 20b0295d5b89fc64a9c477e4bf6e2c8e, type: 2}
+      propertyPath: m_Constraints
+      value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 5455330, guid: 20b0295d5b89fc64a9c477e4bf6e2c8e, type: 2}
+      propertyPath: m_Constraints
+      value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 5442360, guid: 20b0295d5b89fc64a9c477e4bf6e2c8e, type: 2}
+      propertyPath: m_Constraints
+      value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 5429032, guid: 20b0295d5b89fc64a9c477e4bf6e2c8e, type: 2}
+      propertyPath: m_Constraints
+      value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 5419484, guid: 20b0295d5b89fc64a9c477e4bf6e2c8e, type: 2}
+      propertyPath: m_Constraints
+      value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 5410204, guid: 20b0295d5b89fc64a9c477e4bf6e2c8e, type: 2}
+      propertyPath: m_Constraints
+      value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 5409064, guid: 20b0295d5b89fc64a9c477e4bf6e2c8e, type: 2}
+      propertyPath: m_Constraints
+      value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 5404218, guid: 20b0295d5b89fc64a9c477e4bf6e2c8e, type: 2}
+      propertyPath: m_Constraints
+      value: 14
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 20b0295d5b89fc64a9c477e4bf6e2c8e, type: 2}
   m_IsPrefabParent: 0

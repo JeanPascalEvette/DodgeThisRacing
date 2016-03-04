@@ -11,13 +11,17 @@ public class DetachableElementBehaviour : MonoBehaviour {
     [SerializeField]
     private Transform DebrisHolder;
     private Rigidbody rb;
+    private Vector3 initialPosition;
+    private Quaternion initialRotation;
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start () {
         rb = GetComponent<Rigidbody>();
         if (DebrisHolder == null)
             DebrisHolder = GameObject.Find("DebrisHolder").transform;
         setColliders(false);
+        initialRotation = transform.localRotation;
+        initialPosition = transform.localPosition;
 
     }
 	
@@ -29,12 +33,20 @@ public class DetachableElementBehaviour : MonoBehaviour {
             col.enabled = isEnabled;
     }
 
+
+    void LateUpdate()
+    {
+        if (!isHanging)
+        {
+            transform.localRotation = initialRotation;
+            transform.localPosition = initialPosition;
+        }
+    }
     // Update is called once per frame
     void Update() {
         if (isHanging && timerBreak == -1f)
         {
             timerBreak = timeToBreak;
-            rb.constraints = RigidbodyConstraints.None;
             rb.mass = 1;
             setColliders(true);
         }
