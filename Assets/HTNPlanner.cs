@@ -42,7 +42,7 @@ public class HTNPlanner {
     private const float minAngleNormalTurn = 30.0f; //Angle in degrees at which you are not accelerating
     private const float rotationAmount = 1.0f; // amount of degrees added per frame on rotations
     private const int timeStepPerDecision = 10; //Number of time steps processed between each state check
-
+    private const int refreshOccurence = 3; // Number of times the data doesn't refresh before it does
     
     public CarState targetCar;
     public Vector3 myTarget;
@@ -90,17 +90,25 @@ public class HTNPlanner {
     {
         lastTurn = 0.0f;
         currentState = newState;
-        if (currentIteration++ % 3 != 0)
+        if (currentIteration++ % refreshOccurence != 0)
         {
-            myTarget = targetCar.myPosition;
+            //Refresh the target car with the updated data from the currentState
+            foreach(var car in currentState.otherCars)
+            {
+                if (car.myUniqueID == targetCar.myUniqueID)
+                {
+                    targetCar = car;
+                    break;
+                }
+            }
+            myTarget = targetCar.myPosition + targetCar.myVelocity * (planningTime / refreshOccurence);
         }
         else
         {
             //Here query the Utility section for a goal
-            //Then convert it into a Vector3 Target
-            //For now let's take an artificial target
+            //Then convert it to a new targetCar
             targetCar = currentState.otherCars[0];
-            myTarget = currentState.otherCars[0].myPosition;//targetCar.myPosition;
+            myTarget = targetCar.myPosition + targetCar.myVelocity * (planningTime / refreshOccurence);
         }
 
         List<List<string>> tasks = new List<List<string>>();

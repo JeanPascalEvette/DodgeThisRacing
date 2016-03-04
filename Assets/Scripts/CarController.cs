@@ -167,6 +167,8 @@ public class CarController : MonoBehaviour
             Vector3 dirGO = getCarByUniqueID(planner.targetCar.myUniqueID).transform.position - transform.position;
             UnityEditor.Handles.color = Color.white;
             UnityEditor.Handles.ArrowCap(0, transform.position, Quaternion.LookRotation(dir.normalized), Mathf.Min(10, dir.magnitude));
+            UnityEditor.Handles.color = Color.blue;
+            UnityEditor.Handles.DrawSolidDisc(planner.myTarget, Vector3.up, 1.0f);
             UnityEditor.Handles.color = Color.red;
             UnityEditor.Handles.ArrowCap(1, transform.position, Quaternion.LookRotation(dirGO.normalized), Mathf.Min(10, dirGO.magnitude));
         }
