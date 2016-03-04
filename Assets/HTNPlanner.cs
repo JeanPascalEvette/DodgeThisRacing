@@ -21,12 +21,12 @@ using System;
 
 public class CarState
 {
-    public CarState(string name, Vector3 pos, Vector3 vel, Vector3 fwd) { myName = name; myPosition = pos; myVelocity = vel; forward = fwd; }
+    public CarState(int id, Vector3 pos, Vector3 vel, Vector3 fwd) { myUniqueID = id; myPosition = pos; myVelocity = vel; forward = fwd; }
     public CarState() { }
     public Vector3 myPosition;
     public Vector3 myVelocity;
     public Vector3 forward;
-    public string myName;
+    public int myUniqueID;
 }
 public class State
 {
@@ -44,7 +44,8 @@ public class HTNPlanner {
     private const int timeStepPerDecision = 10; //Number of time steps processed between each state check
 
     
-    private CarState targetCar;
+    public CarState targetCar;
+    public Vector3 myTarget;
     /// <summary>
     /// A list containing the names of all tasks of the given planning domain for which there are primitive actions
     /// </summary>
@@ -87,10 +88,9 @@ public class HTNPlanner {
     //Function called by AIController to Get an update version of the Input Keys pressed by the AI
     public string[] GetPlan(State newState)
     {
-        Vector3 myTarget;
         lastTurn = 0.0f;
         currentState = newState;
-        if (currentIteration++ % 5 != 0)
+        if (currentIteration++ % 3 != 0)
         {
             myTarget = targetCar.myPosition;
         }
@@ -100,7 +100,7 @@ public class HTNPlanner {
             //Then convert it into a Vector3 Target
             //For now let's take an artificial target
             targetCar = currentState.otherCars[0];
-            myTarget = new Vector3(0, 0, 0);//targetCar.myPosition;
+            myTarget = currentState.otherCars[0].myPosition;//targetCar.myPosition;
         }
 
         List<List<string>> tasks = new List<List<string>>();

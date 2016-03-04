@@ -87,6 +87,9 @@ public class CarController : MonoBehaviour
 
     public int carUniqueID;
     private static int carCounter = 0;
+    private static bool showDebug = false;
+
+    public GUISkin aSkin;
 
     // Use this for initialization
     void Start()
@@ -112,9 +115,17 @@ public class CarController : MonoBehaviour
         rearRightPosition = rearRightWheel.transform.localPosition.z;
     }
 
+    void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.F1))
+        {
+            showDebug = !showDebug;
+        }
+    }
+
     void OnDrawGizmos()
     {
-
+        if (!showDebug) return;
         Gizmos.color = Color.red;
         Gizmos.DrawSphere(transform.position + currentCenterOfGravity, 0.1f);
 
@@ -122,12 +133,8 @@ public class CarController : MonoBehaviour
         //This draws the list of commands than an AI controlled car receives - might want to show/hide it based on some input at some point
         if (plan != null && plan.Length > frameCounter - frameGenerated && frameCounter - frameGenerated >= 0)
         {
-            var style = new GUIStyle(GUI.skin.label);
-            style.fontSize = 24;
-            style.normal.textColor = Color.red;
+            var style = new GUIStyle(aSkin.GetStyle("box"));
             style.alignment = TextAnchor.MiddleCenter;
-            var tex = new Texture2D(5, 5);
-            style.border = new RectOffset(2, 2, 2, 2);
             var textPlan = "";
             System.Collections.Generic.List<string> commands = new System.Collections.Generic.List<string>();
             int counter = 1;
@@ -152,8 +159,26 @@ public class CarController : MonoBehaviour
             {
                 textPlan = textPlan + commands[i] + "\n";
             }
+            textPlan = textPlan.Substring(0, textPlan.Length - 1);
             UnityEditor.Handles.Label(transform.position, textPlan, style);
+
+
+            Vector3 dir = planner.myTarget - transform.position;
+            Vector3 dirGO = getCarByUniqueID(planner.targetCar.myUniqueID).transform.position - transform.position;
+            UnityEditor.Handles.color = Color.white;
+            UnityEditor.Handles.ArrowCap(0, transform.position, Quaternion.LookRotation(dir.normalized), Mathf.Min(10, dir.magnitude));
+            UnityEditor.Handles.color = Color.red;
+            UnityEditor.Handles.ArrowCap(1, transform.position, Quaternion.LookRotation(dirGO.normalized), Mathf.Min(10, dirGO.magnitude));
         }
+    }
+
+
+    GameObject getCarByUniqueID(int id)
+    {
+        foreach (var car in allCars)
+            if (car.GetComponent<CarController>().carUniqueID == id)
+                return car;
+        return null;
     }
 
     void retrievePlanner()
@@ -172,7 +197,7 @@ public class CarController : MonoBehaviour
             foreach (string timeStep in plan)
                 debugPlan += timeStep + ",";
             debugPlan = debugPlan.Substring(0, debugPlan.Length - 1);
-            Debug.Log(currentState.myCar.myName + " - " + debugPlan);
+            Debug.Log("Car:"+currentState.myCar.myUniqueID + " - " + debugPlan);
 
             //Wait for 1sec before calling the planner again
             waitHandle.Reset();
@@ -187,7 +212,7 @@ public class CarController : MonoBehaviour
         if (frameCounter++ % (int)(1.0f / Time.fixedDeltaTime) == 0)
         {
             currentState = new State();// Generate a state representing the world to be passed to the HTNPlanner
-            currentState.myCar = new CarState("Car "+carUniqueID, transform.position, GetComponent<Rigidbody>().velocity, transform.forward);
+            currentState.myCar = new CarState(carUniqueID, transform.position, GetComponent<Rigidbody>().velocity, transform.forward);
             if (allCars.Length > 0)
             {
                 currentState.otherCars = new CarState[allCars.Length - 1];
@@ -195,7 +220,7 @@ public class CarController : MonoBehaviour
                 foreach (GameObject car in allCars)
                 {
                     if (car == gameObject) continue;
-                    currentState.otherCars[otherCarCount++] = new CarState(car.name, car.transform.position, car.GetComponent<Rigidbody>().velocity, car.transform.forward);
+                    currentState.otherCars[otherCarCount++] = new CarState(car.GetComponent<CarController>().carUniqueID, car.transform.position, car.GetComponent<Rigidbody>().velocity, car.transform.forward);
                 }
             }
             //Set the waitHandle to make sure that the planner can retrieve a new planning
