@@ -23,17 +23,17 @@ public class CarController : MonoBehaviour
     //
 
     public int currentGear;
-    private float[] gears = { 2.9f, 2.66f, 1.78f, 1.3f, 1.0f, 0.74f, 0.5f }; //0 = Reverse
-                                                                             /*private float gearOne = 2.66f;      // gears should be applied to the equation to get from engine torque to drive force (Fdrive = u * Tengine * gear *xd * transmission efficiency/wheel radius)
-                                                                             private float gearTwo = 1.78f;      // however I will apply it to the traction force that we currently have
-                                                                             private float gearThree = 1.3f;
-                                                                             private float gearFour = 1.0f;
-                                                                             private float gearFive = 0.74f;
-                                                                             private float gearSix = 0.5f;
-                                                                             private float reverse = 2.9f;
-                                                                             */
+    private float[] gears = { 2.9f, 1.20f, 0.92f, 0.85f, 0.83f, 0.80f, 0.78f }; //0 = Reverse
+	/*private float gearOne = 2.66f;      // gears should be applied to the equation to get from engine torque to drive force (Fdrive = u * Tengine * gear *xd * transmission efficiency/wheel radius)
+    private float gearTwo = 1.78f;      // however I will apply it to the traction force that we currently have
+    private float gearThree = 1.3f;
+    private float gearFour = 1.0f;
+    private float gearFive = 0.74f;
+    private float gearSix = 0.5f;
+    private float reverse = 2.9f;
+    */
     public float newVehicleSpeed;
-    public float rpm;
+	public float rpm;
     private float differentialRatio = 3.42f;     // for off road performance we should increase this parameter (like to 4.10f)         
     public float rpmToTorque; // This is needed to measure the Tengine which is used in the final formula
     private bool isPedalDown = false;   // checks to see if pedal is down in order to set a minimum rpm of 1000
@@ -101,7 +101,7 @@ public class CarController : MonoBehaviour
         plannerThread = new Thread(retrievePlanner); // TODO IMPLEMENT THREADING
         plannerThread.Start();
 
-    currentGear = 1; 			// bound to change in future // still in testing phase
+		currentGear = 1; 			// bound to change in future // still in testing phase
         rb = GetComponent<Rigidbody>();
 
         // We set the boolean variables of the wheels
@@ -113,6 +113,9 @@ public class CarController : MonoBehaviour
         // We obtain the position of the wheels to calculate the different weights
         frontRightPosition = frontRightWheel.transform.localPosition.z;
         rearRightPosition = rearRightWheel.transform.localPosition.z;
+
+  Physics.IgnoreLayerCollision(LayerMask.NameToLayer("DetachableObjects"), LayerMask.NameToLayer("CarCollisionHitbox"), true);
+
     }
 
     void Update()
@@ -158,7 +161,7 @@ public class CarController : MonoBehaviour
             for(int i = 0; i < Mathf.Min(5, commands.Count); i++)
             {
                 textPlan = textPlan + commands[i] + "\n";
-            }
+    }
             textPlan = textPlan.Substring(0, textPlan.Length - 1);
             UnityEditor.Handles.Label(transform.position, textPlan, style);
 
@@ -239,6 +242,13 @@ public class CarController : MonoBehaviour
         if (!IsOnGround()) return;
         direction = 0.0f;						//speed of object
         float maxTurn = turning * Input.GetAxis("Horizontal");
+        if (Input.GetKey(KeyCode.E))
+        {
+            foreach(var deb in GetComponentsInChildren<DetachableElementBehaviour>())
+            {
+                deb.isHanging = true;
+            }
+        }
         if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))
         {
             direction = 1.0f;
@@ -247,22 +257,21 @@ public class CarController : MonoBehaviour
             {       // checks that car isn't moving so that rpm can have a minimum of 1000 when it starts movign from inactivity
                 rpm = 1000.0f;
                 isPedalDown = false;
-            }
         }
-
+        }
+           
         else if (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow))
         {
             // We apply a force in the different direction as it was
             direction = -1.0f;
         }
-
+            
 
         if (direction >= 0)														// the traction force is the force delivered by the engine via the rear wheels
         {
             if (rpm < 6000)
             {                                               // car has a maximum traction force when in gear six and has an rpm of 6000
-                TractionForce = transform.InverseTransformDirection(transform.forward) * direction * (rpmToTorque * gears[currentGear] * differentialRatio * 0.7f * 0.34f) * testRpmResistance.Evaluate((float)currentGear / 6);
-
+                TractionForce = transform.InverseTransformDirection(transform.forward) * direction * (rpmToTorque * gears[currentGear] * differentialRatio * 0.7f * 0.34f);// * testRpmResistance.Evaluate((float)currentGear/6);
             }
             else
             {
@@ -273,8 +282,8 @@ public class CarController : MonoBehaviour
         {
             if (rpm < 5500)
             {                                           //set a maximum speed that vehicle will reverse
-                TractionForce = transform.InverseTransformDirection(transform.forward) * -mCBrake;
-            }
+            TractionForce = transform.InverseTransformDirection(transform.forward) * -mCBrake;
+        }
             else
             {
                 TractionForce = transform.InverseTransformDirection(transform.forward) * direction;
@@ -284,16 +293,16 @@ public class CarController : MonoBehaviour
         if (transform.InverseTransformDirection(rb.velocity).magnitude > 0.1f)
         {
             if (transform.InverseTransformDirection(rb.velocity).z < 0)
-            {
-                gameObject.transform.Rotate(new Vector3(0, maxTurn, 0));
-            }
-            else
-            {
-                gameObject.transform.Rotate(new Vector3(0, -maxTurn, 0));
-            }
+        {
+            gameObject.transform.Rotate(new Vector3(0, maxTurn, 0));
+        }
+        else
+        {
+            gameObject.transform.Rotate(new Vector3(0, -maxTurn, 0));
+        }
         }
 
-
+        
         var speed = Mathf.Sqrt(TractionForce.x * TractionForce.x + TractionForce.z * TractionForce.z);
         DragForce = new Vector3(-mCDrag * TractionForce.x * speed, 0, -mCDrag * TractionForce.z * speed);
         RollingResistance = -mCRolRes * TractionForce;
@@ -407,7 +416,7 @@ public class CarController : MonoBehaviour
         //*********************** END ANGULAR ACCELERATION TO BE APPLIED TO DRIVE WHEELS ***********************//
 
 
-
+        
 
     }
 
