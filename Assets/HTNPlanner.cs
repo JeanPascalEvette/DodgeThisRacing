@@ -100,7 +100,7 @@ public class HTNPlanner {
             //Then convert it into a Vector3 Target
             //For now let's take an artificial target
             targetCar = currentState.otherCars[0];
-            myTarget = targetCar.myPosition;
+            myTarget = new Vector3(0, 0, 0);//targetCar.myPosition;
         }
 
         List<List<string>> tasks = new List<List<string>>();

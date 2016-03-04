@@ -85,15 +85,18 @@ public class CarController : MonoBehaviour
     private int frameCounter = 0;
     private GameObject[] allCars;
 
+    public int carUniqueID;
+    private static int carCounter = 0;
+
     // Use this for initialization
     void Start()
     {
 
+        carUniqueID = carCounter++;
         allCars = GameObject.FindGameObjectsWithTag("Player");
         planner = new HTNPlanner(3.0f);
         plannerThread = new Thread(retrievePlanner); // TODO IMPLEMENT THREADING
         plannerThread.Start();
-
 
     currentGear = 1; 			// bound to change in future // still in testing phase
         rb = GetComponent<Rigidbody>();
@@ -114,36 +117,64 @@ public class CarController : MonoBehaviour
 
         Gizmos.color = Color.red;
         Gizmos.DrawSphere(transform.position + currentCenterOfGravity, 0.1f);
+
+
+        //This draws the list of commands than an AI controlled car receives - might want to show/hide it based on some input at some point
         if (plan != null && plan.Length > frameCounter - frameGenerated && frameCounter - frameGenerated >= 0)
         {
-            var style = new GUIStyle();
+            var style = new GUIStyle(GUI.skin.label);
             style.fontSize = 24;
             style.normal.textColor = Color.red;
             style.alignment = TextAnchor.MiddleCenter;
             var tex = new Texture2D(5, 5);
             style.border = new RectOffset(2, 2, 2, 2);
             var textPlan = "";
-            for (int i = 0; i < 5; i++)
-                textPlan = textPlan + plan[frameCounter - frameGenerated+i] + "\n";
-              UnityEditor.Handles.Label(transform.position, textPlan, style);
+            System.Collections.Generic.List<string> commands = new System.Collections.Generic.List<string>();
+            int counter = 1;
+            for (int i = 0; i < 1.0f/Time.fixedDeltaTime; i++)
+            {
+                if(commands.Count > 0 && commands[commands.Count-1] == plan[frameCounter - frameGenerated + i])
+                {
+                    counter++;
+                }
+                else
+                {
+                    if(commands.Count > 0)
+                    {
+                        commands[commands.Count - 1] += "(x" + counter + ")";
+                        counter = 1;
+                    }
+                    commands.Add(plan[frameCounter - frameGenerated + i]);
+                }
+            }
+            commands[commands.Count - 1] += "(x" + counter + ")";
+            for(int i = 0; i < Mathf.Min(5, commands.Count); i++)
+            {
+                textPlan = textPlan + commands[i] + "\n";
+            }
+            UnityEditor.Handles.Label(transform.position, textPlan, style);
         }
     }
 
     void retrievePlanner()
     {
-        while (true)
+        while (true) //Loop continuously after started
         {
-            waitHandle.WaitOne();
+            waitHandle.WaitOne(); //Run only if the handle has been set in fixedUpdate (i.e every 1sec)
 
 
 
-            plan = planner.GetPlan(currentState);
+            plan = planner.GetPlan(currentState); //Retrieve updated plan based on currentState
+            
+            //Log generated plan
             frameGenerated = frameCounter;
             string debugPlan = "";
             foreach (string timeStep in plan)
                 debugPlan += timeStep + ",";
             debugPlan = debugPlan.Substring(0, debugPlan.Length - 1);
             Debug.Log(currentState.myCar.myName + " - " + debugPlan);
+
+            //Wait for 1sec before calling the planner again
             waitHandle.Reset();
         }
     }
@@ -155,8 +186,8 @@ public class CarController : MonoBehaviour
         //AI STUFF
         if (frameCounter++ % (int)(1.0f / Time.fixedDeltaTime) == 0)
         {
-            currentState = new State();
-            currentState.myCar = new CarState(gameObject.name, transform.position, GetComponent<Rigidbody>().velocity, transform.forward);
+            currentState = new State();// Generate a state representing the world to be passed to the HTNPlanner
+            currentState.myCar = new CarState("Car "+carUniqueID, transform.position, GetComponent<Rigidbody>().velocity, transform.forward);
             if (allCars.Length > 0)
             {
                 currentState.otherCars = new CarState[allCars.Length - 1];
@@ -167,11 +198,14 @@ public class CarController : MonoBehaviour
                     currentState.otherCars[otherCarCount++] = new CarState(car.name, car.transform.position, car.GetComponent<Rigidbody>().velocity, car.transform.forward);
                 }
             }
+            //Set the waitHandle to make sure that the planner can retrieve a new planning
             waitHandle.Set();
             
         }
-
         //END AI STUFF
+
+
+
         //Update CoG
         currentCenterOfGravity = transform.rotation * CenterOfGravity;
 
