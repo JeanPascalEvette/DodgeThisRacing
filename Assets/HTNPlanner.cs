@@ -90,26 +90,31 @@ public class HTNPlanner {
     {
         lastTurn = 0.0f;
         currentState = newState;
-        if (currentIteration++ % refreshOccurence != 0)
+        if (currentState.otherCars.Length > 0)
         {
-            //Refresh the target car with the updated data from the currentState
-            foreach(var car in currentState.otherCars)
+            if (currentIteration++ % refreshOccurence != 0)
             {
-                if (car.myUniqueID == targetCar.myUniqueID)
+                //Refresh the target car with the updated data from the currentState
+                foreach (var car in currentState.otherCars)
                 {
-                    targetCar = car;
-                    break;
+                    if (car.myUniqueID == targetCar.myUniqueID)
+                    {
+                        targetCar = car;
+                        break;
+                    }
                 }
+                myTarget = targetCar.myPosition + targetCar.myVelocity * (planningTime / refreshOccurence);
             }
-            myTarget = targetCar.myPosition + targetCar.myVelocity * (planningTime / refreshOccurence);
+            else
+            {
+                //Here query the Utility section for a goal
+                //Then convert it to a new targetCar
+                targetCar = currentState.otherCars[0];
+                myTarget = targetCar.myPosition + targetCar.myVelocity * (planningTime / refreshOccurence);
+            }
         }
         else
-        {
-            //Here query the Utility section for a goal
-            //Then convert it to a new targetCar
-            targetCar = currentState.otherCars[0];
-            myTarget = targetCar.myPosition + targetCar.myVelocity * (planningTime / refreshOccurence);
-        }
+            myTarget = new Vector3(0, 0, 0);
 
         List<List<string>> tasks = new List<List<string>>();
         tasks.Add(new List<string>(new string[2] { "MoveTo", myTarget.ToString() }));
@@ -286,7 +291,7 @@ public class HTNPlanner {
     { 
         State newState = currentState;
         //Do stuff
-        for(int i = currentStep * 10; i < (currentStep + 1)*10;i++)
+        for(int i = currentStep * timeStepPerDecision; i < Mathf.Min(numberTimeSteps, (currentStep + 1)* timeStepPerDecision); i++)
         {
             if (state.myCar.myVelocity.magnitude < minSpeedToForceAccel) //If going very slowly, then always accelrate
                 plan[i][0] = 'W';
@@ -313,7 +318,7 @@ public class HTNPlanner {
         //Do stuff
 
         int numberRotation = Mathf.Abs(Mathf.CeilToInt(angle / rotationAmount));
-        for (int i = currentStep * 10; i < (currentStep + 1) * 10; i++)
+        for (int i = currentStep * timeStepPerDecision; i < Mathf.Min(numberTimeSteps, (currentStep + 1) * timeStepPerDecision); i++)
         {
             if (angle > 0 && numberRotation-- > 0)
                 plan[i][1] = 'D';

@@ -97,7 +97,7 @@ public class CarController : MonoBehaviour
 
         carUniqueID = carCounter++;
         allCars = GameObject.FindGameObjectsWithTag("Player");
-        planner = new HTNPlanner(3.0f);
+        planner = new HTNPlanner(1.5f);
         plannerThread = new Thread(retrievePlanner); // TODO IMPLEMENT THREADING
         plannerThread.Start();
 
@@ -143,11 +143,11 @@ public class CarController : MonoBehaviour
             int counter = 1;
             for (int i = 0; i < 1.0f/Time.fixedDeltaTime; i++)
             {
-                if(commands.Count > 0 && commands[commands.Count-1] == plan[frameCounter - frameGenerated + i])
+                if(commands.Count > 0 && frameCounter - frameGenerated + i < plan.Length && commands[commands.Count-1] == plan[frameCounter - frameGenerated + i])
                 {
                     counter++;
                 }
-                else
+                else if(plan.Length > frameCounter - frameGenerated + i && frameCounter - frameGenerated + i > 0)
                 {
                     if(commands.Count > 0)
                     {
@@ -167,13 +167,16 @@ public class CarController : MonoBehaviour
 
 
             Vector3 dir = planner.myTarget - transform.position;
-            Vector3 dirGO = getCarByUniqueID(planner.targetCar.myUniqueID).transform.position - transform.position;
             UnityEditor.Handles.color = Color.white;
             UnityEditor.Handles.ArrowCap(0, transform.position, Quaternion.LookRotation(dir.normalized), Mathf.Min(10, dir.magnitude));
             UnityEditor.Handles.color = Color.blue;
             UnityEditor.Handles.DrawSolidDisc(planner.myTarget, Vector3.up, 1.0f);
-            UnityEditor.Handles.color = Color.red;
-            UnityEditor.Handles.ArrowCap(1, transform.position, Quaternion.LookRotation(dirGO.normalized), Mathf.Min(10, dirGO.magnitude));
+            if (planner.targetCar != null)
+            {
+                Vector3 dirGO = getCarByUniqueID(planner.targetCar.myUniqueID).transform.position - transform.position;
+                UnityEditor.Handles.color = Color.red;
+                UnityEditor.Handles.ArrowCap(1, transform.position, Quaternion.LookRotation(dirGO.normalized), Mathf.Min(10, dirGO.magnitude));
+            }
         }
     }
 
