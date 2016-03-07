@@ -585,7 +585,7 @@ GameObject:
   - 54: {fileID: 5498788}
   - 114: {fileID: 11482636}
   m_Layer: 0
-  m_Name: Van
+  m_Name: Van - Classic
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
