@@ -27,17 +27,23 @@ public class Player : MonoBehaviour {
         if (Input.GetKey(KeyCode.DownArrow)) { transform.Translate(0, -move_player, 0); }
     }
 
-    void OnCollisionEnter2D(Collision2D col)
-    {
+    //void OnCollisionEnter2D(Collision2D col)
+    //{
 
 
-        if (col.gameObject.tag == "CarMenu")
-        {
-            Debug.Log("COLLISION HAPPENED!!!");
+    //    if (col.gameObject.tag == "CarMenu")
+    //    {
+    //        Debug.Log("COLLISION HAPPENED!!!");
 
-        }
+    //    }
 
-    }
+    //}
+
+
+    //void OnTriggerEnter(Collider other)
+    //{
+    //    Debug.Log("COLLISION HAPPENED!!!");
+    //}
 
 }
 
