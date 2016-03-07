@@ -27,7 +27,7 @@ GameObject:
   - 4: {fileID: 497562}
   - 33: {fileID: 3357554}
   - 23: {fileID: 2392934}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Plate
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -48,7 +48,7 @@ GameObject:
   - 138: {fileID: 13890958}
   - 65: {fileID: 6568998}
   - 114: {fileID: 11425246}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Mirror_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -65,7 +65,7 @@ GameObject:
   - 4: {fileID: 473170}
   - 33: {fileID: 3334514}
   - 23: {fileID: 2398070}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: BrakeLight_R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -82,7 +82,7 @@ GameObject:
   - 4: {fileID: 455476}
   - 33: {fileID: 3320004}
   - 23: {fileID: 2310456}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Mirror_M
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -98,7 +98,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 482482}
   - 65: {fileID: 6503846}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -130,7 +130,7 @@ GameObject:
   - 4: {fileID: 443622}
   - 33: {fileID: 3399138}
   - 23: {fileID: 2319418}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Windshield_holder_R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -150,7 +150,7 @@ GameObject:
   - 54: {fileID: 5428352}
   - 59: {fileID: 5922292}
   - 114: {fileID: 11492188}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: FenderRear_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -167,7 +167,7 @@ GameObject:
   - 4: {fileID: 434208}
   - 33: {fileID: 3338688}
   - 23: {fileID: 2349368}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: SubLight_M
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -222,7 +222,7 @@ GameObject:
   - 145: {fileID: 14503692}
   - 65: {fileID: 6550326}
   - 114: {fileID: 11422110}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Door_R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -239,7 +239,7 @@ GameObject:
   - 4: {fileID: 442040}
   - 33: {fileID: 3375978}
   - 23: {fileID: 2303984}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: TailLight_R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -256,7 +256,7 @@ GameObject:
   - 4: {fileID: 417022}
   - 33: {fileID: 3327208}
   - 23: {fileID: 2351776}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: HeadLight_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -276,7 +276,7 @@ GameObject:
   - 54: {fileID: 5494422}
   - 59: {fileID: 5912920}
   - 114: {fileID: 11436300}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: FrontFender_R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -291,7 +291,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 429850}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Detachables
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -308,7 +308,7 @@ GameObject:
   - 4: {fileID: 485112}
   - 33: {fileID: 3343092}
   - 23: {fileID: 2389618}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: SubHeadLight_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -324,7 +324,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 449894}
   - 65: {fileID: 6569116}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -340,7 +340,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 405020}
   - 65: {fileID: 6526080}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -362,7 +362,7 @@ GameObject:
   - 145: {fileID: 14573510}
   - 145: {fileID: 14562224}
   - 114: {fileID: 11440406}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Door_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -379,7 +379,7 @@ GameObject:
   - 4: {fileID: 426230}
   - 33: {fileID: 3304818}
   - 23: {fileID: 2304826}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Windshield_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -396,7 +396,7 @@ GameObject:
   - 4: {fileID: 484590}
   - 33: {fileID: 3335790}
   - 23: {fileID: 2383780}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Windshield_holder_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -416,7 +416,7 @@ GameObject:
   - 54: {fileID: 5471070}
   - 59: {fileID: 5969352}
   - 114: {fileID: 11478308}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: FenderFront_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -433,7 +433,7 @@ GameObject:
   - 4: {fileID: 410582}
   - 33: {fileID: 3348388}
   - 23: {fileID: 2373402}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Windshield_R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -468,7 +468,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 478480}
   - 65: {fileID: 6575934}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -485,7 +485,7 @@ GameObject:
   - 4: {fileID: 452206}
   - 33: {fileID: 3354156}
   - 23: {fileID: 2327544}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: HeadHorn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -544,7 +544,7 @@ GameObject:
   - 138: {fileID: 13831290}
   - 65: {fileID: 6584032}
   - 114: {fileID: 11481782}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Mirror_R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -560,7 +560,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 429454}
   - 65: {fileID: 6578974}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -576,7 +576,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 455994}
   - 65: {fileID: 6511202}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -593,7 +593,7 @@ GameObject:
   - 4: {fileID: 497568}
   - 33: {fileID: 3333782}
   - 23: {fileID: 2376414}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: HeadLight_R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -610,7 +610,7 @@ GameObject:
   - 4: {fileID: 402396}
   - 33: {fileID: 3357018}
   - 23: {fileID: 2327138}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: BrakeLight_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -664,7 +664,7 @@ GameObject:
   - 4: {fileID: 447214}
   - 33: {fileID: 3302492}
   - 23: {fileID: 2316222}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: SubHeadLight_R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -681,7 +681,7 @@ GameObject:
   - 4: {fileID: 415712}
   - 33: {fileID: 3361248}
   - 23: {fileID: 2321136}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: TailLight_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -701,7 +701,7 @@ GameObject:
   - 54: {fileID: 5467624}
   - 59: {fileID: 5956814}
   - 114: {fileID: 11467432}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: FenderFrear_R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2349,7 +2349,7 @@ HingeJoint:
     contactDistance: 0
   m_BreakForce: Infinity
   m_BreakTorque: Infinity
-  m_EnableCollision: 0
+  m_EnableCollision: 1
   m_EnablePreprocessing: 1
 --- !u!59 &5922292
 HingeJoint:
@@ -2445,7 +2445,7 @@ HingeJoint:
     contactDistance: 0
   m_BreakForce: Infinity
   m_BreakTorque: Infinity
-  m_EnableCollision: 0
+  m_EnableCollision: 1
   m_EnablePreprocessing: 1
 --- !u!65 &6503846
 BoxCollider:

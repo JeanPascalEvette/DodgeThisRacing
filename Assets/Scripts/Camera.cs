@@ -29,11 +29,11 @@ public class Camera : MonoBehaviour {
         switch(myCameraType)
         {
             case CameraType.NORMAL:
-                cameraPos = target.transform.forward;
+                cameraPos = new Vector3(0, 0, -1);
                 break;
 
             case CameraType.SIDE:
-                cameraPos = target.transform.right;
+                cameraPos = new Vector3(-1, 0, 0);
                 break;
 
         }
