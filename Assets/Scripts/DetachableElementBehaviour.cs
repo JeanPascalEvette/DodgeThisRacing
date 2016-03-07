@@ -52,6 +52,7 @@ public class DetachableElementBehaviour : MonoBehaviour {
             timerBreak = timeToBreak;
             rb.mass = 1;
             setColliders(true);
+            rb.constraints = RigidbodyConstraints.None;
         }
         else if(isHanging)
         {
