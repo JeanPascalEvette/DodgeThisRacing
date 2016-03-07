@@ -33,6 +33,12 @@ ModelImporter:
     100050: Wheel020
     100052: Wheel021
     100054: Wheel022
+    100056: Detachable
+    100058: LeftBack
+    100060: LeftFront
+    100062: RightBack
+    100064: RightFront
+    100066: Wheels
     400000: BackBumper002
     400002: BackDoor002
     400004: Body002
@@ -61,6 +67,12 @@ ModelImporter:
     400050: Wheel020
     400052: Wheel021
     400054: Wheel022
+    400056: Detachable
+    400058: LeftBack
+    400060: LeftFront
+    400062: RightBack
+    400064: RightFront
+    400066: Wheels
     2300000: BackBumper002
     2300002: BackDoor002
     2300004: Body002
