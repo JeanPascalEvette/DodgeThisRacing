@@ -16,15 +16,15 @@ public class Camera : MonoBehaviour {
     public CameraType myCameraType;
 
     void Start () {
-	    if(target == null)
-        {
-            target = GameObject.FindGameObjectWithTag("Player");
-        }
 	}
 	
 	// Update is called once per frame
 	void Update ()
     {
+        if (target == null)
+        {
+            target = GameObject.FindGameObjectWithTag("Player");
+        }
         var cameraPos = new Vector3(0, 0, 0);
         switch(myCameraType)
         {

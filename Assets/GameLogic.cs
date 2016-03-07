@@ -30,14 +30,19 @@ public class GameLogic : MonoBehaviour {
             Vector3 startPos = new Vector3(0, 0, 0);
             if (trackPartsList.Count > 0)
             {
-                startPos = trackPartsList[trackPartsList.Count - 1].transform.position + (trackPartsList[trackPartsList.Count - 1].GetComponentInChildren<MeshRenderer>().bounds.size / 2);
-                UnityEditor.Handles.DrawSolidDisc(startPos, Vector3.up, 1.0f);
+                startPos.z += trackPartsList[trackPartsList.Count - 1].GetComponentInChildren<MeshRenderer>().bounds.max.z;
+                startPos.z -= trackPrefab.GetComponentInChildren<MeshRenderer>().bounds.min.z;
+                Debug.DrawLine(trackPartsList[trackPartsList.Count - 1].transform.position+ new Vector3(0,1,0), startPos + new Vector3(0, 1, 0), Color.red, 9999.0f,false);
             }
-            trackPartsList.Add((GameObject)Instantiate(trackPrefab, new Vector3(0, 0, 0), Quaternion.identity));
+            trackPartsList.Add((GameObject)Instantiate(trackPrefab, startPos, Quaternion.Euler(0,0,0)));
         }
         
     }
 	
+    void OnDrawGizmos()
+    {
+    }
+
 	// Update is called once per frame
 	void Update () {
 	
