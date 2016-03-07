@@ -82,13 +82,13 @@ public class CarController : MonoBehaviour {
         rb = GetComponent<Rigidbody>();
 
         if (rearLeftWheel == null)
-            rearLeftWheel = GameObject.Find("Wheel").transform.Find("LeftRear").GetComponent<WheelController>();
+            rearLeftWheel = transform.GetChild(0).Find("Wheel").transform.Find("LeftRear").GetComponent<WheelController>();
         if (rearRightWheel == null)
-            rearRightWheel = GameObject.Find("Wheel").transform.Find("RightRear").GetComponent<WheelController>();
+            rearRightWheel = transform.GetChild(0).Find("Wheel").transform.Find("RightRear").GetComponent<WheelController>();
         if (frontLeftWheel == null)
-            frontLeftWheel = GameObject.Find("Wheel").transform.Find("LeftFront").GetComponent<WheelController>();
+            frontLeftWheel = transform.GetChild(0).Find("Wheel").transform.Find("LeftFront").GetComponent<WheelController>();
         if (frontRightWheel == null)
-            frontRightWheel = GameObject.Find("Wheel").transform.Find("RightFront").GetComponent<WheelController>();
+            frontRightWheel = transform.GetChild(0).Find("Wheel").transform.Find("RightFront").GetComponent<WheelController>();
 
         // We set the boolean variables of the wheels
         rearLeftWheel.isRearWheel = true;
