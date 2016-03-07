@@ -173,7 +173,7 @@ CircleCollider2D:
   m_UsedByEffector: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 80
+  m_Radius: 60
 --- !u!114 &244530155
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -185,6 +185,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0247b422481076d4caafb4a828d00c25, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  TextColor: {fileID: 244530152}
+  p: {fileID: 2062963154}
 --- !u!1 &397500427
 GameObject:
   m_ObjectHideFlags: 0
@@ -945,6 +947,12 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 80
+--- !u!114 &2062963154 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 11401994, guid: 3cfec0dd1c27b5245b265515ecd148bd,
+    type: 2}
+  m_PrefabInternal: {fileID: 1606142468}
+  m_Script: {fileID: 11500000, guid: 285e437cf116a3a43978e26a90526b94, type: 3}
 --- !u!50 &2062963157
 Rigidbody2D:
   serializedVersion: 2
