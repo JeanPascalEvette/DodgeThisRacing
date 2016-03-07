@@ -832,15 +832,15 @@ RectTransform:
   m_RootOrder: 5
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-<<<<<<< HEAD
-<<<<<<< HEAD
+
+
   m_AnchoredPosition: {x: -414.8, y: -217.6}
-=======
-  m_AnchoredPosition: {x: -415, y: -182}
->>>>>>> origin/Fede_Elio_UI
-=======
-  m_AnchoredPosition: {x: -420, y: -230.5}
->>>>>>> parent of d0d1cba... Added Player 1 UI test
+
+
+
+
+
+
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2071835276
