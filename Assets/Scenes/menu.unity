@@ -185,7 +185,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a2bb37831e057a46b0f62d11c6f8d5e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  p: {fileID: 2062963154}
+  player: {fileID: 0}
   TextColorGo: {fileID: 2071835277}
   TextColorCar: {fileID: 244530152}
 --- !u!1 &397500427
@@ -215,7 +215,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a2bb37831e057a46b0f62d11c6f8d5e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  p: {fileID: 2062963154}
+  player: {fileID: 2062963151}
   TextColorGo: {fileID: 2071835277}
   TextColorCar: {fileID: 244530152}
 --- !u!4 &397500429
@@ -852,7 +852,8 @@ Prefab:
       propertyPath: m_TagString
       value: PlayerMenu
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 11401994, guid: 3cfec0dd1c27b5245b265515ecd148bd, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 3cfec0dd1c27b5245b265515ecd148bd, type: 2}
   m_IsPrefabParent: 0
 --- !u!1 &1963551642
@@ -951,12 +952,6 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 80
---- !u!114 &2062963154 stripped
-MonoBehaviour:
-  m_PrefabParentObject: {fileID: 11401994, guid: 3cfec0dd1c27b5245b265515ecd148bd,
-    type: 2}
-  m_PrefabInternal: {fileID: 1606142468}
-  m_Script: {fileID: 11500000, guid: 285e437cf116a3a43978e26a90526b94, type: 3}
 --- !u!50 &2062963157
 Rigidbody2D:
   serializedVersion: 2
