@@ -9,7 +9,7 @@ public class DetachableElementBehaviour : MonoBehaviour {
     public float timeToBreak = 5.0f;
 
     [SerializeField]
-    private Transform DebrisHolder;
+    private GameObject DebrisHolder;
     private Rigidbody rb;
     private Vector3 initialPosition;
     private Quaternion initialRotation;
@@ -18,7 +18,10 @@ public class DetachableElementBehaviour : MonoBehaviour {
     void Start () {
         rb = GetComponent<Rigidbody>();
         if (DebrisHolder == null)
-            DebrisHolder = GameObject.Find("DebrisHolder").transform;
+            DebrisHolder = GameObject.Find("DebrisHolder");
+        if (DebrisHolder == null)
+            DebrisHolder = new GameObject("DebrisHolder");
+
         setColliders(false);
         initialRotation = transform.localRotation;
         initialPosition = transform.localPosition;
@@ -49,6 +52,7 @@ public class DetachableElementBehaviour : MonoBehaviour {
             timerBreak = timeToBreak;
             rb.mass = 1;
             setColliders(true);
+            rb.constraints = RigidbodyConstraints.None;
         }
         else if(isHanging)
         {
@@ -64,7 +68,7 @@ public class DetachableElementBehaviour : MonoBehaviour {
                 FixedJoint[] fjs = transform.GetComponents<FixedJoint>();
                 foreach (FixedJoint fj in fjs)
                     Destroy(fj);
-                transform.parent = DebrisHolder;
+                transform.parent = DebrisHolder.transform;
             }
             else if (timerBreak < timeToBreak / 2)
             {

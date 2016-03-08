@@ -16,21 +16,24 @@ public class Camera : MonoBehaviour {
     public CameraType myCameraType;
 
     void Start () {
-	
 	}
 	
 	// Update is called once per frame
 	void Update ()
     {
+        if (target == null)
+        {
+            target = GameObject.FindGameObjectWithTag("Player");
+        }
         var cameraPos = new Vector3(0, 0, 0);
         switch(myCameraType)
         {
             case CameraType.NORMAL:
-                cameraPos = target.transform.forward;
+                cameraPos = new Vector3(0, 0, -1);
                 break;
 
             case CameraType.SIDE:
-                cameraPos = target.transform.right;
+                cameraPos = new Vector3(-1, 0, 0);
                 break;
 
         }
