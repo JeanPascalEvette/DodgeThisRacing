@@ -90,12 +90,12 @@ RectTransform:
   m_PrefabParentObject: {fileID: 22410116, guid: 56d85edf13363e84186bda7089f36bcd,
     type: 2}
   m_PrefabInternal: {fileID: 1659081398}
---- !u!114 &244530152 stripped
+--- !u!114 &244530153 stripped
 MonoBehaviour:
-  m_PrefabParentObject: {fileID: 11442658, guid: 56d85edf13363e84186bda7089f36bcd,
+  m_PrefabParentObject: {fileID: 11441700, guid: 56d85edf13363e84186bda7089f36bcd,
     type: 2}
   m_PrefabInternal: {fileID: 1659081398}
-  m_Script: {fileID: 708705254, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+  m_Script: {fileID: 11500000, guid: 1b93abe624df29246b8a9431c79578b0, type: 3}
 --- !u!1 &397500427
 GameObject:
   m_ObjectHideFlags: 0
@@ -125,6 +125,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 2062963151}
   TextColorGo: {fileID: 2071835277}
+  Icon: {fileID: 244530153}
 --- !u!4 &397500429
 Transform:
   m_ObjectHideFlags: 0
@@ -358,18 +359,6 @@ Prefab:
       propertyPath: m_Text
       value: Car 2
       objectReference: {fileID: 0}
-    - target: {fileID: 11402884, guid: 56d85edf13363e84186bda7089f36bcd, type: 2}
-      propertyPath: TextColorGo
-      value: 
-      objectReference: {fileID: 2071835277}
-    - target: {fileID: 11402884, guid: 56d85edf13363e84186bda7089f36bcd, type: 2}
-      propertyPath: player
-      value: 
-      objectReference: {fileID: 2062963151}
-    - target: {fileID: 11402884, guid: 56d85edf13363e84186bda7089f36bcd, type: 2}
-      propertyPath: TextColorCar
-      value: 
-      objectReference: {fileID: 1996893430}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 56d85edf13363e84186bda7089f36bcd, type: 2}
   m_IsPrefabParent: 0
@@ -378,12 +367,6 @@ RectTransform:
   m_PrefabParentObject: {fileID: 22410116, guid: 56d85edf13363e84186bda7089f36bcd,
     type: 2}
   m_PrefabInternal: {fileID: 2113395917}
---- !u!114 &886345493 stripped
-MonoBehaviour:
-  m_PrefabParentObject: {fileID: 11442658, guid: 56d85edf13363e84186bda7089f36bcd,
-    type: 2}
-  m_PrefabInternal: {fileID: 2113395917}
-  m_Script: {fileID: 708705254, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
 --- !u!1 &1141588965
 GameObject:
   m_ObjectHideFlags: 0
@@ -640,12 +623,6 @@ RectTransform:
   m_PrefabParentObject: {fileID: 22410116, guid: 56d85edf13363e84186bda7089f36bcd,
     type: 2}
   m_PrefabInternal: {fileID: 1803574754}
---- !u!114 &1565701656 stripped
-MonoBehaviour:
-  m_PrefabParentObject: {fileID: 11442658, guid: 56d85edf13363e84186bda7089f36bcd,
-    type: 2}
-  m_PrefabInternal: {fileID: 1803574754}
-  m_Script: {fileID: 708705254, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
 --- !u!1001 &1606142468
 Prefab:
   m_ObjectHideFlags: 0
@@ -725,16 +702,7 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
-    - target: {fileID: 5891550, guid: 3cfec0dd1c27b5245b265515ecd148bd, type: 2}
-      propertyPath: m_Radius
-      value: 50
-      objectReference: {fileID: 0}
-    - target: {fileID: 5891550, guid: 3cfec0dd1c27b5245b265515ecd148bd, type: 2}
-      propertyPath: m_IsTrigger
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 5023050, guid: 3cfec0dd1c27b5245b265515ecd148bd, type: 2}
+    m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3cfec0dd1c27b5245b265515ecd148bd, type: 2}
   m_IsPrefabParent: 0
 --- !u!1001 &1659081398
@@ -816,45 +784,9 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
-    - target: {fileID: 11402884, guid: 56d85edf13363e84186bda7089f36bcd, type: 2}
-      propertyPath: TextColorGo
-      value: 
-      objectReference: {fileID: 2071835277}
     - target: {fileID: 169640, guid: 56d85edf13363e84186bda7089f36bcd, type: 2}
       propertyPath: m_Name
       value: CAR_GUI_1
-      objectReference: {fileID: 0}
-    - target: {fileID: 11402884, guid: 56d85edf13363e84186bda7089f36bcd, type: 2}
-      propertyPath: player
-      value: 
-      objectReference: {fileID: 2062963151}
-    - target: {fileID: 11402884, guid: 56d85edf13363e84186bda7089f36bcd, type: 2}
-      propertyPath: TextColorCar
-      value: 
-      objectReference: {fileID: 244530152}
-    - target: {fileID: 169640, guid: 56d85edf13363e84186bda7089f36bcd, type: 2}
-      propertyPath: m_TagString
-      value: Car1
-      objectReference: {fileID: 0}
-    - target: {fileID: 11402884, guid: 56d85edf13363e84186bda7089f36bcd, type: 2}
-      propertyPath: TextColorCar1
-      value: 
-      objectReference: {fileID: 244530152}
-    - target: {fileID: 11402884, guid: 56d85edf13363e84186bda7089f36bcd, type: 2}
-      propertyPath: TextColorCar2
-      value: 
-      objectReference: {fileID: 1996893430}
-    - target: {fileID: 11402884, guid: 56d85edf13363e84186bda7089f36bcd, type: 2}
-      propertyPath: TextColorCar3
-      value: 
-      objectReference: {fileID: 886345493}
-    - target: {fileID: 11402884, guid: 56d85edf13363e84186bda7089f36bcd, type: 2}
-      propertyPath: TextColorCar4
-      value: 
-      objectReference: {fileID: 1565701656}
-    - target: {fileID: 5868964, guid: 56d85edf13363e84186bda7089f36bcd, type: 2}
-      propertyPath: m_IsTrigger
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 56d85edf13363e84186bda7089f36bcd, type: 2}
@@ -946,18 +878,6 @@ Prefab:
       propertyPath: m_Text
       value: Car 4
       objectReference: {fileID: 0}
-    - target: {fileID: 11402884, guid: 56d85edf13363e84186bda7089f36bcd, type: 2}
-      propertyPath: TextColorGo
-      value: 
-      objectReference: {fileID: 2071835277}
-    - target: {fileID: 11402884, guid: 56d85edf13363e84186bda7089f36bcd, type: 2}
-      propertyPath: player
-      value: 
-      objectReference: {fileID: 2062963151}
-    - target: {fileID: 11402884, guid: 56d85edf13363e84186bda7089f36bcd, type: 2}
-      propertyPath: TextColorCar
-      value: 
-      objectReference: {fileID: 1565701656}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 56d85edf13363e84186bda7089f36bcd, type: 2}
   m_IsPrefabParent: 0
@@ -966,12 +886,6 @@ RectTransform:
   m_PrefabParentObject: {fileID: 22410116, guid: 56d85edf13363e84186bda7089f36bcd,
     type: 2}
   m_PrefabInternal: {fileID: 705421312}
---- !u!114 &1996893430 stripped
-MonoBehaviour:
-  m_PrefabParentObject: {fileID: 11442658, guid: 56d85edf13363e84186bda7089f36bcd,
-    type: 2}
-  m_PrefabInternal: {fileID: 705421312}
-  m_Script: {fileID: 708705254, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
 --- !u!1 &2062963151 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 193884, guid: 3cfec0dd1c27b5245b265515ecd148bd, type: 2}
@@ -981,23 +895,6 @@ RectTransform:
   m_PrefabParentObject: {fileID: 22494794, guid: 3cfec0dd1c27b5245b265515ecd148bd,
     type: 2}
   m_PrefabInternal: {fileID: 1606142468}
---- !u!50 &2062963156
-Rigidbody2D:
-  serializedVersion: 2
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 2062963151}
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 0
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0
 --- !u!1 &2071835274
 GameObject:
   m_ObjectHideFlags: 0
@@ -1029,7 +926,7 @@ RectTransform:
   m_RootOrder: 5
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -414.8, y: -217.6}
+  m_AnchoredPosition: {x: -416, y: -192.5}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2071835277
@@ -1158,18 +1055,6 @@ Prefab:
       propertyPath: m_Text
       value: Car 3
       objectReference: {fileID: 0}
-    - target: {fileID: 11402884, guid: 56d85edf13363e84186bda7089f36bcd, type: 2}
-      propertyPath: player
-      value: 
-      objectReference: {fileID: 2062963151}
-    - target: {fileID: 11402884, guid: 56d85edf13363e84186bda7089f36bcd, type: 2}
-      propertyPath: TextColorGo
-      value: 
-      objectReference: {fileID: 2071835277}
-    - target: {fileID: 11402884, guid: 56d85edf13363e84186bda7089f36bcd, type: 2}
-      propertyPath: TextColorCar
-      value: 
-      objectReference: {fileID: 886345493}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 56d85edf13363e84186bda7089f36bcd, type: 2}
   m_IsPrefabParent: 0

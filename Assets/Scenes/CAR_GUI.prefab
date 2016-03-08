@@ -11,7 +11,7 @@ GameObject:
   - 222: {fileID: 22233846}
   - 114: {fileID: 11442658}
   - 58: {fileID: 5868964}
-  - 114: {fileID: 11402884}
+  - 114: {fileID: 11441700}
   m_Layer: 5
   m_Name: CAR_GUI
   m_TagString: Car
@@ -33,7 +33,7 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 60
---- !u!114 &11402884
+--- !u!114 &11441700
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -41,15 +41,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 169640}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2a2bb37831e057a46b0f62d11c6f8d5e, type: 3}
+  m_Script: {fileID: 11500000, guid: 1b93abe624df29246b8a9431c79578b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
-  TextColorGo: {fileID: 0}
-  TextColorCar1: {fileID: 0}
-  TextColorCar2: {fileID: 0}
-  TextColorCar3: {fileID: 0}
-  TextColorCar4: {fileID: 0}
+  is_inside: 0
 --- !u!114 &11442658
 MonoBehaviour:
   m_ObjectHideFlags: 1
