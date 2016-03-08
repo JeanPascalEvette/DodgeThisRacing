@@ -85,10 +85,6 @@ NavMeshSettings:
     cellSize: 0.16666667
     manualCellSize: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &244530150 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 169640, guid: 56d85edf13363e84186bda7089f36bcd, type: 2}
-  m_PrefabInternal: {fileID: 1659081398}
 --- !u!224 &244530151 stripped
 RectTransform:
   m_PrefabParentObject: {fileID: 22410116, guid: 56d85edf13363e84186bda7089f36bcd,
@@ -100,23 +96,6 @@ MonoBehaviour:
     type: 2}
   m_PrefabInternal: {fileID: 1659081398}
   m_Script: {fileID: 708705254, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
---- !u!50 &244530156
-Rigidbody2D:
-  serializedVersion: 2
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 244530150}
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 0
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0
 --- !u!1 &397500427
 GameObject:
   m_ObjectHideFlags: 0
@@ -146,10 +125,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 2062963151}
   TextColorGo: {fileID: 2071835277}
-  TextColorCar1: {fileID: 244530152}
-  TextColorCar2: {fileID: 1996893430}
-  TextColorCar3: {fileID: 886345493}
-  TextColorCar4: {fileID: 1565701656}
 --- !u!4 &397500429
 Transform:
   m_ObjectHideFlags: 0
@@ -1006,6 +981,23 @@ RectTransform:
   m_PrefabParentObject: {fileID: 22494794, guid: 3cfec0dd1c27b5245b265515ecd148bd,
     type: 2}
   m_PrefabInternal: {fileID: 1606142468}
+--- !u!50 &2062963156
+Rigidbody2D:
+  serializedVersion: 2
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2062963151}
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &2071835274
 GameObject:
   m_ObjectHideFlags: 0
