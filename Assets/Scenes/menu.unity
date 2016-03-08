@@ -90,12 +90,6 @@ RectTransform:
   m_PrefabParentObject: {fileID: 22410116, guid: 56d85edf13363e84186bda7089f36bcd,
     type: 2}
   m_PrefabInternal: {fileID: 1659081398}
---- !u!114 &244530153 stripped
-MonoBehaviour:
-  m_PrefabParentObject: {fileID: 11441700, guid: 56d85edf13363e84186bda7089f36bcd,
-    type: 2}
-  m_PrefabInternal: {fileID: 1659081398}
-  m_Script: {fileID: 11500000, guid: 1b93abe624df29246b8a9431c79578b0, type: 3}
 --- !u!1 &397500427
 GameObject:
   m_ObjectHideFlags: 0
@@ -125,7 +119,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 2062963151}
   TextColorGo: {fileID: 2071835277}
-  Icon: {fileID: 244530153}
+  is_inside: 0
 --- !u!4 &397500429
 Transform:
   m_ObjectHideFlags: 0
@@ -359,6 +353,10 @@ Prefab:
       propertyPath: m_Text
       value: Car 2
       objectReference: {fileID: 0}
+    - target: {fileID: 11441700, guid: 56d85edf13363e84186bda7089f36bcd, type: 2}
+      propertyPath: l
+      value: 
+      objectReference: {fileID: 397500428}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 56d85edf13363e84186bda7089f36bcd, type: 2}
   m_IsPrefabParent: 0
@@ -788,6 +786,10 @@ Prefab:
       propertyPath: m_Name
       value: CAR_GUI_1
       objectReference: {fileID: 0}
+    - target: {fileID: 11441700, guid: 56d85edf13363e84186bda7089f36bcd, type: 2}
+      propertyPath: l
+      value: 
+      objectReference: {fileID: 397500428}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 56d85edf13363e84186bda7089f36bcd, type: 2}
   m_IsPrefabParent: 0
@@ -878,6 +880,10 @@ Prefab:
       propertyPath: m_Text
       value: Car 4
       objectReference: {fileID: 0}
+    - target: {fileID: 11441700, guid: 56d85edf13363e84186bda7089f36bcd, type: 2}
+      propertyPath: l
+      value: 
+      objectReference: {fileID: 397500428}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 56d85edf13363e84186bda7089f36bcd, type: 2}
   m_IsPrefabParent: 0
@@ -1055,6 +1061,10 @@ Prefab:
       propertyPath: m_Text
       value: Car 3
       objectReference: {fileID: 0}
+    - target: {fileID: 11441700, guid: 56d85edf13363e84186bda7089f36bcd, type: 2}
+      propertyPath: l
+      value: 
+      objectReference: {fileID: 397500428}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 56d85edf13363e84186bda7089f36bcd, type: 2}
   m_IsPrefabParent: 0
