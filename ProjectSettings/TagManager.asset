@@ -5,8 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - CarMenu
-  - Car
-  - PlayerMenu
+  - Car1
   - Go
   layers:
   - Default

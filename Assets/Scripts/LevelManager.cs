@@ -7,7 +7,11 @@ public class LevelManager : MonoBehaviour
 
     public GameObject player;
     public Text TextColorGo;
-    public Text TextColorCar;
+    public Text TextColorCar1;
+    public Text TextColorCar2;
+    public Text TextColorCar3;
+    public Text TextColorCar4;
+    Text test;
     bool is_inside = false;
     float move_player = 5.0f;
     bool notSelected = true;
@@ -15,7 +19,10 @@ public class LevelManager : MonoBehaviour
     void Start()
     {
         TextColorGo = GameObject.FindWithTag("Go").GetComponent<Text>();
-        TextColorCar = GameObject.FindWithTag("Car").GetComponent<Text>();
+        TextColorCar1 = GameObject.FindWithTag("Car1").GetComponent<Text>();
+        TextColorCar2 = GameObject.FindWithTag("Car2").GetComponent<Text>();
+        TextColorCar3 = GameObject.FindWithTag("Car3").GetComponent<Text>();
+        TextColorCar4 = GameObject.FindWithTag("Car4").GetComponent<Text>();
         player = GameObject.FindWithTag("PlayerMenu");
     }
 
@@ -56,10 +63,15 @@ public class LevelManager : MonoBehaviour
     //Function to detect enter in the trigger area of the Car icon selection
     void OnTriggerEnter2D(Collider2D trigger)
     {
-        print("Trigger");
 
-        TextColorCar.color = Color.yellow;
-        is_inside = true;
+
+        test = trigger.GetComponent<Text>();
+        test.color = Color.yellow;
+            is_inside = true;
+            print("Trigger");
+     
+        
+        
     }
 
 
@@ -67,8 +79,12 @@ public class LevelManager : MonoBehaviour
     void OnTriggerExit2D(Collider2D trigger)
     {
         print("EXIT");
-        TextColorCar.color = Color.white;
-        is_inside = false;
+        if (trigger.gameObject.tag == "Car1")
+        {
+            TextColorCar1.color = Color.white;
+            is_inside = false;
+        }
+
     }
 
     //Function to move the player
