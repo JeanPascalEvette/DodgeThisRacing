@@ -20,7 +20,7 @@ public class Player : MonoBehaviour {
     float move_player = 5.0f;
 
     public bool notSelected = true;
-    //Function to move the basket
+  
     void HandleMovement()
     {
         if (notSelected)
@@ -35,24 +35,6 @@ public class Player : MonoBehaviour {
     }
 
 
-
-    //void OnCollisionEnter2D(Collision2D col)
-    //{
-
-
-    //    if (col.gameObject.tag == "CarMenu")
-    //    {
-    //        Debug.Log("COLLISION HAPPENED!!!");
-
-    //    }
-
-    //}
-
-
-    //void OnTriggerEnter(Collider other)
-    //{
-    //    Debug.Log("COLLISION HAPPENED!!!");
-    //}
 
 }
 

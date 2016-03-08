@@ -99,7 +99,7 @@ GameObject:
   - 114: {fileID: 244530155}
   m_Layer: 5
   m_Name: CAR1
-  m_TagString: Untagged
+  m_TagString: Car
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
@@ -182,11 +182,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 244530150}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0247b422481076d4caafb4a828d00c25, type: 3}
+  m_Script: {fileID: 11500000, guid: 2a2bb37831e057a46b0f62d11c6f8d5e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TextColor: {fileID: 244530152}
   p: {fileID: 2062963154}
+  TextColorGo: {fileID: 2071835277}
+  TextColorCar: {fileID: 244530152}
 --- !u!1 &397500427
 GameObject:
   m_ObjectHideFlags: 0
@@ -215,7 +216,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   p: {fileID: 2062963154}
-  TextColor: {fileID: 2071835277}
+  TextColorGo: {fileID: 2071835277}
+  TextColorCar: {fileID: 244530152}
 --- !u!4 &397500429
 Transform:
   m_ObjectHideFlags: 0
@@ -848,7 +850,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 193884, guid: 3cfec0dd1c27b5245b265515ecd148bd, type: 2}
       propertyPath: m_TagString
-      value: Player
+      value: PlayerMenu
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3cfec0dd1c27b5245b265515ecd148bd, type: 2}
@@ -984,7 +986,7 @@ GameObject:
   - 114: {fileID: 2071835277}
   m_Layer: 5
   m_Name: Go
-  m_TagString: Untagged
+  m_TagString: Go
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
