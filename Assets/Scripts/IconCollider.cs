@@ -6,7 +6,13 @@ public class IconCollider : MonoBehaviour {
 
 
     Text TextColorCar;
-    public LevelManager l;
+    LevelManager l;
+
+    void Start()
+    {
+        l = GameObject.FindWithTag("LevelManager").GetComponent<LevelManager>();
+
+    }
 
 
     //Function to detect enter in the trigger area of the Car icon selection
