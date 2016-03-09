@@ -41,7 +41,7 @@ public class LevelManager : MonoBehaviour
             TextColorGo.color = Color.green;
 
             //If B is pressend when GO text is green the main game is loaded
-            if (Input.GetKey(KeyCode.B)) {LoadLevel(name); }
+            if (Input.GetKey(KeyCode.B)) {LoadLevel("main2"); }
         }
 
     }
@@ -49,7 +49,7 @@ public class LevelManager : MonoBehaviour
     //Function to load the main game scene
     public void LoadLevel(string name)
     {
-        name = "main2";
+       
         SceneManager.LoadScene(name);
 
     }
