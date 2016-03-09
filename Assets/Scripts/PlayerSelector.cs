@@ -15,4 +15,14 @@ public class PlayerSelector : MonoBehaviour {
     }
 
 
+    //public GameObject player;
+    //public void ShowPlayer(int value)
+    //{
+    //    player = GameObject.FindWithTag("PlayerMenu");
+    //    player.SetActive(false);
+
+
+    //}
+
+
 }

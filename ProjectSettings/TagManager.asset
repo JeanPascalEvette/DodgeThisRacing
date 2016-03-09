@@ -10,6 +10,8 @@ TagManager:
   - Car
   - PlayerMenu
   - LevelManager
+  - PlayerMenu1
+  - PlayerMenu2
   layers:
   - Default
   - TransparentFX

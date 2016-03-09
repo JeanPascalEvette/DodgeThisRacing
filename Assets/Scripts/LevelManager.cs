@@ -5,20 +5,50 @@ using UnityEngine.UI;
 public class LevelManager : MonoBehaviour
 {
 
-    public GameObject player;
+    public GameObject player, player2, player3, player4;
     public Text TextColorGo;
     float move_player = 5.0f;
     bool Selected = false;
     public bool is_inside = false;
+    bool isActive = true;
+    public int i = 0; //counts added player instances
+   
  
     Text TextColorCar;
 
     void Start()
     {
         TextColorGo = GameObject.FindWithTag("Go").GetComponent<Text>();
-        player = GameObject.FindWithTag("PlayerMenu");
-      
+        //player = GameObject.FindWithTag("PlayerMenu");
+        player.SetActive(false);
+        player2.SetActive(false);
+        player3.SetActive(false);
+        player4.SetActive(false);
+       // player2 = GameObjectFindWithTag("PlayerMenu2");
     }
+
+    public void ShowPlayer()
+    {
+        i++;
+            if (i == 1)
+            {
+                player.SetActive(true);
+            }
+            if (i == 2)
+            {
+                player2.SetActive(true);
+            }
+            if (i == 3)
+            {
+            player3.SetActive(true);
+            }
+            if (i==4)
+            {
+            player4.SetActive(true);
+            }
+     
+    }
+
 
 
     void Update()
