@@ -49,7 +49,7 @@ CircleCollider2D:
   m_UsedByEffector: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 80
+  m_Radius: 60
 --- !u!114 &11453880
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -82,7 +82,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Player 1
+  m_Text: 1P
 --- !u!222 &22280268
 CanvasRenderer:
   m_ObjectHideFlags: 1
@@ -103,8 +103,8 @@ RectTransform:
   m_RootOrder: 0
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 53.63501}
-  m_SizeDelta: {x: 160, y: 30}
+  m_AnchoredPosition: {x: -385, y: -96}
+  m_SizeDelta: {x: 148, y: 34}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1001 &100100000
 Prefab:

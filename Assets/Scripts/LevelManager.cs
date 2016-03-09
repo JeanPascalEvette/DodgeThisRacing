@@ -6,15 +6,21 @@ public class LevelManager : MonoBehaviour
 {
 
     public GameObject player;
+    GameObject newPlayer;
+
     public Text TextColorGo;
     float move_player = 5.0f;
     bool Selected = false;
     public bool is_inside = false;
+    bool is_2created = false;
+    int num_players;
  
     Text TextColorCar;
+    Text Player2text;
 
     void Start()
     {
+        num_players = 1;
         TextColorGo = GameObject.FindWithTag("Go").GetComponent<Text>();
         player = GameObject.FindWithTag("PlayerMenu");
       
@@ -23,13 +29,15 @@ public class LevelManager : MonoBehaviour
 
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.W) &&!is_2created) { Create_Player(); }
+
         if (!Selected) { HandleMovement();}
 
         //Select the car by pressing X
         if (Input.GetKey(KeyCode.X) && is_inside)  { Selected = true; }
 
-        //Deselect the car by pressing A
-        if (Input.GetKey(KeyCode.A) && is_inside && (Selected))
+        //Deselect the car by pressing Z
+        if (Input.GetKey(KeyCode.Z) && is_inside && (Selected))
         {
             Selected = false;
             TextColorGo.color = Color.white;
@@ -62,7 +70,25 @@ public class LevelManager : MonoBehaviour
             if (Input.GetKey(KeyCode.LeftArrow)) { player.transform.Translate(-move_player, 0, 0);}
             if (Input.GetKey(KeyCode.UpArrow))   { player.transform.Translate(0, move_player, 0); }
             if (Input.GetKey(KeyCode.DownArrow)) { player.transform.Translate(0, -move_player, 0);}
-        
+
+        if (is_2created)
+        {
+            if (Input.GetKey(KeyCode.D)) { newPlayer.transform.Translate(move_player, 0, 0); }
+            if (Input.GetKey(KeyCode.A)) { newPlayer.transform.Translate(-move_player, 0, 0); }
+            if (Input.GetKey(KeyCode.W)) { newPlayer.transform.Translate(0, move_player, 0); }
+            if (Input.GetKey(KeyCode.S)) { newPlayer.transform.Translate(0, -move_player, 0); }
+
+        }
+
+    }
+
+    void Create_Player()
+    {
+         newPlayer = (GameObject)Instantiate(player, new Vector3(412, 96, 0), Quaternion.identity);
+         newPlayer.transform.parent = GameObject.FindWithTag("GuiCanvas").transform;
+         Player2text = newPlayer.GetComponent<Text>();
+         Player2text.text = "2P";
+         is_2created = true;
     }
 
     }
