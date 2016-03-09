@@ -87,7 +87,7 @@ public class CarController : MonoBehaviour
 
     public int carUniqueID;
     private static int carCounter = 0;
-    private static bool showDebug = false;
+    private bool showDebug = false;
 
     public GUISkin aSkin;
 
@@ -103,6 +103,15 @@ public class CarController : MonoBehaviour
 
 		currentGear = 1; 			// bound to change in future // still in testing phase
         rb = GetComponent<Rigidbody>();
+
+        if (rearLeftWheel == null)
+            rearLeftWheel = transform.GetChild(0).Find("Wheel").transform.Find("LeftRear").GetComponent<WheelController>();
+        if (rearRightWheel == null)
+            rearRightWheel = transform.GetChild(0).Find("Wheel").transform.Find("RightRear").GetComponent<WheelController>();
+        if (frontLeftWheel == null)
+            frontLeftWheel = transform.GetChild(0).Find("Wheel").transform.Find("LeftFront").GetComponent<WheelController>();
+        if (frontRightWheel == null)
+            frontRightWheel = transform.GetChild(0).Find("Wheel").transform.Find("RightFront").GetComponent<WheelController>();
 
         // We set the boolean variables of the wheels
         rearLeftWheel.isRearWheel = true;

@@ -53,7 +53,7 @@ public class WheelController : MonoBehaviour {
     // Use this for initialization
     void Start () {
         mCarController = transform.parent.GetComponent<CarController>();
-        wheelRadius = transform.GetChild(0).GetComponent<MeshRenderer>().bounds.size.y / 2;
+        wheelRadius = transform.GetComponent<MeshRenderer>().bounds.size.y / 2;
     }
 	
 	// Update is called once per frame
@@ -164,7 +164,7 @@ public class WheelController : MonoBehaviour {
 
     private void CheckWheelsAreOnGround()
     {
-        float wheelHeight = transform.GetChild(0).GetComponent<MeshRenderer>().bounds.size.y;
+        float wheelHeight = transform.GetComponent<MeshRenderer>().bounds.size.y;
         Vector3 direction = new Vector3(0, -wheelHeight / 1.999f, 0);
         direction = GetComponent<Collider>().transform.root.rotation * direction;
         Debug.DrawLine(transform.position, transform.position + direction, Color.green);
