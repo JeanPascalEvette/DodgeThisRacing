@@ -12,6 +12,10 @@ TagManager:
   - LevelManager
   - PlayerMenu1
   - PlayerMenu2
+  - p
+  - t
+  - p1
+  - p2
   layers:
   - Default
   - TransparentFX

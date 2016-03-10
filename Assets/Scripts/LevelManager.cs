@@ -5,7 +5,7 @@ using UnityEngine.UI;
 public class LevelManager : MonoBehaviour
 {
 
-    public GameObject player, player2, player3, player4;
+    public GameObject player, player2, player3, player4, p1;
     public Text TextColorGo;
     float move_player = 5.0f;
     bool Selected = false;
@@ -20,11 +20,17 @@ public class LevelManager : MonoBehaviour
     {
         TextColorGo = GameObject.FindWithTag("Go").GetComponent<Text>();
         //player = GameObject.FindWithTag("PlayerMenu");
+        initial_status();
+       // player2 = GameObjectFindWithTag("PlayerMenu2");
+    }
+
+    void initial_status()
+    {
+        i = 0;
         player.SetActive(false);
         player2.SetActive(false);
         player3.SetActive(false);
         player4.SetActive(false);
-       // player2 = GameObjectFindWithTag("PlayerMenu2");
     }
 
     public void ShowPlayer()
@@ -47,8 +53,11 @@ public class LevelManager : MonoBehaviour
             player4.SetActive(true);
             }
      
-    }
-
+            if (i > 4)
+        {
+            initial_status();
+        }
+     }
 
 
     void Update()
