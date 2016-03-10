@@ -217,8 +217,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
-  xDist: 15
-  yDist: 7
+  xDist: 17
+  yDist: 15
   myCameraType: 0
 --- !u!81 &1321642224
 AudioListener:
@@ -326,3 +326,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f79be135320f38844b4c5d22db48a1ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  NumberOfTrackParts: 6
+  Track: {fileID: 0}

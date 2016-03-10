@@ -8,9 +8,21 @@ public class GameLogic : MonoBehaviour {
 
     private List<GameObject> trackPartsList;
 
+    [SerializeField]
+    private int NumberOfTrackParts;
+
+    [SerializeField]
+    private GameObject Track;
+
     // Use this for initialization
-    void Start () {
-        if(Data.getNumberCarSelected() == 0)
+    void Start ()
+    {
+        if (Track == null)
+            Track = GameObject.Find("Track");
+        if (Track == null)
+            Track = new GameObject("Track");
+
+        if (Data.getNumberCarSelected() == 0)
         {
             Data.selectCars(new int[] { 0, 1 });
         }
@@ -19,32 +31,87 @@ public class GameLogic : MonoBehaviour {
         carList = new GameObject[carPrefabs.Length];
         for (int i = 0; i < carPrefabs.Length; i++)
         {
-            carList[i] = (GameObject)Instantiate(carPrefabs[i], new Vector3(i * 2.0f, 0, 0), Quaternion.Euler(0, 180, 0));
+            carList[i] = (GameObject)Instantiate(carPrefabs[i], new Vector3(i * 2.0f, 0, 3.0f), Quaternion.Euler(0, 180, 0));
         }
 
 
         trackPartsList = new List<GameObject>();
-        for (int i = 0; i < 4; i++)
+        for (int i = 0; i < NumberOfTrackParts; i++)
         {
-            GameObject trackPrefab = Data.getTrackPart();
-            Vector3 startPos = new Vector3(0, 0, 0);
-            if (trackPartsList.Count > 0)
-            {
-                startPos.z += trackPartsList[trackPartsList.Count - 1].GetComponentInChildren<MeshRenderer>().bounds.max.z;
-                startPos.z -= trackPrefab.GetComponentInChildren<MeshRenderer>().bounds.min.z;
-                Debug.DrawLine(trackPartsList[trackPartsList.Count - 1].transform.position+ new Vector3(0,1,0), startPos + new Vector3(0, 1, 0), Color.red, 9999.0f,false);
-            }
-            trackPartsList.Add((GameObject)Instantiate(trackPrefab, startPos, Quaternion.Euler(0,0,0)));
+            AddNewTrackPart();
         }
         
     }
 	
+    void AddNewTrackPart()
+    {
+        GameObject trackPrefab = Data.getTrackPart();
+        Vector3 startPos = new Vector3(0, 0, 0);
+        if (trackPartsList.Count > 0)
+        {
+            startPos.z += trackPartsList[trackPartsList.Count - 1].GetComponentInChildren<MeshRenderer>().bounds.max.z;
+            //startPos.z -= trackPrefab.GetComponentInChildren<MeshRenderer>().bounds.min.z;
+
+
+            Vector3 startBorder = trackPartsList[trackPartsList.Count - 1].GetComponentInChildren<MeshRenderer>().bounds.max;
+            Vector3 endBorder = startBorder;
+            endBorder.x = trackPartsList[trackPartsList.Count - 1].GetComponentInChildren<MeshRenderer>().bounds.min.x;
+            Debug.DrawLine(startBorder, endBorder, Color.yellow, 9999.0f, false);
+
+
+            Vector3 startBorder2 = trackPartsList[trackPartsList.Count - 1].GetComponentInChildren<MeshRenderer>().bounds.min;
+            Vector3 endBorder2 = startBorder2;
+            endBorder2.x = trackPartsList[trackPartsList.Count - 1].GetComponentInChildren<MeshRenderer>().bounds.max.x;
+            Debug.DrawLine(startBorder2, endBorder2, Color.blue, 9999.0f, false);
+
+
+            Debug.DrawLine(trackPartsList[trackPartsList.Count - 1].transform.position + new Vector3(0, 1, 0), startPos + new Vector3(0, 1, 0), Color.red, 9999.0f, false);
+        }
+        var newTrackPart = (GameObject)Instantiate(trackPrefab, startPos, Quaternion.Euler(0, 0, 0));
+        trackPartsList.Add(newTrackPart);
+        newTrackPart.transform.parent = Track.transform;
+
+
+        if (trackPartsList.Count == NumberOfTrackParts)
+        {
+            DestroyImmediate(Track.GetComponent<Collider>());
+
+
+            float minx = float.MaxValue;
+            float minz = float.MaxValue;
+            float maxx = float.MinValue;
+            float maxz = float.MinValue;
+            foreach (var trackPart in trackPartsList)
+            {
+                var trackBounds = trackPart.GetComponentInChildren<MeshRenderer>().bounds;
+                if (minx > trackBounds.min.x)
+                    minx = trackBounds.min.x;
+                if (maxx < trackBounds.max.x)
+                    maxx = trackBounds.max.x;
+                if (minz > trackBounds.min.z)
+                    minz = trackBounds.min.z;
+                if (maxz < trackBounds.max.z)
+                    maxz = trackBounds.max.z;
+            }
+            BoxCollider newCollider = Track.AddComponent<BoxCollider>();
+            Vector3 newCenter = new Vector3((minx + maxx) / 2.0f, 0, (minz + maxz) / 2.0f);
+            newCollider.center = newCenter;
+            newCollider.size = new Vector3((maxx - minx), 0, (maxz - minz));
+        }
+    }
+
     void OnDrawGizmos()
     {
     }
 
 	// Update is called once per frame
 	void Update () {
-	
+	    if(trackPartsList.Count > 2 && trackPartsList[2].transform.position.z < carList[0].transform.position.z)
+        {
+            var removedPart = trackPartsList[0];
+            trackPartsList.Remove(removedPart);
+            Destroy(removedPart);
+            AddNewTrackPart();
+        }
 	}
 }

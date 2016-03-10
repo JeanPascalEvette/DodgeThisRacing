@@ -28,7 +28,6 @@ GameObject:
   - 54: {fileID: 5472666}
   - 65: {fileID: 6525654}
   - 65: {fileID: 6567544}
-  - 65: {fileID: 6549020}
   m_Layer: 0
   m_Name: Track01
   m_TagString: Untagged
@@ -121,18 +120,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.29603764, y: 0.12221848, z: 2.221468}
   m_Center: {x: 0.6019818, y: 0.06110924, z: 0.63664573}
---- !u!65 &6549020
-BoxCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 139906}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1.5, y: 0.122218475, z: 2.221468}
-  m_Center: {x: 0, y: -0.06110924, z: 0.6366458}
 --- !u!65 &6567544
 BoxCollider:
   m_ObjectHideFlags: 1
