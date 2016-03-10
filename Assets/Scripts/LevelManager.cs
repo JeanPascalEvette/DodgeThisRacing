@@ -14,30 +14,58 @@ public class LevelManager : MonoBehaviour
     public bool is_inside = false;
     bool is_2created = false;
     int num_players;
- 
+
+    float translationX;
+    float translationY;
+
     Text TextColorCar;
     Text Player2text;
+
+    
+
+    public enum ControlTypes {
+
+        ArrowKeys,
+        WSDA,
+        Joy1,
+        Joy2
+
+    }
+
+    ControlTypes player1control;
+    ControlTypes player2control;
+    ControlTypes player3control;
+    ControlTypes player4control;
 
     void Start()
     {
         num_players = 1;
         TextColorGo = GameObject.FindWithTag("Go").GetComponent<Text>();
         player = GameObject.FindWithTag("PlayerMenu");
-      
+
+        player1control = ControlTypes.Joy1;
+        player2control = ControlTypes.ArrowKeys;
+
     }
 
 
     void Update()
     {
+        float translationY = Input.GetAxis("Vertical") * move_player;
+        float translationX = Input.GetAxis("Horizontal") * move_player;
+        player.transform.Translate(0, translationY, 0);
+        player.transform.Translate(translationX, 0, 0);
+
         if (Input.GetKeyDown(KeyCode.W) &&!is_2created) { Create_Player(); }
 
         if (!Selected) { HandleMovement();}
 
         //Select the car by pressing X
-        if (Input.GetKey(KeyCode.X) && is_inside)  { Selected = true; }
+        if ((Input.GetKey(KeyCode.X) || Input.GetButton("Jump")) && is_inside)  { Selected = true; }
 
+   
         //Deselect the car by pressing Z
-        if (Input.GetKey(KeyCode.Z) && is_inside && (Selected))
+        if ((Input.GetKey(KeyCode.Z) || Input.GetButton("Fire1")) && is_inside && (Selected))
         {
             Selected = false;
             TextColorGo.color = Color.white;
@@ -49,7 +77,7 @@ public class LevelManager : MonoBehaviour
             TextColorGo.color = Color.green;
 
             //If B is pressend when GO text is green the main game is loaded
-            if (Input.GetKey(KeyCode.B)) {LoadLevel("main2"); }
+            if (Input.GetKey(KeyCode.B) || Input.GetButton("Submit")) {LoadLevel("main2"); }
         }
 
     }
@@ -65,11 +93,24 @@ public class LevelManager : MonoBehaviour
     //Function to move the player
     void HandleMovement()
     {
-        
-            if (Input.GetKey(KeyCode.RightArrow)){ player.transform.Translate(move_player, 0, 0); }
-            if (Input.GetKey(KeyCode.LeftArrow)) { player.transform.Translate(-move_player, 0, 0);}
-            if (Input.GetKey(KeyCode.UpArrow))   { player.transform.Translate(0, move_player, 0); }
-            if (Input.GetKey(KeyCode.DownArrow)) { player.transform.Translate(0, -move_player, 0);}
+        if (player1control == ControlTypes.ArrowKeys)
+        {
+
+            if (Input.GetKey(KeyCode.RightArrow)) { player.transform.Translate(move_player, 0, 0); }
+            if (Input.GetKey(KeyCode.LeftArrow)) { player.transform.Translate(-move_player, 0, 0); }
+            if (Input.GetKey(KeyCode.UpArrow)) { player.transform.Translate(0, move_player, 0); }
+            if (Input.GetKey(KeyCode.DownArrow)) { player.transform.Translate(0, -move_player, 0); }
+
+        }
+
+        else if (player1control == ControlTypes.Joy1) {
+
+            translationY = Input.GetAxis("Vertical") * move_player;
+            translationX = Input.GetAxis("Horizontal") * move_player;
+            player.transform.Translate(0, translationY, 0);
+            player.transform.Translate(translationX, 0, 0);
+
+        }
 
         if (is_2created)
         {
