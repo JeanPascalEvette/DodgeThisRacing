@@ -10,6 +10,11 @@ public class LevelManager : MonoBehaviour
     public GameObject player3;
     public GameObject player4;
 
+    MoveSelector player1move;
+    MoveSelector player2move;
+    MoveSelector player3move;
+    MoveSelector player4move;
+
     GameObject newPlayer;
 
     public Text TextColorGo;
@@ -25,10 +30,7 @@ public class LevelManager : MonoBehaviour
     Text TextColorCar;
     Text Player2text;
 
-     MoveSelector player1move;
-     MoveSelector player2move;
-     MoveSelector player3move;
-     MoveSelector player4move;
+     
 
 
     //public enum ControlTypes {
