@@ -6,6 +6,10 @@ public class LevelManager : MonoBehaviour
 {
 
     public GameObject player;
+    public GameObject player2;
+    public GameObject player3;
+    public GameObject player4;
+
     GameObject newPlayer;
 
     public Text TextColorGo;
@@ -21,44 +25,52 @@ public class LevelManager : MonoBehaviour
     Text TextColorCar;
     Text Player2text;
 
+     MoveSelector player1move;
+     MoveSelector player2move;
+     MoveSelector player3move;
+     MoveSelector player4move;
+
+
+    //public enum ControlTypes {
+
+    //    ArrowKeys,
+    //    WSDA,
+    //    Joy1,
+    //    Joy2
+
+    //}
+
     
-
-    public enum ControlTypes {
-
-        ArrowKeys,
-        WSDA,
-        Joy1,
-        Joy2
-
-    }
-
-    ControlTypes player1control;
-    ControlTypes player2control;
-    ControlTypes player3control;
-    ControlTypes player4control;
 
     void Start()
     {
         num_players = 1;
         TextColorGo = GameObject.FindWithTag("Go").GetComponent<Text>();
-        player = GameObject.FindWithTag("PlayerMenu");
+        // player = GameObject.FindWithTag("PlayerMenu");
 
-        player1control = ControlTypes.Joy1;
-        player2control = ControlTypes.ArrowKeys;
+        player1move = player.GetComponent<MoveSelector>();
+        player2move = player2.GetComponent<MoveSelector>();
+        player3move = player3.GetComponent<MoveSelector>();
+        player4move = player.GetComponent<MoveSelector>();
+
+        player1move.ThisPlayerControl = MoveSelector.ControlTypesHere.Joy1;
+        player2move.ThisPlayerControl = MoveSelector.ControlTypesHere.ArrowKeys;
+
+        player2.SetActive(true);
+        player3.SetActive(false);
+        player4.SetActive(false);
+
+       
 
     }
 
 
     void Update()
     {
-        float translationY = Input.GetAxis("Vertical") * move_player;
-        float translationX = Input.GetAxis("Horizontal") * move_player;
-        player.transform.Translate(0, translationY, 0);
-        player.transform.Translate(translationX, 0, 0);
-
+        
         if (Input.GetKeyDown(KeyCode.W) &&!is_2created) { Create_Player(); }
 
-        if (!Selected) { HandleMovement();}
+        //if (!Selected) { HandleMovement();}
 
         //Select the car by pressing X
         if ((Input.GetKey(KeyCode.X) || Input.GetButton("Jump")) && is_inside)  { Selected = true; }
@@ -90,38 +102,38 @@ public class LevelManager : MonoBehaviour
 
     }
 
-    //Function to move the player
-    void HandleMovement()
-    {
-        if (player1control == ControlTypes.ArrowKeys)
-        {
+    ////Function to move the player
+    //void HandleMovement()
+    //{
+    //    if (player1control == ControlTypes.ArrowKeys)
+    //    {
 
-            if (Input.GetKey(KeyCode.RightArrow)) { player.transform.Translate(move_player, 0, 0); }
-            if (Input.GetKey(KeyCode.LeftArrow)) { player.transform.Translate(-move_player, 0, 0); }
-            if (Input.GetKey(KeyCode.UpArrow)) { player.transform.Translate(0, move_player, 0); }
-            if (Input.GetKey(KeyCode.DownArrow)) { player.transform.Translate(0, -move_player, 0); }
+    //        if (Input.GetKey(KeyCode.RightArrow)){ player.transform.Translate(move_player, 0, 0); }
+    //        if (Input.GetKey(KeyCode.LeftArrow)) { player.transform.Translate(-move_player, 0, 0); }
+    //        if (Input.GetKey(KeyCode.UpArrow))   { player.transform.Translate(0, move_player, 0); }
+    //        if (Input.GetKey(KeyCode.DownArrow)) { player.transform.Translate(0, -move_player, 0); }
 
-        }
+    //    }
 
-        else if (player1control == ControlTypes.Joy1) {
+    //    else if (player1control == ControlTypes.Joy1) {
 
-            translationY = Input.GetAxis("Vertical") * move_player;
-            translationX = Input.GetAxis("Horizontal") * move_player;
-            player.transform.Translate(0, translationY, 0);
-            player.transform.Translate(translationX, 0, 0);
+    //        translationY = Input.GetAxis("Vertical") * move_player;
+    //        translationX = Input.GetAxis("Horizontal") * move_player;
+    //        player.transform.Translate(0, translationY, 0);
+    //        player.transform.Translate(translationX, 0, 0);
 
-        }
+    //    }
 
-        if (is_2created)
-        {
-            if (Input.GetKey(KeyCode.D)) { newPlayer.transform.Translate(move_player, 0, 0); }
-            if (Input.GetKey(KeyCode.A)) { newPlayer.transform.Translate(-move_player, 0, 0); }
-            if (Input.GetKey(KeyCode.W)) { newPlayer.transform.Translate(0, move_player, 0); }
-            if (Input.GetKey(KeyCode.S)) { newPlayer.transform.Translate(0, -move_player, 0); }
+    //    if (is_2created)
+    //    {
+    //        if (Input.GetKey(KeyCode.D)) { newPlayer.transform.Translate(move_player, 0, 0); }
+    //        if (Input.GetKey(KeyCode.A)) { newPlayer.transform.Translate(-move_player, 0, 0); }
+    //        if (Input.GetKey(KeyCode.W)) { newPlayer.transform.Translate(0, move_player, 0); }
+    //        if (Input.GetKey(KeyCode.S)) { newPlayer.transform.Translate(0, -move_player, 0); }
 
-        }
+    //    }
 
-    }
+    //}
 
     void Create_Player()
     {
