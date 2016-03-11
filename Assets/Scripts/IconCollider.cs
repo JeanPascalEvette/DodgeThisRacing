@@ -7,6 +7,7 @@ public class IconCollider : MonoBehaviour {
 
     Text TextColorCar;
     LevelManager l;
+    MoveSelector m;
 
     void Start()
     {
@@ -21,7 +22,12 @@ public class IconCollider : MonoBehaviour {
 
         TextColorCar = this.GetComponent<Text>();
         TextColorCar.color = Color.yellow;
-        l.is_inside = true;
+        m = trigger.GetComponent<MoveSelector>();
+
+        m.is_this_inside = true;
+
+        //l.is_inside = true;
+
         print("Trigger");
 
 
@@ -32,7 +38,11 @@ public class IconCollider : MonoBehaviour {
     {
         TextColorCar = this.GetComponent<Text>();
         TextColorCar.color = Color.white;
-        l.is_inside = false;
+
+        m.is_this_inside = true;
+
+        //l.is_inside = false;
+
         print("Exit");
 
 

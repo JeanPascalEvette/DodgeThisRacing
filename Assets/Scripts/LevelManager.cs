@@ -17,15 +17,15 @@ public class LevelManager : MonoBehaviour
 
     MoveSelector newPlayer;
 
-    //GameObject newPlayer;
-
     public Text TextColorGo;
     float move_player = 5.0f;
+
     bool Selected = false;
     public bool is_inside = false;
 
-    bool is_2created = false;
     int num_players;
+
+    public int num_ready_players;
 
     float translationX;
     float translationY;
@@ -41,6 +41,8 @@ public class LevelManager : MonoBehaviour
     void Start()
     {
         num_players = 1;
+        num_ready_players = 0;
+
         TextColorGo = GameObject.FindWithTag("Go").GetComponent<Text>();
 
         player1move = player.GetComponent<MoveSelector>();
@@ -56,57 +58,67 @@ public class LevelManager : MonoBehaviour
         player1move.ThisPlayerControl = MoveSelector.ControlTypesHere.Joy1;
         is_joy1_taken = true;
 
-        num_players = 1;
-
     }
 
 
     void Update()
     {
+        Debug.Log(num_ready_players);
         
-  if ((((Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.A)) 
-         && !is_wsda_taken) 
+  if (
+      
+       (
+            
+            
+       ((Input.GetAxis("VerticalWSDA") != 0 || Input.GetAxis("HorizontalWSDA") != 0) && !is_wsda_taken) 
          
                                                             ||
 
-        ((Input.GetKeyDown(KeyCode.UpArrow)|| Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.RightArrow))
-        && !is_arrowKeys_taken)) 
+       ((Input.GetAxis("VerticalArrows") != 0 || Input.GetAxis("HorizontalArrows") != 0) && !is_arrowKeys_taken)
+
+                                                            ||
         
-        
-        && num_players < 4)
+       ((Input.GetAxis("VerticalJoyStickLeft2") !=0 || Input.GetAxis("HorizontalJoyStickLeft2") != 0) && !is_joy2_taken)
+       
+       
+       )
+
+                                                            && 
+                                                            
+                                                      num_players < 4
+       )
 
         {
-            if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.A))
-            { is_wsda_used = true;}
+            if       (Input.GetAxis("VerticalWSDA") != 0 || Input.GetAxis("HorizontalWSDA") != 0)
 
-            if (Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.DownArrow) || Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.RightArrow))
-            { is_arrowKeys_used = true;}
+                     { is_wsda_used = true; }
+
+
+            else  if (Input.GetAxis("VerticalArrows") != 0 || Input.GetAxis("HorizontalArrows") != 0)
+
+                     { is_arrowKeys_used = true; }
+
+
+            else if  (Input.GetAxis("VerticalJoyStickLeft2") != 0 || Input.GetAxis("HorizontalJoyStickLeft2") != 0)
+
+                     { is_joy2_used = true; }
+
 
             num_players++;
             Create_Player();
 
         }
 
-
-        //Select the car by pressing X
-        if ((Input.GetKey(KeyCode.X) || Input.GetButton("Jump")) && is_inside)  { Selected = true; }
-
-   
-        //Deselect the car by pressing Z
-        if ((Input.GetKey(KeyCode.Z) || Input.GetButton("Fire1")) && is_inside && (Selected))
-        {
-            Selected = false;
-            TextColorGo.color = Color.white;
-        }
-
         //If all players have selected their cars the GO text becomes green
-        if (Selected && is_inside)
+        if (num_players == num_ready_players)
         {
             TextColorGo.color = Color.green;
 
-            //If B is pressend when GO text is green the main game is loaded
-            if (Input.GetKey(KeyCode.B) || Input.GetButton("Submit")) {LoadLevel("main2"); }
+            //If B or Start is pressed when GO text is green the main game is loaded
+            if (Input.GetButtonDown("Submit") || Input.GetButtonDown("SubmitJoystick")) { LoadLevel("main2"); }
         }
+
+        else { TextColorGo.color = Color.white; }
 
     }
 
@@ -134,6 +146,7 @@ public class LevelManager : MonoBehaviour
                 newPlayer = player3move;
                 setControlScheme();
                 break;
+
             case 4:
                 player4.SetActive(true);
                 newPlayer = player4move;
@@ -170,7 +183,16 @@ public class LevelManager : MonoBehaviour
             is_wsda_used = false;
 
         }
-    
+
+        else if (!is_joy2_taken && is_joy2_used)
+
+        {
+            newPlayer.ThisPlayerControl = MoveSelector.ControlTypesHere.Joy2;
+            is_joy2_taken = true;
+            is_joy2_used = false;
+
+        }
+
     }
 
 }

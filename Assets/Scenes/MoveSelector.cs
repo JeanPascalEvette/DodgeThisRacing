@@ -7,10 +7,11 @@ public class MoveSelector : MonoBehaviour {
 
     float move_player = 5.0f;
 
-    float translationX;
-    float translationY;
-
     public LevelManager l;
+
+    public bool is_this_inside = false;
+
+   
 
     public enum ControlTypesHere
     {
@@ -23,6 +24,7 @@ public class MoveSelector : MonoBehaviour {
     }
 
     public ControlTypesHere ThisPlayerControl;
+    bool thisPlayerReady = false;
 
     // Use this for initialization
     void Start () {
@@ -34,7 +36,7 @@ public class MoveSelector : MonoBehaviour {
     // Update is called once per frame
     void Update() {
 
-        HandleMovement();
+       HandleMovement(); 
 
     }
 
@@ -45,36 +47,122 @@ public class MoveSelector : MonoBehaviour {
         if (ThisPlayerControl == ControlTypesHere.ArrowKeys)
         {
 
-            if (Input.GetKey(KeyCode.RightArrow)){ playerButton.transform.Translate(move_player, 0, 0);}
-            if (Input.GetKey(KeyCode.LeftArrow)) { playerButton.transform.Translate(-move_player, 0, 0);}
-            if (Input.GetKey(KeyCode.UpArrow))   { playerButton.transform.Translate(0, move_player, 0);}
-            if (Input.GetKey(KeyCode.DownArrow)) { playerButton.transform.Translate(0, -move_player, 0);}
-
-        }
-
-        if (ThisPlayerControl == ControlTypesHere.WSDA)
-        {
-
-            if (Input.GetKey(KeyCode.D)) { playerButton.transform.Translate(move_player, 0, 0); }
-            if (Input.GetKey(KeyCode.A)) { playerButton.transform.Translate(-move_player, 0, 0); }
-            if (Input.GetKey(KeyCode.W)) { playerButton.transform.Translate(0, move_player, 0); }
-            if (Input.GetKey(KeyCode.S)) { playerButton.transform.Translate(0, -move_player, 0); }
-
-        }
-
-        else if (ThisPlayerControl == ControlTypesHere.Joy1)
+            if (!thisPlayerReady)
             {
-
-                translationY = Input.GetAxis("Vertical") * move_player;
-                translationX = Input.GetAxis("Horizontal") * move_player;
+                float translationY = Input.GetAxis("VerticalArrows") * move_player;
+                float translationX = Input.GetAxis("HorizontalArrows") * move_player;
                 playerButton.transform.Translate(0, translationY, 0);
                 playerButton.transform.Translate(translationX, 0, 0);
 
             }
 
-           
+
+            if (is_this_inside && !thisPlayerReady && Input.GetButtonDown("ButtonAArrows"))
+            {
+                thisPlayerReady = true;
+                l.num_ready_players++;
+
+            }
+
+            if (is_this_inside && thisPlayerReady && Input.GetButtonDown("ButtonXArrows"))
+            {
+                thisPlayerReady = false;
+                l.num_ready_players--;
+
+            }
+
+
 
         }
+
+        else  if (ThisPlayerControl == ControlTypesHere.WSDA)
+        {
+            if (!thisPlayerReady)
+            {
+                float translationY = Input.GetAxis("VerticalWSDA") * move_player;
+                float translationX = Input.GetAxis("HorizontalWSDA") * move_player;
+                playerButton.transform.Translate(0, translationY, 0);
+                playerButton.transform.Translate(translationX, 0, 0);
+
+            }
+
+            if (is_this_inside && !thisPlayerReady && Input.GetButtonDown("ButtonAWSDA"))
+            {
+                thisPlayerReady = true;
+                l.num_ready_players++;
+
+            }
+
+            if (is_this_inside && thisPlayerReady && Input.GetButtonDown("ButtonXWSDA"))
+            {
+                thisPlayerReady = false;
+                l.num_ready_players--;
+
+            }
+
+        }
+
+        else if (ThisPlayerControl == ControlTypesHere.Joy1)
+          {
+
+            if (!thisPlayerReady)
+            {
+
+                float translationY = Input.GetAxis("VerticalJoyStickLeft1") * move_player;
+                float translationX = Input.GetAxis("HorizontalJoyStickLeft1") * move_player;
+                playerButton.transform.Translate(0, translationY, 0);
+                playerButton.transform.Translate(translationX, 0, 0);
+
+            }
+
+            if (is_this_inside && !thisPlayerReady && Input.GetButtonDown("ButtonAJoyStick1"))
+            {
+                thisPlayerReady = true;
+                l.num_ready_players++;
+
+            }
+
+
+            if (is_this_inside && thisPlayerReady && Input.GetButtonDown("ButtonXJoyStick1"))
+            {
+                thisPlayerReady = false;
+                l.num_ready_players--;
+
+            }
+
+      }
+
+        else if (ThisPlayerControl == ControlTypesHere.Joy2)
+        {
+            if (!thisPlayerReady)
+            {
+
+                float translationY = Input.GetAxis("VerticalJoyStickLeft2") * move_player;
+                float translationX = Input.GetAxis("HorizontalJoyStickLeft2") * move_player;
+                playerButton.transform.Translate(0, translationY, 0);
+                playerButton.transform.Translate(translationX, 0, 0);
+
+            }
+
+            if (is_this_inside && !thisPlayerReady && Input.GetButtonDown("ButtonAJoyStick2"))
+            {
+                thisPlayerReady = true;
+                l.num_ready_players++;
+
+            }
+
+            if (is_this_inside && thisPlayerReady && Input.GetButtonDown("ButtonXJoyStick2"))
+            {
+                thisPlayerReady = false;
+                l.num_ready_players--;
+
+            }
+
+        }
+
+
+
+    }
 
 
     
