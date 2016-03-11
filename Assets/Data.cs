@@ -7,12 +7,19 @@ public class Data : MonoBehaviour {
 
     private static GameObject[] CarsAvailable;
     private static GameObject[] TrackPartsAvailable;
+    private static GameObject[] ObstaclesAvailable;
     private static int[] CarsSelected;
     
+    private static GameObject myInstance;
 
     void Awake()
     {
         DontDestroyOnLoad(this);
+        if (myInstance != null)
+            Destroy(gameObject);
+        else
+            myInstance = gameObject;
+
     }
 
     // Use this for initialization
@@ -22,6 +29,9 @@ public class Data : MonoBehaviour {
              .Cast<GameObject>()
              .ToArray();
         TrackPartsAvailable = Resources.LoadAll("Prefabs/TrackParts", typeof(GameObject))
+             .Cast<GameObject>()
+             .ToArray();
+        ObstaclesAvailable = Resources.LoadAll("Prefabs/Obstacles", typeof(GameObject))
              .Cast<GameObject>()
              .ToArray();
     }
@@ -35,7 +45,16 @@ public class Data : MonoBehaviour {
     {
         if (TrackPartsAvailable == null || TrackPartsAvailable.Length == 0)
             return null;
-        return TrackPartsAvailable[0];
+        int choice = Random.Range(0, TrackPartsAvailable.Length);
+        return TrackPartsAvailable[choice];
+    }
+
+    public static GameObject getObstacle()
+    {
+        if (ObstaclesAvailable == null || ObstaclesAvailable.Length == 0)
+            return null;
+        int choice = Random.Range(0, ObstaclesAvailable.Length);
+        return ObstaclesAvailable[choice];
     }
 
     public static GameObject[] generateCars()

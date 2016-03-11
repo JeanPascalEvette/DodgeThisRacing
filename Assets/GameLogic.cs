@@ -43,6 +43,17 @@ public class GameLogic : MonoBehaviour {
         
     }
 	
+    void AddNewObstacle(GameObject trackPart)
+    {
+        GameObject obstaclePrefab = Data.getObstacle();
+        Vector3 startPos = trackPart.transform.position;
+        startPos.z += 5.0f;
+        var newObstacle = (GameObject)Instantiate(obstaclePrefab, startPos, obstaclePrefab.transform.rotation);
+        newObstacle.transform.parent = trackPart.transform;
+
+
+    }
+
     void AddNewTrackPart()
     {
         GameObject trackPrefab = Data.getTrackPart();
@@ -50,7 +61,7 @@ public class GameLogic : MonoBehaviour {
         if (trackPartsList.Count > 0)
         {
             startPos.z += trackPartsList[trackPartsList.Count - 1].GetComponentInChildren<MeshRenderer>().bounds.max.z;
-            //startPos.z -= trackPrefab.GetComponentInChildren<MeshRenderer>().bounds.min.z;
+            startPos.z -= trackPrefab.GetComponentInChildren<MeshRenderer>().bounds.min.z;
 
 
             Vector3 startBorder = trackPartsList[trackPartsList.Count - 1].GetComponentInChildren<MeshRenderer>().bounds.max;
@@ -67,10 +78,11 @@ public class GameLogic : MonoBehaviour {
 
             Debug.DrawLine(trackPartsList[trackPartsList.Count - 1].transform.position + new Vector3(0, 1, 0), startPos + new Vector3(0, 1, 0), Color.red, 9999.0f, false);
         }
-        var newTrackPart = (GameObject)Instantiate(trackPrefab, startPos, Quaternion.Euler(0, 0, 0));
+        var newTrackPart = (GameObject)Instantiate(trackPrefab, startPos, trackPrefab.transform.rotation);
         trackPartsList.Add(newTrackPart);
         newTrackPart.transform.parent = Track.transform;
-
+        if(trackPartsList.Count != 1)
+            AddNewObstacle(newTrackPart);
 
         if (trackPartsList.Count == NumberOfTrackParts)
         {
@@ -106,6 +118,11 @@ public class GameLogic : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
+        if(Input.GetKeyDown(KeyCode.Q))
+        {
+            UnityEngine.SceneManagement.SceneManager.LoadScene("Game");
+        }
+
 	    if(trackPartsList.Count > 2 && trackPartsList[2].transform.position.z < carList[0].transform.position.z)
         {
             var removedPart = trackPartsList[0];

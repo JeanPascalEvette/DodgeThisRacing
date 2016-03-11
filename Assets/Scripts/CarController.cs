@@ -428,8 +428,48 @@ public class CarController : MonoBehaviour
         //*********************** END ANGULAR ACCELERATION TO BE APPLIED TO DRIVE WHEELS ***********************//
 
 
-        
+        UpdateWheelsWeight();
 
+    }
+
+    private void UpdateWheelsWeight()
+    {
+        //This needs to be changed once Baggio has done the suspensions - apply actual mass
+        if (rearRightWheel.isOnGround && rearLeftWheel.isOnGround && !frontRightWheel.isOnGround && !frontLeftWheel.isOnGround)
+        {
+            rearRightWheel.GetComponent<WheelController>().wheelMass = 30;
+            rearLeftWheel.GetComponent<WheelController>().wheelMass = 30;
+            frontRightWheel.GetComponent<WheelController>().wheelMass = 100;
+            frontLeftWheel.GetComponent<WheelController>().wheelMass = 100;
+        }
+        else if (!rearRightWheel.isOnGround && !rearLeftWheel.isOnGround && frontRightWheel.isOnGround && frontLeftWheel.isOnGround)
+        {
+            rearRightWheel.GetComponent<WheelController>().wheelMass = 100;
+            rearLeftWheel.GetComponent<WheelController>().wheelMass = 100;
+            frontRightWheel.GetComponent<WheelController>().wheelMass = 30;
+            frontLeftWheel.GetComponent<WheelController>().wheelMass = 30;
+        }
+        else if (rearRightWheel.isOnGround && !rearLeftWheel.isOnGround && frontRightWheel.isOnGround && !frontLeftWheel.isOnGround)
+        {
+            rearRightWheel.GetComponent<WheelController>().wheelMass = 30;
+            rearLeftWheel.GetComponent<WheelController>().wheelMass = 100;
+            frontRightWheel.GetComponent<WheelController>().wheelMass = 30;
+            frontLeftWheel.GetComponent<WheelController>().wheelMass = 100;
+        }
+        else if (!rearRightWheel.isOnGround && rearLeftWheel.isOnGround && !frontRightWheel.isOnGround && frontLeftWheel.isOnGround)
+        {
+            rearRightWheel.GetComponent<WheelController>().wheelMass = 100;
+            rearLeftWheel.GetComponent<WheelController>().wheelMass = 30;
+            frontRightWheel.GetComponent<WheelController>().wheelMass = 100;
+            frontLeftWheel.GetComponent<WheelController>().wheelMass = 30;
+        }
+        else
+        {
+            rearRightWheel.GetComponent<WheelController>().wheelMass = 30;
+            rearLeftWheel.GetComponent<WheelController>().wheelMass = 30;
+            frontRightWheel.GetComponent<WheelController>().wheelMass = 30;
+            frontLeftWheel.GetComponent<WheelController>().wheelMass = 30;
+        }
     }
 
     public float GetMassOnAxle(float zCoord)
