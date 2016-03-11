@@ -329,4 +329,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   NumberOfTrackParts: 6
+  NumberOfCars: 1
   Track: {fileID: 0}

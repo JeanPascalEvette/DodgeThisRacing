@@ -74,6 +74,9 @@ public class CarController : MonoBehaviour
     private float WeightOnRearWheels;
 
     [SerializeField]
+    private bool IsCarOnGround;
+
+    [SerializeField]
     private AnimationCurve testRpmResistance;
     private string[] plan;
     private int frameGenerated;
@@ -210,11 +213,11 @@ public class CarController : MonoBehaviour
             
             //Log generated plan
             frameGenerated = frameCounter;
-            string debugPlan = "";
-            foreach (string timeStep in plan)
-                debugPlan += timeStep + ",";
-            debugPlan = debugPlan.Substring(0, debugPlan.Length - 1);
-            Debug.Log("Car:"+currentState.myCar.myUniqueID + " - " + debugPlan);
+            //string debugPlan = "";
+            //foreach (string timeStep in plan)
+            //    debugPlan += timeStep + ",";
+            //debugPlan = debugPlan.Substring(0, debugPlan.Length - 1);
+            //Debug.Log("Car:"+currentState.myCar.myUniqueID + " - " + debugPlan);
 
             //Wait for 1sec before calling the planner again
             waitHandle.Reset();
@@ -247,7 +250,7 @@ public class CarController : MonoBehaviour
         //END AI STUFF
 
 
-
+        IsCarOnGround = IsOnGround();
         //Update CoG
         currentCenterOfGravity = transform.rotation * CenterOfGravity;
 

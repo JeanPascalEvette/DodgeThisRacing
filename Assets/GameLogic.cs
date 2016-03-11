@@ -10,6 +10,8 @@ public class GameLogic : MonoBehaviour {
 
     [SerializeField]
     private int NumberOfTrackParts;
+    [SerializeField]
+    private int NumberOfCars;
 
     [SerializeField]
     private GameObject Track;
@@ -24,7 +26,10 @@ public class GameLogic : MonoBehaviour {
 
         if (Data.getNumberCarSelected() == 0)
         {
-            Data.selectCars(new int[] { 0, 1 });
+            var listCars = new int[NumberOfCars];
+            for (int i = 0; i < NumberOfCars; i++)
+                listCars[i] = i;
+            Data.selectCars(listCars);
         }
         GameObject[] carPrefabs = Data.generateCars();
 
