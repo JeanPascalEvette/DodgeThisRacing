@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
-public class PlayerSelector : MonoBehaviour
+public class PlayerSelector4 : MonoBehaviour
 {
 
     public Text t;
@@ -14,7 +14,7 @@ public class PlayerSelector : MonoBehaviour
 
     public void player_selector()
     {
-
+        
         switch_case++;
 
         if (switch_case < 4)
@@ -43,6 +43,6 @@ public class PlayerSelector : MonoBehaviour
             Debug.Log(switch_case);
             switch_reset();
         }
-
+        
     }
 }

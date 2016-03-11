@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
-public class PlayerSelector : MonoBehaviour
+public class PlayerSelector2 : MonoBehaviour
 {
 
     public Text t;
