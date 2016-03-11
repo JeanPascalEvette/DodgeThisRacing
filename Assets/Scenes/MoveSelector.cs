@@ -42,17 +42,27 @@ public class MoveSelector : MonoBehaviour {
 
         void HandleMovement() { 
     
-            if (ThisPlayerControl == ControlTypesHere.ArrowKeys)
-            {
+        if (ThisPlayerControl == ControlTypesHere.ArrowKeys)
+        {
 
-                if (Input.GetKey(KeyCode.RightArrow)){ playerButton.transform.Translate(move_player, 0, 0);}
-                if (Input.GetKey(KeyCode.LeftArrow)) { playerButton.transform.Translate(-move_player, 0, 0);}
-                if (Input.GetKey(KeyCode.UpArrow))   { playerButton.transform.Translate(0, move_player, 0);}
-                if (Input.GetKey(KeyCode.DownArrow)) { playerButton.transform.Translate(0, -move_player, 0);}
+            if (Input.GetKey(KeyCode.RightArrow)){ playerButton.transform.Translate(move_player, 0, 0);}
+            if (Input.GetKey(KeyCode.LeftArrow)) { playerButton.transform.Translate(-move_player, 0, 0);}
+            if (Input.GetKey(KeyCode.UpArrow))   { playerButton.transform.Translate(0, move_player, 0);}
+            if (Input.GetKey(KeyCode.DownArrow)) { playerButton.transform.Translate(0, -move_player, 0);}
 
-            }
+        }
 
-            else if (ThisPlayerControl == ControlTypesHere.Joy1)
+        if (ThisPlayerControl == ControlTypesHere.WSDA)
+        {
+
+            if (Input.GetKey(KeyCode.D)) { playerButton.transform.Translate(move_player, 0, 0); }
+            if (Input.GetKey(KeyCode.A)) { playerButton.transform.Translate(-move_player, 0, 0); }
+            if (Input.GetKey(KeyCode.W)) { playerButton.transform.Translate(0, move_player, 0); }
+            if (Input.GetKey(KeyCode.S)) { playerButton.transform.Translate(0, -move_player, 0); }
+
+        }
+
+        else if (ThisPlayerControl == ControlTypesHere.Joy1)
             {
 
                 translationY = Input.GetAxis("Vertical") * move_player;
