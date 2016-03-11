@@ -21,7 +21,7 @@ public class LevelManager : MonoBehaviour
     float move_player = 5.0f;
 
     bool Selected = false;
-    public bool is_inside = false;
+    public bool is_inside = false; // Delete this later
 
     int num_players;
 
