@@ -50,6 +50,7 @@ public class WheelController : MonoBehaviour {
 
     private Vector3 currentRotation = new Vector3(0, 0, 0);
 
+    
     // Use this for initialization
     void Start () {
         mCarController = transform.parent.GetComponent<CarController>();
@@ -166,56 +167,25 @@ public class WheelController : MonoBehaviour {
     {
         isOnGround = false;
         Color myColor = Color.red;
-        float wheelHeight = transform.GetComponent<MeshRenderer>().bounds.size.y;
-        Vector3 direction = new Vector3(0, -wheelHeight / 1.999f, 0);
-        direction = GetComponent<Collider>().transform.root.rotation * direction;
-        Ray myRay = new Ray(transform.position, direction);
-        if (Physics.Raycast(myRay, wheelHeight / 1.9f))
+        float wheelHeight = transform.GetComponent<SphereCollider>().radius * 1.05f;
+        Vector3 direction = new Vector3(0, -1, 0);
+
+        int numRaycast = 10;
+        Ray myRay;
+        for (int i = 0; i < 360/numRaycast; i++)
         {
-            isOnGround = true;
-            myColor = Color.green;
+            direction = Quaternion.Euler(i*360/numRaycast, 0, 0) * direction;
+            direction = GetComponent<Collider>().transform.root.rotation * direction;
+            myRay = new Ray(transform.position, direction.normalized);
+            if (Physics.Raycast(myRay, wheelHeight))
+            {
+                isOnGround = true;
+                myColor = Color.green;
+            }
+            Debug.DrawLine(transform.position, transform.position + direction.normalized * wheelHeight, myColor);
+            myColor = Color.red;
+            direction = new Vector3(0, -1, 0);
         }
-        Debug.DrawLine(transform.position, transform.position + direction, myColor);
-        myColor = Color.red;
-
-
-        direction = new Vector3(0, -wheelHeight / 1.999f, 0);
-        direction = GetComponent<Collider>().transform.root.rotation * direction;
-        direction = Quaternion.Euler(40, 0, 0) * direction;
-        myRay = new Ray(transform.position, direction);
-        if (Physics.Raycast(myRay, wheelHeight / 1.9f))
-        {
-            isOnGround = true;
-            myColor = Color.green;
-        }
-        Debug.DrawLine(transform.position, transform.position + direction, myColor);
-        myColor = Color.red;
-
-
-
-        direction = new Vector3(0, -wheelHeight / 1.999f, 0);
-        direction = GetComponent<Collider>().transform.root.rotation * direction;
-        direction = Quaternion.Euler(-40, 0, 0) * direction;
-        myRay = new Ray(transform.position, direction);
-        if (Physics.Raycast(myRay, wheelHeight / 1.9f))
-        {
-            isOnGround = true;
-            myColor = Color.green;
-        }
-        Debug.DrawLine(transform.position, transform.position + direction, myColor);
-        myColor = Color.red;
-
-
-        direction = new Vector3(0, -wheelHeight / 1.999f, 0);
-        direction = GetComponent<Collider>().transform.root.rotation * direction;
-        direction = Quaternion.Euler(-90, 0, 0) * direction;
-        myRay = new Ray(transform.position, direction);
-        if (Physics.Raycast(myRay, wheelHeight / 1.9f))
-        {
-            isOnGround = true;
-            myColor = Color.green;
-        }
-        Debug.DrawLine(transform.position, transform.position + direction, myColor);
-        myColor = Color.red;
+        
     }
 }
