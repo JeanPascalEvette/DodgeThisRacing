@@ -11,6 +11,11 @@ TagManager:
   - PlayerMenu
   - LevelManager
   - GuiCanvas
+  - p2
+  - t
+  - p1
+  - p
+  - Coin
   layers:
   - Default
   - TransparentFX

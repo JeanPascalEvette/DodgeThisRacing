@@ -9,9 +9,36 @@ public class IconCollider : MonoBehaviour {
     LevelManager l;
     MoveSelector m;
 
+    GameObject t;
+    Transform old;
+
+    public GameObject Car;
+
     void Start()
     {
         l = GameObject.FindWithTag("LevelManager").GetComponent<LevelManager>();
+
+    }
+
+    void Update() {
+
+        if ((Input.GetButtonDown("ButtonAJoyStick1") || Input.GetButtonDown("ButtonAJoyStick2")) && m.is_this_inside == true)
+        {
+            // t = trigger.GetComponentInChildren<Text>();
+
+            t.transform.parent = Car.transform;
+            print("Elio");
+
+        }
+
+        if ((Input.GetButtonDown("ButtonXJoyStick1") || Input.GetButtonDown("ButtonXJoyStick2")) && m.is_this_inside == true)
+        {
+            
+
+            t.transform.parent = old;
+            print("Elio");
+
+        }
 
     }
 
@@ -26,7 +53,9 @@ public class IconCollider : MonoBehaviour {
 
         m.is_this_inside = true;
 
-        //l.is_inside = true;
+        
+        t = trigger.gameObject;
+        old = t.transform.parent;
 
         print("Trigger");
 
@@ -41,11 +70,20 @@ public class IconCollider : MonoBehaviour {
 
         m.is_this_inside = false;
 
-        //l.is_inside = false;
-
         print("Exit");
 
 
     }
+
+    //public void Example(Transform newParent)
+    //{
+    //    //Sets "newParent" as the new parent of the player GameObject.
+    //    player.transform.SetParent(newParent);
+
+    //    //Same as above, except this makes the player keep its local orientation rather than its global orientation.
+    //    player.transform.SetParent(newParent, false);
+
+    //    player.transform.parent = newParent.transform;
+    //}
 
 }
