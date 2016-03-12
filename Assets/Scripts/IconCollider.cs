@@ -39,7 +39,7 @@ public class IconCollider : MonoBehaviour {
         TextColorCar = this.GetComponent<Text>();
         TextColorCar.color = Color.white;
 
-        m.is_this_inside = true;
+        m.is_this_inside = false;
 
         //l.is_inside = false;
 

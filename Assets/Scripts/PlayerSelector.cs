@@ -5,7 +5,30 @@ public class PlayerSelector : MonoBehaviour
 {
 
     public Text t;
-    int switch_case = 0;
+    int switch_case = -1;
+    public int PanelNumber;
+    string nameplayer;
+
+    void Start() {
+
+        switch (PanelNumber) {
+
+            case 1: nameplayer = "P1";
+                    break;
+            case 2:
+                    nameplayer = "P2";
+                    break;
+            case 3:
+                    nameplayer = "P3";
+                    break;
+            case 4:
+                    nameplayer = "P4";
+                    break;
+        }
+
+        player_selector();
+
+    }
 
     void switch_reset()
     {
@@ -23,7 +46,7 @@ public class PlayerSelector : MonoBehaviour
             {
                 case 1:
                     //Debug.Log("player mode selected");
-                    t.text = "P1";
+                    t.text = nameplayer;
                     break;
                 case 2:
                     //Debug.Log("cpu mode selected");
@@ -31,7 +54,7 @@ public class PlayerSelector : MonoBehaviour
                     break;
                 default:
                     //Debug.Log("null mode selected");
-                    t.text = " ";
+                    t.text = "None";
                     switch_case = 0;
                     break;
             }

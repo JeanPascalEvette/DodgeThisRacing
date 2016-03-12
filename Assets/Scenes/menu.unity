@@ -96,7 +96,6 @@ GameObject:
   - 222: {fileID: 1530482}
   - 114: {fileID: 1530481}
   - 114: {fileID: 1530480}
-  - 114: {fileID: 1530479}
   m_Layer: 5
   m_Name: P_Button1
   m_TagString: p1
@@ -122,18 +121,6 @@ RectTransform:
   m_AnchoredPosition: {x: -28, y: 41}
   m_SizeDelta: {x: 68, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1530479
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1530477}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b6729175d53b18947a4b8a037a0db568, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  t: {fileID: 1798023839}
 --- !u!114 &1530480
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -154,7 +141,7 @@ MonoBehaviour:
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_HighlightedColor: {r: 1, g: 1, b: 1, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
@@ -173,7 +160,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1359102857}
         m_MethodName: player_selector
         m_Mode: 1
         m_Arguments:
@@ -684,7 +671,6 @@ GameObject:
   - 222: {fileID: 510256572}
   - 114: {fileID: 510256571}
   - 114: {fileID: 510256570}
-  - 114: {fileID: 510256569}
   m_Layer: 5
   m_Name: P_Button2
   m_TagString: p2
@@ -710,18 +696,6 @@ RectTransform:
   m_AnchoredPosition: {x: -28, y: 41}
   m_SizeDelta: {x: 68, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &510256569
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 510256567}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b6729175d53b18947a4b8a037a0db568, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  t: {fileID: 1506169409}
 --- !u!114 &510256570
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -761,7 +735,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 867536395}
         m_MethodName: player_selector
         m_Mode: 1
         m_Arguments:
@@ -1365,6 +1339,7 @@ GameObject:
   - 224: {fileID: 867536392}
   - 222: {fileID: 867536394}
   - 114: {fileID: 867536393}
+  - 114: {fileID: 867536395}
   m_Layer: 5
   m_Name: Panel 2
   m_TagString: PlayerMenu
@@ -1423,6 +1398,19 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 867536391}
+--- !u!114 &867536395
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 867536391}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6729175d53b18947a4b8a037a0db568, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  t: {fileID: 1506169409}
+  PanelNumber: 2
 --- !u!224 &886345490 stripped
 RectTransform:
   m_PrefabParentObject: {fileID: 22410116, guid: 56d85edf13363e84186bda7089f36bcd,
@@ -1457,7 +1445,6 @@ GameObject:
   - 222: {fileID: 984705797}
   - 114: {fileID: 984705796}
   - 114: {fileID: 984705795}
-  - 114: {fileID: 984705794}
   m_Layer: 5
   m_Name: P_Button 4
   m_TagString: p
@@ -1483,18 +1470,6 @@ RectTransform:
   m_AnchoredPosition: {x: -28, y: 41}
   m_SizeDelta: {x: 68, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &984705794
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 984705792}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b6729175d53b18947a4b8a037a0db568, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  t: {fileID: 315248632}
 --- !u!114 &984705795
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1534,7 +1509,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1137373016}
         m_MethodName: player_selector
         m_Mode: 1
         m_Arguments:
@@ -1663,6 +1638,7 @@ GameObject:
   - 224: {fileID: 1137373013}
   - 222: {fileID: 1137373015}
   - 114: {fileID: 1137373014}
+  - 114: {fileID: 1137373016}
   m_Layer: 5
   m_Name: Panel 4
   m_TagString: PlayerMenu
@@ -1721,6 +1697,19 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1137373012}
+--- !u!114 &1137373016
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1137373012}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6729175d53b18947a4b8a037a0db568, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  t: {fileID: 315248632}
+  PanelNumber: 4
 --- !u!1 &1141588965
 GameObject:
   m_ObjectHideFlags: 0
@@ -1833,6 +1822,79 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1141588965}
+--- !u!1 &1176644637
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 224: {fileID: 1176644638}
+  - 222: {fileID: 1176644640}
+  - 114: {fileID: 1176644639}
+  m_Layer: 5
+  m_Name: Text
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1176644638
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1176644637}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2062963152}
+  m_RootOrder: 0
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 73, y: -14}
+  m_SizeDelta: {x: 66, y: 28}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1176644639
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1176644637}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 708705254, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_FontData:
+    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_FontSize: 17
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 10
+    m_MaxSize: 40
+    m_Alignment: 0
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: Ciao
+--- !u!222 &1176644640
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1176644637}
 --- !u!1 &1263739607 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 193884, guid: 3cfec0dd1c27b5245b265515ecd148bd, type: 2}
@@ -1852,6 +1914,7 @@ GameObject:
   - 224: {fileID: 1306703001}
   - 222: {fileID: 1306703003}
   - 114: {fileID: 1306703002}
+  - 114: {fileID: 1306703004}
   m_Layer: 5
   m_Name: Panel 3
   m_TagString: PlayerMenu
@@ -1910,6 +1973,19 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1306703000}
+--- !u!114 &1306703004
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1306703000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6729175d53b18947a4b8a037a0db568, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  t: {fileID: 1011840230}
+  PanelNumber: 3
 --- !u!1 &1359102853
 GameObject:
   m_ObjectHideFlags: 0
@@ -1920,6 +1996,7 @@ GameObject:
   - 224: {fileID: 1359102854}
   - 222: {fileID: 1359102856}
   - 114: {fileID: 1359102855}
+  - 114: {fileID: 1359102857}
   m_Layer: 5
   m_Name: Panel 1
   m_TagString: PlayerMenu
@@ -1978,6 +2055,19 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1359102853}
+--- !u!114 &1359102857
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1359102853}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6729175d53b18947a4b8a037a0db568, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  t: {fileID: 1798023839}
+  PanelNumber: 1
 --- !u!1 &1448500343
 GameObject:
   m_ObjectHideFlags: 0
@@ -2663,7 +2753,6 @@ GameObject:
   - 222: {fileID: 2092579177}
   - 114: {fileID: 2092579176}
   - 114: {fileID: 2092579175}
-  - 114: {fileID: 2092579174}
   m_Layer: 5
   m_Name: P_Button 3
   m_TagString: p
@@ -2689,18 +2778,6 @@ RectTransform:
   m_AnchoredPosition: {x: -28, y: 41}
   m_SizeDelta: {x: 68, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &2092579174
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 2092579172}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b6729175d53b18947a4b8a037a0db568, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  t: {fileID: 1011840230}
 --- !u!114 &2092579175
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2740,7 +2817,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1306703004}
         m_MethodName: player_selector
         m_Mode: 1
         m_Arguments:
