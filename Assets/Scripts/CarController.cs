@@ -75,6 +75,8 @@ public class CarController : MonoBehaviour
 
     [SerializeField]
     private bool IsCarOnGround;
+    [SerializeField]
+    private float estimatedLandingTime;
 
     [SerializeField]
     private AnimationCurve testRpmResistance;
@@ -93,6 +95,11 @@ public class CarController : MonoBehaviour
     private bool showDebug = false;
 
     public GUISkin aSkin;
+
+    //Do not modify - used by the auto rotate
+    private float currentRotationVelocityX = 0;
+    private float currentRotationVelocityY = 0;
+    private float currentRotationVelocityZ = 0;
 
     // Use this for initialization
     void Start()
@@ -254,7 +261,17 @@ public class CarController : MonoBehaviour
         //Update CoG
         currentCenterOfGravity = transform.rotation * CenterOfGravity;
 
-        if (!IsOnGround()) return;
+        if (!IsOnGround())
+        {
+            rb.angularVelocity = new Vector3(0, 0, 0);
+            float v = rb.velocity.y;
+            float a = Physics.gravity.y;
+            float d = transform.position.y * -1;
+            float landingTime = -(Mathf.Sqrt(2 * a * d + Mathf.Pow(v, 2)) + v) / a;
+            estimatedLandingTime = landingTime;
+            transform.rotation = Quaternion.Euler(Mathf.SmoothDampAngle(transform.rotation.eulerAngles.x, 0, ref currentRotationVelocityX, landingTime), Mathf.SmoothDampAngle(transform.rotation.eulerAngles.y, 180, ref currentRotationVelocityY, landingTime), Mathf.SmoothDampAngle(transform.rotation.eulerAngles.z, 0, ref currentRotationVelocityZ, landingTime));
+            return;
+        }
         direction = 0.0f;						//speed of object
         float maxTurn = turning * Input.GetAxis("Horizontal");
         if (Input.GetKey(KeyCode.E))
