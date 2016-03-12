@@ -31,7 +31,7 @@ public class PlayerSelector : MonoBehaviour
                     break;
                 default:
                     //Debug.Log("null mode selected");
-                    t.text = " ";
+                    t.text = " None ";
                     switch_case = 0;
                     break;
             }
