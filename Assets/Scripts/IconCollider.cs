@@ -7,38 +7,48 @@ public class IconCollider : MonoBehaviour {
 
     Text TextColorCar;
     LevelManager l;
-    MoveSelector m;
+    MoveSelector m,n;
 
     GameObject t;
     Transform old;
 
-    public GameObject Car;
+    private bool isActive;
+
+   public GameObject Car;
 
     void Start()
     {
         l = GameObject.FindWithTag("LevelManager").GetComponent<LevelManager>();
-
+        isActive = false;
+        
     }
 
     void Update() {
 
-        if ((Input.GetButtonDown("ButtonAJoyStick1") || Input.GetButtonDown("ButtonAJoyStick2")) && m.is_this_inside == true)
+        
+        //if (((Input.GetButtonDown("ButtonAJoyStick1") && l.is_joy1_taken) || (Input.GetButtonDown("ButtonAJoyStick2") && l.is_joy2_taken)) && m.is_this_inside == true)
+        //{
+        //    // t = trigger.GetComponentInChildren<Text>();
+
+        //    t.transform.parent = Car.transform;
+        //    print("Elio");
+
+        //}
+
+        if (isActive)
         {
-            // t = trigger.GetComponentInChildren<Text>();
-
-            t.transform.parent = Car.transform;
-            print("Elio");
-
+            checkControlType();
         }
+        
 
-        if ((Input.GetButtonDown("ButtonXJoyStick1") || Input.GetButtonDown("ButtonXJoyStick2")) && m.is_this_inside == true)
-        {
+        //if ((Input.GetButtonDown("ButtonXJoyStick1") || Input.GetButtonDown("ButtonXJoyStick2")) && m.is_this_inside == true)
+        //{
             
 
-            t.transform.parent = old;
-            print("Elio");
+        //    t.transform.parent = old;
+        //    print("Elio");
 
-        }
+        //}
 
     }
 
@@ -46,10 +56,12 @@ public class IconCollider : MonoBehaviour {
     //Function to detect enter in the trigger area of the Car icon selection
     void OnTriggerEnter2D(Collider2D trigger)
     {
-
+        isActive = true;
         TextColorCar = this.GetComponent<Text>();
         TextColorCar.color = Color.yellow;
-        m = trigger.GetComponent<MoveSelector>();
+        m = trigger.GetComponentInParent<MoveSelector>();
+
+        //n = trigger.GetComponentInParent<MoveSelector>();
 
         m.is_this_inside = true;
 
@@ -57,7 +69,9 @@ public class IconCollider : MonoBehaviour {
         t = trigger.gameObject;
         old = t.transform.parent;
 
-        print("Trigger");
+        
+
+        //print("Trigger " + gameObject.name);
 
 
     }
@@ -65,12 +79,13 @@ public class IconCollider : MonoBehaviour {
     //Function to detect exit from the trigger area of the Car selection icon
     void OnTriggerExit2D(Collider2D trigger)
     {
+        isActive = false;
         TextColorCar = this.GetComponent<Text>();
         TextColorCar.color = Color.white;
 
         m.is_this_inside = false;
 
-        print("Exit");
+        //print("Exit");
 
 
     }
@@ -85,5 +100,51 @@ public class IconCollider : MonoBehaviour {
 
     //    player.transform.parent = newParent.transform;
     //}
+
+    void checkControlType() {
+
+        if (m.ThisPlayerControl == MoveSelector.ControlTypesHere.Joy1)
+
+        {
+
+            if (Input.GetButtonDown("ButtonAJoyStick1") && l.is_joy1_taken && m.is_this_inside == true)
+            {
+
+                t.transform.parent = Car.transform;
+                print(Car.name);
+            }
+
+            if (Input.GetButtonDown("ButtonXJoyStick1") && l.is_joy1_taken && m.is_this_inside == true)
+            {
+
+                t.transform.parent = old;
+                //print("Elio2");
+            }
+
+        }
+
+
+        else if (m.ThisPlayerControl == MoveSelector.ControlTypesHere.Joy2)
+
+        {
+
+            if (Input.GetButtonDown("ButtonAJoyStick2") && l.is_joy2_taken && m.is_this_inside == true)
+            {
+
+                t.transform.parent = Car.transform;
+                print("Elio");
+            }
+
+            if (Input.GetButtonDown("ButtonXJoyStick2") && l.is_joy2_taken && m.is_this_inside == true)
+            {
+
+                t.transform.parent = old;
+                print("Elio2");
+            }
+
+        }
+
+
+    }
 
 }

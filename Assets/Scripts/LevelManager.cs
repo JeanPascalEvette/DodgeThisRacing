@@ -34,8 +34,8 @@ public class LevelManager : MonoBehaviour
     Text Player2text;
 
     
-    bool is_joy1_taken, is_arrowKeys_taken, is_wsda_taken, is_joy2_taken = false;
-    bool is_joy1_used, is_arrowKeys_used, is_wsda_used, is_joy2_used = false;
+    public bool is_joy1_taken, is_arrowKeys_taken, is_wsda_taken, is_joy2_taken = false;
+    public bool is_joy1_used, is_arrowKeys_used, is_wsda_used, is_joy2_used = false;
 
 
     void Start()
@@ -63,7 +63,7 @@ public class LevelManager : MonoBehaviour
 
     void Update()
     {
-        Debug.Log(num_ready_players);
+       // Debug.Log(num_ready_players);
         
   if (
       
