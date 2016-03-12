@@ -57,8 +57,10 @@ public class IconCollider : MonoBehaviour {
     void OnTriggerEnter2D(Collider2D trigger)
     {
         isActive = true;
+
         TextColorCar = this.GetComponent<Text>();
         TextColorCar.color = Color.yellow;
+
         m = trigger.GetComponentInParent<MoveSelector>();
 
         //n = trigger.GetComponentInParent<MoveSelector>();
