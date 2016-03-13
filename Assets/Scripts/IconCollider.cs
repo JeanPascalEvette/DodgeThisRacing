@@ -55,6 +55,8 @@ public class IconCollider : MonoBehaviour {
         old = t.transform.parent;
 
         print("Enter Car Gui" + m.is_this_inside);
+
+        
     }
 
     //Function to detect exit from the trigger area of the Car selection icon
@@ -83,6 +85,7 @@ public class IconCollider : MonoBehaviour {
             {
 
                 t.transform.parent = Car.transform;
+                Car.GetComponent<Collider2D>().enabled = false;
                 print(Car.name);
             }
 
@@ -90,7 +93,8 @@ public class IconCollider : MonoBehaviour {
             {
 
                 t.transform.parent = old;
-                
+                Car.GetComponent<Collider2D>().enabled = true;
+
             }
 
         }
@@ -104,6 +108,7 @@ public class IconCollider : MonoBehaviour {
             {
 
                 t.transform.parent = Car.transform;
+                Car.GetComponent<Collider2D>().enabled = false;
                 print("P2 Select");
             }
 
@@ -111,6 +116,7 @@ public class IconCollider : MonoBehaviour {
             {
 
                 t.transform.parent = old;
+                Car.GetComponent<Collider2D>().enabled = true;
                 print("P2 Taken");
             }
 

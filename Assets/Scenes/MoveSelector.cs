@@ -153,7 +153,7 @@ public class MoveSelector : MonoBehaviour {
 
             if (is_this_inside && thisPlayerReady && Input.GetButtonDown("ButtonXJoyStick2"))
             {
-                thisPlayerReady = false;
+                //thisPlayerReady = false;
                 l.num_ready_players--;
 
             }
