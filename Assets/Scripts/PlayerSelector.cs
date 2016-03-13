@@ -36,6 +36,11 @@ public class PlayerSelector : MonoBehaviour
 
     }
 
+    void Update() {
+
+
+    }
+
     void switch_reset()
     {
         switch_case = 0;
@@ -93,7 +98,7 @@ public class PlayerSelector : MonoBehaviour
                     //l.num_players++;
                     //l.num_active++;
 
-                    if (m.playerID == 1) { l.is_p1_active = true; }
+                    if      (m.playerID == 1) { l.is_p1_active = true; }
                     else if (m.playerID == 2) { l.is_p2_active = true; }
                     else if (m.playerID == 3) { l.is_p3_active = true; }
                     else if (m.playerID == 4) { l.is_p4_active = true; }

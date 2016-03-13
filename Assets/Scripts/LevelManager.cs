@@ -69,61 +69,7 @@ public class LevelManager : MonoBehaviour
 
     void Update()
     {
-       // Debug.Log(num_ready_players);
-        
-  if (
-      
-       (
-            
-            
-       ((Input.GetAxis("VerticalWSDA") != 0 || Input.GetAxis("HorizontalWSDA") != 0) && !is_wsda_taken) 
-         
-                                                            ||
-
-       ((Input.GetAxis("VerticalArrows") != 0 || Input.GetAxis("HorizontalArrows") != 0) && !is_arrowKeys_taken)
-
-                                                            ||
-        
-       ((Input.GetAxis("VerticalJoyStickLeft2") !=0 || Input.GetAxis("HorizontalJoyStickLeft2") != 0) && !is_joy2_taken)
-
-                                                            ||
-
-       ((Input.GetAxis("VerticalJoyStickLeft1") != 0 || Input.GetAxis("HorizontalJoyStickLeft1") != 0) && !is_joy1_taken)
-
-
-       )
-
-                                                            && 
-                                                            
-                                                      num_players < 4
-       )
-
-        {
-            if       (Input.GetAxis("VerticalWSDA") != 0 || Input.GetAxis("HorizontalWSDA") != 0)
-
-                     { is_wsda_used = true; }
-
-
-            else  if (Input.GetAxis("VerticalArrows") != 0 || Input.GetAxis("HorizontalArrows") != 0)
-
-                     { is_arrowKeys_used = true; }
-
-
-            else if  (Input.GetAxis("VerticalJoyStickLeft2") != 0 || Input.GetAxis("HorizontalJoyStickLeft2") != 0)
-
-                     { is_joy2_used = true; }
-
-            else if (Input.GetAxis("VerticalJoyStickLeft1") != 0 || Input.GetAxis("HorizontalJoyStickLeft1") != 0)
-
-                    { is_joy1_used = true; }
-
-
-            /*if (num_active > num_players)*/
-
-            num_players++; 
-            Create_Player();
-
-        }
+        CheckWhichInput();
 
         //If all players have selected their cars the GO text becomes green
         if (num_players == num_ready_players)
@@ -147,9 +93,68 @@ public class LevelManager : MonoBehaviour
     }
 
 
+    void CheckWhichInput() {
+
+        if (
+
+       (
+
+
+       ((Input.GetAxis("VerticalWSDA") != 0 || Input.GetAxis("HorizontalWSDA") != 0) && !is_wsda_taken)
+
+                                                            ||
+
+       ((Input.GetAxis("VerticalArrows") != 0 || Input.GetAxis("HorizontalArrows") != 0) && !is_arrowKeys_taken)
+
+                                                            ||
+
+       ((Input.GetAxis("VerticalJoyStickLeft2") != 0 || Input.GetAxis("HorizontalJoyStickLeft2") != 0) && !is_joy2_taken)
+
+                                                            ||
+
+       ((Input.GetAxis("VerticalJoyStickLeft1") != 0 || Input.GetAxis("HorizontalJoyStickLeft1") != 0) && !is_joy1_taken)
+
+
+       )
+
+                                                            &&
+
+                                                      num_players < 4
+       )
+
+        {
+            if (Input.GetAxis("VerticalWSDA") != 0 || Input.GetAxis("HorizontalWSDA") != 0)
+
+            { is_wsda_used = true; }
+
+
+            else if (Input.GetAxis("VerticalArrows") != 0 || Input.GetAxis("HorizontalArrows") != 0)
+
+            { is_arrowKeys_used = true; }
+
+
+            else if (Input.GetAxis("VerticalJoyStickLeft2") != 0 || Input.GetAxis("HorizontalJoyStickLeft2") != 0)
+
+            { is_joy2_used = true; }
+
+            else if (Input.GetAxis("VerticalJoyStickLeft1") != 0 || Input.GetAxis("HorizontalJoyStickLeft1") != 0)
+
+            { is_joy1_used = true; }
+
+
+            /*if (num_active > num_players)*/
+
+            num_players++;
+            Create_Player();
+
+        }
+
+    }
+
     void Create_Player()
     {
-        switch (num_players) {
+        switch (num_players)
+        {
 
             case 1:
                 player.SetActive(true);
@@ -183,11 +188,10 @@ public class LevelManager : MonoBehaviour
 
     }
 
-
     void setControlScheme()
     {
-        
-        if  (!is_arrowKeys_taken && is_arrowKeys_used)
+
+        if (!is_arrowKeys_taken && is_arrowKeys_used)
 
         {
 
@@ -195,7 +199,7 @@ public class LevelManager : MonoBehaviour
             is_arrowKeys_taken = true;
             is_arrowKeys_used = false;
 
-        }    
+        }
 
         else if (!is_wsda_taken && is_wsda_used)
 
@@ -226,6 +230,7 @@ public class LevelManager : MonoBehaviour
 
     }
 
-  
+
+
 
 }

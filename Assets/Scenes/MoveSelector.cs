@@ -21,7 +21,8 @@ public class MoveSelector : MonoBehaviour {
         ArrowKeys,
         WSDA,
         Joy1,
-        Joy2
+        Joy2,
+        NotAssigned
 
     }
 
@@ -61,14 +62,14 @@ public class MoveSelector : MonoBehaviour {
 
             if (is_this_inside && !thisPlayerReady && Input.GetButtonDown("ButtonAArrows"))
             {
-                thisPlayerReady = true;
+                //thisPlayerReady = true;
                 l.num_ready_players++;
 
             }
 
             if (is_this_inside && thisPlayerReady && Input.GetButtonDown("ButtonXArrows"))
             {
-                thisPlayerReady = false;
+                //thisPlayerReady = false;
                 l.num_ready_players--;
 
             }
@@ -90,14 +91,14 @@ public class MoveSelector : MonoBehaviour {
 
             if (is_this_inside && !thisPlayerReady && Input.GetButtonDown("ButtonAWSDA"))
             {
-                thisPlayerReady = true;
+               // thisPlayerReady = true;
                 l.num_ready_players++;
 
             }
 
             if (is_this_inside && thisPlayerReady && Input.GetButtonDown("ButtonXWSDA"))
             {
-                thisPlayerReady = false;
+                //thisPlayerReady = false;
                 l.num_ready_players--;
 
             }
@@ -127,7 +128,7 @@ public class MoveSelector : MonoBehaviour {
 
             if (is_this_inside && thisPlayerReady && Input.GetButtonDown("ButtonXJoyStick1"))
             {
-                thisPlayerReady = false;
+                //thisPlayerReady = false;
                 l.num_ready_players--;
 
             }
