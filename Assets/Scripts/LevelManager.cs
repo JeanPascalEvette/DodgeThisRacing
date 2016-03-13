@@ -38,6 +38,7 @@ public class LevelManager : MonoBehaviour
     public bool is_joy1_taken, is_arrowKeys_taken, is_wsda_taken, is_joy2_taken = false;
     public bool is_joy1_used, is_arrowKeys_used, is_wsda_used, is_joy2_used = false;
     public bool is_p1_active, is_p2_active, is_p3_active, is_p4_active = false;
+  
 
     void Start()
     {
@@ -159,24 +160,28 @@ public class LevelManager : MonoBehaviour
             case 1:
                 player.SetActive(true);
                 newPlayer = player1move;
+                is_p1_active = true;
                 setControlScheme();
                 break;
 
             case 2:
                 player2.SetActive(true);
                 newPlayer = player2move;
+                is_p2_active = true;
                 setControlScheme();
                 break;
 
             case 3:
                 player3.SetActive(true);
                 newPlayer = player3move;
+                is_p3_active = true;
                 setControlScheme();
                 break;
 
             case 4:
                 player4.SetActive(true);
                 newPlayer = player4move;
+                is_p4_active = true;
                 setControlScheme();
                 break;
 

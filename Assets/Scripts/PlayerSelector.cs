@@ -5,7 +5,7 @@ public class PlayerSelector : MonoBehaviour
 {
 
     public Text t;
-    public int switch_case = -1;
+    int switch_case = 0;
     public int PanelNumber;
     string nameplayer;
     public GameObject playerCoin;
@@ -17,26 +17,37 @@ public class PlayerSelector : MonoBehaviour
 
     void Start() {
 
-        switch (PanelNumber) {
+        switch (PanelNumber)
+        {
 
-            case 1: nameplayer = "P1";
-                    break;
+            case 1:
+
+                /*if (l.is_p1_active == true) */{ nameplayer = "P1"; }
+                
+                break;
+
             case 2:
-                    nameplayer = "P2";
-                    break;
+                /*if (l.is_p2_active == true)*/ { nameplayer = "P2"; }
+                
+                break;
+
             case 3:
-                    nameplayer = "P3";
-                    break;
+                /*if (l.is_p3_active == true)*/ { nameplayer = "P3"; }
+                
+                break;
+
             case 4:
-                    nameplayer = "P4";
-                    break;
+                /*if   (l.is_p4_active == true)*/ { nameplayer = "P4"; }
+                
+                break;
         }
-        
+
         player_selector();
 
     }
 
     void Update() {
+
 
 
     }
@@ -67,7 +78,7 @@ public class PlayerSelector : MonoBehaviour
                 default:
                     //Debug.Log("null mode selected");
 
-                    t.text = "None";
+                    t.text = "N/A";
                     switch_case = 0;
 
                     break;
