@@ -7,11 +7,15 @@ public class IconCollider : MonoBehaviour {
 
     Text TextColorCar;
     LevelManager l;
-    MoveSelector m;
 
-    ButtonCollider b;
+    MoveSelector m; // Script attached to the player objects (player, player2 etc.)
+
+    ButtonCollider b; // Scripts attached to the coins objects (coin1, coin2 etc.)
 
     GameObject t;
+
+   // GameObject c1, c2, c3, c4;
+
     Transform old;
 
     private bool isActive;
@@ -43,20 +47,14 @@ public class IconCollider : MonoBehaviour {
         m = trigger.GetComponentInParent<MoveSelector>();
 
         b = trigger.GetComponent<ButtonCollider>();
-
-        //n = trigger.GetComponentInParent<MoveSelector>();
-
+   
         m.is_this_inside = true;
-
-        
+   
         t = trigger.gameObject;
+
         old = t.transform.parent;
 
-        
-
-        //print("Trigger " + gameObject.name);
-
-
+        print("Enter Car Gui" + m.is_this_inside);
     }
 
     //Function to detect exit from the trigger area of the Car selection icon
@@ -68,8 +66,9 @@ public class IconCollider : MonoBehaviour {
 
         m.is_this_inside = false;
 
-        //print("Exit");
+        
 
+        print("Exit Car Gui " + m.is_this_inside);
 
     }
 
@@ -87,7 +86,7 @@ public class IconCollider : MonoBehaviour {
                 print(Car.name);
             }
 
-            if (Input.GetButtonDown("ButtonXJoyStick1") && l.is_joy1_taken /*&& m.is_this_inside == true*/ && b.is_player_near)
+            if (Input.GetButtonDown("ButtonXJoyStick1") && l.is_joy1_taken && m.is_this_inside == true && b.is_player_near)
             {
 
                 t.transform.parent = old;
@@ -108,7 +107,7 @@ public class IconCollider : MonoBehaviour {
                 print("P2 Select");
             }
 
-            if (Input.GetButtonDown("ButtonXJoyStick2") && l.is_joy2_taken /*&& m.is_this_inside == true*/ && b.is_player_near)
+            if (Input.GetButtonDown("ButtonXJoyStick2") && l.is_joy2_taken && m.is_this_inside == true && b.is_player_near)
             {
 
                 t.transform.parent = old;

@@ -26,7 +26,7 @@ public class ButtonCollider : MonoBehaviour {
             is_player_near = true;
         }
 
-        print("Enter" + is_player_near);
+        print("Enter Button" + is_player_near);
     }
 
     
@@ -39,6 +39,6 @@ public class ButtonCollider : MonoBehaviour {
             is_player_near = false;
         }
 
-        print("Exit "+ is_player_near);
+        print("Exit Button"+ is_player_near);
     }
 }
