@@ -171,6 +171,17 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1359102857}
+        m_MethodName: PanelManager
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &1530481
@@ -541,6 +552,7 @@ MonoBehaviour:
   player4: {fileID: 752248851}
   TextColorGo: {fileID: 2071835277}
   is_inside: 0
+  num_players: 0
   num_ready_players: 0
   is_joy1_taken: 0
   is_arrowKeys_taken: 0
@@ -550,6 +562,10 @@ MonoBehaviour:
   is_arrowKeys_used: 0
   is_wsda_used: 0
   is_joy2_used: 0
+  is_p1_active: 0
+  is_p2_active: 0
+  is_p3_active: 0
+  is_p4_active: 0
 --- !u!4 &397500429
 Transform:
   m_ObjectHideFlags: 0
@@ -707,6 +723,18 @@ BoxCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Size: {x: 158, y: 25}
+--- !u!114 &444208909 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 11478248, guid: 3cfec0dd1c27b5245b265515ecd148bd,
+    type: 2}
+  m_PrefabInternal: {fileID: 551130235}
+  m_Script: {fileID: 11500000, guid: 3209c9cc354dfad44a718f868c30bb51, type: 3}
+--- !u!114 &444208911 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 11453880, guid: 3cfec0dd1c27b5245b265515ecd148bd,
+    type: 2}
+  m_PrefabInternal: {fileID: 551130235}
+  m_Script: {fileID: 708705254, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
 --- !u!1 &510256567
 GameObject:
   m_ObjectHideFlags: 0
@@ -784,6 +812,17 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 867536395}
         m_MethodName: player_selector
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 867536395}
+        m_MethodName: PanelManager
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -963,6 +1002,10 @@ Prefab:
     - target: {fileID: 11401754, guid: 3cfec0dd1c27b5245b265515ecd148bd, type: 2}
       propertyPath: m_FontData.m_Alignment
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11478248, guid: 3cfec0dd1c27b5245b265515ecd148bd, type: 2}
+      propertyPath: playerID
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 11429000, guid: 3cfec0dd1c27b5245b265515ecd148bd, type: 2}
@@ -1329,6 +1372,10 @@ Prefab:
       propertyPath: m_FontData.m_Alignment
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 11478248, guid: 3cfec0dd1c27b5245b265515ecd148bd, type: 2}
+      propertyPath: playerID
+      value: 4
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 11429000, guid: 3cfec0dd1c27b5245b265515ecd148bd, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 3cfec0dd1c27b5245b265515ecd148bd, type: 2}
@@ -1452,6 +1499,10 @@ Prefab:
       propertyPath: m_FontData.m_Alignment
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 11478248, guid: 3cfec0dd1c27b5245b265515ecd148bd, type: 2}
+      propertyPath: playerID
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 11429000, guid: 3cfec0dd1c27b5245b265515ecd148bd, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 3cfec0dd1c27b5245b265515ecd148bd, type: 2}
@@ -1479,6 +1530,18 @@ BoxCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Size: {x: 158, y: 25}
+--- !u!114 &752248854 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 11478248, guid: 3cfec0dd1c27b5245b265515ecd148bd,
+    type: 2}
+  m_PrefabInternal: {fileID: 717862259}
+  m_Script: {fileID: 11500000, guid: 3209c9cc354dfad44a718f868c30bb51, type: 3}
+--- !u!114 &752248856 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 11453880, guid: 3cfec0dd1c27b5245b265515ecd148bd,
+    type: 2}
+  m_PrefabInternal: {fileID: 717862259}
+  m_Script: {fileID: 708705254, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
 --- !u!1 &867536391
 GameObject:
   m_ObjectHideFlags: 0
@@ -1560,7 +1623,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   t: {fileID: 1506169409}
+  switch_case: -1
   PanelNumber: 2
+  playerCoin: {fileID: 444208906}
+  l: {fileID: 397500428}
+  m: {fileID: 444208909}
+  cpuText: {fileID: 444208911}
 --- !u!224 &886345490 stripped
 RectTransform:
   m_PrefabParentObject: {fileID: 22410116, guid: 56d85edf13363e84186bda7089f36bcd,
@@ -1673,6 +1741,17 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1137373016}
         m_MethodName: player_selector
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1137373016}
+        m_MethodName: PanelManager
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1871,7 +1950,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   t: {fileID: 315248632}
+  switch_case: -1
   PanelNumber: 4
+  playerCoin: {fileID: 752248851}
+  l: {fileID: 397500428}
+  m: {fileID: 752248854}
+  cpuText: {fileID: 752248856}
 --- !u!1 &1141588965
 GameObject:
   m_ObjectHideFlags: 0
@@ -2024,6 +2108,18 @@ BoxCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Size: {x: 158, y: 25}
+--- !u!114 &1263739610 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 11478248, guid: 3cfec0dd1c27b5245b265515ecd148bd,
+    type: 2}
+  m_PrefabInternal: {fileID: 723471587}
+  m_Script: {fileID: 11500000, guid: 3209c9cc354dfad44a718f868c30bb51, type: 3}
+--- !u!114 &1263739612 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 11453880, guid: 3cfec0dd1c27b5245b265515ecd148bd,
+    type: 2}
+  m_PrefabInternal: {fileID: 723471587}
+  m_Script: {fileID: 708705254, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
 --- !u!1 &1306703000
 GameObject:
   m_ObjectHideFlags: 0
@@ -2105,7 +2201,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   t: {fileID: 1011840230}
+  switch_case: -1
   PanelNumber: 3
+  playerCoin: {fileID: 1263739607}
+  l: {fileID: 397500428}
+  m: {fileID: 1263739610}
+  cpuText: {fileID: 1263739612}
 --- !u!1 &1359102853
 GameObject:
   m_ObjectHideFlags: 0
@@ -2187,7 +2288,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   t: {fileID: 1798023839}
+  switch_case: -1
   PanelNumber: 1
+  playerCoin: {fileID: 2062963151}
+  l: {fileID: 397500428}
+  m: {fileID: 2062963154}
+  cpuText: {fileID: 2062963156}
 --- !u!1 &1428113740 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 116298, guid: 3cfec0dd1c27b5245b265515ecd148bd, type: 2}
@@ -2554,6 +2660,10 @@ Prefab:
       propertyPath: m_FontData.m_Alignment
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 11478248, guid: 3cfec0dd1c27b5245b265515ecd148bd, type: 2}
+      propertyPath: playerID
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 11429000, guid: 3cfec0dd1c27b5245b265515ecd148bd, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 3cfec0dd1c27b5245b265515ecd148bd, type: 2}
@@ -2859,6 +2969,18 @@ BoxCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Size: {x: 158, y: 25}
+--- !u!114 &2062963154 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 11478248, guid: 3cfec0dd1c27b5245b265515ecd148bd,
+    type: 2}
+  m_PrefabInternal: {fileID: 1606142468}
+  m_Script: {fileID: 11500000, guid: 3209c9cc354dfad44a718f868c30bb51, type: 3}
+--- !u!114 &2062963156 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 11453880, guid: 3cfec0dd1c27b5245b265515ecd148bd,
+    type: 2}
+  m_PrefabInternal: {fileID: 1606142468}
+  m_Script: {fileID: 708705254, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
 --- !u!1 &2071835274
 GameObject:
   m_ObjectHideFlags: 0
@@ -3009,6 +3131,17 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1306703004}
         m_MethodName: player_selector
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1306703004}
+        m_MethodName: PanelManager
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

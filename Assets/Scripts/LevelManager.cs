@@ -23,7 +23,8 @@ public class LevelManager : MonoBehaviour
     bool Selected = false;
     public bool is_inside = false; // Delete this later
 
-    int num_players;
+    public int num_players;
+    public int num_active;
 
     public int num_ready_players;
 
@@ -36,11 +37,12 @@ public class LevelManager : MonoBehaviour
     
     public bool is_joy1_taken, is_arrowKeys_taken, is_wsda_taken, is_joy2_taken = false;
     public bool is_joy1_used, is_arrowKeys_used, is_wsda_used, is_joy2_used = false;
-
+    public bool is_p1_active, is_p2_active, is_p3_active, is_p4_active = false;
 
     void Start()
     {
         num_players = 1;
+        num_active = 1;
         num_ready_players = 0;
 
         TextColorGo = GameObject.FindWithTag("Go").GetComponent<Text>();
@@ -55,8 +57,12 @@ public class LevelManager : MonoBehaviour
         player3.SetActive(false);
         player4.SetActive(false);
 
+        is_p1_active = true;
+
         player1move.ThisPlayerControl = MoveSelector.ControlTypesHere.Joy1;
         is_joy1_taken = true;
+
+
 
     }
 
@@ -79,8 +85,12 @@ public class LevelManager : MonoBehaviour
                                                             ||
         
        ((Input.GetAxis("VerticalJoyStickLeft2") !=0 || Input.GetAxis("HorizontalJoyStickLeft2") != 0) && !is_joy2_taken)
-       
-       
+
+                                                            ||
+
+       ((Input.GetAxis("VerticalJoyStickLeft1") != 0 || Input.GetAxis("HorizontalJoyStickLeft1") != 0) && !is_joy1_taken)
+
+
        )
 
                                                             && 
@@ -103,8 +113,14 @@ public class LevelManager : MonoBehaviour
 
                      { is_joy2_used = true; }
 
+            else if (Input.GetAxis("VerticalJoyStickLeft1") != 0 || Input.GetAxis("HorizontalJoyStickLeft1") != 0)
 
-            num_players++;
+                    { is_joy1_used = true; }
+
+
+            /*if (num_active > num_players)*/
+
+            num_players++; 
             Create_Player();
 
         }
@@ -134,6 +150,12 @@ public class LevelManager : MonoBehaviour
     void Create_Player()
     {
         switch (num_players) {
+
+            case 1:
+                player.SetActive(true);
+                newPlayer = player1move;
+                setControlScheme();
+                break;
 
             case 2:
                 player2.SetActive(true);
@@ -193,6 +215,17 @@ public class LevelManager : MonoBehaviour
 
         }
 
+        else if (!is_joy1_taken && is_joy1_used)
+
+        {
+            newPlayer.ThisPlayerControl = MoveSelector.ControlTypesHere.Joy1;
+            is_joy1_taken = true;
+            is_joy1_used = false;
+
+        }
+
     }
+
+  
 
 }

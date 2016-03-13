@@ -11,6 +11,8 @@ public class MoveSelector : MonoBehaviour {
 
     public bool is_this_inside = false;
 
+    public int playerID;
+
    
 
     public enum ControlTypesHere
