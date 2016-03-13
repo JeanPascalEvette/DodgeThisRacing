@@ -7,14 +7,16 @@ public class IconCollider : MonoBehaviour {
 
     Text TextColorCar;
     LevelManager l;
-    MoveSelector m,n;
+    MoveSelector m;
+
+    ButtonCollider b;
 
     GameObject t;
     Transform old;
 
     private bool isActive;
 
-   public GameObject Car;
+    public GameObject Car;
 
     void Start()
     {
@@ -25,31 +27,8 @@ public class IconCollider : MonoBehaviour {
 
     void Update() {
 
+        if (isActive) { checkControlType(); }
         
-        //if (((Input.GetButtonDown("ButtonAJoyStick1") && l.is_joy1_taken) || (Input.GetButtonDown("ButtonAJoyStick2") && l.is_joy2_taken)) && m.is_this_inside == true)
-        //{
-        //    // t = trigger.GetComponentInChildren<Text>();
-
-        //    t.transform.parent = Car.transform;
-        //    print("Elio");
-
-        //}
-
-        if (isActive)
-        {
-            checkControlType();
-        }
-        
-
-        //if ((Input.GetButtonDown("ButtonXJoyStick1") || Input.GetButtonDown("ButtonXJoyStick2")) && m.is_this_inside == true)
-        //{
-            
-
-        //    t.transform.parent = old;
-        //    print("Elio");
-
-        //}
-
     }
 
 
@@ -62,6 +41,8 @@ public class IconCollider : MonoBehaviour {
         TextColorCar.color = Color.yellow;
 
         m = trigger.GetComponentInParent<MoveSelector>();
+
+        b = trigger.GetComponent<ButtonCollider>();
 
         //n = trigger.GetComponentInParent<MoveSelector>();
 
@@ -92,17 +73,7 @@ public class IconCollider : MonoBehaviour {
 
     }
 
-    //public void Example(Transform newParent)
-    //{
-    //    //Sets "newParent" as the new parent of the player GameObject.
-    //    player.transform.SetParent(newParent);
-
-    //    //Same as above, except this makes the player keep its local orientation rather than its global orientation.
-    //    player.transform.SetParent(newParent, false);
-
-    //    player.transform.parent = newParent.transform;
-    //}
-
+  
     void checkControlType() {
 
         if (m.ThisPlayerControl == MoveSelector.ControlTypesHere.Joy1)
@@ -116,11 +87,11 @@ public class IconCollider : MonoBehaviour {
                 print(Car.name);
             }
 
-            if (Input.GetButtonDown("ButtonXJoyStick1") && l.is_joy1_taken && m.is_this_inside == true)
+            if (Input.GetButtonDown("ButtonXJoyStick1") && l.is_joy1_taken /*&& m.is_this_inside == true*/ && b.is_player_near)
             {
 
                 t.transform.parent = old;
-                //print("Elio2");
+                
             }
 
         }
@@ -134,14 +105,14 @@ public class IconCollider : MonoBehaviour {
             {
 
                 t.transform.parent = Car.transform;
-                print("Elio");
+                print("P2 Select");
             }
 
-            if (Input.GetButtonDown("ButtonXJoyStick2") && l.is_joy2_taken && m.is_this_inside == true)
+            if (Input.GetButtonDown("ButtonXJoyStick2") && l.is_joy2_taken /*&& m.is_this_inside == true*/ && b.is_player_near)
             {
 
                 t.transform.parent = old;
-                print("Elio2");
+                print("P2 Taken");
             }
 
         }
