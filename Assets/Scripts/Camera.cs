@@ -11,7 +11,8 @@ public class Camera : MonoBehaviour {
         public enum CameraType
     {
         NORMAL,
-        SIDE
+        SIDE,
+        BACK
     }
     public CameraType myCameraType;
 
@@ -34,6 +35,10 @@ public class Camera : MonoBehaviour {
 
             case CameraType.SIDE:
                 cameraPos = new Vector3(-1, 0, 0);
+                break;
+
+            case CameraType.BACK:
+                cameraPos = new Vector3(0, 0, 1);
                 break;
 
         }

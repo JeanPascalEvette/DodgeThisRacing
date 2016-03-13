@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 using System.Threading;
 
@@ -19,21 +20,27 @@ public class CarController : MonoBehaviour
     private Vector3 CenterOfGravity = new Vector3(0.2f, 0.5f, 0);
     private Vector3 currentCenterOfGravity = new Vector3(0.2f, 0.5f, 0);
 
+    // Health Variables
+    public int startingHealth;
+    public int currentHealth;
+    public Slider healthSlider;
+    bool carBroken;
+    bool carDamaged;
 
-    //
+    // Different variables
 
     public int currentGear;
     private float[] gears = { 2.9f, 1.20f, 0.92f, 0.85f, 0.83f, 0.80f, 0.78f }; //0 = Reverse
-	/*private float gearOne = 2.66f;      // gears should be applied to the equation to get from engine torque to drive force (Fdrive = u * Tengine * gear *xd * transmission efficiency/wheel radius)
-    private float gearTwo = 1.78f;      // however I will apply it to the traction force that we currently have
-    private float gearThree = 1.3f;
-    private float gearFour = 1.0f;
-    private float gearFive = 0.74f;
-    private float gearSix = 0.5f;
-    private float reverse = 2.9f;
-    */
+                                                                                /*private float gearOne = 2.66f;      // gears should be applied to the equation to get from engine torque to drive force (Fdrive = u * Tengine * gear *xd * transmission efficiency/wheel radius)
+                                                                                private float gearTwo = 1.78f;      // however I will apply it to the traction force that we currently have
+                                                                                private float gearThree = 1.3f;
+                                                                                private float gearFour = 1.0f;
+                                                                                private float gearFive = 0.74f;
+                                                                                private float gearSix = 0.5f;
+                                                                                private float reverse = 2.9f;
+                                                                                */
     public float newVehicleSpeed;
-	public float rpm;
+    public float rpm;
     private float differentialRatio = 3.42f;     // for off road performance we should increase this parameter (like to 4.10f)         
     public float rpmToTorque; // This is needed to measure the Tengine which is used in the final formula
     private bool isPedalDown = false;   // checks to see if pedal is down in order to set a minimum rpm of 1000
@@ -101,7 +108,7 @@ public class CarController : MonoBehaviour
         plannerThread = new Thread(retrievePlanner); // TODO IMPLEMENT THREADING
         plannerThread.Start();
 
-		currentGear = 1; 			// bound to change in future // still in testing phase
+        currentGear = 1; 			// bound to change in future // still in testing phase
         rb = GetComponent<Rigidbody>();
 
         if (rearLeftWheel == null)
@@ -123,13 +130,16 @@ public class CarController : MonoBehaviour
         frontRightPosition = frontRightWheel.transform.localPosition.z;
         rearRightPosition = rearRightWheel.transform.localPosition.z;
 
-  Physics.IgnoreLayerCollision(LayerMask.NameToLayer("DetachableObjects"), LayerMask.NameToLayer("CarCollisionHitbox"), true);
+        Physics.IgnoreLayerCollision(LayerMask.NameToLayer("DetachableObjects"), LayerMask.NameToLayer("CarCollisionHitbox"), true);
+
+        // We set the initial health of the car+
+        currentHealth = startingHealth;
 
     }
 
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.F1))
+        if (Input.GetKeyDown(KeyCode.F1))
         {
             showDebug = !showDebug;
         }
@@ -150,15 +160,15 @@ public class CarController : MonoBehaviour
             var textPlan = "";
             System.Collections.Generic.List<string> commands = new System.Collections.Generic.List<string>();
             int counter = 1;
-            for (int i = 0; i < 1.0f/Time.fixedDeltaTime; i++)
+            for (int i = 0; i < 1.0f / Time.fixedDeltaTime; i++)
             {
-                if(commands.Count > 0 && frameCounter - frameGenerated + i < plan.Length && commands[commands.Count-1] == plan[frameCounter - frameGenerated + i])
+                if (commands.Count > 0 && frameCounter - frameGenerated + i < plan.Length && commands[commands.Count - 1] == plan[frameCounter - frameGenerated + i])
                 {
                     counter++;
                 }
-                else if(plan.Length > frameCounter - frameGenerated + i && frameCounter - frameGenerated + i > 0)
+                else if (plan.Length > frameCounter - frameGenerated + i && frameCounter - frameGenerated + i > 0)
                 {
-                    if(commands.Count > 0)
+                    if (commands.Count > 0)
                     {
                         commands[commands.Count - 1] += "(x" + counter + ")";
                         counter = 1;
@@ -167,10 +177,10 @@ public class CarController : MonoBehaviour
                 }
             }
             commands[commands.Count - 1] += "(x" + counter + ")";
-            for(int i = 0; i < Mathf.Min(5, commands.Count); i++)
+            for (int i = 0; i < Mathf.Min(5, commands.Count); i++)
             {
                 textPlan = textPlan + commands[i] + "\n";
-    }
+            }
             textPlan = textPlan.Substring(0, textPlan.Length - 1);
             UnityEditor.Handles.Label(transform.position, textPlan, style);
 
@@ -204,17 +214,15 @@ public class CarController : MonoBehaviour
         {
             waitHandle.WaitOne(); //Run only if the handle has been set in fixedUpdate (i.e every 1sec)
 
-
-
             plan = planner.GetPlan(currentState); //Retrieve updated plan based on currentState
-            
+
             //Log generated plan
             frameGenerated = frameCounter;
             string debugPlan = "";
             foreach (string timeStep in plan)
                 debugPlan += timeStep + ",";
             debugPlan = debugPlan.Substring(0, debugPlan.Length - 1);
-            Debug.Log("Car:"+currentState.myCar.myUniqueID + " - " + debugPlan);
+            Debug.Log("Car:" + currentState.myCar.myUniqueID + " - " + debugPlan);
 
             //Wait for 1sec before calling the planner again
             waitHandle.Reset();
@@ -242,11 +250,9 @@ public class CarController : MonoBehaviour
             }
             //Set the waitHandle to make sure that the planner can retrieve a new planning
             waitHandle.Set();
-            
+
         }
         //END AI STUFF
-
-
 
         //Update CoG
         currentCenterOfGravity = transform.rotation * CenterOfGravity;
@@ -256,7 +262,7 @@ public class CarController : MonoBehaviour
         float maxTurn = turning * Input.GetAxis("Horizontal");
         if (Input.GetKey(KeyCode.E))
         {
-            foreach(var deb in GetComponentsInChildren<DetachableElementBehaviour>())
+            foreach (var deb in GetComponentsInChildren<DetachableElementBehaviour>())
             {
                 deb.isHanging = true;
             }
@@ -269,15 +275,15 @@ public class CarController : MonoBehaviour
             {       // checks that car isn't moving so that rpm can have a minimum of 1000 when it starts movign from inactivity
                 rpm = 1000.0f;
                 isPedalDown = false;
+            }
         }
-        }
-           
+
         else if (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow))
         {
             // We apply a force in the different direction as it was
             direction = -1.0f;
         }
-            
+
 
         if (direction >= 0)														// the traction force is the force delivered by the engine via the rear wheels
         {
@@ -293,9 +299,11 @@ public class CarController : MonoBehaviour
         else
         {
             if (rpm < 5500)
-            {                                           //set a maximum speed that vehicle will reverse
-            TractionForce = transform.InverseTransformDirection(transform.forward) * -mCBrake;
-        }
+            {
+                //set a maximum speed that vehicle will reverse 
+                // We´ve added some differential ratio to be able go reverse and get away from obstacles
+                TractionForce = transform.InverseTransformDirection(transform.forward) * -mCBrake * differentialRatio;
+            }
             else
             {
                 TractionForce = transform.InverseTransformDirection(transform.forward) * direction;
@@ -305,16 +313,16 @@ public class CarController : MonoBehaviour
         if (transform.InverseTransformDirection(rb.velocity).magnitude > 0.1f)
         {
             if (transform.InverseTransformDirection(rb.velocity).z < 0)
-        {
-            gameObject.transform.Rotate(new Vector3(0, maxTurn, 0));
-        }
-        else
-        {
-            gameObject.transform.Rotate(new Vector3(0, -maxTurn, 0));
-        }
+            {
+                gameObject.transform.Rotate(new Vector3(0, maxTurn, 0));
+            }
+            else
+            {
+                gameObject.transform.Rotate(new Vector3(0, -maxTurn, 0));
+            }
         }
 
-        
+
         var speed = Mathf.Sqrt(TractionForce.x * TractionForce.x + TractionForce.z * TractionForce.z);
         DragForce = new Vector3(-mCDrag * TractionForce.x * speed, 0, -mCDrag * TractionForce.z * speed);
         RollingResistance = -mCRolRes * TractionForce;
@@ -399,8 +407,6 @@ public class CarController : MonoBehaviour
         rearLeftWheel.tyreLoad = WeightOnRearWheels / 2;
         rearRightWheel.tyreLoad = WeightOnRearWheels / 2;
 
-
-
         //*********************** TORQUE REAR AXLE ***********************//
 
         // Drive Torque from both wheels or only one
@@ -428,7 +434,32 @@ public class CarController : MonoBehaviour
         //*********************** END ANGULAR ACCELERATION TO BE APPLIED TO DRIVE WHEELS ***********************//
 
 
-        
+        //*********************** COLLISION DETECTION ***********************//
+
+
+
+
+
+
+
+
+        //*********************** END COLLISION DETECTION ***********************//
+
+
+        //*********************** HEALTH TREATMENT ***********************//
+
+
+
+
+
+
+
+
+        //*********************** END HEALTH TREATMENT ***********************//
+
+
+
+
 
     }
 
