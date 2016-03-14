@@ -109,7 +109,7 @@ public class IconCollider : MonoBehaviour {
 
                 t.transform.parent = Car.transform;
                 Car.GetComponent<Collider2D>().enabled = false;
-                print("P2 Select");
+                print("joy2 Select");
             }
 
             if (Input.GetButtonDown("ButtonXJoyStick2") && l.is_joy2_taken && m.is_this_inside == true && b.is_player_near)
@@ -117,7 +117,51 @@ public class IconCollider : MonoBehaviour {
 
                 t.transform.parent = old;
                 Car.GetComponent<Collider2D>().enabled = true;
-                print("P2 Taken");
+                print("joy2 Taken");
+            }
+
+        }
+
+        else if (m.ThisPlayerControl == MoveSelector.ControlTypesHere.ArrowKeys)
+
+        {
+
+            if (Input.GetButtonDown("ButtonAArrows") && l.is_arrowKeys_taken && m.is_this_inside == true)
+            {
+
+                t.transform.parent = Car.transform;
+                Car.GetComponent<Collider2D>().enabled = false;
+                print("arrows Select");
+            }
+
+            if (Input.GetButtonDown("ButtonXArrows") && l.is_arrowKeys_taken && m.is_this_inside == true && b.is_player_near)
+            {
+
+                t.transform.parent = old;
+                Car.GetComponent<Collider2D>().enabled = true;
+                print("arrows Taken");
+            }
+
+        }
+
+        else if (m.ThisPlayerControl == MoveSelector.ControlTypesHere.WSDA)
+
+        {
+
+            if (Input.GetButtonDown("ButtonAWSDA") && l.is_wsda_taken && m.is_this_inside == true)
+            {
+
+                t.transform.parent = Car.transform;
+                Car.GetComponent<Collider2D>().enabled = false;
+                print("wsda Select");
+            }
+
+            if (Input.GetButtonDown("ButtonXWSDA") && l.is_wsda_taken && m.is_this_inside == true && b.is_player_near)
+            {
+
+                t.transform.parent = old;
+                Car.GetComponent<Collider2D>().enabled = true;
+                print("wsda Taken");
             }
 
         }
