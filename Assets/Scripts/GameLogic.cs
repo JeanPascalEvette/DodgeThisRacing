@@ -52,8 +52,11 @@ public class GameLogic : MonoBehaviour {
     {
         GameObject obstaclePrefab = Data.getObstacle();
         Vector3 startPos = trackPart.transform.position;
-        startPos.z += 5.0f;
-        var newObstacle = (GameObject)Instantiate(obstaclePrefab, startPos, obstaclePrefab.transform.rotation);
+        Bounds trackBounds = trackPart.GetComponentInChildren<MeshRenderer>().bounds;
+        var xPos = Random.Range(trackBounds.min.x*0.6f, trackBounds.max.x*0.6f);
+        var yPos = startPos.y;
+        var zPos = Random.Range(trackBounds.min.z, trackBounds.max.z);
+        var newObstacle = (GameObject)Instantiate(obstaclePrefab, new Vector3(xPos, yPos, zPos), obstaclePrefab.transform.rotation);
         newObstacle.transform.parent = trackPart.transform;
 
 
