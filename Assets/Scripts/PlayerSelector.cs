@@ -17,6 +17,8 @@ public class PlayerSelector : MonoBehaviour
 
     void Start() {
 
+       // m = playerCoin.GetComponent<MoveSelector>();
+
         switch (PanelNumber)
         {
 
@@ -62,7 +64,7 @@ public class PlayerSelector : MonoBehaviour
 
         switch_case++;
 
-        if (switch_case < 4)
+        if (switch_case < 4 /*&& l.num_players == m.playerID - 1*/)
         {
             switch (switch_case)
             {
@@ -72,7 +74,7 @@ public class PlayerSelector : MonoBehaviour
                     break;
                 case 2:
                     //Debug.Log("cpu mode selected");
-                    t.text = "CPU";
+                   t.text = "CPU";
                     break;
 
                 default:
@@ -100,45 +102,86 @@ public class PlayerSelector : MonoBehaviour
         {
             case 1:
 
-                if (l.num_players == m.playerID - 1)
+                if (l.num_players == m.playerID - 1 && !m.is_this_active)
                 {
                     playerCoin.SetActive(true);
                     cpuText.text = nameplayer;
+                    t.text = nameplayer;
                     //t.text = nameplayer;
 
-                    //l.num_players++;
+                    if (l.num_players < m.playerID) { l.num_players++; }
                     //l.num_active++;
 
                     if      (m.playerID == 1) { l.is_p1_active = true; }
                     else if (m.playerID == 2) { l.is_p2_active = true; }
                     else if (m.playerID == 3) { l.is_p3_active = true; }
                     else if (m.playerID == 4) { l.is_p4_active = true; }
+
+                    //m = playerCoin.GetComponent<MoveSelector>();
+                    m.is_this_active = true;
                 }
+
+                //else { }
 
                 break;
 
             case 2:
 
-                if (l.num_players == m.playerID )
+               
+                    if (l.num_players == m.playerID -1 && !m.is_this_active )
+                    {
+                        playerCoin.SetActive(true);
+                        m.is_this_active = true;
+                        l.num_players++;
 
-                {
-                    playerCoin.SetActive(true);
-                    cpuText.text = "CPU";
-                   // t.text = "CPU";
-                }
+                        if      (m.playerID == 1) { l.is_p1_active = true; }
+                        else if (m.playerID == 2) { l.is_p2_active = true; }
+                        else if (m.playerID == 3) { l.is_p3_active = true; }
+                        else if (m.playerID == 4) { l.is_p4_active = true; }
+                    }
+
+                    if (m.is_this_active)
+                     {
+                         cpuText.text = "CPU";
+                         t.text = "CPU";
+                     }
+                    
+                
+
                 break;
 
             default:
 
-                if (l.num_players == m.playerID)
+                if (l.num_players == m.playerID && m.is_this_active)
 
                 {
+                    print("deleting player");
+
                     playerCoin.SetActive(false);
 
-                    if      (m.ThisPlayerControl == MoveSelector.ControlTypesHere.Joy1)      { l.is_joy1_taken = false; }
-                    else if (m.ThisPlayerControl == MoveSelector.ControlTypesHere.Joy2)      { l.is_joy2_taken = false; }
-                    else if (m.ThisPlayerControl == MoveSelector.ControlTypesHere.ArrowKeys) { l.is_arrowKeys_taken = false; }
-                    else if (m.ThisPlayerControl == MoveSelector.ControlTypesHere.WSDA)      { l.is_wsda_taken = false; }
+                    if  (m.ThisPlayerControl == MoveSelector.ControlTypesHere.Joy1)
+                    {
+                        m.ThisPlayerControl = MoveSelector.ControlTypesHere.NotAssigned;
+                        l.is_joy1_taken = false;
+                    }
+
+                    else if (m.ThisPlayerControl == MoveSelector.ControlTypesHere.Joy2)
+                    {
+                        m.ThisPlayerControl = MoveSelector.ControlTypesHere.NotAssigned;
+                        l.is_joy2_taken = false;
+                    }
+
+                    else if (m.ThisPlayerControl == MoveSelector.ControlTypesHere.ArrowKeys)
+                    {
+                        m.ThisPlayerControl = MoveSelector.ControlTypesHere.NotAssigned;
+                        l.is_arrowKeys_taken = false;
+                    }
+
+                    else if (m.ThisPlayerControl == MoveSelector.ControlTypesHere.WSDA)
+                    {
+                        m.ThisPlayerControl = MoveSelector.ControlTypesHere.NotAssigned;
+                        l.is_wsda_taken = false;
+                    }
 
                     if      (m.playerID == 1) { l.is_p1_active = false; }
                     else if (m.playerID == 2) { l.is_p2_active = false; }
@@ -146,10 +189,13 @@ public class PlayerSelector : MonoBehaviour
                     else if (m.playerID == 4) { l.is_p4_active = false; }
 
                     l.num_players--;
+
+                    m.is_this_active = false;
                     switch_case = 0;
 
-                    //t.text = "N/A";
                 }
+
+                t.text = "N/A";
 
                 break;
         }

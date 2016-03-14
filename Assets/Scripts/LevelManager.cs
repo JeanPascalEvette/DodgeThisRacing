@@ -70,6 +70,8 @@ public class LevelManager : MonoBehaviour
 
     void Update()
     {
+        print(num_players);
+
         CheckWhichInput();
 
         //If all players have selected their cars the GO text becomes green
@@ -120,7 +122,7 @@ public class LevelManager : MonoBehaviour
 
                                                             &&
 
-                                                      num_players < 4
+                                                      num_players <= 4
        )
 
         {
@@ -142,10 +144,7 @@ public class LevelManager : MonoBehaviour
 
             { is_joy1_used = true; }
 
-
-            /*if (num_active > num_players)*/
-
-            num_players++;
+           
             Create_Player();
 
         }
@@ -154,7 +153,35 @@ public class LevelManager : MonoBehaviour
 
     void Create_Player()
     {
-        switch (num_players)
+        if (is_p1_active == true && player1move.ThisPlayerControl == MoveSelector.ControlTypesHere.NotAssigned)
+        {
+            newPlayer = player1move;
+            setControlScheme();
+        }
+
+        else if (is_p2_active == true && player2move.ThisPlayerControl == MoveSelector.ControlTypesHere.NotAssigned)
+        {
+            newPlayer = player2move;
+            setControlScheme();
+        }
+
+        else if (is_p3_active == true && player3move.ThisPlayerControl == MoveSelector.ControlTypesHere.NotAssigned)
+        {
+            newPlayer = player3move;
+            setControlScheme();
+        }
+
+        else if (is_p4_active == true && player4move.ThisPlayerControl == MoveSelector.ControlTypesHere.NotAssigned)
+        {
+            newPlayer = player4move;
+            setControlScheme();
+        }
+
+        else {
+
+        num_players++;
+
+            switch (num_players)
         {
 
             case 1:
@@ -186,7 +213,12 @@ public class LevelManager : MonoBehaviour
                 break;
 
             default:
+                //num_players = 4;  //double check this
                 break;
+
+        }
+
+            newPlayer.is_this_active = true;
 
         }
 
@@ -195,6 +227,7 @@ public class LevelManager : MonoBehaviour
 
     void setControlScheme()
     {
+        
 
         if (!is_arrowKeys_taken && is_arrowKeys_used)
 

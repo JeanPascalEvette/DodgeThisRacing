@@ -13,6 +13,8 @@ public class MoveSelector : MonoBehaviour {
 
     public int playerID;
 
+    public bool is_this_active = false;
+
    
 
     public enum ControlTypesHere
