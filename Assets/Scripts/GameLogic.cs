@@ -59,7 +59,6 @@ public class GameLogic : MonoBehaviour {
         var newObstacle = (GameObject)Instantiate(obstaclePrefab, new Vector3(xPos, yPos, zPos), obstaclePrefab.transform.rotation);
         newObstacle.transform.parent = trackPart.transform;
 
-
     }
 
     void AddNewTrackPart()
