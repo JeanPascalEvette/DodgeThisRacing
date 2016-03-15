@@ -18,6 +18,15 @@ ModelImporter:
     100020: Track_B
     100022: Track_C
     100024: Track_D
+    100026: AI_A
+    100028: AI_B
+    100030: AI_C
+    100032: AI_D1
+    100034: AI_D2
+    100036: InvisibleWall_A
+    100038: InvisibleWall_B
+    100040: InvisibleWall_C
+    100042: InvisibleWall_D
     400000: Road_A
     400002: Road_B
     400004: Road_C
@@ -31,6 +40,15 @@ ModelImporter:
     400020: Track_B
     400022: Track_C
     400024: Track_D
+    400026: AI_A
+    400028: AI_B
+    400030: AI_C
+    400032: AI_D1
+    400034: AI_D2
+    400036: InvisibleWall_A
+    400038: InvisibleWall_B
+    400040: InvisibleWall_C
+    400042: InvisibleWall_D
     2300000: Road_A
     2300002: Road_B
     2300004: Road_C
@@ -39,6 +57,15 @@ ModelImporter:
     2300010: Sand_B
     2300012: Sand_C
     2300014: Sand_D
+    2300016: AI_A
+    2300018: AI_B
+    2300020: AI_C
+    2300022: AI_D1
+    2300024: AI_D2
+    2300026: InvisibleWall_A
+    2300028: InvisibleWall_B
+    2300030: InvisibleWall_C
+    2300032: InvisibleWall_D
     3300000: Road_A
     3300002: Road_B
     3300004: Road_C
@@ -47,6 +74,15 @@ ModelImporter:
     3300010: Sand_B
     3300012: Sand_C
     3300014: Sand_D
+    3300016: AI_A
+    3300018: AI_B
+    3300020: AI_C
+    3300022: AI_D1
+    3300024: AI_D2
+    3300026: InvisibleWall_A
+    3300028: InvisibleWall_B
+    3300030: InvisibleWall_C
+    3300032: InvisibleWall_D
     4300000: Road_C
     4300002: Sand_C
     4300004: Road_A
@@ -55,6 +91,15 @@ ModelImporter:
     4300010: Road_B
     4300012: Sand_D
     4300014: Road_D
+    4300016: AI_A
+    4300018: InvisibleWall_A
+    4300020: AI_B
+    4300022: InvisibleWall_B
+    4300024: AI_C
+    4300026: InvisibleWall_C
+    4300028: AI_D1
+    4300030: AI_D2
+    4300032: InvisibleWall_D
   materials:
     importMaterials: 1
     materialName: 0
