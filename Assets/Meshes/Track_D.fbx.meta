@@ -11,27 +11,32 @@ ModelImporter:
     100006: Road_D
     100008: Sand_D
     100010: //RootNode
+    100012: Sand_D1
     400000: AI_D1
     400002: AI_D2
     400004: InvisibleWall_D
     400006: Road_D
     400008: Sand_D
     400010: //RootNode
+    400012: Sand_D1
     2300000: AI_D1
     2300002: AI_D2
     2300004: InvisibleWall_D
     2300006: Road_D
     2300008: Sand_D
+    2300010: Sand_D1
     3300000: AI_D1
     3300002: AI_D2
     3300004: InvisibleWall_D
     3300006: Road_D
     3300008: Sand_D
+    3300010: Sand_D1
     4300000: Road_D
     4300002: Sand_D
     4300004: AI_D1
     4300006: AI_D2
     4300008: InvisibleWall_D
+    4300010: Sand_D1
   materials:
     importMaterials: 1
     materialName: 0
