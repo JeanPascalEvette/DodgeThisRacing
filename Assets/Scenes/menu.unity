@@ -3157,6 +3157,10 @@ Prefab:
       propertyPath: ThisPlayerControl
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 193884, guid: 3cfec0dd1c27b5245b265515ecd148bd, type: 2}
+      propertyPath: m_TagString
+      value: Player1
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 11429000, guid: 3cfec0dd1c27b5245b265515ecd148bd, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 3cfec0dd1c27b5245b265515ecd148bd, type: 2}

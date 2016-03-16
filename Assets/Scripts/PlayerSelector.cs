@@ -288,7 +288,7 @@ public class PlayerSelector : MonoBehaviour
                         Control_Type.text = "Joy1";
                     }
 
-                   // else if(l.is_joy1_taken == true) { Control_Type.text = "Joy1 (N/A)"; }
+                    //else { Control_Type.text = "Joy1 (N/A)"; }
 
                     break;
 
@@ -303,7 +303,7 @@ public class PlayerSelector : MonoBehaviour
                         Control_Type.text = "Joy2";
                     
                     }
-                    //else { Control_Type.text = "Joy2 (N/A)"; }
+                   // else { Control_Type.text = "Joy2 (N/A)"; }
                     break;
 
                 case 3:
@@ -329,7 +329,7 @@ public class PlayerSelector : MonoBehaviour
                         Control_Type.text = "WSDA";
                     }
 
-                   // else { Control_Type.text = "WSDA (N/A)"; }
+                  //  else { Control_Type.text = "WSDA (N/A)"; }
                     break;
 
                 default:
@@ -337,9 +337,7 @@ public class PlayerSelector : MonoBehaviour
                     {
                         m.ThisPlayerControl = MoveSelector.ControlTypesHere.NotAssigned;
 
-
-
-                        Control_Type.text = "Not Assigned";
+                       Control_Type.text = "Not Assigned";
                     }
                     Controls = 0;
                     break;

@@ -15,6 +15,8 @@ public class MoveSelector : MonoBehaviour {
 
     public bool is_this_active = false;
 
+    public bool is_on_button1 = false;
+
    
 
     public enum ControlTypesHere
