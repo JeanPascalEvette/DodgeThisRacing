@@ -5,7 +5,9 @@ public class PlayerSelector : MonoBehaviour
 {
 
     public Text t;
+    public Text Control_Type;
     int switch_case = 0;
+    int Controls = 0;
     public int PanelNumber;
     string nameplayer;
     public GameObject playerCoin;
@@ -46,11 +48,76 @@ public class PlayerSelector : MonoBehaviour
 
         player_selector();
 
+
+        if (m.is_this_active)
+        {
+
+            if (m.ThisPlayerControl == MoveSelector.ControlTypesHere.Joy1)
+            {
+
+                Control_Type.text = "Joy1";
+            }
+
+            else if (m.ThisPlayerControl == MoveSelector.ControlTypesHere.Joy2)
+            {
+
+                Control_Type.text = "Joy2";
+            }
+
+            else if (m.ThisPlayerControl != MoveSelector.ControlTypesHere.ArrowKeys)
+            {
+
+                Control_Type.text = "ArrowKeys";
+            }
+
+            else if (m.ThisPlayerControl != MoveSelector.ControlTypesHere.WSDA)
+            {
+
+                Control_Type.text = "WSDA";
+            }
+
+            else { Control_Type.text = "Not Assigned"; }
+
+        }
+
+        else { Control_Type.text = "Not Assigned"; }
+
     }
 
     void Update() {
 
+        if (m.is_this_active)
+        {
 
+            if (m.ThisPlayerControl == MoveSelector.ControlTypesHere.Joy1)
+            {
+
+                Control_Type.text = "Joy1";
+            }
+
+            else if (m.ThisPlayerControl == MoveSelector.ControlTypesHere.Joy2)
+            {
+
+                Control_Type.text = "Joy2";
+            }
+
+            else if (m.ThisPlayerControl == MoveSelector.ControlTypesHere.ArrowKeys)
+            {
+
+                Control_Type.text = "ArrowKeys";
+            }
+
+            else if (m.ThisPlayerControl == MoveSelector.ControlTypesHere.WSDA)
+            {
+
+                Control_Type.text = "WSDA";
+            }
+
+            else { Control_Type.text = "Not Assigned"; }
+
+        }
+
+        else { Control_Type.text = "Not Assigned"; }
 
     }
 
@@ -200,5 +267,88 @@ public class PlayerSelector : MonoBehaviour
                 break;
         }
 
+    }
+
+
+    public void ControlManager() {
+
+        if (m.is_this_active)
+        {
+
+            Controls++;
+
+            switch (Controls)
+            {
+
+                case 1:
+                    if (m.ThisPlayerControl != MoveSelector.ControlTypesHere.Joy1 && l.is_joy1_taken == false)
+                    {
+                        m.ThisPlayerControl = MoveSelector.ControlTypesHere.Joy1;
+                        l.is_joy1_taken = true;
+                        Control_Type.text = "Joy1";
+                    }
+
+                   // else if(l.is_joy1_taken == true) { Control_Type.text = "Joy1 (N/A)"; }
+
+                    break;
+
+                case 2:
+                    if (m.ThisPlayerControl != MoveSelector.ControlTypesHere.Joy2 && l.is_joy2_taken == false)
+                    {
+                        m.ThisPlayerControl = MoveSelector.ControlTypesHere.Joy2;
+
+
+
+                        l.is_joy2_taken = true;
+                        Control_Type.text = "Joy2";
+                    
+                    }
+                    //else { Control_Type.text = "Joy2 (N/A)"; }
+                    break;
+
+                case 3:
+                    if (m.ThisPlayerControl != MoveSelector.ControlTypesHere.ArrowKeys && l.is_arrowKeys_taken == false)
+                    {
+                        m.ThisPlayerControl = MoveSelector.ControlTypesHere.ArrowKeys;
+
+
+
+                        l.is_arrowKeys_taken = true;
+                        Control_Type.text = "ArrowKeys";
+                    }
+                   // else { Control_Type.text = "ArrowKeys (N/A)"; }
+                    break;
+                case 4:
+                    if (m.ThisPlayerControl != MoveSelector.ControlTypesHere.WSDA && l.is_wsda_taken == false)
+                    {
+                        m.ThisPlayerControl = MoveSelector.ControlTypesHere.WSDA;
+
+
+
+                        l.is_wsda_taken = true;
+                        Control_Type.text = "WSDA";
+                    }
+
+                   // else { Control_Type.text = "WSDA (N/A)"; }
+                    break;
+
+                default:
+                    if (m.ThisPlayerControl != MoveSelector.ControlTypesHere.NotAssigned)
+                    {
+                        m.ThisPlayerControl = MoveSelector.ControlTypesHere.NotAssigned;
+
+
+
+                        Control_Type.text = "Not Assigned";
+                    }
+                    Controls = 0;
+                    break;
+
+
+            }
+
+            
+
+        }
     }
 }

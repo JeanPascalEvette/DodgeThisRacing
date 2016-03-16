@@ -75,6 +75,8 @@ public class LevelManager : MonoBehaviour
 
         CheckWhichInput();
 
+        CheckControlinUse();
+
         //If all players have selected their cars the GO text becomes green
         if (num_players == num_ready_players)
         {
@@ -269,7 +271,63 @@ public class LevelManager : MonoBehaviour
 
     }
 
+    void CheckControlinUse() {
 
+        if (player1move.ThisPlayerControl == MoveSelector.ControlTypesHere.Joy1
+                               ||
+                player2move.ThisPlayerControl == MoveSelector.ControlTypesHere.Joy1
+                               ||
+                player3move.ThisPlayerControl == MoveSelector.ControlTypesHere.Joy1
+                               ||
+                player4move.ThisPlayerControl == MoveSelector.ControlTypesHere.Joy1
+
+           )
+        { is_joy1_taken = true; }
+
+        else { is_joy1_taken = false; }
+
+        if (player1move.ThisPlayerControl == MoveSelector.ControlTypesHere.Joy2
+                               ||
+                player2move.ThisPlayerControl == MoveSelector.ControlTypesHere.Joy2
+                               ||
+                player3move.ThisPlayerControl == MoveSelector.ControlTypesHere.Joy2
+                               ||
+                player4move.ThisPlayerControl == MoveSelector.ControlTypesHere.Joy2
+
+           )
+        { is_joy2_taken = true; }
+
+        else { is_joy2_taken = false; }
+
+        if (player1move.ThisPlayerControl == MoveSelector.ControlTypesHere.ArrowKeys
+                            ||
+             player2move.ThisPlayerControl == MoveSelector.ControlTypesHere.ArrowKeys
+                            ||
+             player3move.ThisPlayerControl == MoveSelector.ControlTypesHere.ArrowKeys
+                            ||
+             player4move.ThisPlayerControl == MoveSelector.ControlTypesHere.ArrowKeys
+
+        )
+        { is_arrowKeys_taken = true; }
+
+        else { is_arrowKeys_taken = false; }
+
+        if (player1move.ThisPlayerControl == MoveSelector.ControlTypesHere.WSDA
+                            ||
+             player2move.ThisPlayerControl == MoveSelector.ControlTypesHere.WSDA
+                            ||
+             player3move.ThisPlayerControl == MoveSelector.ControlTypesHere.WSDA
+                            ||
+             player4move.ThisPlayerControl == MoveSelector.ControlTypesHere.WSDA
+
+        )
+        { is_wsda_taken = true; }
+
+        else { is_wsda_taken = false; }
+
+
+
+    }
 
 
 }
