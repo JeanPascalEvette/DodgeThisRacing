@@ -19,34 +19,40 @@ public class PlayerSelector : MonoBehaviour
 
     void Start() {
 
-       // m = playerCoin.GetComponent<MoveSelector>();
+        // m = playerCoin.GetComponent<MoveSelector>();
+        l.is_p1_active = true;
+
+        
 
         switch (PanelNumber)
         {
 
             case 1:
 
-                /*if (l.is_p1_active == true) */{ nameplayer = "P1"; }
-                
+                if (l.is_p1_active == true) { nameplayer = "P1"; }
+                //else                        { nameplayer = "N/A"; }
                 break;
 
             case 2:
-                /*if (l.is_p2_active == true)*/ { nameplayer = "P2"; }
+               /* if (l.is_p2_active == true)*/ { nameplayer = "P2"; }
+                //else                        { nameplayer = "N/A"; }
                 
                 break;
 
             case 3:
-                /*if (l.is_p3_active == true)*/ { nameplayer = "P3"; }
-                
+               /* if (l.is_p3_active == true)*/ { nameplayer = "P3"; }
+               // else                        { nameplayer = "N/A"; }
                 break;
 
             case 4:
                 /*if   (l.is_p4_active == true)*/ { nameplayer = "P4"; }
-                
+                //else                          { nameplayer = "N/A"; }
+
                 break;
         }
 
         player_selector();
+        PanelManager();
 
 
         if (m.is_this_active)
@@ -78,6 +84,7 @@ public class PlayerSelector : MonoBehaviour
 
             else { Control_Type.text = "Not Assigned"; }
 
+         
         }
 
         else { Control_Type.text = "Not Assigned"; }
@@ -113,11 +120,42 @@ public class PlayerSelector : MonoBehaviour
                 Control_Type.text = "WSDA";
             }
 
-            else { Control_Type.text = "Not Assigned"; }
+            //else { Control_Type.text = "Not Assigned"; }
+
+            if      (PanelNumber == 1 && switch_case !=2)  { t.text = "P1"; }
+            else if (PanelNumber == 2 && switch_case != 2) { t.text = "P2"; }
+            else if (PanelNumber == 3 && switch_case != 2) { t.text = "P3"; }
+            else if (PanelNumber == 4 && switch_case != 2) { t.text = "P4"; }
 
         }
 
         else { Control_Type.text = "Not Assigned"; }
+
+        
+
+        //delete from here
+
+
+
+
+        //if (l.is_p1_active == true && PanelNumber==1) { nameplayer = "P1"; }
+        //else                                         { nameplayer = "N/A"; }
+
+        //if (l.is_p2_active == true && PanelNumber == 2) { nameplayer = "P2"; }
+        //else                                            { nameplayer = "N/A"; }
+
+
+        //if (l.is_p3_active == true && PanelNumber == 3) { nameplayer = "P3"; }
+        //else { nameplayer = "N/A"; }
+
+
+
+        //if (l.is_p4_active == true && PanelNumber == 4) { nameplayer = "P4"; }
+        //else { nameplayer = "N/A"; }
+
+
+
+
 
     }
 
@@ -129,7 +167,7 @@ public class PlayerSelector : MonoBehaviour
     public void player_selector()
     {
 
-        switch_case++;
+        //switch_case++;
 
         if (switch_case < 4 /*&& l.num_players == m.playerID - 1*/)
         {
@@ -141,7 +179,7 @@ public class PlayerSelector : MonoBehaviour
                     break;
                 case 2:
                     //Debug.Log("cpu mode selected");
-                   t.text = "CPU";
+                    t.text = "CPU";
                     break;
 
                 default:
@@ -165,12 +203,14 @@ public class PlayerSelector : MonoBehaviour
 
     public void PanelManager()
     {
+        switch_case++;
         switch (switch_case)
         {
             case 1:
 
                 if (l.num_players == m.playerID - 1 && !m.is_this_active)
                 {
+                   
                     playerCoin.SetActive(true);
                     cpuText.text = nameplayer;
                     t.text = nameplayer;
@@ -281,14 +321,15 @@ public class PlayerSelector : MonoBehaviour
             {
 
                 case 1:
-                    if (m.ThisPlayerControl != MoveSelector.ControlTypesHere.Joy1 && l.is_joy1_taken == false)
+
+                    if (m.ThisPlayerControl != MoveSelector.ControlTypesHere.Joy1 && l.is_joy1_taken == false) // first statement of if not really needed
                     {
                         m.ThisPlayerControl = MoveSelector.ControlTypesHere.Joy1;
                         l.is_joy1_taken = true;
                         Control_Type.text = "Joy1";
                     }
 
-                    //else { Control_Type.text = "Joy1 (N/A)"; }
+                    else { Control_Type.text = "Joy1 (N/A)"; }
 
                     break;
 
@@ -297,13 +338,11 @@ public class PlayerSelector : MonoBehaviour
                     {
                         m.ThisPlayerControl = MoveSelector.ControlTypesHere.Joy2;
 
-
-
                         l.is_joy2_taken = true;
                         Control_Type.text = "Joy2";
                     
                     }
-                   // else { Control_Type.text = "Joy2 (N/A)"; }
+                    else { Control_Type.text = "Joy2 (N/A)"; }
                     break;
 
                 case 3:
@@ -316,7 +355,7 @@ public class PlayerSelector : MonoBehaviour
                         l.is_arrowKeys_taken = true;
                         Control_Type.text = "ArrowKeys";
                     }
-                   // else { Control_Type.text = "ArrowKeys (N/A)"; }
+                    else { Control_Type.text = "ArrowKeys (N/A)"; }
                     break;
                 case 4:
                     if (m.ThisPlayerControl != MoveSelector.ControlTypesHere.WSDA && l.is_wsda_taken == false)
@@ -329,7 +368,7 @@ public class PlayerSelector : MonoBehaviour
                         Control_Type.text = "WSDA";
                     }
 
-                  //  else { Control_Type.text = "WSDA (N/A)"; }
+                    else { Control_Type.text = "WSDA (N/A)"; }
                     break;
 
                 default:
