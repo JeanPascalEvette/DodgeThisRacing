@@ -8,8 +8,16 @@ public class Utility : MonoBehaviour {
     Vector3 position;
     int timeSteps;
     Vector3[] stepPositions;
+    GameObject[] paths;
 
-    void NewUtility(CarState state, int steps)
+    void FindPaths()
+    {
+        //Use ID to find the attached GameObject
+        //Use raycasts to find paths for AI
+        //Store number of paths available in list
+    }
+
+    void UpdateUtility(CarState state, int steps)
     {
         ID = state.myUniqueID;
         timeSteps = steps;
@@ -17,6 +25,7 @@ public class Utility : MonoBehaviour {
         position = state.myPosition;
     }
 
+    //Need to use direction of travel to update the positions
     Vector3 CalculateFinalPos()
     {
         Vector3 finalPos;
