@@ -18,9 +18,19 @@ public class GameLogic : MonoBehaviour {
     [SerializeField]
     private GameObject Track;
 
+    public List<GameObject> obstacleList;
+
+    public static GameLogic myInstance;
+
     // Use this for initialization
     void Start ()
     {
+        if (myInstance != null)
+            Destroy(gameObject);
+        else
+            myInstance = this;
+
+
         if (Track == null)
             Track = GameObject.Find("Track");
         if (Track == null)
@@ -68,6 +78,7 @@ public class GameLogic : MonoBehaviour {
         var zPos = Random.Range(trackBounds.min.z, trackBounds.max.z);
         var newObstacle = (GameObject)Instantiate(obstaclePrefab, new Vector3(xPos, yPos, zPos), obstaclePrefab.transform.rotation);
         newObstacle.transform.parent = trackPart.transform;
+        obstacleList.Add(newObstacle);
 
     }
 
@@ -168,9 +179,18 @@ public class GameLogic : MonoBehaviour {
 	    if(trackPartsList.Count > 2 && trackPartsList[2].transform.position.z < carList[0].transform.position.z)
         {
             var removedPart = trackPartsList[0];
+            for( int i = 0; i < removedPart.transform.childCount; i++)
+            {
+                obstacleList.Remove(removedPart.transform.GetChild(i).gameObject);
+            }
             trackPartsList.Remove(removedPart);
             Destroy(removedPart);
             AddNewTrackPart();
         }
 	}
+
+    public List<GameObject> GetObstacleList()
+    {
+        return obstacleList;
+    }
 }

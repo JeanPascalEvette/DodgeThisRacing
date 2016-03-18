@@ -28,11 +28,23 @@ public class CarState
     public Vector3 forward;
     public int myUniqueID;
 }
+
+public class ObstacleState
+{
+    public ObstacleState(Vector3 pos, Vector3 vel, Vector3 fwd, Bounds bnds) { myBounds = bnds; myPosition = pos; myVelocity = vel; forward = fwd; }
+    public ObstacleState() { }
+    public Vector3 myPosition;
+    public Vector3 myVelocity;
+    public Vector3 forward;
+    public Bounds myBounds;
+    public int myUniqueID;
+}
 public class State
 {
     public State() { }
     public CarState myCar;
     public CarState[] otherCars;
+    public ObstacleState[] obstacles;
 }
 
 public class HTNPlanner {
