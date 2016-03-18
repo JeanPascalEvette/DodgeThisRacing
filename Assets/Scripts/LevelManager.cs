@@ -167,6 +167,7 @@ public class LevelManager : MonoBehaviour
         {
             newPlayer = player1move;
             ps = panel1.GetComponent<PlayerSelector>();
+            //ps.CPU_Controls = 1;
             setControlScheme();
         }
 
@@ -174,6 +175,7 @@ public class LevelManager : MonoBehaviour
         {
             newPlayer = player2move;
             ps = panel2.GetComponent<PlayerSelector>();
+           // ps.CPU_Controls = 1;
             setControlScheme();
         }
 
@@ -181,6 +183,7 @@ public class LevelManager : MonoBehaviour
         {
             newPlayer = player3move;
             ps = panel3.GetComponent<PlayerSelector>();
+            //ps.CPU_Controls = 1;
             setControlScheme();
         }
 
@@ -188,6 +191,7 @@ public class LevelManager : MonoBehaviour
         {
             newPlayer = player4move;
             ps = panel4.GetComponent<PlayerSelector>();
+            //ps.CPU_Controls = 1;
             setControlScheme();
         }
 
@@ -203,6 +207,9 @@ public class LevelManager : MonoBehaviour
                 newPlayer = player1move;
                 is_p1_active = true;
                 ps = panel1.GetComponent<PlayerSelector>();
+
+               // ps.CPU_Controls = 1;
+
                 setControlScheme();
 
                 break;
@@ -212,6 +219,9 @@ public class LevelManager : MonoBehaviour
                 newPlayer = player2move;
                 is_p2_active = true;
                 ps = panel2.GetComponent<PlayerSelector>();
+
+               // ps.CPU_Controls = 1;
+
                 setControlScheme();
                 break;
 
@@ -220,6 +230,9 @@ public class LevelManager : MonoBehaviour
                 newPlayer = player3move;
                 is_p3_active = true;
                 ps = panel3.GetComponent<PlayerSelector>();
+
+               // ps.CPU_Controls = 1;
+
                 setControlScheme();
                 break;
 
@@ -228,6 +241,9 @@ public class LevelManager : MonoBehaviour
                 newPlayer = player4move;
                 is_p4_active = true;
                 ps = panel4.GetComponent<PlayerSelector>();
+
+               // ps.CPU_Controls = 1;
+
                 setControlScheme();
                 break;
 
@@ -238,8 +254,13 @@ public class LevelManager : MonoBehaviour
         }
 
             newPlayer.is_this_active = true;
+            ps.CPU_Controls = 1;
+            ps.switch_case = 1;
 
         }
+
+       // ps.CPU_Controls = 1;
+       // ps.switch_case = 1;
 
 
     }

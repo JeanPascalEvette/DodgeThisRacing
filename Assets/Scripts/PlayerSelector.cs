@@ -6,9 +6,9 @@ public class PlayerSelector : MonoBehaviour
 
     public Text t;
     public Text Control_Type;
-    int switch_case = 0;
+    public int switch_case = 0;
     public int Controls = 0;
-    int CPU_Controls = -1;
+    public int CPU_Controls = -1;
     public int PanelNumber;
     string nameplayer;
     public GameObject playerCoin;
@@ -30,23 +30,23 @@ public class PlayerSelector : MonoBehaviour
 
             case 1:
 
-                if (l.is_p1_active == true) { nameplayer = "P1"; Controls = 1; }
+                if (l.is_p1_active == true) { nameplayer = "1P"; Controls = 1; }
                 //else                        { t.text = "N/A"; }
                 break;
 
             case 2:
-                /*if (l.is_p2_active == true)*/ { nameplayer = "P2"; }
+                /*if (l.is_p2_active == true)*/ { nameplayer = "2P"; }
                // else                        { t.text = "N/A"; }
                 
                 break;
 
             case 3:
-                /*if (l.is_p3_active == true)*/ { nameplayer = "P3"; }
+                /*if (l.is_p3_active == true)*/ { nameplayer = "3P"; }
                 //else                        { t.text = "N/A"; }
                 break;
 
             case 4:
-                /*if (l.is_p4_active == true)*/ { nameplayer = "P4"; }
+                /*if (l.is_p4_active == true)*/ { nameplayer = "4P"; }
                 //else                          { t.text = "N/A"; }
 
                 break;
