@@ -305,7 +305,7 @@ public class PlayerSelector : MonoBehaviour
             }
         }
 
-        else
+        else if(m.is_this_active)
         {
 
             CPU_Controls++;
