@@ -8,6 +8,7 @@ public class PlayerSelector : MonoBehaviour
     public Text Control_Type;
     int switch_case = 0;
     public int Controls = 0;
+    int CPU_Controls = -1;
     public int PanelNumber;
     string nameplayer;
     public GameObject playerCoin;
@@ -24,31 +25,29 @@ public class PlayerSelector : MonoBehaviour
         // m = playerCoin.GetComponent<MoveSelector>();
         l.is_p1_active = true;
 
-        
-
         switch (PanelNumber)
         {
 
             case 1:
 
                 if (l.is_p1_active == true) { nameplayer = "P1"; Controls = 1; }
-                //else                        { nameplayer = "N/A"; }
+                //else                        { t.text = "N/A"; }
                 break;
 
             case 2:
                 /*if (l.is_p2_active == true)*/ { nameplayer = "P2"; }
-                //else                        { nameplayer = "N/A"; }
+               // else                        { t.text = "N/A"; }
                 
                 break;
 
             case 3:
                 /*if (l.is_p3_active == true)*/ { nameplayer = "P3"; }
-               // else                        { nameplayer = "N/A"; }
+                //else                        { t.text = "N/A"; }
                 break;
 
             case 4:
                 /*if (l.is_p4_active == true)*/ { nameplayer = "P4"; }
-                //else                          { nameplayer = "N/A"; }
+                //else                          { t.text = "N/A"; }
 
                 break;
         }
@@ -128,10 +127,10 @@ public class PlayerSelector : MonoBehaviour
 
 
 
-            if      (PanelNumber == 1 && switch_case !=2)  { t.text = "P1"; }
-            else if (PanelNumber == 2 && switch_case != 2) { t.text = "P2"; }
-            else if (PanelNumber == 3 && switch_case != 2) { t.text = "P3"; }
-            else if (PanelNumber == 4 && switch_case != 2) { t.text = "P4"; }
+            if      (PanelNumber == 1 && switch_case != 2 && !is_CPU) { t.text = "P1"; }
+            else if (PanelNumber == 2 && switch_case != 2 && !is_CPU) { t.text = "P2"; }
+            else if (PanelNumber == 3 && switch_case != 2 && !is_CPU) { t.text = "P3"; }
+            else if (PanelNumber == 4 && switch_case != 2 && !is_CPU) { t.text = "P4"; }
 
         }
 
@@ -155,7 +154,7 @@ public class PlayerSelector : MonoBehaviour
     public void player_selector()
     {
 
-        //switch_case++;
+       
 
         if (switch_case < 4 /*&& l.num_players == m.playerID - 1*/)
         {
@@ -163,7 +162,8 @@ public class PlayerSelector : MonoBehaviour
             {
                 case 1:
                     //Debug.Log("player mode selected");
-                    t.text = nameplayer;
+                    if (m.is_this_active == true) { t.text = nameplayer; }
+                    else                          { t.text = "N/A"; }
                     break;
                 case 2:
                     //Debug.Log("cpu mode selected");
@@ -209,17 +209,18 @@ public class PlayerSelector : MonoBehaviour
                         if (l.num_players < m.playerID) { l.num_players++; }
                         //l.num_active++;
 
-                        if (m.playerID == 1) { l.is_p1_active = true; }
+                        if      (m.playerID == 1) { l.is_p1_active = true; }
                         else if (m.playerID == 2) { l.is_p2_active = true; }
                         else if (m.playerID == 3) { l.is_p3_active = true; }
                         else if (m.playerID == 4) { l.is_p4_active = true; }
 
                         //m = playerCoin.GetComponent<MoveSelector>();
                         m.is_this_active = true;
+                        CPU_Controls = 1;
                         is_CPU = false;
                     }
 
-                    //else { }
+                   
 
                     break;
 
@@ -243,6 +244,7 @@ public class PlayerSelector : MonoBehaviour
                         cpuText.text = "CPU";
                         t.text = "CPU";
                         is_CPU = true;
+                        CPU_Controls = 2;
                     }
 
 
@@ -296,10 +298,43 @@ public class PlayerSelector : MonoBehaviour
                     }
 
                     switch_case = 0;
+                    CPU_Controls = 0;
                     t.text = "N/A";
 
                     break;
             }
+        }
+
+        else
+        {
+
+            CPU_Controls++;
+
+            switch (CPU_Controls)
+            {
+
+                case 1:
+                    cpuText.text = nameplayer;
+                    t.text = nameplayer;
+                    is_CPU = false;
+                    switch_case = 1;
+                    break;
+
+                case 2:
+                    cpuText.text = "CPU";
+                    t.text = "CPU";
+                    is_CPU = true;
+                    CPU_Controls = 0;
+                    switch_case = 2;
+
+                    break;
+
+                default:
+                    switch_case = 0;
+                    CPU_Controls = 0;
+                    break;
+            }
+
         }
     }
 

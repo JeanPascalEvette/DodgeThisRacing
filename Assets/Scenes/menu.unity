@@ -161,17 +161,6 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1359102857}
-        m_MethodName: player_selector
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 1359102857}
         m_MethodName: PanelManager
         m_Mode: 1
         m_Arguments:
@@ -804,6 +793,10 @@ MonoBehaviour:
   player2: {fileID: 444208906}
   player3: {fileID: 1263739607}
   player4: {fileID: 752248851}
+  panel1: {fileID: 1359102853}
+  panel2: {fileID: 867536391}
+  panel3: {fileID: 1306703000}
+  panel4: {fileID: 1137373012}
   TextColorGo: {fileID: 2071835277}
   is_inside: 0
   num_players: 0
@@ -1210,17 +1203,6 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 867536395}
-        m_MethodName: player_selector
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
       - m_Target: {fileID: 867536395}
         m_MethodName: PanelManager
         m_Mode: 1
@@ -2110,6 +2092,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   t: {fileID: 1506169409}
   Control_Type: {fileID: 16601275}
+  Controls: 0
   PanelNumber: 2
   playerCoin: {fileID: 444208906}
   l: {fileID: 397500428}
@@ -2225,17 +2208,6 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1137373016}
-        m_MethodName: player_selector
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
       - m_Target: {fileID: 1137373016}
         m_MethodName: PanelManager
         m_Mode: 1
@@ -2438,6 +2410,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   t: {fileID: 315248632}
   Control_Type: {fileID: 759524891}
+  Controls: 0
   PanelNumber: 4
   playerCoin: {fileID: 752248851}
   l: {fileID: 397500428}
@@ -2690,6 +2663,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   t: {fileID: 1011840230}
   Control_Type: {fileID: 482416532}
+  Controls: 0
   PanelNumber: 3
   playerCoin: {fileID: 1263739607}
   l: {fileID: 397500428}
@@ -2778,6 +2752,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   t: {fileID: 1798023839}
   Control_Type: {fileID: 406755420}
+  Controls: 0
   PanelNumber: 1
   playerCoin: {fileID: 2062963151}
   l: {fileID: 397500428}
@@ -3868,17 +3843,6 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1306703004}
-        m_MethodName: player_selector
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
       - m_Target: {fileID: 1306703004}
         m_MethodName: PanelManager
         m_Mode: 1
