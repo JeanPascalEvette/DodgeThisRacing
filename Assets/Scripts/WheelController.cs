@@ -167,7 +167,7 @@ public class WheelController : MonoBehaviour {
     {
         isOnGround = false;
         Color myColor = Color.red;
-        float wheelHeight = transform.GetComponent<SphereCollider>().radius * 1.05f;
+        float wheelHeight = transform.GetComponent<SphereCollider>().radius * 1.25f;
         Vector3 direction = new Vector3(0, -1, 0);
 
         int numRaycast = 10;

@@ -102,7 +102,7 @@ public class GameLogic : MonoBehaviour {
             float maxz = float.MinValue;
             foreach (var trackPart in trackPartsList)
             {
-                var trackBounds = trackPart.GetComponentInChildren<MeshRenderer>().bounds;
+                Bounds trackBounds = getBoundsOfTrackPiece(trackPart.GetComponentsInChildren<MeshRenderer>());
                 if (minx > trackBounds.min.x)
                     minx = trackBounds.min.x;
                 if (maxx < trackBounds.max.x)
@@ -117,6 +117,31 @@ public class GameLogic : MonoBehaviour {
             newCollider.center = newCenter;
             newCollider.size = new Vector3((maxx - minx), 0, (maxz - minz));
         }
+    }
+
+    Bounds getBoundsOfTrackPiece(MeshRenderer[] mrList)
+    {
+        Bounds trackBounds = new Bounds();
+
+        float minx = float.MaxValue;
+        float minz = float.MaxValue;
+        float maxx = float.MinValue;
+        float maxz = float.MinValue;
+        foreach (MeshRenderer mr in mrList)
+        {
+            if (minx > mr.bounds.min.x)
+                minx = mr.bounds.min.x;
+            if (maxx < mr.bounds.max.x)
+                maxx = mr.bounds.max.x;
+            if (minz > mr.bounds.min.z)
+                minz = mr.bounds.min.z;
+            if (maxz < mr.bounds.max.z)
+                maxz = mr.bounds.max.z;
+        }
+
+        trackBounds.SetMinMax(new Vector3(minx, 0, minz), new Vector3(maxx, 0, maxz));
+
+        return trackBounds;
     }
 
     void OnDrawGizmos()
