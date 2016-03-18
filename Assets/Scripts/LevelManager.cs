@@ -10,12 +10,19 @@ public class LevelManager : MonoBehaviour
     public GameObject player3;
     public GameObject player4;
 
+    public GameObject panel1;
+    public GameObject panel2;
+    public GameObject panel3;
+    public GameObject panel4;
+
     MoveSelector player1move;
     MoveSelector player2move;
     MoveSelector player3move;
     MoveSelector player4move;
 
     MoveSelector newPlayer;
+
+    PlayerSelector ps;
 
     public Text TextColorGo;
     float move_player = 5.0f;
@@ -159,24 +166,28 @@ public class LevelManager : MonoBehaviour
         if (is_p1_active == true && player1move.ThisPlayerControl == MoveSelector.ControlTypesHere.NotAssigned)
         {
             newPlayer = player1move;
+            ps = panel1.GetComponent<PlayerSelector>();
             setControlScheme();
         }
 
         else if (is_p2_active == true && player2move.ThisPlayerControl == MoveSelector.ControlTypesHere.NotAssigned)
         {
             newPlayer = player2move;
+            ps = panel2.GetComponent<PlayerSelector>();
             setControlScheme();
         }
 
         else if (is_p3_active == true && player3move.ThisPlayerControl == MoveSelector.ControlTypesHere.NotAssigned)
         {
             newPlayer = player3move;
+            ps = panel3.GetComponent<PlayerSelector>();
             setControlScheme();
         }
 
         else if (is_p4_active == true && player4move.ThisPlayerControl == MoveSelector.ControlTypesHere.NotAssigned)
         {
             newPlayer = player4move;
+            ps = panel4.GetComponent<PlayerSelector>();
             setControlScheme();
         }
 
@@ -191,13 +202,16 @@ public class LevelManager : MonoBehaviour
                 player.SetActive(true);
                 newPlayer = player1move;
                 is_p1_active = true;
+                ps = panel1.GetComponent<PlayerSelector>();
                 setControlScheme();
+
                 break;
 
             case 2:
                 player2.SetActive(true);
                 newPlayer = player2move;
                 is_p2_active = true;
+                ps = panel2.GetComponent<PlayerSelector>();
                 setControlScheme();
                 break;
 
@@ -205,6 +219,7 @@ public class LevelManager : MonoBehaviour
                 player3.SetActive(true);
                 newPlayer = player3move;
                 is_p3_active = true;
+                ps = panel3.GetComponent<PlayerSelector>();
                 setControlScheme();
                 break;
 
@@ -212,6 +227,7 @@ public class LevelManager : MonoBehaviour
                 player4.SetActive(true);
                 newPlayer = player4move;
                 is_p4_active = true;
+                ps = panel4.GetComponent<PlayerSelector>();
                 setControlScheme();
                 break;
 
@@ -237,6 +253,7 @@ public class LevelManager : MonoBehaviour
         {
 
             newPlayer.ThisPlayerControl = MoveSelector.ControlTypesHere.ArrowKeys;
+            ps.Controls = 3;
             is_arrowKeys_taken = true;
             is_arrowKeys_used = false;
 
@@ -246,6 +263,7 @@ public class LevelManager : MonoBehaviour
 
         {
             newPlayer.ThisPlayerControl = MoveSelector.ControlTypesHere.WSDA;
+            ps.Controls = 4;
             is_wsda_taken = true;
             is_wsda_used = false;
 
@@ -255,6 +273,7 @@ public class LevelManager : MonoBehaviour
 
         {
             newPlayer.ThisPlayerControl = MoveSelector.ControlTypesHere.Joy2;
+            ps.Controls = 2;
             is_joy2_taken = true;
             is_joy2_used = false;
 
@@ -264,6 +283,7 @@ public class LevelManager : MonoBehaviour
 
         {
             newPlayer.ThisPlayerControl = MoveSelector.ControlTypesHere.Joy1;
+            ps.Controls = 1;
             is_joy1_taken = true;
             is_joy1_used = false;
 
