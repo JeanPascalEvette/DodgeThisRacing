@@ -8,7 +8,7 @@ public class Data : MonoBehaviour {
     private static GameObject[] CarsAvailable;
     private static GameObject[] TrackPartsAvailable;
     private static GameObject[] ObstaclesAvailable;
-    private static int[] CarsSelected;
+    private static PlayerData[] CarsSelected;
     
     private static GameObject myInstance;
 
@@ -62,14 +62,19 @@ public class Data : MonoBehaviour {
         GameObject[] myCars = new GameObject[CarsSelected.Length];
         for(int i = 0; i < CarsSelected.Length; i++)
         {
-            myCars[i] = CarsAvailable[CarsSelected[i]];
+            myCars[i] = CarsAvailable[CarsSelected[i].GetCarType() % CarsAvailable.Length];
         }
         return myCars;
     }
 
-    public static void selectCars(int[] cars)
+    public static void selectCars(PlayerData[] cars)
     {
         CarsSelected = cars;
+    }
+
+    public static PlayerData[] getCarsSelected()
+    {
+        return CarsSelected;
     }
 
     public static int getNumberCarSelected()

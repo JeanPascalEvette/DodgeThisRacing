@@ -28,6 +28,8 @@ public class AIController : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        if (aSkin == null) aSkin = (GUISkin)Resources.Load("AILabel");
+        if (aSkin == null) aSkin = new GUISkin();
         myCarController = GetComponent<CarController>();
         allCars = GameObject.FindGameObjectsWithTag("Player");
         planner = new HTNPlanner(1.5f);

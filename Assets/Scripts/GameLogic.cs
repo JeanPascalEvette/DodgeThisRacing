@@ -4,6 +4,8 @@ using System.Collections.Generic;
 
 public class GameLogic : MonoBehaviour {
 
+    private readonly int NUMBEROFCARS = 4;
+
     private GameObject[] carList;
 
     private List<GameObject> trackPartsList;
@@ -24,19 +26,27 @@ public class GameLogic : MonoBehaviour {
         if (Track == null)
             Track = new GameObject("Track");
 
-        if (Data.getNumberCarSelected() == 0)
+        if (Data.getNumberCarSelected() == 0) // IF did not go through main menu (DEBUG ONLY)
         {
-            var listCars = new int[NumberOfCars];
-            for (int i = 0; i < NumberOfCars; i++)
-                listCars[i] = i;
-            Data.selectCars(listCars);
+            PlayerData[] myCars = new PlayerData[NUMBEROFCARS];
+            int ctrlScheme = 0;
+            myCars[0] = new PlayerData(0, (PlayerData.ControlScheme)ctrlScheme++, PlayerData.PlayerType.Player);
+            for (int i = 1; i < NUMBEROFCARS; i++)
+            {
+                myCars[i] = new PlayerData(i, (PlayerData.ControlScheme)ctrlScheme++, PlayerData.PlayerType.AI);
+            }
+            Data.selectCars(myCars);
         }
+
+
+
         GameObject[] carPrefabs = Data.generateCars();
 
         carList = new GameObject[carPrefabs.Length];
         for (int i = 0; i < carPrefabs.Length; i++)
         {
-            carList[i] = (GameObject)Instantiate(carPrefabs[i], new Vector3(i * 2.0f, 0, 3.0f), Quaternion.Euler(0, 180, 0));
+            carList[i] = (GameObject)Instantiate(carPrefabs[i], new Vector3((i - carPrefabs.Length/2) * 3.0f, 0, 3.0f), Quaternion.Euler(0, 180, 0));
+            Data.getCarsSelected()[i].AttachGameObject(carList[i]);
         }
 
 

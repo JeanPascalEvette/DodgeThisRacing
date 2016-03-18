@@ -100,9 +100,10 @@ public class CarController : MonoBehaviour
     private float currentRotationVelocityX = 0;
     private float currentRotationVelocityY = 0;
     private float currentRotationVelocityZ = 0;
+    [SerializeField]
+    private float autoRotateMinTime = 2.0f;
 
     private AIController myAI;
-    enum ControlScheme {WASD, Arrows, XboxController1, XboxController2};
 
     // Use this for initialization
     void Start()
@@ -268,13 +269,19 @@ public class CarController : MonoBehaviour
 
         if (!IsOnGround())
         {
-            rb.angularVelocity = new Vector3(0, 0, 0);
-            float v = rb.velocity.y;
-            float a = Physics.gravity.y;
-            float d = transform.position.y * -1;
-            float landingTime = -(Mathf.Sqrt(2 * a * d + Mathf.Pow(v, 2)) + v) / a;
-            estimatedLandingTime = landingTime;
-            transform.rotation = Quaternion.Euler(Mathf.SmoothDampAngle(transform.rotation.eulerAngles.x, 0, ref currentRotationVelocityX, landingTime), Mathf.SmoothDampAngle(transform.rotation.eulerAngles.y, 180, ref currentRotationVelocityY, landingTime), Mathf.SmoothDampAngle(transform.rotation.eulerAngles.z, 0, ref currentRotationVelocityZ, landingTime));
+            if (transform.position.y >= 0)
+            {
+                rb.angularVelocity = new Vector3(0, 0, 0);
+                float v = rb.velocity.y;
+                float a = Physics.gravity.y;
+                float d = transform.position.y * -1;
+                float landingTime = -(Mathf.Sqrt(2 * a * d + Mathf.Pow(v, 2)) + v) / a;
+                estimatedLandingTime = landingTime;
+                if (landingTime < autoRotateMinTime)
+                {
+                    transform.rotation = Quaternion.Euler(Mathf.SmoothDampAngle(transform.rotation.eulerAngles.x, 0, ref currentRotationVelocityX, landingTime), Mathf.SmoothDampAngle(transform.rotation.eulerAngles.y, 180, ref currentRotationVelocityY, landingTime), Mathf.SmoothDampAngle(transform.rotation.eulerAngles.z, 0, ref currentRotationVelocityZ, landingTime));
+                }
+            }
             return;
         }
         direction = 0.0f;						//speed of object

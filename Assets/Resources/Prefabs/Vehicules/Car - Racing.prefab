@@ -2829,6 +2829,8 @@ MonoBehaviour:
   Acceleration: {x: 0, y: 0, z: 0}
   WeightOnFrontWheels: 0
   WeightOnRearWheels: 0
+  IsCarOnGround: 0
+  estimatedLandingTime: 0
   testRpmResistance:
     serializedVersion: 2
     m_Curve:
@@ -2851,7 +2853,7 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 0
   carUniqueID: 0
-  aSkin: {fileID: 11400000, guid: 7d3f03ff8957a80418721ecf5d813ac7, type: 2}
+  autoRotateMinTime: 2
 --- !u!114 &11478308
 MonoBehaviour:
   m_ObjectHideFlags: 1
