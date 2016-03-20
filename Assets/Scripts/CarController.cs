@@ -79,6 +79,10 @@ public class CarController : MonoBehaviour
     private float estimatedLandingTime;
 
     [SerializeField]
+    private Transform LeftDirection;
+    [SerializeField]
+    private Transform RightDirection;
+    [SerializeField]
     private AnimationCurve testRpmResistance;
     // private string[] plan;
     // private int frameGenerated;
@@ -238,6 +242,9 @@ public class CarController : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+        float maxTurn = turning * Input.GetAxis("Horizontal");
+        LeftDirection.localRotation = Quaternion.Euler(0, maxTurn * 30, 0);
+        RightDirection.localRotation = Quaternion.Euler(0, maxTurn * 30, 0);
 
 
 
@@ -285,7 +292,6 @@ public class CarController : MonoBehaviour
             return;
         }
         direction = 0.0f;						//speed of object
-        float maxTurn = turning * Input.GetAxis("Horizontal");
 
         // float maxTurn = 0;
 

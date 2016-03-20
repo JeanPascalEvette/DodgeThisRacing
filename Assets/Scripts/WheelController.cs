@@ -50,7 +50,8 @@ public class WheelController : MonoBehaviour {
 
     private Vector3 currentRotation = new Vector3(0, 0, 0);
 
-    
+
+
     // Use this for initialization
     void Start () {
         mCarController = transform.parent.GetComponent<CarController>();
@@ -74,20 +75,8 @@ public class WheelController : MonoBehaviour {
     void FixedUpdate()
     {
         currentRotation.x += spinningSpeed;
-        if (!isRearWheel)
-        {
-            float maxTurn = Input.GetAxis("Horizontal");
-            if (Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D))
-            {
-                currentRotation = new Vector3(currentRotation.x, maxTurn * 30, currentRotation.z);
-            }
-            else
-            {
-                currentRotation = new Vector3(currentRotation.x, 0, currentRotation.z);
-            }
-            
-        }
 
+        currentRotation = new Vector3(currentRotation.x, 0, 0);
         transform.localRotation = Quaternion.Euler(currentRotation);
 
         // Car velocity (Find out which direction to use) (negative sign as before the speed was opposite it should be)
