@@ -11,6 +11,8 @@ public class DetachableElementBehaviour : MonoBehaviour {
 
     public float pieceHealth;
     public float pieceMass;
+    public Slider healthSlider;
+    private float damageCaused;
 
     [SerializeField]
     private GameObject DebrisHolder;

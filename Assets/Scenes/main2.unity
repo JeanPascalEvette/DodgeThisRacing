@@ -1095,6 +1095,62 @@ Prefab:
       propertyPath: m_Size.z
       value: 0.96
       objectReference: {fileID: 0}
+    - target: {fileID: 13572796, guid: eec4267e6878ee34dba7cab1bcec6d5a, type: 2}
+      propertyPath: m_Radius
+      value: 0.3650745
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400808, guid: eec4267e6878ee34dba7cab1bcec6d5a, type: 2}
+      propertyPath: healthSlider
+      value: 
+      objectReference: {fileID: 1481430600}
+    - target: {fileID: 11400808, guid: eec4267e6878ee34dba7cab1bcec6d5a, type: 2}
+      propertyPath: pieceHealth
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400808, guid: eec4267e6878ee34dba7cab1bcec6d5a, type: 2}
+      propertyPath: pieceMass
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11453596, guid: eec4267e6878ee34dba7cab1bcec6d5a, type: 2}
+      propertyPath: healthSlider
+      value: 
+      objectReference: {fileID: 1481430600}
+    - target: {fileID: 11453596, guid: eec4267e6878ee34dba7cab1bcec6d5a, type: 2}
+      propertyPath: pieceHealth
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 11453596, guid: eec4267e6878ee34dba7cab1bcec6d5a, type: 2}
+      propertyPath: pieceMass
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11486610, guid: eec4267e6878ee34dba7cab1bcec6d5a, type: 2}
+      propertyPath: healthSlider
+      value: 
+      objectReference: {fileID: 1481430600}
+    - target: {fileID: 11486610, guid: eec4267e6878ee34dba7cab1bcec6d5a, type: 2}
+      propertyPath: pieceHealth
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 11486610, guid: eec4267e6878ee34dba7cab1bcec6d5a, type: 2}
+      propertyPath: pieceMass
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11412324, guid: eec4267e6878ee34dba7cab1bcec6d5a, type: 2}
+      propertyPath: healthSlider
+      value: 
+      objectReference: {fileID: 1481430600}
+    - target: {fileID: 11412324, guid: eec4267e6878ee34dba7cab1bcec6d5a, type: 2}
+      propertyPath: pieceHealth
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 11412324, guid: eec4267e6878ee34dba7cab1bcec6d5a, type: 2}
+      propertyPath: pieceMass
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 13572796, guid: eec4267e6878ee34dba7cab1bcec6d5a, type: 2}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: eec4267e6878ee34dba7cab1bcec6d5a, type: 2}
   m_IsPrefabParent: 0
