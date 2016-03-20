@@ -1096,6 +1096,7 @@ GameObject:
   - 33: {fileID: 1927742991}
   - 65: {fileID: 1927742990}
   - 23: {fileID: 1927742989}
+  - 54: {fileID: 1927742993}
   m_Layer: 0
   m_Name: Obstacle2
   m_TagString: Untagged
@@ -1160,6 +1161,21 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 7
+--- !u!54 &1927742993
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1927742988}
+  serializedVersion: 2
+  m_Mass: 2000
+  m_Drag: 0
+  m_AngularDrag: 0
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 126
+  m_CollisionDetection: 0
 --- !u!1001 &1975535053
 Prefab:
   m_ObjectHideFlags: 0
