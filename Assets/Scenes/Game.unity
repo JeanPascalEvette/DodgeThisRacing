@@ -331,3 +331,4 @@ MonoBehaviour:
   NumberOfTrackParts: 6
   NumberOfCars: 1
   Track: {fileID: 0}
+  obstacleList: []
