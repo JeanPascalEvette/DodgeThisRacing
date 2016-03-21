@@ -67,14 +67,14 @@ public class MoveSelector : MonoBehaviour {
             if (is_this_inside && !thisPlayerReady && Input.GetButtonDown("ButtonAArrows"))
             {
                 //thisPlayerReady = true;
-                l.num_ready_players++;
+               // l.num_ready_players++;
 
             }
 
             if (is_this_inside && thisPlayerReady && Input.GetButtonDown("ButtonXArrows"))
             {
                 //thisPlayerReady = false;
-                l.num_ready_players--;
+               // l.num_ready_players--;
 
             }
 
@@ -96,14 +96,14 @@ public class MoveSelector : MonoBehaviour {
             if (is_this_inside && !thisPlayerReady && Input.GetButtonDown("ButtonAWSDA"))
             {
                // thisPlayerReady = true;
-                l.num_ready_players++;
+               // l.num_ready_players++;
 
             }
 
             if (is_this_inside && thisPlayerReady && Input.GetButtonDown("ButtonXWSDA"))
             {
                 //thisPlayerReady = false;
-                l.num_ready_players--;
+                //l.num_ready_players--;
 
             }
 
@@ -125,7 +125,7 @@ public class MoveSelector : MonoBehaviour {
             if (is_this_inside && !thisPlayerReady && Input.GetButtonDown("ButtonAJoyStick1"))
             {
                 //thisPlayerReady = true;
-                l.num_ready_players++;
+               // l.num_ready_players++;
 
             }
 
@@ -133,7 +133,7 @@ public class MoveSelector : MonoBehaviour {
             if (is_this_inside && thisPlayerReady && Input.GetButtonDown("ButtonXJoyStick1"))
             {
                 //thisPlayerReady = false;
-                l.num_ready_players--;
+                //l.num_ready_players--;
 
             }
 
@@ -154,14 +154,14 @@ public class MoveSelector : MonoBehaviour {
             if (is_this_inside && !thisPlayerReady && Input.GetButtonDown("ButtonAJoyStick2"))
             {
                 //thisPlayerReady = true;
-                l.num_ready_players++;
+                //l.num_ready_players++;
 
             }
 
             if (is_this_inside && thisPlayerReady && Input.GetButtonDown("ButtonXJoyStick2"))
             {
                 //thisPlayerReady = false;
-                l.num_ready_players--;
+               // l.num_ready_players--;
 
             }
 

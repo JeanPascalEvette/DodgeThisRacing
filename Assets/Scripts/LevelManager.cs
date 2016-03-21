@@ -78,7 +78,9 @@ public class LevelManager : MonoBehaviour
 
     void Update()
     {
-        print(num_players);
+        print("num players: " + num_players);
+
+        print("ready players: " + num_ready_players);
 
         CheckWhichInput();
 

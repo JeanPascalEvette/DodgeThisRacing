@@ -86,6 +86,7 @@ public class IconCollider : MonoBehaviour {
 
                 t.transform.parent = Car.transform;
                 Car.GetComponent<Collider2D>().enabled = false;
+                l.num_ready_players++;
                 print(Car.name);
             }
 
@@ -94,6 +95,7 @@ public class IconCollider : MonoBehaviour {
 
                 t.transform.parent = old;
                 Car.GetComponent<Collider2D>().enabled = true;
+                l.num_ready_players--;
 
             }
 
@@ -109,6 +111,7 @@ public class IconCollider : MonoBehaviour {
 
                 t.transform.parent = Car.transform;
                 Car.GetComponent<Collider2D>().enabled = false;
+                l.num_ready_players++;
                 print("joy2 Select");
             }
 
@@ -117,6 +120,7 @@ public class IconCollider : MonoBehaviour {
 
                 t.transform.parent = old;
                 Car.GetComponent<Collider2D>().enabled = true;
+                l.num_ready_players--;
                 print("joy2 Taken");
             }
 
@@ -131,6 +135,7 @@ public class IconCollider : MonoBehaviour {
 
                 t.transform.parent = Car.transform;
                 Car.GetComponent<Collider2D>().enabled = false;
+                l.num_ready_players++;
                 print("arrows Select");
             }
 
@@ -139,6 +144,7 @@ public class IconCollider : MonoBehaviour {
 
                 t.transform.parent = old;
                 Car.GetComponent<Collider2D>().enabled = true;
+                l.num_ready_players--;
                 print("arrows Taken");
             }
 
@@ -153,6 +159,7 @@ public class IconCollider : MonoBehaviour {
 
                 t.transform.parent = Car.transform;
                 Car.GetComponent<Collider2D>().enabled = false;
+                l.num_ready_players++;
                 print("wsda Select");
             }
 
@@ -161,6 +168,7 @@ public class IconCollider : MonoBehaviour {
 
                 t.transform.parent = old;
                 Car.GetComponent<Collider2D>().enabled = true;
+                l.num_ready_players--;
                 print("wsda Taken");
             }
 
