@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 using System.Threading;
 
@@ -19,8 +20,15 @@ public class CarController : MonoBehaviour
     private Vector3 CenterOfGravity = new Vector3(0.2f, 0.5f, 0);
     private Vector3 currentCenterOfGravity = new Vector3(0.2f, 0.5f, 0);
 
+    // Health Variables
+    public int startingHealth = 100;
+    public int currentHealth;
+    public Slider healthSlider;
+    private float damageCaused;
+    bool carBroken;
+    bool carDamaged;
 
-    //
+    // Different variables
 
     public int currentGear;
     private float[] gears = { 2.9f, 1.20f, 0.92f, 0.85f, 0.83f, 0.80f, 0.78f }; //0 = Reverse
@@ -143,6 +151,9 @@ public class CarController : MonoBehaviour
 
   Physics.IgnoreLayerCollision(LayerMask.NameToLayer("DetachableObjects"), LayerMask.NameToLayer("CarCollisionHitbox"), true);
 
+        // We set the initial health of the car+
+        currentHealth = startingHealth;
+
     }
 
     void Update()
@@ -168,15 +179,15 @@ public class CarController : MonoBehaviour
             var textPlan = "";
             System.Collections.Generic.List<string> commands = new System.Collections.Generic.List<string>();
             int counter = 1;
-            for (int i = 0; i < 1.0f/Time.fixedDeltaTime; i++)
+            for (int i = 0; i < 1.0f / Time.fixedDeltaTime; i++)
             {
-                if(commands.Count > 0 && frameCounter - frameGenerated + i < plan.Length && commands[commands.Count-1] == plan[frameCounter - frameGenerated + i])
+                if (commands.Count > 0 && frameCounter - frameGenerated + i < plan.Length && commands[commands.Count - 1] == plan[frameCounter - frameGenerated + i])
                 {
                     counter++;
                 }
-                else if(plan.Length > frameCounter - frameGenerated + i && frameCounter - frameGenerated + i > 0)
+                else if (plan.Length > frameCounter - frameGenerated + i && frameCounter - frameGenerated + i > 0)
                 {
-                    if(commands.Count > 0)
+                    if (commands.Count > 0)
                     {
                         commands[commands.Count - 1] += "(x" + counter + ")";
                         counter = 1;
@@ -185,7 +196,7 @@ public class CarController : MonoBehaviour
                 }
             }
             commands[commands.Count - 1] += "(x" + counter + ")";
-            for(int i = 0; i < Mathf.Min(5, commands.Count); i++)
+            for (int i = 0; i < Mathf.Min(5, commands.Count); i++)
             {
                 textPlan = textPlan + commands[i] + "\n";
     }
@@ -222,8 +233,6 @@ public class CarController : MonoBehaviour
         {
             waitHandle.WaitOne(); //Run only if the handle has been set in fixedUpdate (i.e every 1sec)
 
-
-
             plan = planner.GetPlan(currentState); //Retrieve updated plan based on currentState
             
             //Log generated plan
@@ -243,8 +252,10 @@ public class CarController : MonoBehaviour
     void FixedUpdate()
     {
         float maxTurn = turning * Input.GetAxis("Horizontal");
-        LeftDirection.localRotation = Quaternion.Euler(0, maxTurn * 30, 0);
-        RightDirection.localRotation = Quaternion.Euler(0, maxTurn * 30, 0);
+        if(LeftDirection != null)
+            LeftDirection.localRotation = Quaternion.Euler(0, maxTurn * 30, 0);
+        if (RightDirectionq != null)
+            RightDirection.localRotation = Quaternion.Euler(0, maxTurn * 30, 0);
 
 
 
@@ -355,8 +366,10 @@ public class CarController : MonoBehaviour
         else
         {
             if (rpm < 5500)
-            {                                           //set a maximum speed that vehicle will reverse
-            TractionForce = transform.InverseTransformDirection(transform.forward) * -mCBrake;
+            {
+                //set a maximum speed that vehicle will reverse 
+                // We´ve added some differential ratio to be able go reverse and get away from obstacles
+                TractionForce = transform.InverseTransformDirection(transform.forward) * -mCBrake * differentialRatio;
         }
             else
             {
@@ -460,8 +473,6 @@ public class CarController : MonoBehaviour
         frontRightWheel.tyreLoad = WeightOnFrontWheels / 2;
         rearLeftWheel.tyreLoad = WeightOnRearWheels / 2;
         rearRightWheel.tyreLoad = WeightOnRearWheels / 2;
-
-
 
         //*********************** TORQUE REAR AXLE ***********************//
 

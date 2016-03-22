@@ -3,7 +3,11 @@ guid: b95682ccfc32e384e8438e52cce842b9
 folderAsset: yes
 timeCreated: 1457691627
 licenseType: Free
-DefaultImporter:
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
   userData: 
   assetBundleName: 
   assetBundleVariant: 
