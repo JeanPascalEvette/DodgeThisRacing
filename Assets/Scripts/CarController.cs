@@ -254,7 +254,7 @@ public class CarController : MonoBehaviour
         float maxTurn = turning * Input.GetAxis("Horizontal");
         if(LeftDirection != null)
             LeftDirection.localRotation = Quaternion.Euler(0, maxTurn * 30, 0);
-        if (RightDirectionq != null)
+        if (RightDirection != null)
             RightDirection.localRotation = Quaternion.Euler(0, maxTurn * 30, 0);
 
 
