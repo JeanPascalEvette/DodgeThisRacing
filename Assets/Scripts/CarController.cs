@@ -24,7 +24,6 @@ public class CarController : MonoBehaviour
     public int startingHealth = 100;
     public int currentHealth;
     public Slider healthSlider;
-    private float damageCaused;
     bool carBroken;
     bool carDamaged;
    
