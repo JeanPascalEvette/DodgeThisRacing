@@ -67,8 +67,13 @@ public class GameLogic : MonoBehaviour {
         }
         
     }
+
+    public int GetNumberOfTrackParts()
+    {
+        return trackPartsList.Count;
+    }
 	
-    void AddNewObstacle(GameObject trackPart)
+    void AddNewObstacle(GameObject trackPart, int trackPartId)
     {
         GameObject obstaclePrefab = Data.getObstacle();
         Vector3 startPos = trackPart.transform.position;
@@ -76,15 +81,17 @@ public class GameLogic : MonoBehaviour {
         var xPos = Random.Range(trackBounds.min.x*0.6f, trackBounds.max.x*0.6f);
         var yPos = startPos.y;
         var zPos = Random.Range(trackBounds.min.z, trackBounds.max.z);
-        var newObstacle = (GameObject)Instantiate(obstaclePrefab, new Vector3(xPos, yPos, zPos), obstaclePrefab.transform.rotation);
+        var newObstacle = (GameObject)Instantiate(obstaclePrefab, Vector3.zero, obstaclePrefab.transform.rotation);
         newObstacle.transform.parent = trackPart.transform;
+        newObstacle.GetComponent<ObstacleController>().SetupPosition(trackPartId);
         obstacleList.Add(newObstacle);
 
     }
 
     void AddNewTrackPart()
     {
-        GameObject trackPrefab = Data.getTrackPart();
+        int trackPartId = Random.Range(0, Data.GetNumberTrackPartAvailable());
+        GameObject trackPrefab = Data.getTrackPart(trackPartId);
         Vector3 startPos = new Vector3(0, 0, 0);
         if (trackPartsList.Count > 0)
         {
@@ -110,7 +117,7 @@ public class GameLogic : MonoBehaviour {
         trackPartsList.Add(newTrackPart);
         newTrackPart.transform.parent = Track.transform;
         if(trackPartsList.Count != 1)
-            AddNewObstacle(newTrackPart);
+            AddNewObstacle(newTrackPart, trackPartId);
 
         if (trackPartsList.Count == NumberOfTrackParts)
         {

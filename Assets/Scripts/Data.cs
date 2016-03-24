@@ -41,11 +41,15 @@ public class Data : MonoBehaviour {
 	
 	}
 
-    public static GameObject getTrackPart()
+    public static int GetNumberTrackPartAvailable()
     {
-        if (TrackPartsAvailable == null || TrackPartsAvailable.Length == 0)
+        return TrackPartsAvailable.Length;
+    }
+
+    public static GameObject getTrackPart(int choice)
+    {
+        if (TrackPartsAvailable == null || TrackPartsAvailable.Length < choice)
             return null;
-        int choice = Random.Range(0, TrackPartsAvailable.Length);
         return TrackPartsAvailable[choice];
     }
 
