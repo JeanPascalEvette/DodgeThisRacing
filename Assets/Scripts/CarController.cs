@@ -89,14 +89,17 @@ public class CarController : MonoBehaviour
     private static int carCounter = 0;
     // private bool showDebug = false;
 
+    AudioSource audio;
+
     // public GUISkin aSkin;
 
     private AIController myAI;
-    enum ControlScheme {WASD, Arrows, XboxController1, XboxController2};
+    public enum ControlScheme {WASD, Arrows, XboxController1, XboxController2};
+    public ControlScheme specificControl;
 
     // Use this for initialization
     void Start()
-    {
+    {   
         myAI = GetComponent<AIController>();
         carUniqueID = carCounter++;
         // allCars = GameObject.FindGameObjectsWithTag("Player");
@@ -128,6 +131,8 @@ public class CarController : MonoBehaviour
 
         Physics.IgnoreLayerCollision(LayerMask.NameToLayer("DetachableObjects"), LayerMask.NameToLayer("CarCollisionHitbox"), true);
 
+        audio = GetComponent<AudioSource>();
+        audio.pitch = (rpm / 10000) + 0.7f; // formula to reach ideal pitch from rpm
     }
 
     void Update()
@@ -191,8 +196,6 @@ public class CarController : MonoBehaviour
              }
          } 
      }*/
-
-
     /* GameObject getCarByUniqueID(int id)
      {
          foreach (var car in allCars)
@@ -200,7 +203,6 @@ public class CarController : MonoBehaviour
                  return car;
          return null;
      }   */
-
     /* void retrievePlanner()
      {
          while (true) //Loop continuously after started
@@ -383,6 +385,13 @@ public class CarController : MonoBehaviour
             rpm = (newVehicleSpeed * 2.5f) * gears[currentGear] * differentialRatio * 60.0f / 6.28f;           //rpm measurement
         }
 
+        else if (speed < 1 && newVehicleSpeed > 1)
+        {
+            Debug.Log("In here? ");
+            rpm = (newVehicleSpeed * 2.5f) * gears[currentGear] * differentialRatio * 60.0f / 6.28f;           //rpm measurement
+
+        }
+
         if (rpm >= 1000.0f && rpm < 5000.0f)
         {
             rpmToTorque = ((rpm - 1000.0f) * 0.012f) + 300.0f;                                          // rpm converter to torque from 1000- 5000 rpm
@@ -394,8 +403,9 @@ public class CarController : MonoBehaviour
             rpmToTorque = 300.0f - (rpm * 0.05f) + 300.0f;
         }
 
-        if (rpm < 1000.0f && speed != 0)
+        if (rpm < 1000.0f && speed < 1)
         {                                                               // when rpm gets below 1000 gear is decreased
+
             decreaseGear();
         }
 
@@ -457,7 +467,7 @@ public class CarController : MonoBehaviour
         //*********************** END ANGULAR ACCELERATION TO BE APPLIED TO DRIVE WHEELS ***********************//
 
 
-
+        soundOfEngine();
 
     }
 
@@ -501,8 +511,9 @@ public class CarController : MonoBehaviour
 
     private bool IsGoing(char direction)
     {
+        
         KeyCode directionCode = KeyCode.W;
-        if (true)//Here check for Control Scheme
+        if (specificControl == ControlScheme.WASD)
         {
             if (direction == 'W')
                 directionCode = KeyCode.W;
@@ -513,6 +524,40 @@ public class CarController : MonoBehaviour
             else if (direction == 'D')
                 directionCode = KeyCode.D;
         }
+        else if (specificControl == ControlScheme.Arrows)
+        {
+            if (direction == 'W')
+                directionCode = KeyCode.UpArrow;
+            else if (direction == 'S')
+                directionCode = KeyCode.DownArrow;
+            if (direction == 'A')
+                directionCode = KeyCode.LeftArrow;
+            else if (direction == 'D')
+                directionCode = KeyCode.RightArrow;
+        }
+        else if (specificControl == ControlScheme.XboxController1)
+        {
+            if (direction == 'W')
+                directionCode = KeyCode.W;
+            else if (direction == 'S')
+                directionCode = KeyCode.S;
+            if (direction == 'A')
+                directionCode = KeyCode.A;
+            else if (direction == 'D')
+                directionCode = KeyCode.D;
+        }
+        else if (specificControl == ControlScheme.XboxController2)
+        {
+            if (direction == 'W')
+                directionCode = KeyCode.W;
+            else if (direction == 'S')
+                directionCode = KeyCode.S;
+            if (direction == 'A')
+                directionCode = KeyCode.A;
+            else if (direction == 'D')
+                directionCode = KeyCode.D;
+        }
+
 
         if (myAI == null)
         {
@@ -532,6 +577,12 @@ public class CarController : MonoBehaviour
             else
                 return false;
         }
+    }
+
+    private void soundOfEngine()
+    {
+        //0.70 - 1.20  probably ideal pitch for looping through
+        audio.pitch = (rpm / 10000) + 0.7f; // formula to reach ideal pitch from rpm
     }
 
 }
