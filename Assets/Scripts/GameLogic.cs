@@ -84,7 +84,11 @@ public class GameLogic : MonoBehaviour {
 
     void AddNewTrackPart()
     {
-        GameObject trackPrefab = Data.getTrackPart();
+        GameObject trackPrefab;
+        if(trackPartsList.Count == 0)
+            trackPrefab = Data.getTrackPart(0);
+        else
+            trackPrefab = Data.getTrackPart();
         Vector3 startPos = new Vector3(0, 0, 0);
         if (trackPartsList.Count > 0)
         {
