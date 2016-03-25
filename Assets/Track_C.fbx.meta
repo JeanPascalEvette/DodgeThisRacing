@@ -13,6 +13,7 @@ ModelImporter:
     100010: //RootNode
     100012: AI_C
     100014: Wall_C
+    100016: Guard_C
     400000: Cliff_C
     400002: Narrow_C
     400004: Road_C
@@ -21,6 +22,7 @@ ModelImporter:
     400010: //RootNode
     400012: AI_C
     400014: Wall_C
+    400016: Guard_C
     2300000: Cliff_C
     2300002: Narrow_C
     2300004: Road_C
@@ -28,6 +30,7 @@ ModelImporter:
     2300008: Side_C
     2300010: AI_C
     2300012: Wall_C
+    2300014: Guard_C
     3300000: Cliff_C
     3300002: Narrow_C
     3300004: Road_C
@@ -35,6 +38,7 @@ ModelImporter:
     3300008: Side_C
     3300010: AI_C
     3300012: Wall_C
+    3300014: Guard_C
     4300000: Cliff_C
     4300002: Road_C
     4300004: Narrow_C
@@ -42,6 +46,7 @@ ModelImporter:
     4300008: Side_C
     4300010: Wall_C
     4300012: AI_C
+    4300014: Guard_C
   materials:
     importMaterials: 1
     materialName: 0
