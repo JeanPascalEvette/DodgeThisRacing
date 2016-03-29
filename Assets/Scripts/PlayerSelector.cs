@@ -207,7 +207,7 @@ public class PlayerSelector : MonoBehaviour
                         cpuText.text = nameplayer;
                         t.text = nameplayer;
 
-                        playerCoin.transform.position = m.playerPosition;//check this
+                       
 
                         //t.text = nameplayer;
 
@@ -289,7 +289,7 @@ public class PlayerSelector : MonoBehaviour
                             l.is_wsda_taken = false;
                         }
 
-                        if (m.playerID == 1) { l.is_p1_active = false; }
+                        if      (m.playerID == 1) { l.is_p1_active = false; }
                         else if (m.playerID == 2) { l.is_p2_active = false; }
                         else if (m.playerID == 3) { l.is_p3_active = false; }
                         else if (m.playerID == 4) { l.is_p4_active = false; }
@@ -303,6 +303,8 @@ public class PlayerSelector : MonoBehaviour
                     }
 
                     switch_case = 0;
+
+                    playerCoin.transform.position = m.playerPosition;
 
                     if      (Car1.ThisCarSelected == true && m.playerID == Car1.ID) { Car1.CheckPlayerActivation();}
                     else if (Car2.ThisCarSelected == true && m.playerID == Car2.ID) { Car2.CheckPlayerActivation();}
