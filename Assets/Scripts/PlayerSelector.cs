@@ -313,6 +313,7 @@ public class PlayerSelector : MonoBehaviour
 
                     CPU_Controls = 0;
                     t.text = "N/A";
+                    cpuText.text = nameplayer;
 
                     break;
             }
