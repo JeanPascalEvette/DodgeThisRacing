@@ -2,19 +2,14 @@
 using System.Collections;
 using UnityEngine.UI;
 
-//This Script is attached 
+//This Script is attached to each Car Icon to detect if this car has been chosen by the player
 public class IconCollider : MonoBehaviour {
 
-
-    Text TextColorCar;
-
-    LevelManager l;
-
-    MoveSelector m; // Script attached to the player objects (player, player2 etc.)
-
-    ButtonCollider b; // Scripts attached to the coins objects (coin1, coin2 etc.)
-
-    GameObject t;
+    Text TextColorCar;//An instance of the text object of the Car icons
+    LevelManager l;   //An instance of LevelManager
+    MoveSelector m;   //An instance of MoveSelector. Script attached to the Cursor/player objects (player, player2 etc.) to handle its movements
+    ButtonCollider b; //An instance of ButtonCollider. Scripts attached to the coins objects (coin1, coin2 etc.) to detect if the cursor is near the coin
+    GameObject t;     //Generic GameoBject to be used in the script and assigned under certain conditions
 
     public PlayerSelector p1, p2, p3, p4;
 
