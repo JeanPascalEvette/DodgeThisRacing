@@ -2,6 +2,7 @@
 using System.Collections;
 using UnityEngine.UI;
 
+//This Script is attached 
 public class IconCollider : MonoBehaviour {
 
 
@@ -208,11 +209,12 @@ public class IconCollider : MonoBehaviour {
 
             t.transform.parent = old;
             t.transform.position = m.CoinPosition;
+
             TextColorCar.color = Color.white;
+
             Car.GetComponent<Collider2D>().enabled = true;
 
             if (ThisCarSelected) { l.num_ready_players--; }
-
             ThisCarSelected = false;
 
         }

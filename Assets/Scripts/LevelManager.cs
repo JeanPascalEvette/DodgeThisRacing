@@ -5,25 +5,24 @@ using UnityEngine.UI;
 //Script that controls the overall Stats of the GUI
 public class LevelManager : MonoBehaviour
 {
-    //The GameObjects of the Cursors for each player
+    //The GameObjects of the Cursors for each player (Assigned in the Inspector)
     public GameObject player;
     public GameObject player2;
     public GameObject player3;
     public GameObject player4;
 
-    //The Gameobjects of the Panels referring to each player
+    //The Gameobjects of the Panels referring to each player (Assigned in the Inspector)
     public GameObject panel1;
     public GameObject panel2;
     public GameObject panel3;
     public GameObject panel4;
 
-    //Objects to access the script MoveSelector (handling how the cursors move and behave) for each player
+    //Objects to access the script MoveSelector (handling how the cursors move and behave) for each player (Assigned in the Inspector)
     MoveSelector player1move;
     MoveSelector player2move;
     MoveSelector player3move;
     MoveSelector player4move;
 
-    
     MoveSelector newPlayer; //A generic MoveSelector object that gets assigned to a player on its activation
     PlayerSelector ps; //An instance of the script PlayerSelector (handles how the panels behave)
 
@@ -159,28 +158,24 @@ public class LevelManager : MonoBehaviour
         {
             newPlayer = player1move;
             ps = panel1.GetComponent<PlayerSelector>();
-            //setControlScheme();
         }
 
         else if (is_p2_active == true && player2move.ThisPlayerControl == MoveSelector.ControlTypesHere.NotAssigned)
         {
             newPlayer = player2move;
             ps = panel2.GetComponent<PlayerSelector>();
-           // setControlScheme();
         }
 
         else if (is_p3_active == true && player3move.ThisPlayerControl == MoveSelector.ControlTypesHere.NotAssigned)
         {
             newPlayer = player3move;
             ps = panel3.GetComponent<PlayerSelector>();
-           // setControlScheme();
         }
 
         else if (is_p4_active == true && player4move.ThisPlayerControl == MoveSelector.ControlTypesHere.NotAssigned)
         {
             newPlayer = player4move;
             ps = panel4.GetComponent<PlayerSelector>();
-           // setControlScheme();
         }
 
         //If there are no active players it creates a new player and assigns the control scheme detected
@@ -196,7 +191,6 @@ public class LevelManager : MonoBehaviour
                 newPlayer = player1move;
                 is_p1_active = true;
                 ps = panel1.GetComponent<PlayerSelector>();
-                //setControlScheme();
                 break;
 
             case 2:
@@ -204,7 +198,6 @@ public class LevelManager : MonoBehaviour
                 newPlayer = player2move;
                 is_p2_active = true;
                 ps = panel2.GetComponent<PlayerSelector>();
-                //setControlScheme();
                 break;
 
             case 3:
@@ -212,7 +205,6 @@ public class LevelManager : MonoBehaviour
                 newPlayer = player3move;
                 is_p3_active = true;
                 ps = panel3.GetComponent<PlayerSelector>();
-                //setControlScheme();
                 break;
 
             case 4:
@@ -220,7 +212,6 @@ public class LevelManager : MonoBehaviour
                 newPlayer = player4move;
                 is_p4_active = true;
                 ps = panel4.GetComponent<PlayerSelector>();
-                //setControlScheme();
                 break;
 
             default:
