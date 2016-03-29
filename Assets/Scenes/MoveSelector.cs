@@ -5,6 +5,8 @@ public class MoveSelector : MonoBehaviour {
 
     public GameObject playerButton;
 
+    public Vector3 playerPosition;
+
     float move_player = 5.0f;
 
     public LevelManager l;
@@ -16,6 +18,10 @@ public class MoveSelector : MonoBehaviour {
     public bool is_this_active = false;
 
     public bool is_on_button1 = false;
+
+    public GameObject Coin;
+
+    public Vector3 CoinPosition;
 
    
 
@@ -37,7 +43,9 @@ public class MoveSelector : MonoBehaviour {
     void Start () {
 
         l = GameObject.FindWithTag("LevelManager").GetComponent<LevelManager>();
-
+        
+        CoinPosition = Coin.transform.position;
+        playerPosition = playerButton.transform.position;
     }
 
     // Update is called once per frame

@@ -13,6 +13,8 @@ public class PlayerSelector : MonoBehaviour
     string nameplayer;
     public GameObject playerCoin;
 
+    public IconCollider Car1, Car2, Car3, Car4;
+
     bool is_CPU = false;
 
     public LevelManager l;
@@ -204,6 +206,9 @@ public class PlayerSelector : MonoBehaviour
                         playerCoin.SetActive(true);
                         cpuText.text = nameplayer;
                         t.text = nameplayer;
+
+                        playerCoin.transform.position = m.playerPosition;//check this
+
                         //t.text = nameplayer;
 
                         if (l.num_players < m.playerID) { l.num_players++; }
@@ -298,6 +303,12 @@ public class PlayerSelector : MonoBehaviour
                     }
 
                     switch_case = 0;
+
+                    if      (Car1.ThisCarSelected == true && m.playerID == Car1.ID) { Car1.CheckPlayerActivation();}
+                    else if (Car2.ThisCarSelected == true && m.playerID == Car2.ID) { Car2.CheckPlayerActivation();}
+                    else if (Car3.ThisCarSelected == true && m.playerID == Car3.ID) { Car3.CheckPlayerActivation();}
+                    else if (Car4.ThisCarSelected == true && m.playerID == Car4.ID) { Car4.CheckPlayerActivation();}
+
                     CPU_Controls = 0;
                     t.text = "N/A";
 

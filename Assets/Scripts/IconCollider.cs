@@ -14,6 +14,9 @@ public class IconCollider : MonoBehaviour {
 
     GameObject t;
 
+    public PlayerSelector p1, p2, p3, p4;
+
+    public int ID = 0;
  
 
     Transform old;
@@ -21,6 +24,8 @@ public class IconCollider : MonoBehaviour {
     private bool isActive;
 
     public GameObject Car;
+
+    public bool ThisCarSelected = false;
 
     void Start()
     {
@@ -49,6 +54,8 @@ public class IconCollider : MonoBehaviour {
         b = trigger.GetComponent<ButtonCollider>();
    
         m.is_this_inside = true;
+
+        ID = m.playerID;
    
         t = trigger.gameObject;
 
@@ -87,6 +94,8 @@ public class IconCollider : MonoBehaviour {
                 t.transform.parent = Car.transform;
                 Car.GetComponent<Collider2D>().enabled = false;
                 l.num_ready_players++;
+
+                ThisCarSelected = true;
                 print(Car.name);
             }
 
@@ -96,6 +105,8 @@ public class IconCollider : MonoBehaviour {
                 t.transform.parent = old;
                 Car.GetComponent<Collider2D>().enabled = true;
                 l.num_ready_players--;
+
+                ThisCarSelected = false;
 
             }
 
@@ -113,6 +124,8 @@ public class IconCollider : MonoBehaviour {
                 Car.GetComponent<Collider2D>().enabled = false;
                 l.num_ready_players++;
                 print("joy2 Select");
+
+                ThisCarSelected = true;
             }
 
             if (Input.GetButtonDown("ButtonXJoyStick2") && l.is_joy2_taken && m.is_this_inside == true && b.is_player_near)
@@ -122,6 +135,8 @@ public class IconCollider : MonoBehaviour {
                 Car.GetComponent<Collider2D>().enabled = true;
                 l.num_ready_players--;
                 print("joy2 Taken");
+
+                ThisCarSelected = false;
             }
 
         }
@@ -137,6 +152,8 @@ public class IconCollider : MonoBehaviour {
                 Car.GetComponent<Collider2D>().enabled = false;
                 l.num_ready_players++;
                 print("arrows Select");
+
+                ThisCarSelected = true;
             }
 
             if (Input.GetButtonDown("ButtonXArrows") && l.is_arrowKeys_taken && m.is_this_inside == true && b.is_player_near)
@@ -146,6 +163,7 @@ public class IconCollider : MonoBehaviour {
                 Car.GetComponent<Collider2D>().enabled = true;
                 l.num_ready_players--;
                 print("arrows Taken");
+                ThisCarSelected = false;
             }
 
         }
@@ -161,6 +179,8 @@ public class IconCollider : MonoBehaviour {
                 Car.GetComponent<Collider2D>().enabled = false;
                 l.num_ready_players++;
                 print("wsda Select");
+
+                ThisCarSelected = true;
             }
 
             if (Input.GetButtonDown("ButtonXWSDA") && l.is_wsda_taken && m.is_this_inside == true && b.is_player_near)
@@ -170,10 +190,29 @@ public class IconCollider : MonoBehaviour {
                 Car.GetComponent<Collider2D>().enabled = true;
                 l.num_ready_players--;
                 print("wsda Taken");
+
+                ThisCarSelected = false;
             }
 
         }
 
+       
+
+    }
+
+    public void CheckPlayerActivation() {
+
+       // if (p2.switch_case == 0)
+        {
+
+            t.transform.parent = old;
+            t.transform.position = m.CoinPosition;
+            TextColorCar.color = Color.white;
+            Car.GetComponent<Collider2D>().enabled = true;
+
+            if (ThisCarSelected) { l.num_ready_players--; }
+
+        }
 
     }
 
