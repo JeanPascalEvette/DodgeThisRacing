@@ -140,12 +140,6 @@ public class PlayerSelector : MonoBehaviour
 
         
 
-       
-
-
-
-
-
     }
 
     void switch_reset()

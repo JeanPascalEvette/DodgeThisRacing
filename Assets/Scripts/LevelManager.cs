@@ -4,53 +4,48 @@ using UnityEngine.UI;
 
 public class LevelManager : MonoBehaviour
 {
-
+    //The GameObjects of the Cursors for each player
     public GameObject player;
     public GameObject player2;
     public GameObject player3;
     public GameObject player4;
 
+    //The Gameobjects of the Panels referring to each player
     public GameObject panel1;
     public GameObject panel2;
     public GameObject panel3;
     public GameObject panel4;
 
+    //Objects to access the script MoveSelector (handling how the cursors move and behave) for each player
     MoveSelector player1move;
     MoveSelector player2move;
     MoveSelector player3move;
     MoveSelector player4move;
 
-    MoveSelector newPlayer;
+    
+    MoveSelector newPlayer; //A generic MoveSelector object that gets assigned to a player on its activation
+    PlayerSelector ps; //An instance of the script PlayerSelector (handles how the panels behave)
 
-    PlayerSelector ps;
+    public Text TextColorGo; //An instance of the Text Element of the GO Object
+    float move_player = 5.0f; //Speed at which the cursors move around
 
-    public Text TextColorGo;
-    float move_player = 5.0f;
+    
+    public int num_players; //The number of active players
+    public int num_ready_players;  //The number of players that have selected a car and are ready to start
 
-    bool Selected = false;
-    public bool is_inside = false; // Delete this later
-
-    public int num_players;
-    public int num_active;
-
-    public int num_ready_players;
-
+    //Parameters to handle the movement of the cursors
     float translationX;
     float translationY;
 
-    Text TextColorCar;
-    Text Player2text;
-
     
-    public bool is_joy1_taken, is_arrowKeys_taken, is_wsda_taken, is_joy2_taken = false;
-    public bool is_joy1_used, is_arrowKeys_used, is_wsda_used, is_joy2_used = false;
-    public bool is_p1_active, is_p2_active, is_p3_active, is_p4_active = false;
-  
+    public bool is_joy1_taken, is_arrowKeys_taken, is_wsda_taken, is_joy2_taken = false; //Bool variables to check if a control type has already been assigned or not
+    public bool is_joy1_used, is_arrowKeys_used, is_wsda_used, is_joy2_used = false; //Bool variables to check if a control type is being used at that moment
+    public bool is_p1_active, is_p2_active, is_p3_active, is_p4_active = false; //Bool Variable to check if each player is active or not
 
+    //Initialization. Player 1 is set active by default and controllable with Joystick 1
     void Start()
     {
         num_players = 1;
-        num_active = 1;
         num_ready_players = 0;
 
         TextColorGo = GameObject.FindWithTag("Go").GetComponent<Text>();
@@ -71,33 +66,31 @@ public class LevelManager : MonoBehaviour
         player1move.ThisPlayerControl = MoveSelector.ControlTypesHere.Joy1;
         is_joy1_taken = true;
 
-
-
     }
 
 
     void Update()
     {
+        //Debug messages (Delete Later on)
         print("num players: " + num_players);
-
         print("ready players: " + num_ready_players);
 
-        CheckWhichInput();
-
-        CheckControlinUse();
+        CheckWhichInput();    //Function to detect a control input
+        CheckControlinUse();  //Function to keep the current control scheme used by each player up to date
 
         //If all players have selected their cars the GO text becomes green
         if (num_players == num_ready_players)
         {
             TextColorGo.color = Color.green;
 
-            //If B or Start is pressed when GO text is green the main game is loaded
+            //If Enter or Start is pressed when GO text is green the main game is loaded
             if (Input.GetButtonDown("Submit") || Input.GetButtonDown("SubmitJoystick")) { LoadLevel("main2"); }
         }
 
         else { TextColorGo.color = Color.white; }
 
     }
+
 
     //Function to load the main game scene
     public void LoadLevel(string name)
@@ -107,9 +100,10 @@ public class LevelManager : MonoBehaviour
 
     }
 
-
+    //Function to detect a control input
     void CheckWhichInput() {
 
+        //Can probably be cut down to less code lines
         if (
 
        (
@@ -163,43 +157,42 @@ public class LevelManager : MonoBehaviour
 
     }
 
+    //Function that creates the player and assigns a control scheme to it as detected by the input or if the player is already active it just assigns the control scheme detected
     void Create_Player()
     {
+        //If some Players are already active it assigns a control scheme to them (works progressively from player 1 to 4)
         if (is_p1_active == true && player1move.ThisPlayerControl == MoveSelector.ControlTypesHere.NotAssigned)
         {
             newPlayer = player1move;
             ps = panel1.GetComponent<PlayerSelector>();
-            //ps.CPU_Controls = 1;
-            setControlScheme();
+            //setControlScheme();
         }
 
         else if (is_p2_active == true && player2move.ThisPlayerControl == MoveSelector.ControlTypesHere.NotAssigned)
         {
             newPlayer = player2move;
             ps = panel2.GetComponent<PlayerSelector>();
-           // ps.CPU_Controls = 1;
-            setControlScheme();
+           // setControlScheme();
         }
 
         else if (is_p3_active == true && player3move.ThisPlayerControl == MoveSelector.ControlTypesHere.NotAssigned)
         {
             newPlayer = player3move;
             ps = panel3.GetComponent<PlayerSelector>();
-            //ps.CPU_Controls = 1;
-            setControlScheme();
+           // setControlScheme();
         }
 
         else if (is_p4_active == true && player4move.ThisPlayerControl == MoveSelector.ControlTypesHere.NotAssigned)
         {
             newPlayer = player4move;
             ps = panel4.GetComponent<PlayerSelector>();
-            //ps.CPU_Controls = 1;
-            setControlScheme();
+           // setControlScheme();
         }
 
+        //If there are no active players it creates a new player and assigns the control scheme detected
         else {
 
-        num_players++;
+            num_players++;
 
             switch (num_players)
         {
@@ -209,11 +202,7 @@ public class LevelManager : MonoBehaviour
                 newPlayer = player1move;
                 is_p1_active = true;
                 ps = panel1.GetComponent<PlayerSelector>();
-
-               // ps.CPU_Controls = 1;
-
-                setControlScheme();
-
+                //setControlScheme();
                 break;
 
             case 2:
@@ -221,10 +210,7 @@ public class LevelManager : MonoBehaviour
                 newPlayer = player2move;
                 is_p2_active = true;
                 ps = panel2.GetComponent<PlayerSelector>();
-
-               // ps.CPU_Controls = 1;
-
-                setControlScheme();
+                //setControlScheme();
                 break;
 
             case 3:
@@ -232,10 +218,7 @@ public class LevelManager : MonoBehaviour
                 newPlayer = player3move;
                 is_p3_active = true;
                 ps = panel3.GetComponent<PlayerSelector>();
-
-               // ps.CPU_Controls = 1;
-
-                setControlScheme();
+                //setControlScheme();
                 break;
 
             case 4:
@@ -243,14 +226,10 @@ public class LevelManager : MonoBehaviour
                 newPlayer = player4move;
                 is_p4_active = true;
                 ps = panel4.GetComponent<PlayerSelector>();
-
-               // ps.CPU_Controls = 1;
-
-                setControlScheme();
+                //setControlScheme();
                 break;
 
             default:
-                //num_players = 4;  //double check this
                 break;
 
         }
@@ -261,16 +240,14 @@ public class LevelManager : MonoBehaviour
 
         }
 
-       // ps.CPU_Controls = 1;
-       // ps.switch_case = 1;
-
-
+        setControlScheme();
     }
 
+    //Function that assigns a control Scheme to a specific player as detected by the input
     void setControlScheme()
     {
         
-
+        //If the Control Scheme is not already in use and is the one being currently detected assign it to the Player
         if (!is_arrowKeys_taken && is_arrowKeys_used)
 
         {
@@ -314,9 +291,10 @@ public class LevelManager : MonoBehaviour
 
     }
 
+    //Keep the control schemes in use updated
     void CheckControlinUse() {
 
-        if (player1move.ThisPlayerControl == MoveSelector.ControlTypesHere.Joy1
+        if (    player1move.ThisPlayerControl == MoveSelector.ControlTypesHere.Joy1
                                ||
                 player2move.ThisPlayerControl == MoveSelector.ControlTypesHere.Joy1
                                ||
@@ -325,9 +303,11 @@ public class LevelManager : MonoBehaviour
                 player4move.ThisPlayerControl == MoveSelector.ControlTypesHere.Joy1
 
            )
-        { is_joy1_taken = true; }
+
+             { is_joy1_taken = true; }
 
         else { is_joy1_taken = false; }
+
 
         if (player1move.ThisPlayerControl == MoveSelector.ControlTypesHere.Joy2
                                ||
@@ -338,9 +318,11 @@ public class LevelManager : MonoBehaviour
                 player4move.ThisPlayerControl == MoveSelector.ControlTypesHere.Joy2
 
            )
-        { is_joy2_taken = true; }
+
+             { is_joy2_taken = true; }
 
         else { is_joy2_taken = false; }
+
 
         if (player1move.ThisPlayerControl == MoveSelector.ControlTypesHere.ArrowKeys
                             ||
@@ -351,7 +333,7 @@ public class LevelManager : MonoBehaviour
              player4move.ThisPlayerControl == MoveSelector.ControlTypesHere.ArrowKeys
 
         )
-        { is_arrowKeys_taken = true; }
+             { is_arrowKeys_taken = true; }
 
         else { is_arrowKeys_taken = false; }
 
@@ -364,13 +346,10 @@ public class LevelManager : MonoBehaviour
              player4move.ThisPlayerControl == MoveSelector.ControlTypesHere.WSDA
 
         )
-        { is_wsda_taken = true; }
+
+             { is_wsda_taken = true; }
 
         else { is_wsda_taken = false; }
 
-
-
     }
-
-
 }

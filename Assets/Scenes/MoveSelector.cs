@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+//This Script is attached to all the Cursors (Player, Player2, etc.) Objects
 public class MoveSelector : MonoBehaviour {
 
     public GameObject playerButton;

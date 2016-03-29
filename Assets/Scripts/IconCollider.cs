@@ -6,6 +6,7 @@ public class IconCollider : MonoBehaviour {
 
 
     Text TextColorCar;
+
     LevelManager l;
 
     MoveSelector m; // Script attached to the player objects (player, player2 etc.)
@@ -202,7 +203,7 @@ public class IconCollider : MonoBehaviour {
 
     public void CheckPlayerActivation() {
 
-       // if (p2.switch_case == 0)
+
         {
 
             t.transform.parent = old;
