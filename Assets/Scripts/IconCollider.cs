@@ -212,6 +212,8 @@ public class IconCollider : MonoBehaviour {
 
             if (ThisCarSelected) { l.num_ready_players--; }
 
+            ThisCarSelected = false;
+
         }
 
     }
