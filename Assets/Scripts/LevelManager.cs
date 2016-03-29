@@ -2,6 +2,7 @@
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
+//Script that controls the overall Stats of the GUI
 public class LevelManager : MonoBehaviour
 {
     //The GameObjects of the Cursors for each player
@@ -27,17 +28,10 @@ public class LevelManager : MonoBehaviour
     PlayerSelector ps; //An instance of the script PlayerSelector (handles how the panels behave)
 
     public Text TextColorGo; //An instance of the Text Element of the GO Object
-    float move_player = 5.0f; //Speed at which the cursors move around
-
-    
+   
     public int num_players; //The number of active players
     public int num_ready_players;  //The number of players that have selected a car and are ready to start
 
-    //Parameters to handle the movement of the cursors
-    float translationX;
-    float translationY;
-
-    
     public bool is_joy1_taken, is_arrowKeys_taken, is_wsda_taken, is_joy2_taken = false; //Bool variables to check if a control type has already been assigned or not
     public bool is_joy1_used, is_arrowKeys_used, is_wsda_used, is_joy2_used = false; //Bool variables to check if a control type is being used at that moment
     public bool is_p1_active, is_p2_active, is_p3_active, is_p4_active = false; //Bool Variable to check if each player is active or not
