@@ -9,7 +9,7 @@ public class IconCollider : MonoBehaviour {
     LevelManager l;   //An instance of LevelManager
     MoveSelector m;   //An instance of MoveSelector. Script attached to the Cursor/player objects (player, player2 etc.) to handle its movements
     ButtonCollider b; //An instance of ButtonCollider. Scripts attached to the coins objects (coin1, coin2 etc.) to detect if the cursor is near the coin
-    GameObject t;     //Generic GameoBject to be used in the script and assigned under certain conditions
+    GameObject t;     //Generic GameObject to be used in the script and assigned under certain conditions
 
     public PlayerSelector p1, p2, p3, p4;
 
