@@ -226,7 +226,7 @@ public class CarController : MonoBehaviour
             foreach (string timeStep in plan)
                 debugPlan += timeStep + ",";
             debugPlan = debugPlan.Substring(0, debugPlan.Length - 1);
-            Debug.Log("Car:" + currentState.myCar.myUniqueID + " - " + debugPlan);
+            //Debug.Log("Car:" + currentState.myCar.myUniqueID + " - " + debugPlan);
 
             //Wait for 1sec before calling the planner again
             waitHandle.Reset();
