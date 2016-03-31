@@ -11,15 +11,12 @@ public class IconCollider : MonoBehaviour {
     ButtonCollider b; //An instance of ButtonCollider. Scripts attached to the coins objects (coin1, coin2 etc.) to detect if the cursor is near the coin
     GameObject t;     //Generic GameObject to be used in the script and assigned under certain conditions
 
-    public PlayerSelector p1, p2, p3, p4;
-
-    public int ID = 0;
+    public PlayerSelector p1, p2, p3, p4; //Instances of The PlayerSelector scripts attached to each Panel controlling each player
+    public int ID = 0;                    //A public int (set in the inspector) to differentiate each Car Icon object
  
+    Transform old;  //A variable of type transform to save the position/parent of a specific object in the script in order to go back to it.
 
-    Transform old;
-
-    private bool isActive;
-
+    private bool isActive; //Bool variable to control whether a certain car icon is active or not at that moment 
     public GameObject Car;
 
     public bool ThisCarSelected = false;
