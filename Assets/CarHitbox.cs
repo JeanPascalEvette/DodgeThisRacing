@@ -28,15 +28,16 @@ public class CarHitbox : MonoBehaviour {
         {
             // We need to find out which sphere collider we are hitting here
             Debug.Log("IN COLLISION");
-            
+
             // We choose one random detachable part from the list
-            Transform partAffected = DetachableParts[Random.Range(0, DetachableParts.Length)];
+            Debug.Log("PARTS: " + DetachableParts.Length);
+            int elementPosition = Random.Range(0, DetachableParts.Length);
+            Transform partAffected = DetachableParts[elementPosition];
             Debug.Log("PART CHOSEN: " + partAffected.name + " -> HEALTH: " + partAffected.GetComponent<DetachableElementBehaviour>().pieceHealth);
             // We check if the piece chosen has any health left or has been 
-            // TO LOOK AT
             carSpeed = carModel.velocity.magnitude;
             Debug.Log("CAR SPEED: " + carSpeed);
-            if (partAffected.GetComponent<DetachableElementBehaviour>().pieceHealth > 0) {
+            if (partAffected != null && partAffected.GetComponent<DetachableElementBehaviour>().pieceHealth > 0) {
                 // We have health so we make all the calculation with the piece data
                 // We calculate the force of the impact with the obstacle
                 // Force = (mass * speed * speed)/2
@@ -50,7 +51,12 @@ public class CarHitbox : MonoBehaviour {
                 {
                     Debug.Log("Detach part");
                     partAffected.GetComponent<DetachableElementBehaviour>().isHanging = true;
+                    // We remove the part from the list so it´s not available any more
+                    DetachableParts[elementPosition] = null;
+                    Object.Destroy(partAffected.GetComponent<Rigidbody>());
+                    Debug.Log("PARTS: " + DetachableParts.Length);
                 }
+                
             } else {
                 // The piece has been detached so we only reduce the health of the car
                 damageCaused = (1 * carSpeed * carSpeed) / 2;
