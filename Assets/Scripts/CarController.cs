@@ -4,8 +4,7 @@ using System.Threading;
 
 public class CarController : MonoBehaviour
 {
-
-
+    
     //These variables might need some tuning
     [SerializeField]
     private float mEngineForce = 10.0f;
@@ -89,8 +88,9 @@ public class CarController : MonoBehaviour
     private static int carCounter = 0;
     // private bool showDebug = false;
 
-    AudioSource audio;
-
+    public AudioSource[] sounds;
+    public AudioSource noise1;
+    public AudioSource noise2;
     // public GUISkin aSkin;
 
     private AIController myAI;
@@ -100,6 +100,7 @@ public class CarController : MonoBehaviour
     // Use this for initialization
     void Start()
     {   
+
         myAI = GetComponent<AIController>();
         carUniqueID = carCounter++;
         // allCars = GameObject.FindGameObjectsWithTag("Player");
@@ -131,8 +132,10 @@ public class CarController : MonoBehaviour
 
         Physics.IgnoreLayerCollision(LayerMask.NameToLayer("DetachableObjects"), LayerMask.NameToLayer("CarCollisionHitbox"), true);
 
-        audio = GetComponent<AudioSource>();
-        audio.pitch = (rpm / 10000) + 0.7f; // formula to reach ideal pitch from rpm
+        sounds = GetComponents<AudioSource>();
+        noise1 = sounds[0];
+        noise2 = sounds[1];
+        noise1.pitch = (rpm / 10000) + 0.7f; // formula to reach ideal pitch from rpm
     }
 
     void Update()
@@ -387,7 +390,6 @@ public class CarController : MonoBehaviour
 
         else if (speed < 1 && newVehicleSpeed > 1)
         {
-            Debug.Log("In here? ");
             rpm = (newVehicleSpeed * 2.5f) * gears[currentGear] * differentialRatio * 60.0f / 6.28f;           //rpm measurement
 
         }
@@ -582,10 +584,18 @@ public class CarController : MonoBehaviour
     private void soundOfEngine()
     {
         //0.70 - 1.20  probably ideal pitch for looping through
-        audio.pitch = (rpm / 10000) + 0.7f; // formula to reach ideal pitch from rpm
+        noise1.pitch = (rpm / 10000) + 0.7f; // formula to reach ideal pitch from rpm
     }
 
-}
+    void OnCollisionEnter(Collision other)
+     {
+        
+        if(other.gameObject.tag == "NPC" || other.gameObject.tag == "Player") // or hit on everything?
+        {
+            noise2.Play();
+        }
+     }
+   }
 
 
 // car's position -- p = p + dt * v
