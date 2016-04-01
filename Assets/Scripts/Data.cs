@@ -41,6 +41,16 @@ public class Data : MonoBehaviour {
 	
 	}
 
+    public static PlayerData GetPlayerDataFromControlScheme(PlayerData.ControlScheme scheme)
+    {
+        for(int i = 0; i < CarsSelected.Length; i++)
+        {
+            if (CarsSelected[i].GetControlScheme() == scheme)
+                return CarsSelected[i];
+        }
+        return null;
+    }
+
     public static GameObject getTrackPart()
     {
         if (TrackPartsAvailable == null || TrackPartsAvailable.Length == 0)

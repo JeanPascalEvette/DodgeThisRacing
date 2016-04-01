@@ -10,6 +10,7 @@ public class PlayerData
     private ControlScheme _ctrlScheme;
     private PlayerType _playerType;
     private GameObject _carObject;
+    private GameObject _prefab;
 
     public enum ControlScheme { WASD, Arrows, XboxController1, XboxController2 };
     public enum PlayerType { AI, Player, None };
@@ -49,6 +50,21 @@ public class PlayerData
             _carObject.name = _carObject.name + "(AI)";
             _carObject.AddComponent<AIController>();
         }
+    }
+
+    public void AttachPrefab(GameObject prefab)
+    {
+        _prefab = prefab;
+    }
+
+    public GameObject GetPrefab()
+    {
+        return _prefab;
+    }
+
+    public GameObject GetGameObject()
+    {
+        return _carObject;
     }
 }
 

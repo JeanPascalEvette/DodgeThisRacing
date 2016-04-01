@@ -5,8 +5,7 @@ using System.Collections.Generic;
 public class GameLogic : MonoBehaviour {
 
     private readonly int NUMBEROFCARS = 4;
-
-    private GameObject[] carList;
+    
 
     private List<GameObject> trackPartsList;
 
@@ -51,12 +50,12 @@ public class GameLogic : MonoBehaviour {
 
 
         GameObject[] carPrefabs = Data.generateCars();
-
-        carList = new GameObject[carPrefabs.Length];
+        
         for (int i = 0; i < carPrefabs.Length; i++)
         {
-            carList[i] = (GameObject)Instantiate(carPrefabs[i], new Vector3((i - carPrefabs.Length/2) * 3.0f, 0, 3.0f), Quaternion.Euler(0, 180, 0));
-            Data.getCarsSelected()[i].AttachGameObject(carList[i]);
+            var newCar = (GameObject)Instantiate(carPrefabs[i], new Vector3((i - carPrefabs.Length/2) * 3.0f, 0, 3.0f), Quaternion.Euler(0, 180, 0));
+            Data.getCarsSelected()[i].AttachGameObject(newCar);
+            Data.getCarsSelected()[i].AttachPrefab(carPrefabs[i]);
         }
 
 
@@ -68,6 +67,12 @@ public class GameLogic : MonoBehaviour {
         
     }
 	
+    public void SpawnCar(PlayerData data)
+    {
+            var newCar = (GameObject)Instantiate(data.GetPrefab(), new Vector3(0,0,0), Quaternion.Euler(0, 180, 0));
+            data.AttachGameObject(newCar);
+    }
+
     void AddNewObstacle(GameObject trackPart)
     {
         GameObject obstaclePrefab = Data.getObstacle();
@@ -176,7 +181,7 @@ public class GameLogic : MonoBehaviour {
             UnityEngine.SceneManagement.SceneManager.LoadScene("Game");
         }
 
-	    if(trackPartsList.Count > 2 && trackPartsList[2].transform.position.z < carList[0].transform.position.z)
+	    if(trackPartsList.Count > 2 && trackPartsList[2].transform.position.z < Data.getCarsSelected()[0].GetGameObject().transform.position.z)
         {
             var removedPart = trackPartsList[0];
             for( int i = 0; i < removedPart.transform.childCount; i++)
