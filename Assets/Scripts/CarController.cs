@@ -4,7 +4,7 @@ using System.Threading;
 
 public class CarController : MonoBehaviour
 {
-    
+
     //These variables might need some tuning
     [SerializeField]
     private float mEngineForce = 10.0f;
@@ -73,6 +73,11 @@ public class CarController : MonoBehaviour
     private float WeightOnRearWheels;
 
     [SerializeField]
+    private bool IsCarOnGround;
+    [SerializeField]
+    private float estimatedLandingTime;
+
+    [SerializeField]
     private AnimationCurve testRpmResistance;
     // private string[] plan;
     // private int frameGenerated;
@@ -93,13 +98,19 @@ public class CarController : MonoBehaviour
     public AudioSource noise2;
     // public GUISkin aSkin;
 
+    //Do not modify - used by the auto rotate
+    private float currentRotationVelocityX = 0;
+    private float currentRotationVelocityY = 0;
+    private float currentRotationVelocityZ = 0;
+    [SerializeField]
+    private float autoRotateMinTime = 2.0f;
+
     private AIController myAI;
-    public enum ControlScheme {WASD, Arrows, XboxController1, XboxController2};
-    public ControlScheme specificControl;
+    public PlayerData.ControlScheme specificControl;
 
     // Use this for initialization
     void Start()
-    {   
+    {
 
         myAI = GetComponent<AIController>();
         carUniqueID = carCounter++;
@@ -221,11 +232,11 @@ public class CarController : MonoBehaviour
 
              //Log generated plan
              frameGenerated = frameCounter;
-             string debugPlan = "";
-             foreach (string timeStep in plan)
-                 debugPlan += timeStep + ",";
-             debugPlan = debugPlan.Substring(0, debugPlan.Length - 1);
-             Debug.Log("Car:"+currentState.myCar.myUniqueID + " - " + debugPlan);
+            //string debugPlan = "";
+            //foreach (string timeStep in plan)
+            //    debugPlan += timeStep + ",";
+            //debugPlan = debugPlan.Substring(0, debugPlan.Length - 1);
+            //Debug.Log("Car:"+currentState.myCar.myUniqueID + " - " + debugPlan);
 
              //Wait for 1sec before calling the planner again
              waitHandle.Reset();
@@ -260,11 +271,27 @@ public class CarController : MonoBehaviour
           //END AI STUFF */
 
 
-
+        IsCarOnGround = IsOnGround();
         //Update CoG
         currentCenterOfGravity = transform.rotation * CenterOfGravity;
 
-        if (!IsOnGround()) return;
+        if (!IsOnGround())
+        {
+            if (transform.position.y >= 0)
+            {
+                rb.angularVelocity = new Vector3(0, 0, 0);
+                float v = rb.velocity.y;
+                float a = Physics.gravity.y;
+                float d = transform.position.y * -1;
+                float landingTime = -(Mathf.Sqrt(2 * a * d + Mathf.Pow(v, 2)) + v) / a;
+                estimatedLandingTime = landingTime;
+                if (landingTime < autoRotateMinTime)
+                {
+                    transform.rotation = Quaternion.Euler(Mathf.SmoothDampAngle(transform.rotation.eulerAngles.x, 0, ref currentRotationVelocityX, landingTime), Mathf.SmoothDampAngle(transform.rotation.eulerAngles.y, 180, ref currentRotationVelocityY, landingTime), Mathf.SmoothDampAngle(transform.rotation.eulerAngles.z, 0, ref currentRotationVelocityZ, landingTime));
+                }
+            }
+            return;
+        }
         direction = 0.0f;						//speed of object
         float maxTurn = turning * Input.GetAxis("Horizontal");
 
@@ -514,11 +541,11 @@ public class CarController : MonoBehaviour
         return currentGear == 6 && rpm > 5800;
     }
 
-   private bool IsGoing(char direction)
+    private bool IsGoing(char direction)
     {
         
         KeyCode directionCode = KeyCode.W;
-        if (specificControl == ControlScheme.WASD)
+        if (specificControl == PlayerData.ControlScheme.WASD)
         {
             if (direction == 'W')
                 directionCode = KeyCode.W;
@@ -529,7 +556,7 @@ public class CarController : MonoBehaviour
             else if (direction == 'D')
                 directionCode = KeyCode.D;
         }
-        else if (specificControl == ControlScheme.Arrows)
+        else if (specificControl == PlayerData.ControlScheme.Arrows)
         {
             if (direction == 'W')       // ascii 24
                 directionCode = KeyCode.UpArrow;
@@ -540,7 +567,7 @@ public class CarController : MonoBehaviour
             else if (direction == 'D') // ascii 28
                 directionCode = KeyCode.RightArrow;
         }
-        else if (specificControl == ControlScheme.XboxController1)
+        else if (specificControl == PlayerData.ControlScheme.XboxController1)
         {
             if (direction == 'W')
                 directionCode = KeyCode.Joystick1Button0;
@@ -552,7 +579,7 @@ public class CarController : MonoBehaviour
                 return true;
             }
         }
-        else if (specificControl == ControlScheme.XboxController2)
+        else if (specificControl == PlayerData.ControlScheme.XboxController2)
         {
             if (direction == 'W')
                 directionCode = KeyCode.Joystick2Button0;
@@ -601,7 +628,7 @@ public class CarController : MonoBehaviour
             noise2.Play();
         }
      }
-   }
+}
 
 
 // car's position -- p = p + dt * v
