@@ -236,12 +236,10 @@ public class LevelManager : MonoBehaviour
         if (!is_arrowKeys_taken && is_arrowKeys_used)
 
         {
-
             newPlayer.ThisPlayerControl = MoveSelector.ControlTypesHere.ArrowKeys;
             ps.Controls = 3;
             is_arrowKeys_taken = true;
             is_arrowKeys_used = false;
-
         }
 
         else if (!is_wsda_taken && is_wsda_used)
@@ -251,7 +249,6 @@ public class LevelManager : MonoBehaviour
             ps.Controls = 4;
             is_wsda_taken = true;
             is_wsda_used = false;
-
         }
 
         else if (!is_joy2_taken && is_joy2_used)
@@ -261,7 +258,6 @@ public class LevelManager : MonoBehaviour
             ps.Controls = 2;
             is_joy2_taken = true;
             is_joy2_used = false;
-
         }
 
         else if (!is_joy1_taken && is_joy1_used)
@@ -271,7 +267,6 @@ public class LevelManager : MonoBehaviour
             ps.Controls = 1;
             is_joy1_taken = true;
             is_joy1_used = false;
-
         }
 
     }
