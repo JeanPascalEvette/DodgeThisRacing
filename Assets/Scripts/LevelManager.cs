@@ -77,7 +77,7 @@ public class LevelManager : MonoBehaviour
             TextColorGo.color = Color.green;
 
             //If Enter or Start is pressed when GO text is green the main game is loaded
-            if (Input.GetButtonDown("Submit") || Input.GetButtonDown("SubmitJoystick")) {LoadLevel("main2"); }
+            if (Input.GetButtonDown("Submit")) {LoadLevel("main2"); }
         }
 
         else { TextColorGo.color = Color.white; }

@@ -72,7 +72,6 @@ public class PlayerSelector : MonoBehaviour
             else if (m.ThisPlayerControl == MoveSelector.ControlTypesHere.Joy2)      { Control_Type.text = "Joy2"; }
             else if (m.ThisPlayerControl == MoveSelector.ControlTypesHere.ArrowKeys) { Control_Type.text = "ArrowKeys"; }
             else if (m.ThisPlayerControl == MoveSelector.ControlTypesHere.WSDA)      { Control_Type.text = "WSDA"; }
-            else                                                                     { Control_Type.text = "Not Assigned"; }
 
             if      (PanelNumber == 1 && switch_case != 2 && !is_CPU)                { t.text = "P1"; }
             else if (PanelNumber == 2 && switch_case != 2 && !is_CPU)                { t.text = "P2"; }
@@ -231,7 +230,6 @@ public class PlayerSelector : MonoBehaviour
 
             switch (CPU_Controls)
             {
-
                 case 1:
                     cpuText.text = nameplayer;
                     t.text = nameplayer;
@@ -274,7 +272,10 @@ public class PlayerSelector : MonoBehaviour
                     }
 
                     else if (m.ThisPlayerControl == MoveSelector.ControlTypesHere.Joy1) { }
-                    else { m.ThisPlayerControl = MoveSelector.ControlTypesHere.NotAssigned; Control_Type.text = "Joy1 (N/A)"; }
+                    else {
+                           m.ThisPlayerControl = MoveSelector.ControlTypesHere.NotAssigned;
+                           Control_Type.text = "Joy1 (N/A)";
+                         }
 
                     break;
 
@@ -287,7 +288,10 @@ public class PlayerSelector : MonoBehaviour
                     }
 
                     else if (m.ThisPlayerControl == MoveSelector.ControlTypesHere.Joy2) { }
-                    else { m.ThisPlayerControl = MoveSelector.ControlTypesHere.NotAssigned; Control_Type.text = "Joy2 (N/A)"; }
+                    else {
+                           m.ThisPlayerControl = MoveSelector.ControlTypesHere.NotAssigned;
+                           Control_Type.text = "Joy2 (N/A)";
+                         }
                     break;
 
                 case 3:
@@ -299,7 +303,10 @@ public class PlayerSelector : MonoBehaviour
                     }
 
                     else if (m.ThisPlayerControl == MoveSelector.ControlTypesHere.ArrowKeys) { }
-                    else { m.ThisPlayerControl = MoveSelector.ControlTypesHere.NotAssigned; Control_Type.text = "ArrowKeys (N/A)"; }
+                    else {
+                           m.ThisPlayerControl = MoveSelector.ControlTypesHere.NotAssigned;
+                           Control_Type.text = "ArrowKeys (N/A)";
+                         }
                     break;
 
                 case 4:
@@ -311,7 +318,10 @@ public class PlayerSelector : MonoBehaviour
                     }
 
                     else if (m.ThisPlayerControl == MoveSelector.ControlTypesHere.WSDA) { }
-                    else { m.ThisPlayerControl = MoveSelector.ControlTypesHere.NotAssigned; Control_Type.text = "WSDA (N/A)"; }
+                    else {
+                           m.ThisPlayerControl = MoveSelector.ControlTypesHere.NotAssigned;
+                           Control_Type.text = "WSDA (N/A)";
+                         }
                     break;
 
                 default:
