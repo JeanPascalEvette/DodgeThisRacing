@@ -133,9 +133,12 @@ public class CarController : MonoBehaviour
         Physics.IgnoreLayerCollision(LayerMask.NameToLayer("DetachableObjects"), LayerMask.NameToLayer("CarCollisionHitbox"), true);
 
         sounds = GetComponents<AudioSource>();
-        noise1 = sounds[0];
-        noise2 = sounds[1];
-        noise1.pitch = (rpm / 10000) + 0.7f; // formula to reach ideal pitch from rpm
+        if (myAI == null)
+        {
+            noise1 = sounds[0];
+            noise2 = sounds[1];
+            noise1.pitch = (rpm / 10000) + 0.7f; // formula to reach ideal pitch from rpm
+        }
     }
 
     void Update()
@@ -511,7 +514,7 @@ public class CarController : MonoBehaviour
         return currentGear == 6 && rpm > 5800;
     }
 
-    private bool IsGoing(char direction)
+   private bool IsGoing(char direction)
     {
         
         KeyCode directionCode = KeyCode.W;
@@ -528,39 +531,41 @@ public class CarController : MonoBehaviour
         }
         else if (specificControl == ControlScheme.Arrows)
         {
-            if (direction == 'W')
+            if (direction == 'W')       // ascii 24
                 directionCode = KeyCode.UpArrow;
-            else if (direction == 'S')
+            else if (direction == 'S') // ascii 25
                 directionCode = KeyCode.DownArrow;
-            if (direction == 'A')
+            if (direction == 'A')   // ascii 27
                 directionCode = KeyCode.LeftArrow;
-            else if (direction == 'D')
+            else if (direction == 'D') // ascii 28
                 directionCode = KeyCode.RightArrow;
         }
         else if (specificControl == ControlScheme.XboxController1)
         {
             if (direction == 'W')
-                directionCode = KeyCode.W;
+                directionCode = KeyCode.Joystick1Button0;
             else if (direction == 'S')
-                directionCode = KeyCode.S;
-            if (direction == 'A')
-                directionCode = KeyCode.A;
-            else if (direction == 'D')
-                directionCode = KeyCode.D;
+                directionCode = KeyCode.Joystick1Button2;
+            if ((direction == 'A' || direction == 'D') && Input.GetAxis("HorizontalJoyStickLeft1") > 0)
+            {
+                //   directionCode = KeyCode.A;
+                return true;
+            }
         }
         else if (specificControl == ControlScheme.XboxController2)
         {
             if (direction == 'W')
-                directionCode = KeyCode.W;
+                directionCode = KeyCode.Joystick2Button0;
+
             else if (direction == 'S')
-                directionCode = KeyCode.S;
-            if (direction == 'A')
-                directionCode = KeyCode.A;
-            else if (direction == 'D')
-                directionCode = KeyCode.D;
+                directionCode = KeyCode.Joystick2Button2;
+            if ((direction == 'A' || direction == 'D') && Input.GetAxis("HorizontalJoyStickLeft2") > 0)
+            {
+                //   directionCode = KeyCode.A;
+                return true;
+            }
+
         }
-
-
         if (myAI == null)
         {
 
@@ -584,13 +589,14 @@ public class CarController : MonoBehaviour
     private void soundOfEngine()
     {
         //0.70 - 1.20  probably ideal pitch for looping through
+        if(myAI == null)
         noise1.pitch = (rpm / 10000) + 0.7f; // formula to reach ideal pitch from rpm
     }
 
     void OnCollisionEnter(Collision other)
      {
         
-        if(other.gameObject.tag == "NPC" || other.gameObject.tag == "Player") // or hit on everything?
+        if(other.gameObject.tag == "Player" && myAI == null) // or hit on everything?
         {
             noise2.Play();
         }
