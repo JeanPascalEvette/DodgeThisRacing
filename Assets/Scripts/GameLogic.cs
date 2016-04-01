@@ -72,7 +72,7 @@ public class GameLogic : MonoBehaviour {
             var newCar = (GameObject)Instantiate(data.GetPrefab(), new Vector3(0,0,0), Quaternion.Euler(0, 180, 0));
             data.AttachGameObject(newCar);
     }
-    
+	
     void AddNewObstacle(GameObject trackPart, int trackPartId)
     {
         GameObject obstaclePrefab = Data.getObstacle();
@@ -90,8 +90,12 @@ public class GameLogic : MonoBehaviour {
 
     void AddNewTrackPart()
     {
-        int trackPartId = Random.Range(0, Data.GetNumberTrackPartAvailable());
-        GameObject trackPrefab = Data.getTrackPart(trackPartId);
+        GameObject trackPrefab;
+        int choice = Random.Range(0, Data.GetNumberTrackPartAvailable());
+        if (trackPartsList.Count == 0)
+            trackPrefab = Data.getTrackPart(0);
+        else
+            trackPrefab = Data.getTrackPart(choice);
         Vector3 startPos = new Vector3(0, 0, 0);
         if (trackPartsList.Count > 0)
         {
@@ -117,7 +121,7 @@ public class GameLogic : MonoBehaviour {
         trackPartsList.Add(newTrackPart);
         newTrackPart.transform.parent = Track.transform;
         if(trackPartsList.Count != 1)
-            AddNewObstacle(newTrackPart, trackPartId);
+            AddNewObstacle(newTrackPart, choice);
 
         if (trackPartsList.Count == NumberOfTrackParts)
         {

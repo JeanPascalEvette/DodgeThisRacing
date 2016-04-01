@@ -517,6 +517,7 @@ public class CarController : MonoBehaviour
 
 
         soundOfEngine();
+        HandlePartialyOnGround();
         
     }
 
@@ -533,6 +534,42 @@ public class CarController : MonoBehaviour
     private bool IsOnGround()
     {
         return rearRightWheel.isOnGround || rearLeftWheel.isOnGround || frontLeftWheel.isOnGround || frontRightWheel.isOnGround;
+    }
+
+    private void HandlePartialyOnGround()
+    {
+        float height = -1;
+        if (rearRightWheel.isOnGround && rearLeftWheel.isOnGround && !frontRightWheel.isOnGround && !frontLeftWheel.isOnGround)
+        {
+            height = rearRightWheel.transform.position.y;
+        }
+        else if (!rearRightWheel.isOnGround && !rearLeftWheel.isOnGround && frontRightWheel.isOnGround && frontLeftWheel.isOnGround)
+        {
+            height = frontRightWheel.transform.position.y;
+        }
+        else if (rearRightWheel.isOnGround && !rearLeftWheel.isOnGround && frontRightWheel.isOnGround && !frontLeftWheel.isOnGround)
+        {
+            height = rearRightWheel.transform.position.y;
+        }
+        else if (!rearRightWheel.isOnGround && rearLeftWheel.isOnGround && !frontRightWheel.isOnGround && frontLeftWheel.isOnGround)
+        {
+            height = rearLeftWheel.transform.position.y;
+        }
+
+        if (height > 0)
+        {
+            rb.angularVelocity = new Vector3(0, 0, 0);
+            float v = rb.velocity.y;
+            float a = Physics.gravity.y;
+            float d = height * -1;
+            float landingTime = -(Mathf.Sqrt(2 * a * d + Mathf.Pow(v, 2)) + v) / a;
+            estimatedLandingTime = landingTime;
+            if (landingTime < autoRotateMinTime)
+            {
+                transform.rotation = Quaternion.Euler(Mathf.SmoothDampAngle(transform.rotation.eulerAngles.x, 0, ref currentRotationVelocityX, landingTime), Mathf.SmoothDampAngle(transform.rotation.eulerAngles.y, 180, ref currentRotationVelocityY, landingTime), Mathf.SmoothDampAngle(transform.rotation.eulerAngles.z, 0, ref currentRotationVelocityZ, landingTime));
+            }
+    }
+        return;
     }
 
     public void increaseGear()
