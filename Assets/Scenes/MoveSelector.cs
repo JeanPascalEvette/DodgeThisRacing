@@ -88,6 +88,5 @@ public class MoveSelector : MonoBehaviour {
                 playerButton.transform.Translate(0, translationY, 0);
                 playerButton.transform.Translate(translationX, 0, 0);
         }
-
     }  
 }

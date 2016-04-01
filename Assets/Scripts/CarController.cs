@@ -1,7 +1,10 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
+using System.Threading;
 
-public class CarController : MonoBehaviour {
+public class CarController : MonoBehaviour
+{
 
 
     //These variables might need some tuning
@@ -17,8 +20,15 @@ public class CarController : MonoBehaviour {
     private Vector3 CenterOfGravity = new Vector3(0.2f, 0.5f, 0);
     private Vector3 currentCenterOfGravity = new Vector3(0.2f, 0.5f, 0);
 
+    // Health Variables
+    public int startingHealth = 100;
+    public int currentHealth;
+    public Slider healthSlider;
+    private float damageCaused;
+    bool carBroken;
+    bool carDamaged;
 
-    //
+    // Different variables
 
     public int currentGear;
     private float[] gears = { 2.9f, 1.20f, 0.92f, 0.85f, 0.83f, 0.80f, 0.78f }; //0 = Reverse
@@ -72,11 +82,50 @@ public class CarController : MonoBehaviour {
     private float WeightOnRearWheels;
 
     [SerializeField]
-    private AnimationCurve testRpmResistance;
+    private bool IsCarOnGround;
+    [SerializeField]
+    private float estimatedLandingTime;
 
+    [SerializeField]
+    private Transform LeftDirection;
+    [SerializeField]
+    private Transform RightDirection;
+    [SerializeField]
+    private AnimationCurve testRpmResistance;
+    // private string[] plan;
+    // private int frameGenerated;
+    // private HTNPlanner planner;
+    // private Thread plannerThread;
+    // private readonly EventWaitHandle waitHandle = new AutoResetEvent(false);
+
+    // private State currentState;
+    // private int frameCounter = 0;
+    // private GameObject[] allCars;
+
+    public int carUniqueID;
+    private static int carCounter = 0;
+    // private bool showDebug = false;
+
+    // public GUISkin aSkin;
+
+    //Do not modify - used by the auto rotate
+    private float currentRotationVelocityX = 0;
+    private float currentRotationVelocityY = 0;
+    private float currentRotationVelocityZ = 0;
+    [SerializeField]
+    private float autoRotateMinTime = 2.0f;
+
+    private AIController myAI;
 
     // Use this for initialization
-    void Start () {
+    void Start()
+    {
+        myAI = GetComponent<AIController>();
+        carUniqueID = carCounter++;
+        // allCars = GameObject.FindGameObjectsWithTag("Player");
+        // planner = new HTNPlanner(1.5f);
+        // plannerThread = new Thread(retrievePlanner); // TODO IMPLEMENT THREADING
+        // plannerThread.Start();
 
 		currentGear = 1; 			// bound to change in future // still in testing phase
         rb = GetComponent<Rigidbody>();
@@ -102,28 +151,185 @@ public class CarController : MonoBehaviour {
 
   Physics.IgnoreLayerCollision(LayerMask.NameToLayer("DetachableObjects"), LayerMask.NameToLayer("CarCollisionHitbox"), true);
 
+        // We set the initial health of the car+
+        currentHealth = startingHealth;
+
     }
 
-    void OnDrawGizmos()
+    void Update()
     {
+        if (Input.GetKeyDown(KeyCode.F1))
+        {
+            //   showDebug = !showDebug;
+        }
+    }
 
+    /* void OnDrawGizmos()
+    {
+        if (!showDebug) return;
         Gizmos.color = Color.red;
         Gizmos.DrawSphere(transform.position + currentCenterOfGravity, 0.1f);
 
+
+        //This draws the list of commands than an AI controlled car receives - might want to show/hide it based on some input at some point
+        if (plan != null && plan.Length > frameCounter - frameGenerated && frameCounter - frameGenerated >= 0)
+        {
+            var style = new GUIStyle(aSkin.GetStyle("box"));
+            style.alignment = TextAnchor.MiddleCenter;
+            var textPlan = "";
+            System.Collections.Generic.List<string> commands = new System.Collections.Generic.List<string>();
+            int counter = 1;
+            for (int i = 0; i < 1.0f / Time.fixedDeltaTime; i++)
+            {
+                if (commands.Count > 0 && frameCounter - frameGenerated + i < plan.Length && commands[commands.Count - 1] == plan[frameCounter - frameGenerated + i])
+                {
+                    counter++;
+                }
+                else if (plan.Length > frameCounter - frameGenerated + i && frameCounter - frameGenerated + i > 0)
+                {
+                    if (commands.Count > 0)
+                    {
+                        commands[commands.Count - 1] += "(x" + counter + ")";
+                        counter = 1;
+                    }
+                    commands.Add(plan[frameCounter - frameGenerated + i]);
+                }
+            }
+            commands[commands.Count - 1] += "(x" + counter + ")";
+            for (int i = 0; i < Mathf.Min(5, commands.Count); i++)
+            {
+                textPlan = textPlan + commands[i] + "\n";
     }
+            textPlan = textPlan.Substring(0, textPlan.Length - 1);
+            UnityEditor.Handles.Label(transform.position, textPlan, style);
+
+
+            Vector3 dir = planner.myTarget - transform.position;
+            UnityEditor.Handles.color = Color.white;
+            UnityEditor.Handles.ArrowCap(0, transform.position, Quaternion.LookRotation(dir.normalized), Mathf.Min(10, dir.magnitude));
+            UnityEditor.Handles.color = Color.blue;
+            UnityEditor.Handles.DrawSolidDisc(planner.myTarget, Vector3.up, 1.0f);
+            if (planner.targetCar != null)
+            {
+                Vector3 dirGO = getCarByUniqueID(planner.targetCar.myUniqueID).transform.position - transform.position;
+                UnityEditor.Handles.color = Color.red;
+                UnityEditor.Handles.ArrowCap(1, transform.position, Quaternion.LookRotation(dirGO.normalized), Mathf.Min(10, dirGO.magnitude));
+            }
+        }
+     }*/
+
+
+    /* GameObject getCarByUniqueID(int id)
+    {
+        foreach (var car in allCars)
+            if (car.GetComponent<CarController>().carUniqueID == id)
+                return car;
+        return null;
+     }   */
+
+    /* void retrievePlanner()
+    {
+        while (true) //Loop continuously after started
+        {
+            waitHandle.WaitOne(); //Run only if the handle has been set in fixedUpdate (i.e every 1sec)
+
+            plan = planner.GetPlan(currentState); //Retrieve updated plan based on currentState
+            
+            //Log generated plan
+            frameGenerated = frameCounter;
+            //string debugPlan = "";
+            //foreach (string timeStep in plan)
+            //    debugPlan += timeStep + ",";
+            //debugPlan = debugPlan.Substring(0, debugPlan.Length - 1);
+            //Debug.Log("Car:"+currentState.myCar.myUniqueID + " - " + debugPlan);
+
+            //Wait for 1sec before calling the planner again
+            waitHandle.Reset();
+        }
+     }*/
 
     // Update is called once per frame
-    void FixedUpdate ()
+    void FixedUpdate()
     {
+        float maxTurn = turning * Input.GetAxis("Horizontal");
+        if(LeftDirection != null)
+            LeftDirection.localRotation = Quaternion.Euler(0, maxTurn * 30, 0);
+        if (RightDirection != null)
+            RightDirection.localRotation = Quaternion.Euler(0, maxTurn * 30, 0);
+
+
+
+        /*  //AI STUFF
+        if (frameCounter++ % (int)(1.0f / Time.fixedDeltaTime) == 0)
+        {
+            currentState = new State();// Generate a state representing the world to be passed to the HTNPlanner
+            currentState.myCar = new CarState(carUniqueID, transform.position, GetComponent<Rigidbody>().velocity, transform.forward);
+            if (allCars.Length > 0)
+            {
+                currentState.otherCars = new CarState[allCars.Length - 1];
+                int otherCarCount = 0;
+                foreach (GameObject car in allCars)
+                {
+                    if (car == gameObject) continue;
+                    currentState.otherCars[otherCarCount++] = new CarState(car.GetComponent<CarController>().carUniqueID, car.transform.position, car.GetComponent<Rigidbody>().velocity, car.transform.forward);
+                }
+            }
+            //Set the waitHandle to make sure that the planner can retrieve a new planning
+            waitHandle.Set();
+            
+        }
+          //END AI STUFF */
+
+
+        IsCarOnGround = IsOnGround();
         //Update CoG
         currentCenterOfGravity = transform.rotation * CenterOfGravity;
 
-        if (!IsOnGround()) return;
+        if (!IsOnGround())
+        {
+            if (transform.position.y >= 0)
+            {
+                rb.angularVelocity = new Vector3(0, 0, 0);
+                float v = rb.velocity.y;
+                float a = Physics.gravity.y;
+                float d = transform.position.y * -1;
+                float landingTime = -(Mathf.Sqrt(2 * a * d + Mathf.Pow(v, 2)) + v) / a;
+                estimatedLandingTime = landingTime;
+                if (landingTime < autoRotateMinTime)
+                {
+                    transform.rotation = Quaternion.Euler(Mathf.SmoothDampAngle(transform.rotation.eulerAngles.x, 0, ref currentRotationVelocityX, landingTime), Mathf.SmoothDampAngle(transform.rotation.eulerAngles.y, 180, ref currentRotationVelocityY, landingTime), Mathf.SmoothDampAngle(transform.rotation.eulerAngles.z, 0, ref currentRotationVelocityZ, landingTime));
+                }
+            }
+            return;
+        }
         direction = 0.0f;						//speed of object
-        float maxTurn = turning * Input.GetAxis("Horizontal");
+
+        // float maxTurn = 0;
+
+        if (IsGoing('A'))
+        {
+            maxTurn = -1;
+        }
+        else if (IsGoing('D'))
+        {
+            maxTurn = 1;
+        }
+
+        if (IsGoing('W'))
+        {
+
+            direction = 1;
+        }
+        else if (IsGoing('S'))
+        {
+            direction = -1;
+
+        }
+
+
         if (Input.GetKey(KeyCode.E))
         {
-            foreach(var deb in GetComponentsInChildren<DetachableElementBehaviour>())
+            foreach (var deb in GetComponentsInChildren<DetachableElementBehaviour>())
             {
                 deb.isHanging = true;
             }
@@ -160,8 +366,10 @@ public class CarController : MonoBehaviour {
         else
         {
             if (rpm < 5500)
-            {                                           //set a maximum speed that vehicle will reverse
-            TractionForce = transform.InverseTransformDirection(transform.forward) * -mCBrake;
+            {
+                //set a maximum speed that vehicle will reverse 
+                // We´ve added some differential ratio to be able go reverse and get away from obstacles
+                TractionForce = transform.InverseTransformDirection(transform.forward) * -mCBrake * differentialRatio;
         }
             else
             {
@@ -266,8 +474,6 @@ public class CarController : MonoBehaviour {
         rearLeftWheel.tyreLoad = WeightOnRearWheels / 2;
         rearRightWheel.tyreLoad = WeightOnRearWheels / 2;
 
-
-
         //*********************** TORQUE REAR AXLE ***********************//
 
         // Drive Torque from both wheels or only one
@@ -295,9 +501,12 @@ public class CarController : MonoBehaviour {
         //*********************** END ANGULAR ACCELERATION TO BE APPLIED TO DRIVE WHEELS ***********************//
 
 
-        
+        HandlePartialyOnGround();
 
     }
+    
+
+
 
     public float GetMassOnAxle(float zCoord)
     {
@@ -309,6 +518,42 @@ public class CarController : MonoBehaviour {
     private bool IsOnGround()
     {
         return rearRightWheel.isOnGround || rearLeftWheel.isOnGround || frontLeftWheel.isOnGround || frontRightWheel.isOnGround;
+    }
+
+    private void HandlePartialyOnGround()
+    {
+        float height = -1;
+        if (rearRightWheel.isOnGround && rearLeftWheel.isOnGround && !frontRightWheel.isOnGround && !frontLeftWheel.isOnGround)
+        {
+            height = rearRightWheel.transform.position.y;
+        }
+        else if (!rearRightWheel.isOnGround && !rearLeftWheel.isOnGround && frontRightWheel.isOnGround && frontLeftWheel.isOnGround)
+        {
+            height = frontRightWheel.transform.position.y;
+        }
+        else if (rearRightWheel.isOnGround && !rearLeftWheel.isOnGround && frontRightWheel.isOnGround && !frontLeftWheel.isOnGround)
+        {
+            height = rearRightWheel.transform.position.y;
+        }
+        else if (!rearRightWheel.isOnGround && rearLeftWheel.isOnGround && !frontRightWheel.isOnGround && frontLeftWheel.isOnGround)
+        {
+            height = rearLeftWheel.transform.position.y;
+        }
+
+        if (height > 0)
+        {
+            rb.angularVelocity = new Vector3(0, 0, 0);
+            float v = rb.velocity.y;
+            float a = Physics.gravity.y;
+            float d = height * -1;
+            float landingTime = -(Mathf.Sqrt(2 * a * d + Mathf.Pow(v, 2)) + v) / a;
+            estimatedLandingTime = landingTime;
+            if (landingTime < autoRotateMinTime)
+            {
+                transform.rotation = Quaternion.Euler(Mathf.SmoothDampAngle(transform.rotation.eulerAngles.x, 0, ref currentRotationVelocityX, landingTime), Mathf.SmoothDampAngle(transform.rotation.eulerAngles.y, 180, ref currentRotationVelocityY, landingTime), Mathf.SmoothDampAngle(transform.rotation.eulerAngles.z, 0, ref currentRotationVelocityZ, landingTime));
+            }
+        }
+        return;
     }
 
     public void increaseGear()
@@ -327,6 +572,46 @@ public class CarController : MonoBehaviour {
     public float GearValue()
     {
         return gears[currentGear];
+    }
+
+    public bool IsAtMaxSpeed()
+    {
+        return currentGear == 6 && rpm > 5800;
+    }
+
+    private bool IsGoing(char direction)
+    {
+        KeyCode directionCode = KeyCode.W;
+        if (true)//Here check for Control Scheme
+        {
+            if (direction == 'W')
+                directionCode = KeyCode.W;
+            else if (direction == 'S')
+                directionCode = KeyCode.S;
+            if (direction == 'A')
+                directionCode = KeyCode.A;
+            else if (direction == 'D')
+                directionCode = KeyCode.D;
+        }
+
+        if (myAI == null)
+        {
+
+            return Input.GetKey(directionCode);
+        }
+        else
+        {
+            if (direction == 'W' || direction == 'S')
+            {
+                return myAI.GetPlan()[0] == direction;
+            }
+            if (direction == 'A' || direction == 'D')
+            {
+                return myAI.GetPlan()[1] == direction;
+            }
+            else
+                return false;
+        }
     }
 
 }

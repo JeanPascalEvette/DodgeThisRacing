@@ -47,7 +47,7 @@ public class PlayerSelector : MonoBehaviour
         }
 
         player_selector();
-        PanelManager();
+        //PanelManager();
 
         if (m.is_this_active)
         {
@@ -82,8 +82,6 @@ public class PlayerSelector : MonoBehaviour
 
         else { Control_Type.text = "Not Assigned"; }
     }
-
-
 
     void switch_reset() { switch_case = 0; }
 

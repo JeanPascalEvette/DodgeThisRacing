@@ -77,7 +77,7 @@ public class LevelManager : MonoBehaviour
             TextColorGo.color = Color.green;
 
             //If Enter or Start is pressed when GO text is green the main game is loaded
-            if (Input.GetButtonDown("Submit") || Input.GetButtonDown("SubmitJoystick")) { LoadLevel("main2"); }
+            if (Input.GetButtonDown("Submit") || Input.GetButtonDown("SubmitJoystick")) {LoadLevel("main2"); }
         }
 
         else { TextColorGo.color = Color.white; }
@@ -88,7 +88,13 @@ public class LevelManager : MonoBehaviour
     //Function to load the main game scene
     public void LoadLevel(string name)
     {
-       
+        PlayerData[] _PlayerData = new PlayerData[num_players];
+        for(int i =0; i < num_players; i++)
+        {
+             PlayerData player = new PlayerData(/*Add parameters of the constructor*/);
+            _PlayerData[i] = player;
+        }
+        Data.selectCars(_PlayerData);
         SceneManager.LoadScene(name);
 
     }
