@@ -56,6 +56,8 @@ public class WheelController : MonoBehaviour {
 
     private Vector3 currentRotation = new Vector3(0, 0, 0);
 
+
+
     // Use this for initialization
     void Start () {
         mCarController = transform.parent.GetComponent<CarController>();
@@ -79,20 +81,8 @@ public class WheelController : MonoBehaviour {
     void FixedUpdate()
     {
         currentRotation.x += spinningSpeed;
-        if (!isRearWheel)
-        {
-            float maxTurn = Input.GetAxis("Horizontal");
-            if (Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D))
-            {
-                currentRotation = new Vector3(currentRotation.x, maxTurn * 30, currentRotation.z);
-            }
-            else
-            {
-                currentRotation = new Vector3(currentRotation.x, 0, currentRotation.z);
-            }
-            
-        }
 
+        currentRotation = new Vector3(currentRotation.x, 0, 0);
         transform.localRotation = Quaternion.Euler(currentRotation);
 
         // Car velocity (Find out which direction to use) (negative sign as before the speed was opposite it should be)
@@ -170,14 +160,27 @@ public class WheelController : MonoBehaviour {
 
     private void CheckWheelsAreOnGround()
     {
-        float wheelHeight = transform.GetComponent<MeshRenderer>().bounds.size.y;
-        Vector3 direction = new Vector3(0, -wheelHeight / 1.999f, 0);
-        direction = GetComponent<Collider>().transform.root.rotation * direction;
-        Debug.DrawLine(transform.position, transform.position + direction, Color.green);
-        Ray myRay = new Ray(transform.position, direction);
-        if (Physics.Raycast(myRay, wheelHeight / 1.9f))
-            isOnGround = true;
-        else
-            isOnGround = false;
+        isOnGround = false;
+        Color myColor = Color.red;
+        float wheelHeight = transform.GetComponent<SphereCollider>().radius * 1.25f;
+        Vector3 direction = new Vector3(0, -1, 0);
+
+        int numRaycast = 10;
+        Ray myRay;
+        for (int i = 0; i < 360/numRaycast; i++)
+        {
+            direction = Quaternion.Euler(i*360/numRaycast, 0, 0) * direction;
+            direction = GetComponent<Collider>().transform.root.rotation * direction;
+            myRay = new Ray(transform.position, direction.normalized);
+            if (Physics.Raycast(myRay, wheelHeight))
+            {
+                isOnGround = true;
+                myColor = Color.green;
+            }
+            Debug.DrawLine(transform.position, transform.position + direction.normalized * wheelHeight, myColor);
+            myColor = Color.red;
+            direction = new Vector3(0, -1, 0);
+        }
+        
     }
 }

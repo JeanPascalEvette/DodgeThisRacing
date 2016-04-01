@@ -6,6 +6,7 @@ public class Camera : MonoBehaviour {
     public GameObject target;
     public float xDist = 10.0f;
     public float yDist = 3.0f;
+    public float zoom = 1.0f;
     // Use this for initialization
 
         public enum CameraType
@@ -47,6 +48,8 @@ public class Camera : MonoBehaviour {
         dir.Normalize();
         dir *= xDist;
         dir.y = yDist;
+
+        dir *= zoom;
         this.transform.position = targetPos + (dir);
         transform.LookAt(target.transform);
     }
