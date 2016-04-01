@@ -5,26 +5,25 @@ public class PlayerSelector : MonoBehaviour
 {
 
     public Text t;
+    public Text cpuText;
     public Text Control_Type;
+
     public int switch_case = 0;
     public int Controls = 0;
     public int CPU_Controls = -1;
     public int PanelNumber;
-    string nameplayer;
+
     public GameObject playerCoin;
-
     public IconCollider Car1, Car2, Car3, Car4;
-
-    bool is_CPU = false;
-
     public LevelManager l;
     public MoveSelector m;
 
-    public Text cpuText;
+    string nameplayer;
+    bool is_CPU = false;
+
 
     void Start() {
 
-        // m = playerCoin.GetComponent<MoveSelector>();
         l.is_p1_active = true;
 
         switch (PanelNumber)
