@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class WheelController : MonoBehaviour {
 
@@ -38,6 +39,11 @@ public class WheelController : MonoBehaviour {
     public Rigidbody carModel;
     public float carSpeed;
 
+    public Slider healthSlider;
+    private float damageCaused;
+    public float pieceHealth;
+    public float pieceMass;
+
     public AnimationCurve slipCurve;
     public AnimationCurve longtitudinalForceCurve;
 
@@ -50,7 +56,8 @@ public class WheelController : MonoBehaviour {
 
     private Vector3 currentRotation = new Vector3(0, 0, 0);
 
-    
+
+
     // Use this for initialization
     void Start () {
         mCarController = transform.parent.GetComponent<CarController>();
@@ -74,20 +81,8 @@ public class WheelController : MonoBehaviour {
     void FixedUpdate()
     {
         currentRotation.x += spinningSpeed;
-        if (!isRearWheel)
-        {
-            float maxTurn = Input.GetAxis("Horizontal");
-            if (Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D))
-            {
-                currentRotation = new Vector3(currentRotation.x, maxTurn * 30, currentRotation.z);
-            }
-            else
-            {
-                currentRotation = new Vector3(currentRotation.x, 0, currentRotation.z);
-            }
-            
-        }
 
+        currentRotation = new Vector3(currentRotation.x, 0, 0);
         transform.localRotation = Quaternion.Euler(currentRotation);
 
         // Car velocity (Find out which direction to use) (negative sign as before the speed was opposite it should be)
@@ -161,6 +156,38 @@ public class WheelController : MonoBehaviour {
         float signTractionTorque = Mathf.Sign(driveTorque);
         tractionTorque = (-1) * signTractionTorque * tractionTorque;
         //*********************** END TRACTION TORQUE ON DRIVE WHEELS ***********************//
+    }
+
+    // COLLISION DETECTION
+    void OnCollisionEnter(Collision col)
+    {
+        Debug.Log("COLLISION WITH WALL");
+        if (col.gameObject.name == "Obstacle2")
+        {
+            // We need to find out which sphere collider we are hitting here
+            Debug.Log("IN COLLISION");
+            // We make the calculation of the damage created by the collision
+            // Force = (mass * speed * speed)/2
+            damageCaused = (pieceMass * col.relativeVelocity.magnitude * col.relativeVelocity.magnitude) / 2;
+            Debug.Log("DAMAGE: " + damageCaused);
+
+            pieceHealth -= damageCaused;
+            // The total slider is reduced in a smallest amount
+            healthSlider.value = damageCaused * 0.1f;
+
+            // If the piece hasn´t left health we detach the piece
+            if (pieceHealth < 0)
+            {
+                Debug.Log("Detach part");
+                //isHanging = true;
+            }
+
+            // We check which part we´ve collided with
+
+            // We check the health of the part to see if we detach it
+
+            // everything affects the health of the car
+        }
     }
 
     private void CheckWheelsAreOnGround()

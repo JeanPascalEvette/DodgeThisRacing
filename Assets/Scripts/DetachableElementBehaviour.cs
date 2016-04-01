@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 
 public class DetachableElementBehaviour : MonoBehaviour {
@@ -7,6 +8,11 @@ public class DetachableElementBehaviour : MonoBehaviour {
     public bool isHanging = false;
     public float timerBreak = -1f;
     public float timeToBreak = 5.0f;
+
+    public float pieceHealth;
+    public float pieceMass;
+    public Slider healthSlider;
+    private float damageCaused;
 
     [SerializeField]
     private GameObject DebrisHolder;
@@ -74,8 +80,9 @@ public class DetachableElementBehaviour : MonoBehaviour {
             }
             else if (timerBreak < timeToBreak / 2)
             {
-
+                isHanging = true;
             }
         }
 	}
+
 }
