@@ -35,9 +35,9 @@ public class GameLogic : MonoBehaviour {
         if (Track == null)
             Track = new GameObject("Track");
 
+        PlayerData[] myCars = new PlayerData[NUMBEROFCARS];
         if (Data.getNumberCarSelected() == 0) // IF did not go through main menu (DEBUG ONLY)
         {
-            PlayerData[] myCars = new PlayerData[NUMBEROFCARS];
             int ctrlScheme = 0;
             myCars[0] = new PlayerData(0, (PlayerData.ControlScheme)ctrlScheme++, PlayerData.PlayerType.Player);
             for (int i = 1; i < NUMBEROFCARS; i++)
@@ -46,7 +46,8 @@ public class GameLogic : MonoBehaviour {
             }
             Data.selectCars(myCars);
         }
-
+        else
+            myCars = Data.getCarsSelected();
 
 
         GameObject[] carPrefabs = Data.generateCars();
@@ -54,6 +55,8 @@ public class GameLogic : MonoBehaviour {
         for (int i = 0; i < carPrefabs.Length; i++)
         {
             var newCar = (GameObject)Instantiate(carPrefabs[i], new Vector3((i - carPrefabs.Length/2) * 3.0f, 0, 3.0f), Quaternion.Euler(0, 180, 0));
+            var carCtrler = newCar.GetComponent<CarController>();
+            carCtrler.myPlayerData = myCars[i];
             Data.getCarsSelected()[i].AttachGameObject(newCar);
             Data.getCarsSelected()[i].AttachPrefab(carPrefabs[i]);
         }

@@ -118,7 +118,7 @@ public class CarController : MonoBehaviour
     private float autoRotateMinTime = 2.0f;
 
     private AIController myAI;
-    public PlayerData.ControlScheme specificControl;
+    public PlayerData myPlayerData;
 
     // Use this for initialization
     void Start()
@@ -325,8 +325,13 @@ public class CarController : MonoBehaviour
 
         if (IsGoing('W'))
         {
-
-            direction = 1;
+            direction = 1.0f;
+            isPedalDown = true;
+            if (isPedalDown == true && rpm < 1000.0f)
+            {       // checks that car isn't moving so that rpm can have a minimum of 1000 when it starts movign from inactivity
+                rpm = 1000.0f;
+                isPedalDown = false;
+            }
         }
         else if (IsGoing('S'))
         {
@@ -342,24 +347,6 @@ public class CarController : MonoBehaviour
                 deb.isHanging = true;
             }
         }
-        if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))
-        {
-            direction = 1.0f;
-            isPedalDown = true;
-            if (isPedalDown == true && rpm < 1000.0f)
-            {       // checks that car isn't moving so that rpm can have a minimum of 1000 when it starts movign from inactivity
-                rpm = 1000.0f;
-                isPedalDown = false;
-        }
-        }
-           
-        else if (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow))
-        {
-            // We apply a force in the different direction as it was
-            direction = -1.0f;
-        }
-            
-
         if (direction >= 0)														// the traction force is the force delivered by the engine via the rear wheels
         {
             if (rpm < 6000)
@@ -599,7 +586,7 @@ public class CarController : MonoBehaviour
     {
         
         KeyCode directionCode = KeyCode.W;
-        if (specificControl == PlayerData.ControlScheme.WASD)
+        if (myPlayerData.GetControlScheme() == PlayerData.ControlScheme.WASD)
         {
             if (direction == 'W')
                 directionCode = KeyCode.W;
@@ -610,7 +597,7 @@ public class CarController : MonoBehaviour
             else if (direction == 'D')
                 directionCode = KeyCode.D;
         }
-        else if (specificControl == PlayerData.ControlScheme.Arrows)
+        else if (myPlayerData.GetControlScheme() == PlayerData.ControlScheme.Arrows)
         {
             if (direction == 'W')       // ascii 24
                 directionCode = KeyCode.UpArrow;
@@ -621,7 +608,7 @@ public class CarController : MonoBehaviour
             else if (direction == 'D') // ascii 28
                 directionCode = KeyCode.RightArrow;
         }
-        else if (specificControl == PlayerData.ControlScheme.XboxController1)
+        else if (myPlayerData.GetControlScheme() == PlayerData.ControlScheme.XboxController1)
         {
             if (direction == 'W')
                 directionCode = KeyCode.Joystick1Button0;
@@ -633,7 +620,7 @@ public class CarController : MonoBehaviour
                 return true;
             }
         }
-        else if (specificControl == PlayerData.ControlScheme.XboxController2)
+        else if (myPlayerData.GetControlScheme() == PlayerData.ControlScheme.XboxController2)
         {
             if (direction == 'W')
                 directionCode = KeyCode.Joystick2Button0;
