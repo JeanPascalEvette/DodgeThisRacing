@@ -684,7 +684,7 @@ GameObject:
   - 222: {fileID: 367396836}
   - 114: {fileID: 367396835}
   m_Layer: 5
-  m_Name: CarImage1
+  m_Name: SelectedCar1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1308,7 +1308,7 @@ GameObject:
   - 222: {fileID: 579473853}
   - 114: {fileID: 579473852}
   m_Layer: 5
-  m_Name: CarImage3
+  m_Name: SelectedCar3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2003,7 +2003,7 @@ GameObject:
   - 222: {fileID: 775085194}
   - 114: {fileID: 775085193}
   m_Layer: 5
-  m_Name: CarImage4
+  m_Name: SelectedCar4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3694,7 +3694,7 @@ GameObject:
   - 222: {fileID: 2034665740}
   - 114: {fileID: 2034665739}
   m_Layer: 5
-  m_Name: CarImage2
+  m_Name: SelectedCar2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
