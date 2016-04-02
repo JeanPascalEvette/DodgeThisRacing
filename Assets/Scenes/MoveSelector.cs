@@ -59,7 +59,6 @@ public class MoveSelector : MonoBehaviour {
     void Update()
     {
        HandleMovement();
-       UpdatePlayerData();
 
     }
 
@@ -104,7 +103,7 @@ public class MoveSelector : MonoBehaviour {
 
     public void CreatePlayerData()
     {
-
+        UpdatePlayerData();
         ThisPlayerData = new PlayerData(ThisPlayerCar, ThisControlScheme, ThisPlayerType);
     }
 
