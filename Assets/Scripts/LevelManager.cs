@@ -76,7 +76,7 @@ public class LevelManager : MonoBehaviour
             TextColorGo.color = Color.green;
 
             //If Enter or Start is pressed when GO text is green the main game is loaded
-            if (Input.GetButtonDown("Submit")) {LoadLevel("main2"); }
+            if (Input.GetButtonDown("Submit")) {LoadLevel("Game"); }
         }
 
         else { TextColorGo.color = Color.white; }
@@ -91,15 +91,19 @@ public class LevelManager : MonoBehaviour
             switch (i)
             {
                 case 0:
+                    player1move.CreatePlayerData();
                     _PlayerData[i] = player1move.ThisPlayerData;
                     break;
                 case 1:
+                    player2move.CreatePlayerData();
                     _PlayerData[i] = player2move.ThisPlayerData;
                     break;
                 case 2:
+                    player3move.CreatePlayerData();
                     _PlayerData[i] = player3move.ThisPlayerData;
                     break;
                 case 3:
+                    player4move.CreatePlayerData();
                     _PlayerData[i] = player4move.ThisPlayerData;
                     break;
             }

@@ -52,8 +52,6 @@ public class MoveSelector : MonoBehaviour {
        ThisPlayerCar = 0;
        ThisControlScheme = PlayerData.ControlScheme.NotAssigned;
        ThisPlayerType = PlayerData.PlayerType.None;
-
-       ThisPlayerData = new PlayerData(ThisPlayerCar, ThisControlScheme, ThisPlayerType);
     }
 
 
@@ -103,6 +101,13 @@ public class MoveSelector : MonoBehaviour {
         }
     }
 
+
+    public void CreatePlayerData()
+    {
+
+        ThisPlayerData = new PlayerData(ThisPlayerCar, ThisControlScheme, ThisPlayerType);
+    }
+
     void UpdatePlayerData()
     {
         if      (ThisPlayerControl == ControlTypesHere.ArrowKeys) { ThisControlScheme = PlayerData.ControlScheme.Arrows; }
@@ -119,4 +124,5 @@ public class MoveSelector : MonoBehaviour {
 
         else                                { ThisPlayerType = PlayerData.PlayerType.None; }
     }
+
 }
