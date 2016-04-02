@@ -20,6 +20,7 @@ public class IconCollider : MonoBehaviour {
     public GameObject Car; // The Object of the specific car icon this script is attached to
 
     public bool ThisCarSelected = false; // Bool Variable teeling if this car has been selected by the player
+    public int ThisCarType;
 
     //Initializing
     void Start()
@@ -78,6 +79,8 @@ public class IconCollider : MonoBehaviour {
                 Car.GetComponent<Collider2D>().enabled = false; //The collider of the car icon is deactivated. This car cannot be selected by other players
                 l.num_ready_players++;                          // Increase the number of players who are ready to GO
                 ThisCarSelected = true;                         //Bool variable telling the player has selected this car
+
+                m.ThisPlayerCar = ThisCarType;
             }
 
             //If the cursor is near the coin inside the area of the car icon and presses B he re-acquires the coin and deselects the car
@@ -88,6 +91,8 @@ public class IconCollider : MonoBehaviour {
                 Car.GetComponent<Collider2D>().enabled = true; //The car Collider is re-activated
                 l.num_ready_players--;                         //The number of players ready to go is decreased
                 ThisCarSelected = false;                       //The car is deselected
+
+                m.ThisPlayerCar = 0;
             }
         }
 
@@ -100,8 +105,9 @@ public class IconCollider : MonoBehaviour {
                 t.transform.parent = Car.transform;
                 Car.GetComponent<Collider2D>().enabled = false;
                 l.num_ready_players++;
-                print("joy2 Select");
                 ThisCarSelected = true;
+
+                m.ThisPlayerCar = ThisCarType;
             }
 
             if (Input.GetButtonDown("ButtonXJoyStick2") && l.is_joy2_taken && m.is_this_inside == true && b.is_player_near)
@@ -111,6 +117,8 @@ public class IconCollider : MonoBehaviour {
                 Car.GetComponent<Collider2D>().enabled = true;
                 l.num_ready_players--;
                 ThisCarSelected = false;
+
+                m.ThisPlayerCar = 0;
             }
         }
 
@@ -123,6 +131,8 @@ public class IconCollider : MonoBehaviour {
                 Car.GetComponent<Collider2D>().enabled = false;
                 l.num_ready_players++;
                 ThisCarSelected = true;
+
+                m.ThisPlayerCar = ThisCarType;
             }
 
             if (Input.GetButtonDown("ButtonXArrows") && l.is_arrowKeys_taken && m.is_this_inside == true && b.is_player_near)
@@ -131,6 +141,8 @@ public class IconCollider : MonoBehaviour {
                 Car.GetComponent<Collider2D>().enabled = true;
                 l.num_ready_players--;
                 ThisCarSelected = false;
+
+                m.ThisPlayerCar = 0;
             }
         }
 
@@ -142,6 +154,8 @@ public class IconCollider : MonoBehaviour {
                 Car.GetComponent<Collider2D>().enabled = false;
                 l.num_ready_players++;
                 ThisCarSelected = true;
+
+                m.ThisPlayerCar = ThisCarType;
             }
 
             if (Input.GetButtonDown("ButtonXWSDA") && l.is_wsda_taken && m.is_this_inside == true && b.is_player_near)
@@ -150,18 +164,26 @@ public class IconCollider : MonoBehaviour {
                 Car.GetComponent<Collider2D>().enabled = true;
                 l.num_ready_players--;
                 ThisCarSelected = false;
+
+                m.ThisPlayerCar = 0;
             }
         }
     }
 
     //This function is called in the script PlayerSelector controlling the panels. If a player is deactivated by a panel the coin, the cursor and their positions are re-set to default
-    public void CheckPlayerActivation() {
-
+    public void CheckPlayerActivation()
+    {
+            m.ThisPlayerCar = 0;
             t.transform.parent = old;                       //The coin is given its parent back (the cursor)
             t.transform.position = m.CoinPosition;          //It gets shifter to its original position
             TextColorCar.color = Color.white;               //The text color of the car icon is set to white
             Car.GetComponent<Collider2D>().enabled = true;  //The icon collider is set to active
-            if (ThisCarSelected) { l.num_ready_players--; } //The number of ready players is decreased
+
+            if (ThisCarSelected)
+        {
+            l.num_ready_players--;                          //The number of ready players is decreased
+            m.ThisPlayerCar = 0; 
+        } 
             ThisCarSelected = false;                        //The boolian for the car selection is set to false
     }
 }

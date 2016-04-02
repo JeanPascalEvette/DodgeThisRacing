@@ -24,16 +24,16 @@ public class LevelManager : MonoBehaviour
     MoveSelector player4move;
 
     MoveSelector newPlayer; //A generic MoveSelector object that gets assigned to a player on its activation
-    PlayerSelector ps; //An instance of the script PlayerSelector (handles how the panels behave)
+    PlayerSelector ps;      //An instance of the script PlayerSelector (handles how the panels behave)
 
-    public Text TextColorGo; //An instance of the Text Element of the GO Object
+    public Text TextColorGo;       //An instance of the Text Element of the GO Object
    
-    public int num_players; //The number of active players
+    public int num_players;        //The number of active players
     public int num_ready_players;  //The number of players that have selected a car and are ready to start
 
     public bool is_joy1_taken, is_arrowKeys_taken, is_wsda_taken, is_joy2_taken = false; //Bool variables to check if a control type has already been assigned or not
-    public bool is_joy1_used, is_arrowKeys_used, is_wsda_used, is_joy2_used = false; //Bool variables to check if a control type is being used at that moment
-    public bool is_p1_active, is_p2_active, is_p3_active, is_p4_active = false; //Bool Variable to check if each player is active or not
+    public bool is_joy1_used, is_arrowKeys_used, is_wsda_used, is_joy2_used = false;     //Bool variables to check if a control type is being used at that moment
+    public bool is_p1_active, is_p2_active, is_p3_active, is_p4_active = false;          //Bool Variable to check if each player is active or not
 
     //Initialization. Player 1 is set active by default and controllable with Joystick 1
     void Start()
@@ -58,7 +58,6 @@ public class LevelManager : MonoBehaviour
 
         player1move.ThisPlayerControl = MoveSelector.ControlTypesHere.Joy1;
         is_joy1_taken = true;
-
     }
 
 
@@ -72,7 +71,7 @@ public class LevelManager : MonoBehaviour
         CheckControlinUse();  //Function to keep the current control scheme used by each player up to date
 
         //If all players have selected their cars the GO text becomes green
-        if (num_players == num_ready_players)
+        if (num_players == num_ready_players && num_players != 0)
         {
             TextColorGo.color = Color.green;
 
@@ -81,22 +80,33 @@ public class LevelManager : MonoBehaviour
         }
 
         else { TextColorGo.color = Color.white; }
-
     }
-
 
     //Function to load the main game scene
     public void LoadLevel(string name)
     {
-        PlayerData[] _PlayerData = new PlayerData[num_players];
-        for(int i =0; i < num_players; i++)
+        PlayerData[] _PlayerData = new PlayerData[num_players]; //Change The player1move to an array
+        for(int i = 0; i < num_players; i++)
         {
-             PlayerData player = new PlayerData(/*Add parameters of the constructor*/);
-            _PlayerData[i] = player;
+            switch (i)
+            {
+                case 0:
+                    _PlayerData[i] = player1move.ThisPlayerData;
+                    break;
+                case 1:
+                    _PlayerData[i] = player2move.ThisPlayerData;
+                    break;
+                case 2:
+                    _PlayerData[i] = player3move.ThisPlayerData;
+                    break;
+                case 3:
+                    _PlayerData[i] = player4move.ThisPlayerData;
+                    break;
+            }
         }
+
         Data.selectCars(_PlayerData);
         SceneManager.LoadScene(name);
-
     }
 
     //Function to detect a control input
@@ -149,7 +159,6 @@ public class LevelManager : MonoBehaviour
 
             { is_joy1_used = true; }
 
-           
             Create_Player();
 
         }
@@ -227,8 +236,7 @@ public class LevelManager : MonoBehaviour
 
             newPlayer.is_this_active = true;
             ps.CPU_Controls = 1;
-            ps.switch_case = 1;
-
+            ps.switch_case  = 1;
         }
 
         setControlScheme();
@@ -274,7 +282,6 @@ public class LevelManager : MonoBehaviour
             is_joy1_taken = true;
             is_joy1_used = false;
         }
-
     }
 
     //Keep the control schemes in use updated

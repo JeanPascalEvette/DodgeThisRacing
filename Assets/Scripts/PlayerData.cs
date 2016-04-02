@@ -11,7 +11,7 @@ public class PlayerData
     private PlayerType _playerType;
     private GameObject _carObject;
 
-    public enum ControlScheme { WASD, Arrows, XboxController1, XboxController2 };
+    public enum ControlScheme { WASD, Arrows, XboxController1, XboxController2, NotAssigned };
     public enum PlayerType { AI, Player, None };
     public PlayerData() {  }
     public PlayerData(int carType, ControlScheme ctrlScheme, PlayerType playerType)

@@ -12,6 +12,7 @@ public class MoveSelector : MonoBehaviour {
 
     float move_player = 5.0f; //Speed at which the cursor moves
     public LevelManager l;   // Instance of LevelManager
+    public PlayerSelector ThisPlayerSelector;
     public int playerID;    //  An int that describes the player number (1-4). It is assigned in the Inspector
 
     public bool is_this_inside = false; //Bool variable that tells if the current cursor is inside a Car Icon
@@ -34,6 +35,10 @@ public class MoveSelector : MonoBehaviour {
     // A variable of type ControlTypeshere that specifies which control scheme this player has chosen
     public ControlTypesHere ThisPlayerControl;
 
+    public  PlayerData ThisPlayerData;
+    private PlayerData.ControlScheme ThisControlScheme;
+    private PlayerData.PlayerType ThisPlayerType;
+    public int ThisPlayerCar;
    
     //initialization
     void Start ()
@@ -43,13 +48,21 @@ public class MoveSelector : MonoBehaviour {
        //Obtaining and saving the initial positions of the cursor and the coin
        CoinPosition = Coin.transform.position;
        playerPosition = playerButton.transform.position;
+
+       ThisPlayerCar = 0;
+       ThisControlScheme = PlayerData.ControlScheme.NotAssigned;
+       ThisPlayerType = PlayerData.PlayerType.None;
+
+       ThisPlayerData = new PlayerData(ThisPlayerCar, ThisControlScheme, ThisPlayerType);
     }
 
 
     //Called once per frame
     void Update()
     {
-       HandleMovement(); 
+       HandleMovement();
+       UpdatePlayerData();
+
     }
 
 
@@ -88,5 +101,22 @@ public class MoveSelector : MonoBehaviour {
                 playerButton.transform.Translate(0, translationY, 0);
                 playerButton.transform.Translate(translationX, 0, 0);
         }
-    }  
+    }
+
+    void UpdatePlayerData()
+    {
+        if      (ThisPlayerControl == ControlTypesHere.ArrowKeys) { ThisControlScheme = PlayerData.ControlScheme.Arrows; }
+        else if (ThisPlayerControl == ControlTypesHere.WSDA)      { ThisControlScheme = PlayerData.ControlScheme.WASD; }
+        else if (ThisPlayerControl == ControlTypesHere.Joy1)      { ThisControlScheme = PlayerData.ControlScheme.XboxController1; }
+        else if (ThisPlayerControl == ControlTypesHere.Joy2)      { ThisControlScheme = PlayerData.ControlScheme.XboxController2; }
+        else                                                      { ThisControlScheme = PlayerData.ControlScheme.NotAssigned; }
+
+        if (is_this_active)
+        {
+            if (!ThisPlayerSelector.is_CPU) { ThisPlayerType = PlayerData.PlayerType.Player; }
+            else                            { ThisPlayerType = PlayerData.PlayerType.AI; }
+        }
+
+        else                                { ThisPlayerType = PlayerData.PlayerType.None; }
+    }
 }

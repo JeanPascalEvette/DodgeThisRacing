@@ -19,7 +19,7 @@ public class PlayerSelector : MonoBehaviour
     public MoveSelector m;
 
     string nameplayer;
-    bool is_CPU = false;
+    public bool is_CPU = false;
 
 
     void Start() {
