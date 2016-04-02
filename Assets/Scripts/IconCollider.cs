@@ -72,7 +72,7 @@ public class IconCollider : MonoBehaviour {
 
         {
             //If the A button is pressed the coin is assigned to that car icon and the cursor doesn't move it around anymore (Selection of the car)
-            if (Input.GetButtonDown("ButtonAJoyStick1") && l.is_joy1_taken && m.is_this_inside == true)
+            if (Input.GetButtonDown("ButtonAJoyStick1") && l.is_joy1_taken && m.is_this_inside == true && !ThisCarSelected)
             {
 
                 t.transform.parent = Car.transform;             //The coin is given the car icon as a parent
@@ -84,7 +84,7 @@ public class IconCollider : MonoBehaviour {
             }
 
             //If the cursor is near the coin inside the area of the car icon and presses B he re-acquires the coin and deselects the car
-            if (Input.GetButtonDown("ButtonXJoyStick1") && l.is_joy1_taken && m.is_this_inside == true && b.is_player_near)
+            if (Input.GetButtonDown("ButtonXJoyStick1") && l.is_joy1_taken && m.is_this_inside == true && b.is_player_near &&ThisCarSelected)
             {
 
                 t.transform.parent = old;                      //The coin is given the old parent back (the cursor)
@@ -99,7 +99,7 @@ public class IconCollider : MonoBehaviour {
         //Same for all the other control types
         else if (m.ThisPlayerControl == MoveSelector.ControlTypesHere.Joy2)
         {
-            if (Input.GetButtonDown("ButtonAJoyStick2") && l.is_joy2_taken && m.is_this_inside == true)
+            if (Input.GetButtonDown("ButtonAJoyStick2") && l.is_joy2_taken && m.is_this_inside == true && !ThisCarSelected)
             {
 
                 t.transform.parent = Car.transform;
@@ -110,7 +110,7 @@ public class IconCollider : MonoBehaviour {
                 m.ThisPlayerCar = ThisCarType;
             }
 
-            if (Input.GetButtonDown("ButtonXJoyStick2") && l.is_joy2_taken && m.is_this_inside == true && b.is_player_near)
+            if (Input.GetButtonDown("ButtonXJoyStick2") && l.is_joy2_taken && m.is_this_inside == true && b.is_player_near && ThisCarSelected)
             {
 
                 t.transform.parent = old;
@@ -124,7 +124,7 @@ public class IconCollider : MonoBehaviour {
 
         else if (m.ThisPlayerControl == MoveSelector.ControlTypesHere.ArrowKeys)
         {
-            if (Input.GetButtonDown("ButtonAArrows") && l.is_arrowKeys_taken && m.is_this_inside == true)
+            if (Input.GetButtonDown("ButtonAArrows") && l.is_arrowKeys_taken && m.is_this_inside == true && !ThisCarSelected)
             {
 
                 t.transform.parent = Car.transform;
@@ -135,7 +135,7 @@ public class IconCollider : MonoBehaviour {
                 m.ThisPlayerCar = ThisCarType;
             }
 
-            if (Input.GetButtonDown("ButtonXArrows") && l.is_arrowKeys_taken && m.is_this_inside == true && b.is_player_near)
+            if (Input.GetButtonDown("ButtonXArrows") && l.is_arrowKeys_taken && m.is_this_inside == true && b.is_player_near && ThisCarSelected)
             {
                 t.transform.parent = old;
                 Car.GetComponent<Collider2D>().enabled = true;
@@ -148,7 +148,7 @@ public class IconCollider : MonoBehaviour {
 
         else if (m.ThisPlayerControl == MoveSelector.ControlTypesHere.WSDA)
         {
-            if (Input.GetButtonDown("ButtonAWSDA") && l.is_wsda_taken && m.is_this_inside == true)
+            if (Input.GetButtonDown("ButtonAWSDA") && l.is_wsda_taken && m.is_this_inside == true && !ThisCarSelected)
             {
                 t.transform.parent = Car.transform;
                 Car.GetComponent<Collider2D>().enabled = false;
@@ -158,7 +158,7 @@ public class IconCollider : MonoBehaviour {
                 m.ThisPlayerCar = ThisCarType;
             }
 
-            if (Input.GetButtonDown("ButtonXWSDA") && l.is_wsda_taken && m.is_this_inside == true && b.is_player_near)
+            if (Input.GetButtonDown("ButtonXWSDA") && l.is_wsda_taken && m.is_this_inside == true && b.is_player_near && ThisCarSelected)
             {
                 t.transform.parent = old;
                 Car.GetComponent<Collider2D>().enabled = true;
