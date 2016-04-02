@@ -557,7 +557,7 @@ MonoBehaviour:
   ID: 0
   Car: {fileID: 228496793}
   ThisCarSelected: 0
-  ThisCarType: 2
+  ThisCarType: 1
 --- !u!224 &244530151 stripped
 RectTransform:
   m_PrefabParentObject: {fileID: 22410116, guid: 56d85edf13363e84186bda7089f36bcd,
@@ -672,7 +672,7 @@ MonoBehaviour:
   ID: 0
   Car: {fileID: 346784878}
   ThisCarSelected: 0
-  ThisCarType: 1
+  ThisCarType: 0
 --- !u!1 &367396833
 GameObject:
   m_ObjectHideFlags: 0
@@ -776,7 +776,7 @@ MonoBehaviour:
   ID: 0
   Car: {fileID: 372341581}
   ThisCarSelected: 0
-  ThisCarType: 4
+  ThisCarType: 3
 --- !u!1 &397500427
 GameObject:
   m_ObjectHideFlags: 0
@@ -2035,7 +2035,7 @@ MonoBehaviour:
   ID: 0
   Car: {fileID: 941973851}
   ThisCarSelected: 0
-  ThisCarType: 3
+  ThisCarType: 2
 --- !u!1 &984705792
 GameObject:
   m_ObjectHideFlags: 0
