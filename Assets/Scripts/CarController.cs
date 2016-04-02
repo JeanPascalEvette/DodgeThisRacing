@@ -91,6 +91,7 @@ public class CarController : MonoBehaviour
     public AudioSource[] sounds;
     public AudioSource noise1;
     public AudioSource noise2;
+    private float audioCountdown = 0f;
     // public GUISkin aSkin;
 
     private AIController myAI;
@@ -588,16 +589,22 @@ public class CarController : MonoBehaviour
 
     private void soundOfEngine()
     {
+        if(audioCountdown > 0)
+        {
+            audioCountdown -= Time.deltaTime; // so the crashing sound doesn't occur constantly when 2 objects collide continuesly, it will make it more realistic
+        }
+
         //0.70 - 1.20  probably ideal pitch for looping through
-        if(myAI == null)
+        if (myAI == null)
         noise1.pitch = (rpm / 10000) + 0.7f; // formula to reach ideal pitch from rpm
     }
 
     void OnCollisionEnter(Collision other)
      {
         
-        if(other.gameObject.tag == "Player" && myAI == null) // or hit on everything?
+        if(other.gameObject.tag == "Player" && myAI == null && audioCountdown <= 0) // or hit on everything?
         {
+            audioCountdown = 1f;
             noise2.Play();
         }
      }
