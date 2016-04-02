@@ -37,11 +37,12 @@ public class DetachableElementBehaviour : MonoBehaviour {
     private void setColliders(bool isEnabled)
     {
         foreach (BoxCollider col in GetComponents<BoxCollider>())
+        {
             col.enabled = isEnabled;
+        }
         foreach (BoxCollider col in GetComponentsInChildren<BoxCollider>())
             col.enabled = isEnabled;
     }
-
 
     void LateUpdate()
     {
@@ -54,7 +55,8 @@ public class DetachableElementBehaviour : MonoBehaviour {
     // Update is called once per frame
     void Update() {
         if (isHanging && timerBreak == -1f)
-        {
+        {   
+
             timerBreak = timeToBreak;
             rb.mass = 1;
             setColliders(true);

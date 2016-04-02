@@ -122,18 +122,21 @@ public class AIController : MonoBehaviour
                 }
             }
 
-            System.Collections.Generic.List < GameObject > obstacleList = GameLogic.myInstance.obstacleList;
-            ObstacleState[] obstacles = new ObstacleState[obstacleList.Count];
-
-            for(int i = 0; i < obstacleList.Count; i++)
+            if (GameLogic.myInstance != null)
             {
-                Vector3 vel = new Vector3(0, 0, 0);
-                Rigidbody obstacleRB = obstacleList[i].transform.GetComponent<Rigidbody>();
-                if (obstacleRB != null)
-                    vel = obstacleRB.velocity;
-                obstacles[i] = new ObstacleState(obstacleList[i].transform.position, vel, obstacleList[i].transform.forward, obstacleList[i].GetComponent<MeshRenderer>().bounds);
+                System.Collections.Generic.List<GameObject> obstacleList = GameLogic.myInstance.obstacleList;
+                ObstacleState[] obstacles = new ObstacleState[obstacleList.Count];
+
+                for (int i = 0; i < obstacleList.Count; i++)
+                {
+                    Vector3 vel = new Vector3(0, 0, 0);
+                    Rigidbody obstacleRB = obstacleList[i].transform.GetComponent<Rigidbody>();
+                    if (obstacleRB != null)
+                        vel = obstacleRB.velocity;
+                    obstacles[i] = new ObstacleState(obstacleList[i].transform.position, vel, obstacleList[i].transform.forward, obstacleList[i].GetComponent<MeshRenderer>().bounds);
+                }
+                currentState.obstacles = obstacles;
             }
-            currentState.obstacles = obstacles;
             //Set the waitHandle to make sure that the planner can retrieve a new planning
             waitHandle.Set();
 
