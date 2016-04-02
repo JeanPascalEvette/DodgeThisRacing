@@ -64,7 +64,7 @@ public class LevelManager : MonoBehaviour
     void Update()
     {
         //Debug messages (Delete Later on)
-        print("num players: " + num_players);
+        print("num players: "   + num_players);
         print("ready players: " + num_ready_players);
 
         CheckWhichInput();    //Function to detect a control input
