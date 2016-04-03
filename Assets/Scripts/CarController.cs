@@ -134,11 +134,16 @@ public class CarController : MonoBehaviour
         Physics.IgnoreLayerCollision(LayerMask.NameToLayer("DetachableObjects"), LayerMask.NameToLayer("CarCollisionHitbox"), true);
 
         sounds = GetComponents<AudioSource>();
+        noise1 = sounds[0];
+        noise2 = sounds[1];
+
         if (myAI == null)
         {
-            noise1 = sounds[0];
-            noise2 = sounds[1];
             noise1.pitch = (rpm / 10000) + 0.7f; // formula to reach ideal pitch from rpm
+        }
+        else
+        {
+            noise1.mute = true;
         }
     }
 
