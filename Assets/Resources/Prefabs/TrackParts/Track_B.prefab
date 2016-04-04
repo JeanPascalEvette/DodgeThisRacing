@@ -10,7 +10,8 @@ GameObject:
   - 4: {fileID: 410930}
   - 33: {fileID: 3345098}
   - 23: {fileID: 2362358}
-  m_Layer: 0
+  - 65: {fileID: 6531026}
+  m_Layer: 10
   m_Name: AI_mesh_B
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -481,6 +482,18 @@ MeshCollider:
   serializedVersion: 2
   m_Convex: 0
   m_Mesh: {fileID: 4300012, guid: 9ec9ab08d17cc484e80a747470419871, type: 3}
+--- !u!65 &6531026
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 123550}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0, y: 0.28283036, z: 1.4210211}
+  m_Center: {x: 0, y: 0.14141518, z: 0}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

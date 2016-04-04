@@ -28,7 +28,7 @@ public class GameLogic : MonoBehaviour {
             Destroy(gameObject);
         else
             myInstance = this;
-
+        
 
         if (Track == null)
             Track = GameObject.Find("Track");

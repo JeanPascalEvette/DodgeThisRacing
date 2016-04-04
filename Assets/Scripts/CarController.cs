@@ -153,7 +153,6 @@ public class CarController : MonoBehaviour
         frontRightPosition = frontRightWheel.transform.localPosition.z;
         rearRightPosition = rearRightWheel.transform.localPosition.z;
 
-  Physics.IgnoreLayerCollision(LayerMask.NameToLayer("DetachableObjects"), LayerMask.NameToLayer("CarCollisionHitbox"), true);
 
         sounds = GetComponents<AudioSource>();
         if (myAI == null)
