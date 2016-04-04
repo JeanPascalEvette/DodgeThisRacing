@@ -155,7 +155,7 @@ public class CarController : MonoBehaviour
 
 
         sounds = GetComponents<AudioSource>();
-        if (myAI == null)
+        if (myAI == null && sounds != null)
         {
             noise1 = sounds[0];
             noise2 = sounds[1];
@@ -502,8 +502,9 @@ public class CarController : MonoBehaviour
         //*********************** END ANGULAR ACCELERATION TO BE APPLIED TO DRIVE WHEELS ***********************//
 
 
-        soundOfEngine();
         HandlePartialyOnGround();
+        if(noise1 != null && noise2 != null)
+            soundOfEngine();
         
     }
 
