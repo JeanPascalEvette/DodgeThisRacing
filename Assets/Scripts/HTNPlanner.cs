@@ -6,18 +6,6 @@ using System;
 
 
 
-/*
-
-    JP NOTES
-    - Not currently true HTN because :
-        - Not trully planning
-        - Not truly recursive
-    - Option to improve : 
-        MoveTo_m generates NumberTimeSteps/10 MoveTo objects
-        Those will each calculate the vector to follow based on utility and simulating positions and then generate 10 input keys based on that
-
-
-    */
 
 public class CarState
 {
@@ -45,6 +33,7 @@ public class State
     public CarState myCar;
     public CarState[] otherCars;
     public ObstacleState[] obstacles;
+    public Vector3[] targetPositions;
 }
 
 public class HTNPlanner {
