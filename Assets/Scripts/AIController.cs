@@ -199,5 +199,10 @@ public class AIController : MonoBehaviour
         }
     }
 
+
+    public void stopPlanner()
+    {
+        plannerThread.Abort();
+    }
 }
 

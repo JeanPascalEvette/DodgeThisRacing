@@ -447,7 +447,7 @@ public class CarController : MonoBehaviour
             rpmToTorque = 300.0f - (rpm * 0.05f) + 300.0f;
         }
 
-        if (rpm < 1000.0f && speed < 1)
+        if (rpm < 2000.0f && currentGear > 1)
         {                                                               // when rpm gets below 1000 gear is decreased
 
             decreaseGear();

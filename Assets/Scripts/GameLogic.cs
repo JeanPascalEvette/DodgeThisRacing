@@ -76,6 +76,12 @@ public class GameLogic : MonoBehaviour {
             data.AttachGameObject(newCar);
     }
 	
+    public void DestroyCar(PlayerData data)
+    {
+        data.GetGameObject().GetComponent<AIController>().stopPlanner();
+        Destroy(data.GetGameObject());
+    }
+
     void AddNewObstacle(GameObject trackPart, int trackPartId)
     {
         GameObject obstaclePrefab = Data.getObstacle();
