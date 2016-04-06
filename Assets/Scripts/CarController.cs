@@ -640,7 +640,13 @@ public class CarController : MonoBehaviour
 
             else if (direction == 'S')
                 directionCode = KeyCode.Joystick2Button2;
-            if ((direction == 'A' || direction == 'D') && Input.GetAxis("HorizontalJoyStickLeft2") > 0)
+            if (direction == 'A' && Input.GetAxis("HorizontalJoyStickLeft2") < 0)
+            {
+                //   directionCode = KeyCode.A;
+                return true;
+            }
+
+            else if (direction == 'D' && Input.GetAxis("HorizontalJoyStickLeft2") > 0)
             {
                 //   directionCode = KeyCode.A;
                 return true;
