@@ -1174,6 +1174,7 @@ MonoBehaviour:
   target: {fileID: 0}
   xDist: 10
   yDist: 3
+  zoom: 1
   myCameraType: 0
 --- !u!1001 &1424603720
 Prefab:

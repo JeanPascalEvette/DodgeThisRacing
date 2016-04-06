@@ -23,11 +23,14 @@ public class AIController : MonoBehaviour
     private GUISkin aSkin;
 
     private CarController myCarController;
+    private float rayWidth = 80.0f;
 
 
     // Use this for initialization
     void Start()
     {
+        if (aSkin == null) aSkin = (GUISkin)Resources.Load("AILabel");
+        if (aSkin == null) aSkin = new GUISkin();
         myCarController = GetComponent<CarController>();
         allCars = GameObject.FindGameObjectsWithTag("Player");
         planner = new HTNPlanner(1.5f);
@@ -88,7 +91,17 @@ public class AIController : MonoBehaviour
                 UnityEditor.Handles.color = Color.red;
                 UnityEditor.Handles.ArrowCap(1, transform.position, Quaternion.LookRotation(dirGO.normalized), Mathf.Min(10, dirGO.magnitude));
             }
+
+            UnityEditor.Handles.color = Color.yellow;
+            for (int i = 0; i < currentState.targetPositions.Length; i++)
+            {
+                UnityEditor.Handles.DrawSolidDisc(currentState.targetPositions[i], Vector3.up, 0.5f);
+            }
+
+            Vector3 midPos = transform.position + new Vector3(0, 0.5f, 25f);
+            UnityEditor.Handles.DrawLine(midPos + new Vector3(1, 0, 0) * rayWidth / 2, midPos - new Vector3(1, 0, 0) * rayWidth / 2);
         }
+
 
     }
 
@@ -119,7 +132,36 @@ public class AIController : MonoBehaviour
                     currentState.otherCars[otherCarCount++] = new CarState(car.GetComponent<CarController>().carUniqueID, car.transform.position, car.GetComponent<Rigidbody>().velocity, car.transform.forward);
                 }
             }
+
+            if (GameLogic.myInstance != null)
+            {
+                System.Collections.Generic.List<GameObject> obstacleList = GameLogic.myInstance.obstacleList;
+                ObstacleState[] obstacles = new ObstacleState[obstacleList.Count];
+
+                for (int i = 0; i < obstacleList.Count; i++)
+                {
+                    Vector3 vel = new Vector3(0, 0, 0);
+                    Rigidbody obstacleRB = obstacleList[i].transform.GetComponent<Rigidbody>();
+                    if (obstacleRB != null)
+                        vel = obstacleRB.velocity;
+                    obstacles[i] = new ObstacleState(obstacleList[i].transform.position, vel, obstacleList[i].transform.forward, obstacleList[i].GetComponent<MeshRenderer>().bounds);
+                }
+                currentState.obstacles = obstacles;
+            }
             //Set the waitHandle to make sure that the planner can retrieve a new planning
+
+
+
+            Vector3 midPos = transform.position + new Vector3(0, 0.5f, 25f);
+
+            Ray targetRay = new Ray(midPos + new Vector3(1, 0, 0) * rayWidth/2, - new Vector3(1, 0, 0));
+            RaycastHit[] hits = Physics.RaycastAll(targetRay, rayWidth, 1 << LayerMask.NameToLayer("AIGuide"));
+            Vector3[] targetPos = new Vector3[hits.Length];
+            for (int i = 0; i < hits.Length; i++)
+                targetPos[i] = hits[i].point;
+            currentState.targetPositions = targetPos;
+
+
             waitHandle.Set();
 
         }
