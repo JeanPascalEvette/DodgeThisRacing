@@ -47,7 +47,6 @@ public class PlayerSelector : MonoBehaviour
         }
 
         player_selector();
-        //PanelManager();
 
         if (m.is_this_active)
         {
