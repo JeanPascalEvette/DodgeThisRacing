@@ -14,7 +14,6 @@ public class AIController : MonoBehaviour
 
     private State currentState;
     private int frameCounter = 0;
-    private GameObject[] allCars;
 
     [SerializeField]
     private bool showDebug = false;
@@ -25,17 +24,19 @@ public class AIController : MonoBehaviour
     private CarController myCarController;
     private float rayWidth = 80.0f;
 
+    private GameObject[] allCars;
+    
 
     // Use this for initialization
     void Start()
-    {
+    { 
         if (aSkin == null) aSkin = (GUISkin)Resources.Load("AILabel");
         if (aSkin == null) aSkin = new GUISkin();
         myCarController = GetComponent<CarController>();
-        allCars = GameObject.FindGameObjectsWithTag("Player");
         planner = new HTNPlanner(1.5f);
         plannerThread = new Thread(retrievePlanner); // TODO IMPLEMENT THREADING
         plannerThread.Start();
+        allCars = Data.GetAllCars();
 
     }
     public string GetPlan()
@@ -117,6 +118,7 @@ public class AIController : MonoBehaviour
 
     void FixedUpdate()
     {
+        allCars = Data.GetAllCars();
         //AI STUFF
         if (frameCounter++ % (int)(1.0f / Time.fixedDeltaTime) == 0)
         {
@@ -192,7 +194,8 @@ public class AIController : MonoBehaviour
             foreach (string timeStep in plan)
                 debugPlan += timeStep + ",";
             debugPlan = debugPlan.Substring(0, debugPlan.Length - 1);
-            Debug.Log("Car:" + currentState.myCar.myUniqueID + " - " + debugPlan);
+            if (showDebug) 
+                Debug.Log("Car:" + currentState.myCar.myUniqueID + " - " + debugPlan);
 
             //Wait for 1sec before calling the planner again
             waitHandle.Reset();

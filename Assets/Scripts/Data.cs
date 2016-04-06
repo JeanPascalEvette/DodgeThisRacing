@@ -93,6 +93,14 @@ public class Data : MonoBehaviour {
         return CarsSelected;
     }
 
+    public static GameObject[] GetAllCars()
+    {
+        GameObject[] allCars = new GameObject[CarsSelected.Length];
+        for (int i = 0; i < allCars.Length; i++)
+            allCars[i] = CarsSelected[i].GetGameObject();
+        return allCars;
+    }
+
     public static int getNumberCarSelected()
     {
         if (CarsSelected == null)
