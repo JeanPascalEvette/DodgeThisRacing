@@ -621,11 +621,17 @@ public class CarController : MonoBehaviour
                 directionCode = KeyCode.Joystick1Button0;
             else if (direction == 'S')
                 directionCode = KeyCode.Joystick1Button2;
-            if ((direction == 'A' || direction == 'D') && Input.GetAxis("HorizontalJoyStickLeft1") > 0)
+            if (direction == 'A'  && Input.GetAxis("HorizontalJoyStickLeft1") < 0)
+            {
+                //   directionCode = KeyCode.A;
+                return true;
+            } else if ( direction == 'D' && Input.GetAxis("HorizontalJoyStickLeft1") > 0)
             {
                 //   directionCode = KeyCode.A;
                 return true;
             }
+
+
         }
         else if (myPlayerData.GetControlScheme() == PlayerData.ControlScheme.XboxController2)
         {
@@ -634,7 +640,11 @@ public class CarController : MonoBehaviour
 
             else if (direction == 'S')
                 directionCode = KeyCode.Joystick2Button2;
-            if ((direction == 'A' || direction == 'D') && Input.GetAxis("HorizontalJoyStickLeft2") > 0)
+            if (direction == 'A' && Input.GetAxis("HorizontalJoyStickLeft2") < 0)
+            {
+                //   directionCode = KeyCode.A;
+                return true;
+            } else if (direction == 'D' && Input.GetAxis("HorizontalJoyStickLeft2") > 0)
             {
                 //   directionCode = KeyCode.A;
                 return true;
