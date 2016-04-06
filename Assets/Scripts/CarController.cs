@@ -149,6 +149,7 @@ public class CarController : MonoBehaviour
 
     void Update()
     {
+
         if (Input.GetKeyDown(KeyCode.F1))
         {
             //   showDebug = !showDebug;
@@ -609,11 +610,11 @@ public class CarController : MonoBehaviour
         
         if(other.gameObject.tag == "Player" && myAI == null && audioCountdown <= 0) // or hit on everything?
         {
-            audioCountdown = 1f;
+            audioCountdown = 1.2f;
             noise2.Play();
         }
      }
-   }
+}
 
 
 // car's position -- p = p + dt * v

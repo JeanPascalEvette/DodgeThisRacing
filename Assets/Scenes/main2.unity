@@ -690,6 +690,7 @@ GameObject:
   - 54: {fileID: 980735135}
   - 82: {fileID: 980735140}
   - 114: {fileID: 980735141}
+  - 114: {fileID: 980735142}
   m_Layer: 0
   m_Name: AudioWoodExampleToBeDeleted
   m_TagString: Untagged
@@ -831,7 +832,7 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 4
+    m_RotationOrder: 0
   reverbZoneMixCustomCurve:
     serializedVersion: 2
     m_Curve:
@@ -854,6 +855,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de2afbf6dacbe374a8d897005ea7e386, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &980735142
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 980735134}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b84dcb23ca6b9240a507195320cea03, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1055250257 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 189466, guid: eec4267e6878ee34dba7cab1bcec6d5a, type: 2}
@@ -871,6 +883,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   showDebug: 0
   aSkin: {fileID: 0}
+--- !u!114 &1055250265
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1055250257}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b84dcb23ca6b9240a507195320cea03, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1060945955
 GameObject:
   m_ObjectHideFlags: 0
