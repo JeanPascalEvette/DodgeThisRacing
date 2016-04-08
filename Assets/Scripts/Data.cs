@@ -65,12 +65,18 @@ public class Data : MonoBehaviour {
         return TrackPartsAvailable[choice];
     }
 
-    public static GameObject getObstacle()
+    public static GameObject getObstacle(int choice = -1)
     {
         if (ObstaclesAvailable == null || ObstaclesAvailable.Length == 0)
             return null;
-        int choice = Random.Range(0, ObstaclesAvailable.Length);
+        if(choice == -1 || choice > ObstaclesAvailable.Length)
+            choice = Random.Range(0, ObstaclesAvailable.Length);
         return ObstaclesAvailable[choice];
+    }
+
+    public static int GetNumObstacleAvailable()
+    {
+        return ObstaclesAvailable.Length;
     }
 
     public static GameObject[] generateCars()

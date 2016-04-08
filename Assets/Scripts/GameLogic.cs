@@ -82,19 +82,22 @@ public class GameLogic : MonoBehaviour {
         Destroy(data.GetGameObject());
     }
 
-    void AddNewObstacle(GameObject trackPart, int trackPartId)
+    void AddObstacles(GameObject trackPart, int trackPartId)
     {
-        GameObject obstaclePrefab = Data.getObstacle();
-        Vector3 startPos = trackPart.transform.position;
-        Bounds trackBounds = trackPart.GetComponentInChildren<MeshRenderer>().bounds;
-        var xPos = Random.Range(trackBounds.min.x*0.6f, trackBounds.max.x*0.6f);
-        var yPos = startPos.y;
-        var zPos = Random.Range(trackBounds.min.z, trackBounds.max.z);
-        var newObstacle = (GameObject)Instantiate(obstaclePrefab, Vector3.zero, obstaclePrefab.transform.rotation);
-        newObstacle.transform.parent = trackPart.transform;
-        newObstacle.GetComponent<ObstacleController>().SetupPosition(trackPartId);
-        obstacleList.Add(newObstacle);
-
+        int numPresets = Data.getObstacle(0).GetComponent<ObstacleController>().GetNumberOfPresets(trackPartId);
+        if (numPresets == 0) return;
+        int preset = Random.Range(0, numPresets);
+        for (int obstacleNum = 0; obstacleNum < Data.GetNumObstacleAvailable(); obstacleNum++)
+        {
+            GameObject obstaclePrefab = Data.getObstacle(obstacleNum);
+            for (int i = 0; i < obstaclePrefab.GetComponent<ObstacleController>().GetNumberOfInstances(trackPartId, preset); i++)
+            {
+                var newObstacle = (GameObject)Instantiate(obstaclePrefab, Vector3.zero, obstaclePrefab.transform.rotation);
+                newObstacle.transform.parent = trackPart.transform;
+                newObstacle.GetComponent<ObstacleController>().SetupPosition(trackPartId, preset, i);
+                obstacleList.Add(newObstacle);
+            }
+        }
     }
 
     void AddNewTrackPart()
@@ -129,8 +132,10 @@ public class GameLogic : MonoBehaviour {
         var newTrackPart = (GameObject)Instantiate(trackPrefab, startPos, trackPrefab.transform.rotation);
         trackPartsList.Add(newTrackPart);
         newTrackPart.transform.parent = Track.transform;
-        if(trackPartsList.Count != 1)
-            AddNewObstacle(newTrackPart, choice);
+        if (trackPartsList.Count != 1)
+        {
+            AddObstacles(newTrackPart, choice);
+        }
 
         if (trackPartsList.Count == NumberOfTrackParts)
         {
