@@ -6,44 +6,83 @@ public class Utility : MonoBehaviour {
     int ID;
     Vector3 currentVelocity;
     Vector3 currentPosition;
-    int timeSteps;
-    Vector3[] stepPositions;
-    GameObject[] paths;
+    Vector3 targetPosition;
+    Vector3 carDirection;
+
+    // variables for other cars
+    CarState[] cars;
     Vector3[] positions;
-    Vector3 nextPosition;
 
-    Vector3[] CarUtility(State state)
-    {
-        getInfo(state);
-        randomPathSelection();
-        CalculateSteps();
-        return stepPositions;
-    }
+    int attackCar;
 
-    void getInfo(State state)
+    void CarUtility(State state)
     {
+        //Gets car state
         CarState currentCarState = state.myCar;
         ID = currentCarState.myUniqueID;
         currentPosition = currentCarState.myPosition;
         currentVelocity = currentCarState.myVelocity;
-        positions = state.targetPositions;
+
+        //Get position of the other cars
+        cars = state.otherCars;
+        for (int i = 0; i < cars.Length; i++)
+        {
+            positions[i] = cars[i].myPosition;
+        }
+        
+        //Set target position
+        attackCar = Random.Range(0, 2);
+
+        if(attackCar==1)
+        {
+            float temp = 1000;
+            float shortestDistance = 1000;
+            for(int i = 0; i < cars.Length; i++)
+            {
+                temp = Vector3.Distance(currentPosition, positions[i]);
+                if(temp < shortestDistance)
+                {
+                    targetPosition = cars[i].myPosition;
+                }
+            }
+        }
+
+        else
+        {
+            float updateTarget = currentPosition.z + currentVelocity.z;
+            targetPosition = new Vector3(currentPosition.x, currentPosition.y, updateTarget);
+        }
+
+        
+        //targetPosition = new Vector3(0, 0, 0); //Using vector3 as a test
     }
 
-    void randomPathSelection()
+    //Return a normalized direction
+    Vector3 getDirection(State state)
     {
-        int numberOfPaths = positions.Length;
-        if(numberOfPaths>1)
-        {
-            int pathNum = Random.Range(0, 2);
-            nextPosition = positions[pathNum];
-        }
+        CarState thisCar = state.myCar;
+        currentPosition = thisCar.myPosition;
+        carDirection = (targetPosition - currentPosition);
+        carDirection.Normalize();
+        return carDirection;
     }
 
-    void CalculateSteps()
-    {
-        for(int i = 0; i< timeSteps; i++)
-        {
-            stepPositions[i].z = (currentVelocity.z * i) + currentPosition.z;
-        }
-    }    
+
+    //void randomPathSelection()
+    //{
+    //    int numberOfPaths = positions.Length;
+    //    if(numberOfPaths>1)
+    //    {
+    //        int pathNum = Random.Range(0, 2);
+    //        nextPosition = positions[pathNum];
+    //    }
+    //}
+
+    //void CalculateSteps()
+    //{
+    //    for(int i = 0; i< timeSteps; i++)
+    //    {
+    //        stepPositions[i].z = (currentVelocity.z * i) + currentPosition.z;
+    //    }
+    //}    
 }
