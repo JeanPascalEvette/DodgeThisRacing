@@ -40,7 +40,7 @@ public class AIController : MonoBehaviour
     }
     public string GetPlan()
     {
-        if (frameCounter - frameGenerated < 0 || frameCounter - frameGenerated > plan.Length)
+        if (plan == null || frameCounter - frameGenerated < 0 || frameCounter - frameGenerated > plan.Length)
             return "";
         return plan[frameCounter - frameGenerated];
     }
