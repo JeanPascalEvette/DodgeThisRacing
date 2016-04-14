@@ -12,6 +12,14 @@ public class Utility : MonoBehaviour {
     Vector3[] positions;
     Vector3 nextPosition;
 
+    Vector3[] CarUtility(State state)
+    {
+        getInfo(state);
+        randomPathSelection();
+        CalculateSteps();
+        return stepPositions;
+    }
+
     void getInfo(State state)
     {
         CarState currentCarState = state.myCar;
@@ -31,20 +39,11 @@ public class Utility : MonoBehaviour {
         }
     }
 
-    //Need to use direction of travel to update the positions
-    Vector3 CalculateFinalPos()
-    {
-        Vector3 finalPos;
-        finalPos = (currentVelocity * timeSteps) + currentPosition;
-        return finalPos;
-    }
-
-    Vector3[] CalculateSteps()
+    void CalculateSteps()
     {
         for(int i = 0; i< timeSteps; i++)
         {
-            stepPositions[i] = (currentVelocity * i) + currentPosition;
+            stepPositions[i].z = (currentVelocity.z * i) + currentPosition.z;
         }
-        return stepPositions;
     }    
 }
