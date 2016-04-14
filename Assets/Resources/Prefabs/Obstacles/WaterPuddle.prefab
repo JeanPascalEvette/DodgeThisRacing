@@ -11,6 +11,8 @@ GameObject:
   - 33: {fileID: 3375106}
   - 64: {fileID: 6496216}
   - 23: {fileID: 2354372}
+  - 114: {fileID: 11435950}
+  - 65: {fileID: 6504984}
   m_Layer: 0
   m_Name: WaterPuddle
   m_TagString: Untagged
@@ -104,6 +106,38 @@ MeshCollider:
   serializedVersion: 2
   m_Convex: 0
   m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!65 &6504984
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 120800}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 0.99999994, z: 0.000000098481934}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &11435950
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 120800}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9990946ddd3089041b6187fc454a448e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  trackPieceNumber:
+  - ConfigPresetNumber:
+    - ObstacleInstance:
+      - {x: 5, y: 0.0001, z: 5}
+    - ObstacleInstance:
+      - {x: 5, y: 0.0001, z: 10}
+  - ConfigPresetNumber: []
+  - ConfigPresetNumber: []
+  - ConfigPresetNumber: []
 --- !u!215 &21512658
 ReflectionProbe:
   m_ObjectHideFlags: 1
@@ -142,7 +176,47 @@ Prefab:
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 0}
-    m_Modifications: []
+    m_Modifications:
+    - target: {fileID: 0}
+      propertyPath: trackPieceNumber.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: trackPieceNumber.Array.data[0].ConfigPresetNumber.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: trackPieceNumber.Array.data[0].ConfigPresetNumber.Array.data[0].ObstacleInstance.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: trackPieceNumber.Array.data[0].ConfigPresetNumber.Array.data[1].ObstacleInstance.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: trackPieceNumber.Array.data[0].ConfigPresetNumber.Array.data[0].ObstacleInstance.Array.data[0].x
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: trackPieceNumber.Array.data[0].ConfigPresetNumber.Array.data[0].ObstacleInstance.Array.data[0].z
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: trackPieceNumber.Array.data[0].ConfigPresetNumber.Array.data[1].ObstacleInstance.Array.data[0].x
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: trackPieceNumber.Array.data[0].ConfigPresetNumber.Array.data[1].ObstacleInstance.Array.data[0].z
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: trackPieceNumber.Array.data[0].ConfigPresetNumber.Array.data[0].ObstacleInstance.Array.data[0].y
+      value: 0.0001
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: trackPieceNumber.Array.data[0].ConfigPresetNumber.Array.data[1].ObstacleInstance.Array.data[0].y
+      value: 0.0001
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 120800}
