@@ -40,6 +40,8 @@ public class AIController : MonoBehaviour
     }
     public string GetPlan()
     {
+        if (plan == null || frameCounter - frameGenerated < 0 || frameCounter - frameGenerated > plan.Length)
+            return "";
         return plan[frameCounter - frameGenerated];
     }
 
@@ -129,6 +131,7 @@ public class AIController : MonoBehaviour
                 foreach (GameObject car in allCars)
                 {
                     if (car == gameObject) continue;
+                    if (car == null) continue;
                     currentState.otherCars[otherCarCount++] = new CarState(car.GetComponent<CarController>().carUniqueID, car.transform.position, car.GetComponent<Rigidbody>().velocity, car.transform.forward);
                 }
             }
