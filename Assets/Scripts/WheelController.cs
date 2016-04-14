@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class WheelController : MonoBehaviour {
 
@@ -38,6 +39,11 @@ public class WheelController : MonoBehaviour {
     public Rigidbody carModel;
     public float carSpeed;
 
+    public Slider healthSlider;
+    private float damageCaused;
+    public float pieceHealth;
+    public float pieceMass;
+
     public AnimationCurve slipCurve;
     public AnimationCurve longtitudinalForceCurve;
 
@@ -49,6 +55,8 @@ public class WheelController : MonoBehaviour {
     private float spinningSpeed = 10;
 
     private Vector3 currentRotation = new Vector3(0, 0, 0);
+
+
 
     // Use this for initialization
     void Start () {
@@ -73,20 +81,8 @@ public class WheelController : MonoBehaviour {
     void FixedUpdate()
     {
         currentRotation.x += spinningSpeed;
-        if (!isRearWheel)
-        {
-            float maxTurn = Input.GetAxis("Horizontal");
-            if (Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D))
-            {
-                currentRotation = new Vector3(currentRotation.x, maxTurn * 30, currentRotation.z);
-            }
-            else
-            {
-                currentRotation = new Vector3(currentRotation.x, 0, currentRotation.z);
-            }
-            
-        }
 
+        currentRotation = new Vector3(currentRotation.x, 0, 0);
         transform.localRotation = Quaternion.Euler(currentRotation);
 
         // Car velocity (Find out which direction to use) (negative sign as before the speed was opposite it should be)
@@ -162,16 +158,61 @@ public class WheelController : MonoBehaviour {
         //*********************** END TRACTION TORQUE ON DRIVE WHEELS ***********************//
     }
 
+    // COLLISION DETECTION
+    void OnCollisionEnter(Collision col)
+    {
+        Debug.Log("COLLISION WITH WALL");
+        if (col.gameObject.name == "Obstacle2")
+        {
+            // We need to find out which sphere collider we are hitting here
+            Debug.Log("IN COLLISION");
+            // We make the calculation of the damage created by the collision
+            // Force = (mass * speed * speed)/2
+            damageCaused = (pieceMass * col.relativeVelocity.magnitude * col.relativeVelocity.magnitude) / 2;
+            Debug.Log("DAMAGE: " + damageCaused);
+
+            pieceHealth -= damageCaused;
+            // The total slider is reduced in a smallest amount
+            healthSlider.value = damageCaused * 0.1f;
+
+            // If the piece hasn´t left health we detach the piece
+            if (pieceHealth < 0)
+            {
+                Debug.Log("Detach part");
+                //isHanging = true;
+            }
+
+            // We check which part we´ve collided with
+
+            // We check the health of the part to see if we detach it
+
+            // everything affects the health of the car
+        }
+    }
+
     private void CheckWheelsAreOnGround()
     {
-        float wheelHeight = transform.GetComponent<MeshRenderer>().bounds.size.y;
-        Vector3 direction = new Vector3(0, -wheelHeight / 1.999f, 0);
-        direction = GetComponent<Collider>().transform.root.rotation * direction;
-        Debug.DrawLine(transform.position, transform.position + direction, Color.green);
-        Ray myRay = new Ray(transform.position, direction);
-        if (Physics.Raycast(myRay, wheelHeight / 1.9f))
-            isOnGround = true;
-        else
-            isOnGround = false;
+        isOnGround = false;
+        Color myColor = Color.red;
+        float wheelHeight = transform.GetComponent<SphereCollider>().radius * 1.25f;
+        Vector3 direction = new Vector3(0, -1, 0);
+
+        int numRaycast = 10;
+        Ray myRay;
+        for (int i = 0; i < 360/numRaycast; i++)
+        {
+            direction = Quaternion.Euler(i*360/numRaycast, 0, 0) * direction;
+            direction = GetComponent<Collider>().transform.root.rotation * direction;
+            myRay = new Ray(transform.position, direction.normalized);
+            if (Physics.Raycast(myRay, wheelHeight))
+            {
+                isOnGround = true;
+                myColor = Color.green;
+            }
+            Debug.DrawLine(transform.position, transform.position + direction.normalized * wheelHeight, myColor);
+            myColor = Color.red;
+            direction = new Vector3(0, -1, 0);
+        }
+        
     }
 }

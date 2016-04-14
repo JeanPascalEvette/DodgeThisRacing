@@ -4,41 +4,46 @@ using System.Collections;
 public class Utility : MonoBehaviour {
 
     int ID;
-    Vector3 velocity;
-    Vector3 position;
+    Vector3 currentVelocity;
+    Vector3 currentPosition;
     int timeSteps;
     Vector3[] stepPositions;
     GameObject[] paths;
+    Vector3[] positions;
+    Vector3 nextPosition;
 
-    void FindPaths()
+    Vector3[] CarUtility(State state)
     {
-        //Use ID to find the attached GameObject
-        //Use raycasts to find paths for AI
-        //Store number of paths available in list
+        getInfo(state);
+        randomPathSelection();
+        CalculateSteps();
+        return stepPositions;
     }
 
-    void UpdateUtility(CarState state, int steps)
+    void getInfo(State state)
     {
-        ID = state.myUniqueID;
-        timeSteps = steps;
-        velocity = state.myVelocity;
-        position = state.myPosition;
+        CarState currentCarState = state.myCar;
+        ID = currentCarState.myUniqueID;
+        currentPosition = currentCarState.myPosition;
+        currentVelocity = currentCarState.myVelocity;
+        positions = state.targetPositions;
     }
 
-    //Need to use direction of travel to update the positions
-    Vector3 CalculateFinalPos()
+    void randomPathSelection()
     {
-        Vector3 finalPos;
-        finalPos = (velocity * timeSteps) + position;
-        return finalPos;
+        int numberOfPaths = positions.Length;
+        if(numberOfPaths>1)
+        {
+            int pathNum = Random.Range(0, 2);
+            nextPosition = positions[pathNum];
+        }
     }
 
-    Vector3[] CalculateSteps()
+    void CalculateSteps()
     {
         for(int i = 0; i< timeSteps; i++)
         {
-            stepPositions[i] = (velocity * i) + position;
+            stepPositions[i].z = (currentVelocity.z * i) + currentPosition.z;
         }
-        return stepPositions;
     }    
 }

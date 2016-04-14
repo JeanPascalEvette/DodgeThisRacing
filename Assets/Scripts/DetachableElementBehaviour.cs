@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 
 public class DetachableElementBehaviour : MonoBehaviour {
@@ -7,6 +8,11 @@ public class DetachableElementBehaviour : MonoBehaviour {
     public bool isHanging = false;
     public float timerBreak = -1f;
     public float timeToBreak = 5.0f;
+
+    public float pieceHealth;
+    public float pieceMass;
+    public Slider healthSlider;
+    private float damageCaused;
 
     [SerializeField]
     private GameObject DebrisHolder;
@@ -31,11 +37,12 @@ public class DetachableElementBehaviour : MonoBehaviour {
     private void setColliders(bool isEnabled)
     {
         foreach (BoxCollider col in GetComponents<BoxCollider>())
+        {
             col.enabled = isEnabled;
+        }
         foreach (BoxCollider col in GetComponentsInChildren<BoxCollider>())
             col.enabled = isEnabled;
     }
-
 
     void LateUpdate()
     {
@@ -48,7 +55,8 @@ public class DetachableElementBehaviour : MonoBehaviour {
     // Update is called once per frame
     void Update() {
         if (isHanging && timerBreak == -1f)
-        {
+        {   
+
             timerBreak = timeToBreak;
             rb.mass = 1;
             setColliders(true);
@@ -72,8 +80,9 @@ public class DetachableElementBehaviour : MonoBehaviour {
             }
             else if (timerBreak < timeToBreak / 2)
             {
-
+                isHanging = true;
             }
         }
 	}
+
 }
