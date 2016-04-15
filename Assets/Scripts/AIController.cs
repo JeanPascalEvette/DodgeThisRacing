@@ -57,6 +57,10 @@ public class AIController : MonoBehaviour
         {
             var style = new GUIStyle(aSkin.GetStyle("box"));
             style.alignment = TextAnchor.MiddleCenter;
+            if (isAggresive)
+                style.normal.textColor = Color.red;
+            else
+                style.normal.textColor = Color.blue;
             var textPlan = "";
             System.Collections.Generic.List<string> commands = new System.Collections.Generic.List<string>();
             int counter = 1;
@@ -90,12 +94,6 @@ public class AIController : MonoBehaviour
             UnityEditor.Handles.ArrowCap(0, transform.position, Quaternion.LookRotation(dir.normalized), Mathf.Min(10, dir.magnitude));
             UnityEditor.Handles.color = Color.blue;
             UnityEditor.Handles.DrawSolidDisc(planner.myTarget, Vector3.up, 1.0f);
-            if (planner.targetCar != null)
-            {
-                Vector3 dirGO = getCarByUniqueID(planner.targetCar.myUniqueID).transform.position - transform.position;
-                UnityEditor.Handles.color = Color.red;
-                UnityEditor.Handles.ArrowCap(1, transform.position, Quaternion.LookRotation(dirGO.normalized), Mathf.Min(10, dirGO.magnitude));
-            }
 
             UnityEditor.Handles.color = Color.yellow;
             for (int i = 0; i < currentState.targetPositions.Length; i++)
@@ -114,10 +112,7 @@ public class AIController : MonoBehaviour
     void Update()
     {
 
-        
-        isAggresive = myRand.Next(1) == 1;
-        if (currentState != null && currentState.otherCars != null && currentState.otherCars.Length == 0)
-            isAggresive = false;
+
     }
 
     void FixedUpdate()
@@ -125,6 +120,9 @@ public class AIController : MonoBehaviour
         //AI STUFF
         if (frameCounter++ % (int)(1.0f / Time.fixedDeltaTime) == 0)
         {
+            isAggresive = myRand.Next(0, 11) == 0;
+            if (currentState != null && currentState.otherCars != null && currentState.otherCars.Length == 0)
+                isAggresive = false;
             currentState = new State();// Generate a state representing the world to be passed to the HTNPlanner
             currentState.myCar = new CarState(myCarController.carUniqueID, transform.position, GetComponent<Rigidbody>().velocity, transform.forward);
             if (allCars.Length > 0)
@@ -165,8 +163,8 @@ public class AIController : MonoBehaviour
             //Set the waitHandle to make sure that the planner can retrieve a new planning
 
 
-
-            Vector3 midPos = transform.position + new Vector3(0, 0.5f, 25f);
+            float zPos = Mathf.Max(myCarController.GetComponent<Rigidbody>().velocity.z * 1.0f, 5.0f);
+            Vector3 midPos = transform.position + new Vector3(0, 0.5f, zPos);
 
             Ray targetRay = new Ray(midPos + new Vector3(1, 0, 0) * rayWidth/2, - new Vector3(1, 0, 0));
             RaycastHit[] hits = Physics.RaycastAll(targetRay, rayWidth, 1 << LayerMask.NameToLayer("AIGuide"));

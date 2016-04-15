@@ -14,7 +14,7 @@ public class Utility {
     Vector3[] positions;
     
 
-    public void CarUtility(State state, bool isAggresive)
+    public Vector3 CarUtility(State state, bool isAggresive)
     {
         //Gets car state
         CarState currentCarState = state.myCar;
@@ -40,7 +40,7 @@ public class Utility {
                 temp = Vector3.Distance(currentPosition, positions[i]);
                 if(temp < shortestDistance)
                 {
-                    targetPosition = cars[i].myPosition;
+                    targetPosition = cars[i].myPosition + cars[i].myVelocity;
                 }
             }
         }
@@ -50,13 +50,17 @@ public class Utility {
         {
             int numberOfPaths = state.targetPositions.Length;
             int selectedPath = 0;
-            if(numberOfPaths > 1)
+            for(int i = 0; i < state.targetPositions.Length; i++)
             {
-                selectedPath = new System.Random().Next(numberOfPaths-1);
+                if (Vector3.Distance(state.targetPositions[i], state.myCar.myPosition) < Vector3.Distance(state.targetPositions[selectedPath], state.myCar.myPosition))
+                    selectedPath = i;
             }
             targetPosition = state.targetPositions[selectedPath];
         }
+
+        return targetPosition;
     }
+    
 
     //Return a normalized direction
     public Vector3 getDirection(State state)
