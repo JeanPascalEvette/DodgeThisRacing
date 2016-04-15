@@ -43,9 +43,17 @@ public class AIController : MonoBehaviour
     }
     public string GetPlan()
     {
-        if (plan == null || frameCounter - frameGenerated < 0 || frameCounter - frameGenerated > plan.Length)
+        try
+        {
+            if (plan == null || frameCounter - frameGenerated < 0 || frameCounter - frameGenerated > plan.Length)
+                return "";
+            return plan[frameCounter - frameGenerated];
+        }
+        catch(System.Exception e)
+        {
+            Debug.Log("Error when returning plan : " + (frameCounter - frameGenerated).ToString() + " / " + plan.Length);
             return "";
-        return plan[frameCounter - frameGenerated];
+        }
     }
 
     void OnDrawGizmos()
@@ -203,7 +211,8 @@ public class AIController : MonoBehaviour
             foreach (string timeStep in plan)
                 debugPlan += timeStep + ",";
             debugPlan = debugPlan.Substring(0, debugPlan.Length - 1);
-            Debug.Log("Car:" + currentState.myCar.myUniqueID + " - " + debugPlan);
+            if(showDebug)
+                Debug.Log("Car:" + currentState.myCar.myUniqueID + " - " + debugPlan);
 
             //Wait for 1sec before calling the planner again
             waitHandle.Reset();
