@@ -3,54 +3,44 @@ using System.Collections;
 
 public class Camera : MonoBehaviour {
 
-    public GameObject target;
+    public GameObject[] target;
+    public GameObject leadingGameObject;
     public float xDist = 10.0f;
     public float yDist = 3.0f;
-    public float zoom = 1.0f;
+    Vector3 leadingCar;
     // Use this for initialization
 
         public enum CameraType
     {
         NORMAL,
-        SIDE,
-        BACK
+        SIDE
     }
     public CameraType myCameraType;
 
     void Start () {
 	}
+
+    void GetLeadingPlayer()
+    {
+            target = Data.GetAllCars();
+        leadingCar = Vector3.zero;
+        for (int i = 0; i < target.Length; i++)
+        {
+            if (target[i] == null) continue;
+            Vector3 position = target[i].transform.position;
+            if(leadingCar == Vector3.zero || position.z > leadingCar.z)
+            {
+                leadingCar = position;
+                leadingGameObject = target[i];
+            }
+        }
+    }
 	
 	// Update is called once per frame
 	void Update ()
     {
-        if (target == null)
-        {
-            target = GameObject.FindGameObjectWithTag("Player");
-        }
-        var cameraPos = new Vector3(0, 0, 0);
-        switch(myCameraType)
-        {
-            case CameraType.NORMAL:
-                cameraPos = new Vector3(0, 0, -1);
-                break;
-
-            case CameraType.SIDE:
-                cameraPos = new Vector3(-1, 0, 0);
-                break;
-
-            case CameraType.BACK:
-                cameraPos = new Vector3(0, 0, 1);
-                break;
-
-        }
-        var targetPos = target.transform.position;
-        var dir = (target.transform.position  +  cameraPos) - targetPos;
-        dir.Normalize();
-        dir *= xDist;
-        dir.y = yDist;
-
-        dir *= zoom;
-        this.transform.position = targetPos + (dir);
-        transform.LookAt(target.transform);
+        GetLeadingPlayer();
+        this.transform.position = new Vector3(0,yDist,leadingCar.z - xDist);
+        transform.LookAt(new Vector3(0, 0, leadingCar.z));
     }
 }

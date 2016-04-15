@@ -87,15 +87,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9990946ddd3089041b6187fc454a448e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  positionOptions:
-  - {x: 0, y: 0, z: 0}
+  trackPieceNumber:
+  - ConfigPresetNumber:
+    - ObstacleInstance: []
+    - ObstacleInstance: []
+  - ConfigPresetNumber: []
+  - ConfigPresetNumber: []
+  - ConfigPresetNumber: []
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 0}
-    m_Modifications: []
+    m_Modifications:
+    - target: {fileID: 0}
+      propertyPath: trackPieceNumber.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: trackPieceNumber.Array.data[0].ConfigPresetNumber.Array.size
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 105914}

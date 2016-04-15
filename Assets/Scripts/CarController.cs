@@ -658,6 +658,9 @@ public class CarController : MonoBehaviour
         }
         else
         {
+            if (myAI.GetPlan() == null || myAI.GetPlan().Length == 0)
+                return false;
+
             if (direction == 'W' || direction == 'S')
             {
                 return myAI.GetPlan()[0] == direction;

@@ -64,6 +64,7 @@ public class HTNPlanner {
     private float lastTurn;
 
     private State currentState;
+    private Utility myUtility;
     char[][] plan;
 
     
@@ -77,6 +78,7 @@ public class HTNPlanner {
         myDict.Add("MoveTo", moveInfos);
         MethodInfo[] moveStepInfos = new MethodInfo[] { this.GetType().GetMethod("MoveStep_m") };
         myDict.Add("MoveStep", moveStepInfos);
+        myUtility = new Utility();
 
         DeclareOperators();
         foreach (KeyValuePair<string, MethodInfo[]> method in myDict)
@@ -87,35 +89,11 @@ public class HTNPlanner {
 
 
     //Function called by AIController to Get an update version of the Input Keys pressed by the AI
-    public string[] GetPlan(State newState)
+    public string[] GetPlan(State newState, bool isAggresive)
     {
         lastTurn = 0.0f;
         currentState = newState;
-        if (currentState.otherCars.Length > 0)
-        {
-            if (currentIteration++ % refreshOccurence != 0)
-            {
-                //Refresh the target car with the updated data from the currentState
-                foreach (var car in currentState.otherCars)
-                {
-                    if (car.myUniqueID == targetCar.myUniqueID)
-                    {
-                        targetCar = car;
-                        break;
-                    }
-                }
-                myTarget = targetCar.myPosition + targetCar.myVelocity * (planningTime / refreshOccurence);
-            }
-            else
-            {
-                //Here query the Utility section for a goal
-                //Then convert it to a new targetCar
-                targetCar = currentState.otherCars[0];
-                myTarget = targetCar.myPosition + targetCar.myVelocity * (planningTime / refreshOccurence);
-            }
-        }
-        else
-            myTarget = new Vector3(0, 0, 0);
+        myUtility.CarUtility(newState, isAggresive);
 
         List<List<string>> tasks = new List<List<string>>();
         tasks.Add(new List<string>(new string[2] { "MoveTo", myTarget.ToString() }));
@@ -264,11 +242,9 @@ public class HTNPlanner {
 
     public List<List<string>> MoveStep_m(State state, string strTargetPosition, string currentStep)
     {
-        string[] targetPosSplit = strTargetPosition.Substring(1, strTargetPosition.Length - 2).Split(',');
-        Vector3 targetPosition = new Vector3(float.Parse(targetPosSplit[0]), float.Parse(targetPosSplit[1]), float.Parse(targetPosSplit[2]));
-        Vector3 myDisplacement = (targetPosition - state.myCar.myPosition);
+        Vector3 myDisplacement = myUtility.getDirection(state);
         List<List<string>> returnVal = new List<List<string>>();
-
+        
 
         myDisplacement.y = 0;
         Vector3 v1 = -state.myCar.forward.normalized;

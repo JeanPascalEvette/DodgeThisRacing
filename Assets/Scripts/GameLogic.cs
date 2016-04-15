@@ -21,6 +21,8 @@ public class GameLogic : MonoBehaviour {
 
     public static GameLogic myInstance;
 
+    private Camera myCamera;
+
     // Use this for initialization
     void Start ()
     {
@@ -28,7 +30,9 @@ public class GameLogic : MonoBehaviour {
             Destroy(gameObject);
         else
             myInstance = this;
-        
+
+
+        myCamera = UnityEngine.Camera.main.GetComponent<Camera>();
 
         if (Track == null)
             Track = GameObject.Find("Track");
@@ -72,29 +76,42 @@ public class GameLogic : MonoBehaviour {
 	
     public void SpawnCar(PlayerData data)
     {
-            var newCar = (GameObject)Instantiate(data.GetPrefab(), new Vector3(0,0,0), Quaternion.Euler(0, 180, 0));
+        if (data.GetGameObject() != null)
+            return;
+        var spawnPos = new Vector3(0,0.5f,myCamera.leadingGameObject.transform.position.z - 1.0f);
+        var spawnVel = myCamera.leadingGameObject.GetComponent<Rigidbody>().velocity;
+
+        var newCar = (GameObject)Instantiate(data.GetPrefab(), spawnPos, Quaternion.Euler(0, 180, 0));
+        newCar.GetComponent<Rigidbody>().velocity = spawnVel;
+        newCar.GetComponent<CarController>().myPlayerData = data;
             data.AttachGameObject(newCar);
     }
 	
     public void DestroyCar(PlayerData data)
     {
-        data.GetGameObject().GetComponent<AIController>().stopPlanner();
+        if(data.IsAI())
+            data.GetGameObject().GetComponent<AIController>().stopPlanner();
         Destroy(data.GetGameObject());
     }
 
-    void AddNewObstacle(GameObject trackPart, int trackPartId)
+    void AddObstacles(GameObject trackPart, int trackPartId)
     {
-        GameObject obstaclePrefab = Data.getObstacle();
-        Vector3 startPos = trackPart.transform.position;
-        Bounds trackBounds = trackPart.GetComponentInChildren<MeshRenderer>().bounds;
-        var xPos = Random.Range(trackBounds.min.x*0.6f, trackBounds.max.x*0.6f);
-        var yPos = startPos.y;
-        var zPos = Random.Range(trackBounds.min.z, trackBounds.max.z);
-        var newObstacle = (GameObject)Instantiate(obstaclePrefab, Vector3.zero, obstaclePrefab.transform.rotation);
-        newObstacle.transform.parent = trackPart.transform;
-        newObstacle.GetComponent<ObstacleController>().SetupPosition(trackPartId);
-        obstacleList.Add(newObstacle);
-
+        int numPresets = Data.getObstacle(0).GetComponent<ObstacleController>().GetNumberOfPresets(trackPartId);
+        if (numPresets == 0) return;
+        int preset = Random.Range(0, numPresets);
+        for (int obstacleNum = 0; obstacleNum < Data.GetNumObstacleAvailable(); obstacleNum++)
+        {
+            if (numPresets > Data.getObstacle(obstacleNum).GetComponent<ObstacleController>().GetNumberOfPresets(trackPartId))
+                continue;
+            GameObject obstaclePrefab = Data.getObstacle(obstacleNum);
+            for (int i = 0; i < obstaclePrefab.GetComponent<ObstacleController>().GetNumberOfInstances(trackPartId, preset); i++)
+            {
+                var newObstacle = (GameObject)Instantiate(obstaclePrefab, Vector3.zero, obstaclePrefab.transform.rotation);
+                newObstacle.transform.parent = trackPart.transform;
+                newObstacle.GetComponent<ObstacleController>().SetupPosition(trackPartId, preset, i);
+                obstacleList.Add(newObstacle);
+            }
+        }
     }
 
     void AddNewTrackPart()
@@ -129,8 +146,10 @@ public class GameLogic : MonoBehaviour {
         var newTrackPart = (GameObject)Instantiate(trackPrefab, startPos, trackPrefab.transform.rotation);
         trackPartsList.Add(newTrackPart);
         newTrackPart.transform.parent = Track.transform;
-        if(trackPartsList.Count != 1)
-            AddNewObstacle(newTrackPart, choice);
+        if (trackPartsList.Count != 1)
+        {
+            AddObstacles(newTrackPart, choice);
+        }
 
         if (trackPartsList.Count == NumberOfTrackParts)
         {
@@ -196,7 +215,7 @@ public class GameLogic : MonoBehaviour {
             UnityEngine.SceneManagement.SceneManager.LoadScene("Game");
         }
 
-	    if(trackPartsList.Count > 2 && trackPartsList[2].transform.position.z < Data.getCarsSelected()[0].GetGameObject().transform.position.z)
+	    if(trackPartsList.Count > 2 && trackPartsList[2].transform.position.z <  myCamera.leadingGameObject.transform.position.z)
         {
             var removedPart = trackPartsList[0];
             for( int i = 0; i < removedPart.transform.childCount; i++)

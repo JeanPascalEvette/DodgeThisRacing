@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Utility : MonoBehaviour {
+public class Utility {
 
     int ID;
     Vector3 currentVelocity;
@@ -12,10 +12,9 @@ public class Utility : MonoBehaviour {
     // variables for other cars
     CarState[] cars;
     Vector3[] positions;
+    
 
-    int attackCar;
-
-    void CarUtility(State state)
+    public void CarUtility(State state, bool isAggresive)
     {
         //Gets car state
         CarState currentCarState = state.myCar;
@@ -25,15 +24,14 @@ public class Utility : MonoBehaviour {
 
         //Get position of the other cars
         cars = state.otherCars;
+        positions = new Vector3[cars.Length];
         for (int i = 0; i < cars.Length; i++)
         {
             positions[i] = cars[i].myPosition;
         }
         
-        //Set target position
-        attackCar = Random.Range(0, 2);
 
-        if(attackCar==1)
+        if(isAggresive)
         {
             float temp = 1000;
             float shortestDistance = 1000;
@@ -58,7 +56,7 @@ public class Utility : MonoBehaviour {
     }
 
     //Return a normalized direction
-    Vector3 getDirection(State state)
+    public Vector3 getDirection(State state)
     {
         CarState thisCar = state.myCar;
         currentPosition = thisCar.myPosition;

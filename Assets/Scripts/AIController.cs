@@ -26,20 +26,25 @@ public class AIController : MonoBehaviour
     private float rayWidth = 80.0f;
 
 
+    private System.Random myRand;
+    private bool isAggresive;
+
     // Use this for initialization
     void Start()
     {
         if (aSkin == null) aSkin = (GUISkin)Resources.Load("AILabel");
         if (aSkin == null) aSkin = new GUISkin();
         myCarController = GetComponent<CarController>();
-        allCars = GameObject.FindGameObjectsWithTag("Player");
+        allCars = Data.GetAllCars();
         planner = new HTNPlanner(1.5f);
         plannerThread = new Thread(retrievePlanner); // TODO IMPLEMENT THREADING
         plannerThread.Start();
-
+        myRand = new System.Random(myCarController.carUniqueID);
     }
     public string GetPlan()
     {
+        if (plan == null || frameCounter - frameGenerated < 0 || frameCounter - frameGenerated > plan.Length)
+            return "";
         return plan[frameCounter - frameGenerated];
     }
 
@@ -113,6 +118,9 @@ public class AIController : MonoBehaviour
         {
             showDebug = !showDebug;
         }
+        isAggresive = myRand.Next(1) == 1;
+        if (currentState != null && currentState.otherCars != null && currentState.otherCars.Length == 0)
+            isAggresive = false;
     }
 
     void FixedUpdate()
@@ -124,11 +132,20 @@ public class AIController : MonoBehaviour
             currentState.myCar = new CarState(myCarController.carUniqueID, transform.position, GetComponent<Rigidbody>().velocity, transform.forward);
             if (allCars.Length > 0)
             {
-                currentState.otherCars = new CarState[allCars.Length - 1];
                 int otherCarCount = 0;
+
                 foreach (GameObject car in allCars)
                 {
                     if (car == gameObject) continue;
+                    if (car == null) continue;
+                    otherCarCount++;
+                }
+                currentState.otherCars = new CarState[otherCarCount];
+                otherCarCount = 0;
+                foreach (GameObject car in allCars)
+                {
+                    if (car == gameObject) continue;
+                    if (car == null) continue;
                     currentState.otherCars[otherCarCount++] = new CarState(car.GetComponent<CarController>().carUniqueID, car.transform.position, car.GetComponent<Rigidbody>().velocity, car.transform.forward);
                 }
             }
@@ -184,8 +201,7 @@ public class AIController : MonoBehaviour
             waitHandle.WaitOne(); //Run only if the handle has been set in fixedUpdate (i.e every 1sec)
 
 
-
-            plan = planner.GetPlan(currentState); //Retrieve updated plan based on currentState
+            plan = planner.GetPlan(currentState, isAggresive); //Retrieve updated plan based on currentState
             //Log generated plan
             frameGenerated = frameCounter;
             string debugPlan = "";

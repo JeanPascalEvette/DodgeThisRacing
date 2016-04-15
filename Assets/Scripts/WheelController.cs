@@ -61,7 +61,10 @@ public class WheelController : MonoBehaviour {
     // Use this for initialization
     void Start () {
         mCarController = transform.parent.GetComponent<CarController>();
-        wheelRadius = transform.GetComponent<MeshRenderer>().bounds.size.y / 2;
+        var meshRenderer = transform.GetComponent<MeshRenderer>();
+        if (meshRenderer == null)
+            meshRenderer = transform.GetChild(2).GetComponent<MeshRenderer>();
+        wheelRadius = meshRenderer.bounds.size.y / 2;
     }
 	
 	// Update is called once per frame

@@ -1,0 +1,171 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &159776
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 477752}
+  - 33: {fileID: 3368846}
+  - 23: {fileID: 2353380}
+  - 65: {fileID: 6513302}
+  - 114: {fileID: 11444982}
+  - 54: {fileID: 5466722}
+  m_Layer: 0
+  m_Name: Cone
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &477752
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 159776}
+  m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071068}
+  m_LocalPosition: {x: 0.9274199, y: 0.046254836, z: 1.1349611}
+  m_LocalScale: {x: 1, y: 1, z: 0.9475452}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+--- !u!23 &2353380
+MeshRenderer:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 159776}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_Materials:
+  - {fileID: 2100000, guid: 7c3319eb9bcc618498aa7d177ee89a43, type: 2}
+  m_SubsetIndices: 
+  m_StaticBatchRoot: {fileID: 0}
+  m_UseLightProbes: 1
+  m_ReflectionProbeUsage: 1
+  m_ProbeAnchor: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingOrder: 0
+--- !u!33 &3368846
+MeshFilter:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 159776}
+  m_Mesh: {fileID: 4300000, guid: d8a737a836efd344c904b55e476e9c13, type: 3}
+--- !u!54 &5466722
+Rigidbody:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 159776}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!65 &6513302
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 159776}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.3, y: 0.3000001, z: 0.7488156}
+  m_Center: {x: 0, y: 0, z: 0.32559237}
+--- !u!114 &11444982
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 159776}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9990946ddd3089041b6187fc454a448e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  trackPieceNumber:
+  - ConfigPresetNumber:
+    - ObstacleInstance:
+      - {x: 5, y: 0, z: 0}
+    - ObstacleInstance:
+      - {x: 5, y: 0, z: 5}
+      - {x: 2, y: 0, z: 5}
+      - {x: 1, y: 0, z: 5}
+  - ConfigPresetNumber: []
+  - ConfigPresetNumber: []
+  - ConfigPresetNumber: []
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 1
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 0}
+      propertyPath: trackPieceNumber.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: trackPieceNumber.Array.data[0].ConfigPresetNumber.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: trackPieceNumber.Array.data[0].ConfigPresetNumber.Array.data[0].ObstacleInstance.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: trackPieceNumber.Array.data[0].ConfigPresetNumber.Array.data[1].ObstacleInstance.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: trackPieceNumber.Array.data[0].ConfigPresetNumber.Array.data[0].ObstacleInstance.Array.data[0].x
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: trackPieceNumber.Array.data[0].ConfigPresetNumber.Array.data[1].ObstacleInstance.Array.data[0].x
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: trackPieceNumber.Array.data[0].ConfigPresetNumber.Array.data[1].ObstacleInstance.Array.data[0].z
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: trackPieceNumber.Array.data[0].ConfigPresetNumber.Array.data[1].ObstacleInstance.Array.data[1].z
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: trackPieceNumber.Array.data[0].ConfigPresetNumber.Array.data[1].ObstacleInstance.Array.data[2].z
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: trackPieceNumber.Array.data[0].ConfigPresetNumber.Array.data[1].ObstacleInstance.Array.data[2].x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: trackPieceNumber.Array.data[0].ConfigPresetNumber.Array.data[1].ObstacleInstance.Array.data[1].x
+      value: 2
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 159776}
+  m_IsPrefabParent: 1
