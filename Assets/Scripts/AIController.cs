@@ -17,7 +17,7 @@ public class AIController : MonoBehaviour
     private GameObject[] allCars;
 
     [SerializeField]
-    private bool showDebug = false;
+    public static bool showDebug = false;
 
     [SerializeField]
     private GUISkin aSkin;
@@ -114,10 +114,7 @@ public class AIController : MonoBehaviour
     void Update()
     {
 
-        if (Input.GetKeyDown(KeyCode.F1))
-        {
-            showDebug = !showDebug;
-        }
+        
         isAggresive = myRand.Next(1) == 1;
         if (currentState != null && currentState.otherCars != null && currentState.otherCars.Length == 0)
             isAggresive = false;

@@ -214,8 +214,12 @@ public class GameLogic : MonoBehaviour {
         {
             UnityEngine.SceneManagement.SceneManager.LoadScene("Game");
         }
+        if (Input.GetKeyDown(KeyCode.F1))
+        {
+            AIController.showDebug = !AIController.showDebug;
+        }
 
-	    if(trackPartsList.Count > 2 && trackPartsList[2].transform.position.z <  myCamera.leadingGameObject.transform.position.z)
+        if (trackPartsList.Count > 2 && trackPartsList[2].transform.position.z <  myCamera.leadingGameObject.transform.position.z)
         {
             var removedPart = trackPartsList[0];
             for( int i = 0; i < removedPart.transform.childCount; i++)
