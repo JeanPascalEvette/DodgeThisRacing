@@ -30,7 +30,7 @@ public class Utility {
             positions[i] = cars[i].myPosition;
         }
         
-
+        //Sets the target to car if aggresive
         if(isAggresive)
         {
             float temp = 1000;
@@ -45,14 +45,17 @@ public class Utility {
             }
         }
 
+        //Or set the target of an AI path if not agressive
         else
         {
-            float updateTarget = currentPosition.z + currentVelocity.z;
-            targetPosition = new Vector3(currentPosition.x, currentPosition.y, updateTarget);
+            int numberOfPaths = state.targetPositions.Length;
+            int selectedPath = 0;
+            if(numberOfPaths > 1)
+            {
+                selectedPath = Random.Range(0, 2);
+            }
+            targetPosition = state.targetPositions[selectedPath];
         }
-
-        
-        //targetPosition = new Vector3(0, 0, 0); //Using vector3 as a test
     }
 
     //Return a normalized direction
@@ -64,23 +67,4 @@ public class Utility {
         carDirection.Normalize();
         return carDirection;
     }
-
-
-    //void randomPathSelection()
-    //{
-    //    int numberOfPaths = positions.Length;
-    //    if(numberOfPaths>1)
-    //    {
-    //        int pathNum = Random.Range(0, 2);
-    //        nextPosition = positions[pathNum];
-    //    }
-    //}
-
-    //void CalculateSteps()
-    //{
-    //    for(int i = 0; i< timeSteps; i++)
-    //    {
-    //        stepPositions[i].z = (currentVelocity.z * i) + currentPosition.z;
-    //    }
-    //}    
 }
