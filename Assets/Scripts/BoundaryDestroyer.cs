@@ -18,6 +18,13 @@ public class BoundaryDestroyer : MonoBehaviour {
             var pData = other.gameObject.GetComponent<CarController>().myPlayerData;
           //  GL = GetComponent<GameLogic>();
             GL.DestroyCar(pData);
+            StartCoroutine(RespawnCar(pData));
         }
+    }
+
+    IEnumerator RespawnCar(PlayerData car)
+    {
+        yield return new WaitForSeconds(1);
+        GL.SpawnCar(car);
     }
 }

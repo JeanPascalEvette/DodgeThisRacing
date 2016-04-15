@@ -21,6 +21,8 @@ public class GameLogic : MonoBehaviour {
 
     public static GameLogic myInstance;
 
+    private Camera myCamera;
+
     // Use this for initialization
     void Start ()
     {
@@ -28,7 +30,9 @@ public class GameLogic : MonoBehaviour {
             Destroy(gameObject);
         else
             myInstance = this;
-        
+
+
+        myCamera = UnityEngine.Camera.main.GetComponent<Camera>();
 
         if (Track == null)
             Track = GameObject.Find("Track");
@@ -72,13 +76,21 @@ public class GameLogic : MonoBehaviour {
 	
     public void SpawnCar(PlayerData data)
     {
-            var newCar = (GameObject)Instantiate(data.GetPrefab(), new Vector3(0,0,0), Quaternion.Euler(0, 180, 0));
+        if (data.GetGameObject() != null)
+            return;
+        var spawnPos = new Vector3(0,0.5f,myCamera.leadingGameObject.transform.position.z - 1.0f);
+        var spawnVel = myCamera.leadingGameObject.GetComponent<Rigidbody>().velocity;
+
+        var newCar = (GameObject)Instantiate(data.GetPrefab(), spawnPos, Quaternion.Euler(0, 180, 0));
+        newCar.GetComponent<Rigidbody>().velocity = spawnVel;
+        newCar.GetComponent<CarController>().myPlayerData = data;
             data.AttachGameObject(newCar);
     }
 	
     public void DestroyCar(PlayerData data)
     {
-        data.GetGameObject().GetComponent<AIController>().stopPlanner();
+        if(data.IsAI())
+            data.GetGameObject().GetComponent<AIController>().stopPlanner();
         Destroy(data.GetGameObject());
     }
 
@@ -203,7 +215,7 @@ public class GameLogic : MonoBehaviour {
             UnityEngine.SceneManagement.SceneManager.LoadScene("Game");
         }
 
-	    if(trackPartsList.Count > 2 && trackPartsList[2].transform.position.z < Data.getCarsSelected()[0].GetGameObject().transform.position.z)
+	    if(trackPartsList.Count > 2 && trackPartsList[2].transform.position.z <  myCamera.leadingGameObject.transform.position.z)
         {
             var removedPart = trackPartsList[0];
             for( int i = 0; i < removedPart.transform.childCount; i++)
