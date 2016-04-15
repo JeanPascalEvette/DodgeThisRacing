@@ -39,7 +39,7 @@ public class AIController : MonoBehaviour
         planner = new HTNPlanner(1.5f);
         plannerThread = new Thread(retrievePlanner); // TODO IMPLEMENT THREADING
         plannerThread.Start();
-        myRand = new System.Random(myCarController.carUniqueID);
+        myRand = new System.Random(System.Guid.NewGuid().GetHashCode());
     }
     public string GetPlan()
     {

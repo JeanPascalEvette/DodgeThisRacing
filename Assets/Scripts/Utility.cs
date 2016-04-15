@@ -52,7 +52,7 @@ public class Utility {
             int selectedPath = 0;
             if(numberOfPaths > 1)
             {
-                selectedPath = Random.Range(0, 2);
+                selectedPath = new System.Random().Next(1);
             }
             targetPosition = state.targetPositions[selectedPath];
         }
