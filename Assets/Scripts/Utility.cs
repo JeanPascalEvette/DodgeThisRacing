@@ -71,7 +71,7 @@ public class Utility {
             //Debug.Log(distance);
             if(distance < 1)
             {
-                carDirection = Vector3.Scale(carDirection,new Vector3(-1, 0, 0));
+                carDirection = Vector3.Scale(carDirection,new Vector3(-1, 1, 1));
             }
         }
         //Need check for distance between other cars
@@ -81,7 +81,7 @@ public class Utility {
             float distance = Vector3.Distance(state.otherCars[i].myPosition, currentPosition);
             if(distance < 1)
             {
-                carDirection = Vector3.Scale(carDirection, new Vector3(-1, 0, 0));
+                carDirection = Vector3.Scale(carDirection, new Vector3(-1, 1, 1));
             }
         }
         carDirection.Normalize();
