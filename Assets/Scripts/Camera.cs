@@ -9,7 +9,7 @@ public class Camera : MonoBehaviour {
     public float yDist = 3.0f;
     private float currentZoomOut = 1.0f;
     private float minZoomOut = 1.0f;
-    private float maxZoomOut = 2.0f;
+    private float maxZoomOut = 3.0f;
     Vector3 leadingCar;
     bool zoomOut = false;
     float zoomOutTime;
@@ -54,7 +54,7 @@ public class Camera : MonoBehaviour {
         }
 
         GetLeadingPlayer();
-        this.transform.position = new Vector3(0, yDist * currentZoomOut, leadingCar.z - (currentZoomOut * xDist));
+        this.transform.position = new Vector3(0, yDist * currentZoomOut, leadingCar.z - ((1.0f / currentZoomOut) * xDist));
         transform.LookAt(new Vector3(0, 0, leadingCar.z));
     }
 
