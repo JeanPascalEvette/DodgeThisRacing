@@ -22,6 +22,7 @@ public class GameLogic : MonoBehaviour {
     public static GameLogic myInstance;
 
     private Camera myCamera;
+    private GameObject explHolder;
 
     // Use this for initialization
     void Start ()
@@ -38,6 +39,10 @@ public class GameLogic : MonoBehaviour {
             Track = GameObject.Find("Track");
         if (Track == null)
             Track = new GameObject("Track");
+
+        explHolder = GameObject.Find("ExplosionHolder");
+        if(explHolder == null)
+            explHolder = new GameObject("ExplosionHolder");
 
         PlayerData[] myCars = new PlayerData[NUMBEROFCARS];
         if (Data.getNumberCarSelected() == 0) // IF did not go through main menu (DEBUG ONLY)
@@ -147,7 +152,13 @@ public class GameLogic : MonoBehaviour {
 	
     public void DestroyCar(PlayerData data)
     {
-        if(data.IsAI())
+        string explPrefab = "Prefabs/FX/Explosions/Explosion";
+        if(data.GetGameObject().name.Substring(0,3) == "Van")
+            explPrefab = "Prefabs/FX/Explosions/RaceVanExplosion";
+
+        var expl = (GameObject)Instantiate(Resources.Load(explPrefab), data.GetGameObject().transform.position, Quaternion.identity);
+        expl.transform.parent = explHolder.transform;
+        if (data.IsAI())
             data.GetGameObject().GetComponent<AIController>().stopPlanner();
         Destroy(data.GetGameObject());
     }

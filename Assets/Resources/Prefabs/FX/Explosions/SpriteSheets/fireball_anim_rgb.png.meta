@@ -1,0 +1,1081 @@
+fileFormatVersion: 2
+guid: 96e58658a4f1c134eb6fc4eeb2c604d5
+timeCreated: 1460803992
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: fireball_anim_rgb_0
+    21300002: fireball_anim_rgb_1
+    21300004: fireball_anim_rgb_2
+    21300006: fireball_anim_rgb_3
+    21300008: fireball_anim_rgb_4
+    21300010: fireball_anim_rgb_5
+    21300012: fireball_anim_rgb_6
+    21300014: fireball_anim_rgb_7
+    21300016: fireball_anim_rgb_8
+    21300018: fireball_anim_rgb_9
+    21300020: fireball_anim_rgb_10
+    21300022: fireball_anim_rgb_11
+    21300024: fireball_anim_rgb_12
+    21300026: fireball_anim_rgb_13
+    21300028: fireball_anim_rgb_14
+    21300030: fireball_anim_rgb_15
+    21300032: fireball_anim_rgb_16
+    21300034: fireball_anim_rgb_17
+    21300036: fireball_anim_rgb_18
+    21300038: fireball_anim_rgb_19
+    21300040: fireball_anim_rgb_20
+    21300042: fireball_anim_rgb_21
+    21300044: fireball_anim_rgb_22
+    21300046: fireball_anim_rgb_23
+    21300048: fireball_anim_rgb_24
+    21300050: fireball_anim_rgb_25
+    21300052: fireball_anim_rgb_26
+    21300054: fireball_anim_rgb_27
+    21300056: fireball_anim_rgb_28
+    21300058: fireball_anim_rgb_29
+    21300060: fireball_anim_rgb_30
+    21300062: fireball_anim_rgb_31
+    21300064: fireball_anim_rgb_32
+    21300066: fireball_anim_rgb_33
+    21300068: fireball_anim_rgb_34
+    21300070: fireball_anim_rgb_35
+    21300072: fireball_anim_rgb_36
+    21300074: fireball_anim_rgb_37
+    21300076: fireball_anim_rgb_38
+    21300078: fireball_anim_rgb_39
+    21300080: fireball_anim_rgb_40
+    21300082: fireball_anim_rgb_41
+    21300084: fireball_anim_rgb_42
+    21300086: fireball_anim_rgb_43
+    21300088: fireball_anim_rgb_44
+    21300090: fireball_anim_rgb_45
+    21300092: fireball_anim_rgb_46
+    21300094: fireball_anim_rgb_47
+    21300096: fireball_anim_rgb_48
+    21300098: fireball_anim_rgb_49
+    21300100: fireball_anim_rgb_50
+    21300102: fireball_anim_rgb_51
+    21300104: fireball_anim_rgb_52
+    21300106: fireball_anim_rgb_53
+    21300108: fireball_anim_rgb_54
+    21300110: fireball_anim_rgb_55
+    21300112: fireball_anim_rgb_56
+    21300114: fireball_anim_rgb_57
+    21300116: fireball_anim_rgb_58
+    21300118: fireball_anim_rgb_59
+    21300120: fireball_anim_rgb_60
+    21300122: fireball_anim_rgb_61
+    21300124: fireball_anim_rgb_62
+    21300126: fireball_anim_rgb_63
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 7
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: -1
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  allowsAlphaSplitting: 0
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 72
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: fireball_anim_rgb_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 262.5
+        width: 37.5
+        height: 37.5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -19, y: 19.5}
+        - {x: -19, y: -18.5}
+        - {x: 19, y: -18.5}
+        - {x: 19, y: 19.5}
+    - name: fireball_anim_rgb_1
+      rect:
+        serializedVersion: 2
+        x: 37
+        y: 262.5
+        width: 37.5
+        height: 37.5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -19, y: 19.5}
+        - {x: -19, y: -18.5}
+        - {x: 19, y: -18.5}
+        - {x: 19, y: 19.5}
+    - name: fireball_anim_rgb_2
+      rect:
+        serializedVersion: 2
+        x: 74
+        y: 262.5
+        width: 37.5
+        height: 37.5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -19, y: 19.5}
+        - {x: -19, y: -18.5}
+        - {x: 19, y: -18.5}
+        - {x: 19, y: 19.5}
+    - name: fireball_anim_rgb_3
+      rect:
+        serializedVersion: 2
+        x: 111
+        y: 262.5
+        width: 37.5
+        height: 37.5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -19, y: 19.5}
+        - {x: -19, y: -18.5}
+        - {x: 19, y: -18.5}
+        - {x: 19, y: 19.5}
+    - name: fireball_anim_rgb_4
+      rect:
+        serializedVersion: 2
+        x: 148
+        y: 262.5
+        width: 37.5
+        height: 37.5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -19, y: 19.5}
+        - {x: -19, y: -18.5}
+        - {x: 19, y: -18.5}
+        - {x: 19, y: 19.5}
+    - name: fireball_anim_rgb_5
+      rect:
+        serializedVersion: 2
+        x: 185
+        y: 262.5
+        width: 37.5
+        height: 37.5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -19, y: 19.5}
+        - {x: -19, y: -18.5}
+        - {x: 19, y: -18.5}
+        - {x: 19, y: 19.5}
+    - name: fireball_anim_rgb_6
+      rect:
+        serializedVersion: 2
+        x: 222
+        y: 262.5
+        width: 37.5
+        height: 37.5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -19, y: 19.5}
+        - {x: -19, y: -18.5}
+        - {x: 19, y: -18.5}
+        - {x: 19, y: 19.5}
+    - name: fireball_anim_rgb_7
+      rect:
+        serializedVersion: 2
+        x: 259
+        y: 262.5
+        width: 37.5
+        height: 37.5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -19, y: 19.5}
+        - {x: -19, y: -18.5}
+        - {x: 19, y: -18.5}
+        - {x: 19, y: 19.5}
+    - name: fireball_anim_rgb_8
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 225.5
+        width: 37.5
+        height: 37.5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -19, y: 19.5}
+        - {x: -19, y: -18.5}
+        - {x: 19, y: -18.5}
+        - {x: 19, y: 19.5}
+    - name: fireball_anim_rgb_9
+      rect:
+        serializedVersion: 2
+        x: 37
+        y: 225.5
+        width: 37.5
+        height: 37.5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -19, y: 19.5}
+        - {x: -19, y: -18.5}
+        - {x: 19, y: -18.5}
+        - {x: 19, y: 19.5}
+    - name: fireball_anim_rgb_10
+      rect:
+        serializedVersion: 2
+        x: 74
+        y: 225.5
+        width: 37.5
+        height: 37.5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -19, y: 19.5}
+        - {x: -19, y: -18.5}
+        - {x: 19, y: -18.5}
+        - {x: 19, y: 19.5}
+    - name: fireball_anim_rgb_11
+      rect:
+        serializedVersion: 2
+        x: 111
+        y: 225.5
+        width: 37.5
+        height: 37.5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -19, y: 19.5}
+        - {x: -19, y: -18.5}
+        - {x: 19, y: -18.5}
+        - {x: 19, y: 19.5}
+    - name: fireball_anim_rgb_12
+      rect:
+        serializedVersion: 2
+        x: 148
+        y: 225.5
+        width: 37.5
+        height: 37.5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -19, y: 19.5}
+        - {x: -19, y: -18.5}
+        - {x: 19, y: -18.5}
+        - {x: 19, y: 19.5}
+    - name: fireball_anim_rgb_13
+      rect:
+        serializedVersion: 2
+        x: 185
+        y: 225.5
+        width: 37.5
+        height: 37.5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -19, y: 19.5}
+        - {x: -19, y: -18.5}
+        - {x: 19, y: -18.5}
+        - {x: 19, y: 19.5}
+    - name: fireball_anim_rgb_14
+      rect:
+        serializedVersion: 2
+        x: 222
+        y: 225.5
+        width: 37.5
+        height: 37.5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -19, y: 19.5}
+        - {x: -19, y: -18.5}
+        - {x: 19, y: -18.5}
+        - {x: 19, y: 19.5}
+    - name: fireball_anim_rgb_15
+      rect:
+        serializedVersion: 2
+        x: 259
+        y: 225.5
+        width: 37.5
+        height: 37.5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -19, y: 19.5}
+        - {x: -19, y: -18.5}
+        - {x: 19, y: -18.5}
+        - {x: 19, y: 19.5}
+    - name: fireball_anim_rgb_16
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 188.5
+        width: 37.5
+        height: 37.5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -19, y: 19.5}
+        - {x: -19, y: -18.5}
+        - {x: 19, y: -18.5}
+        - {x: 19, y: 19.5}
+    - name: fireball_anim_rgb_17
+      rect:
+        serializedVersion: 2
+        x: 37
+        y: 188.5
+        width: 37.5
+        height: 37.5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -19, y: 19.5}
+        - {x: -19, y: -18.5}
+        - {x: 19, y: -18.5}
+        - {x: 19, y: 19.5}
+    - name: fireball_anim_rgb_18
+      rect:
+        serializedVersion: 2
+        x: 74
+        y: 188.5
+        width: 37.5
+        height: 37.5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -19, y: 19.5}
+        - {x: -19, y: -18.5}
+        - {x: 19, y: -18.5}
+        - {x: 19, y: 19.5}
+    - name: fireball_anim_rgb_19
+      rect:
+        serializedVersion: 2
+        x: 111
+        y: 188.5
+        width: 37.5
+        height: 37.5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -19, y: 19.5}
+        - {x: -19, y: -18.5}
+        - {x: 19, y: -18.5}
+        - {x: 19, y: 19.5}
+    - name: fireball_anim_rgb_20
+      rect:
+        serializedVersion: 2
+        x: 148
+        y: 188.5
+        width: 37.5
+        height: 37.5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -19, y: 19.5}
+        - {x: -19, y: -18.5}
+        - {x: 19, y: -18.5}
+        - {x: 19, y: 19.5}
+    - name: fireball_anim_rgb_21
+      rect:
+        serializedVersion: 2
+        x: 185
+        y: 188.5
+        width: 37.5
+        height: 37.5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -19, y: 19.5}
+        - {x: -19, y: -18.5}
+        - {x: 19, y: -18.5}
+        - {x: 19, y: 19.5}
+    - name: fireball_anim_rgb_22
+      rect:
+        serializedVersion: 2
+        x: 222
+        y: 188.5
+        width: 37.5
+        height: 37.5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -19, y: 19.5}
+        - {x: -19, y: -18.5}
+        - {x: 19, y: -18.5}
+        - {x: 19, y: 19.5}
+    - name: fireball_anim_rgb_23
+      rect:
+        serializedVersion: 2
+        x: 259
+        y: 188.5
+        width: 37.5
+        height: 37.5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -19, y: 19.5}
+        - {x: -19, y: -18.5}
+        - {x: 19, y: -18.5}
+        - {x: 19, y: 19.5}
+    - name: fireball_anim_rgb_24
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 151.5
+        width: 37.5
+        height: 37.5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -19, y: 19.5}
+        - {x: -19, y: -18.5}
+        - {x: 19, y: -18.5}
+        - {x: 19, y: 19.5}
+    - name: fireball_anim_rgb_25
+      rect:
+        serializedVersion: 2
+        x: 37
+        y: 151.5
+        width: 37.5
+        height: 37.5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -19, y: 19.5}
+        - {x: -19, y: -18.5}
+        - {x: 19, y: -18.5}
+        - {x: 19, y: 19.5}
+    - name: fireball_anim_rgb_26
+      rect:
+        serializedVersion: 2
+        x: 74
+        y: 151.5
+        width: 37.5
+        height: 37.5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -19, y: 19.5}
+        - {x: -19, y: -18.5}
+        - {x: 19, y: -18.5}
+        - {x: 19, y: 19.5}
+    - name: fireball_anim_rgb_27
+      rect:
+        serializedVersion: 2
+        x: 111
+        y: 151.5
+        width: 37.5
+        height: 37.5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -19, y: 19.5}
+        - {x: -19, y: -18.5}
+        - {x: 19, y: -18.5}
+        - {x: 19, y: 19.5}
+    - name: fireball_anim_rgb_28
+      rect:
+        serializedVersion: 2
+        x: 148
+        y: 151.5
+        width: 37.5
+        height: 37.5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -19, y: 19.5}
+        - {x: -19, y: -18.5}
+        - {x: 19, y: -18.5}
+        - {x: 19, y: 19.5}
+    - name: fireball_anim_rgb_29
+      rect:
+        serializedVersion: 2
+        x: 185
+        y: 151.5
+        width: 37.5
+        height: 37.5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -19, y: 19.5}
+        - {x: -19, y: -18.5}
+        - {x: 19, y: -18.5}
+        - {x: 19, y: 19.5}
+    - name: fireball_anim_rgb_30
+      rect:
+        serializedVersion: 2
+        x: 222
+        y: 151.5
+        width: 37.5
+        height: 37.5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -19, y: 19.5}
+        - {x: -19, y: -18.5}
+        - {x: 19, y: -18.5}
+        - {x: 19, y: 19.5}
+    - name: fireball_anim_rgb_31
+      rect:
+        serializedVersion: 2
+        x: 259
+        y: 151.5
+        width: 37.5
+        height: 37.5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -19, y: 19.5}
+        - {x: -19, y: -18.5}
+        - {x: 19, y: -18.5}
+        - {x: 19, y: 19.5}
+    - name: fireball_anim_rgb_32
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 114.5
+        width: 37.5
+        height: 37.5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -19, y: 19.5}
+        - {x: -19, y: -18.5}
+        - {x: 19, y: -18.5}
+        - {x: 19, y: 19.5}
+    - name: fireball_anim_rgb_33
+      rect:
+        serializedVersion: 2
+        x: 37
+        y: 114.5
+        width: 37.5
+        height: 37.5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -19, y: 19.5}
+        - {x: -19, y: -18.5}
+        - {x: 19, y: -18.5}
+        - {x: 19, y: 19.5}
+    - name: fireball_anim_rgb_34
+      rect:
+        serializedVersion: 2
+        x: 74
+        y: 114.5
+        width: 37.5
+        height: 37.5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -19, y: 19.5}
+        - {x: -19, y: -18.5}
+        - {x: 19, y: -18.5}
+        - {x: 19, y: 19.5}
+    - name: fireball_anim_rgb_35
+      rect:
+        serializedVersion: 2
+        x: 111
+        y: 114.5
+        width: 37.5
+        height: 37.5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -19, y: 19.5}
+        - {x: -19, y: -18.5}
+        - {x: 19, y: -18.5}
+        - {x: 19, y: 19.5}
+    - name: fireball_anim_rgb_36
+      rect:
+        serializedVersion: 2
+        x: 148
+        y: 114.5
+        width: 37.5
+        height: 37.5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -19, y: 19.5}
+        - {x: -19, y: -18.5}
+        - {x: 19, y: -18.5}
+        - {x: 19, y: 19.5}
+    - name: fireball_anim_rgb_37
+      rect:
+        serializedVersion: 2
+        x: 185
+        y: 114.5
+        width: 37.5
+        height: 37.5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -19, y: 19.5}
+        - {x: -19, y: -18.5}
+        - {x: 19, y: -18.5}
+        - {x: 19, y: 19.5}
+    - name: fireball_anim_rgb_38
+      rect:
+        serializedVersion: 2
+        x: 222
+        y: 114.5
+        width: 37.5
+        height: 37.5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -19, y: 19.5}
+        - {x: -19, y: -18.5}
+        - {x: 19, y: -18.5}
+        - {x: 19, y: 19.5}
+    - name: fireball_anim_rgb_39
+      rect:
+        serializedVersion: 2
+        x: 259
+        y: 114.5
+        width: 37.5
+        height: 37.5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -19, y: 19.5}
+        - {x: -19, y: -18.5}
+        - {x: 19, y: -18.5}
+        - {x: 19, y: 19.5}
+    - name: fireball_anim_rgb_40
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 77.5
+        width: 37.5
+        height: 37.5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -19, y: 19.5}
+        - {x: -19, y: -18.5}
+        - {x: 19, y: -18.5}
+        - {x: 19, y: 19.5}
+    - name: fireball_anim_rgb_41
+      rect:
+        serializedVersion: 2
+        x: 37
+        y: 77.5
+        width: 37.5
+        height: 37.5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -19, y: 19.5}
+        - {x: -19, y: -18.5}
+        - {x: 19, y: -18.5}
+        - {x: 19, y: 19.5}
+    - name: fireball_anim_rgb_42
+      rect:
+        serializedVersion: 2
+        x: 74
+        y: 77.5
+        width: 37.5
+        height: 37.5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -19, y: 19.5}
+        - {x: -19, y: -18.5}
+        - {x: 19, y: -18.5}
+        - {x: 19, y: 19.5}
+    - name: fireball_anim_rgb_43
+      rect:
+        serializedVersion: 2
+        x: 111
+        y: 77.5
+        width: 37.5
+        height: 37.5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -19, y: 19.5}
+        - {x: -19, y: -18.5}
+        - {x: 19, y: -18.5}
+        - {x: 19, y: 19.5}
+    - name: fireball_anim_rgb_44
+      rect:
+        serializedVersion: 2
+        x: 148
+        y: 77.5
+        width: 37.5
+        height: 37.5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -19, y: 19.5}
+        - {x: -19, y: -18.5}
+        - {x: 19, y: -18.5}
+        - {x: 19, y: 19.5}
+    - name: fireball_anim_rgb_45
+      rect:
+        serializedVersion: 2
+        x: 185
+        y: 77.5
+        width: 37.5
+        height: 37.5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -19, y: 19.5}
+        - {x: -19, y: -18.5}
+        - {x: 19, y: -18.5}
+        - {x: 19, y: 19.5}
+    - name: fireball_anim_rgb_46
+      rect:
+        serializedVersion: 2
+        x: 222
+        y: 77.5
+        width: 37.5
+        height: 37.5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -19, y: 19.5}
+        - {x: -19, y: -18.5}
+        - {x: 19, y: -18.5}
+        - {x: 19, y: 19.5}
+    - name: fireball_anim_rgb_47
+      rect:
+        serializedVersion: 2
+        x: 259
+        y: 77.5
+        width: 37.5
+        height: 37.5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -19, y: 19.5}
+        - {x: -19, y: -18.5}
+        - {x: 19, y: -18.5}
+        - {x: 19, y: 19.5}
+    - name: fireball_anim_rgb_48
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 40.5
+        width: 37.5
+        height: 37.5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -19, y: 19.5}
+        - {x: -19, y: -18.5}
+        - {x: 19, y: -18.5}
+        - {x: 19, y: 19.5}
+    - name: fireball_anim_rgb_49
+      rect:
+        serializedVersion: 2
+        x: 37
+        y: 40.5
+        width: 37.5
+        height: 37.5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -19, y: 19.5}
+        - {x: -19, y: -18.5}
+        - {x: 19, y: -18.5}
+        - {x: 19, y: 19.5}
+    - name: fireball_anim_rgb_50
+      rect:
+        serializedVersion: 2
+        x: 74
+        y: 40.5
+        width: 37.5
+        height: 37.5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -19, y: 19.5}
+        - {x: -19, y: -18.5}
+        - {x: 19, y: -18.5}
+        - {x: 19, y: 19.5}
+    - name: fireball_anim_rgb_51
+      rect:
+        serializedVersion: 2
+        x: 111
+        y: 40.5
+        width: 37.5
+        height: 37.5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -19, y: 19.5}
+        - {x: -19, y: -18.5}
+        - {x: 19, y: -18.5}
+        - {x: 19, y: 19.5}
+    - name: fireball_anim_rgb_52
+      rect:
+        serializedVersion: 2
+        x: 148
+        y: 40.5
+        width: 37.5
+        height: 37.5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -19, y: 19.5}
+        - {x: -19, y: -18.5}
+        - {x: 19, y: -18.5}
+        - {x: 19, y: 19.5}
+    - name: fireball_anim_rgb_53
+      rect:
+        serializedVersion: 2
+        x: 185
+        y: 40.5
+        width: 37.5
+        height: 37.5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -19, y: 19.5}
+        - {x: -19, y: -18.5}
+        - {x: 19, y: -18.5}
+        - {x: 19, y: 19.5}
+    - name: fireball_anim_rgb_54
+      rect:
+        serializedVersion: 2
+        x: 222
+        y: 40.5
+        width: 37.5
+        height: 37.5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -19, y: 19.5}
+        - {x: -19, y: -18.5}
+        - {x: 19, y: -18.5}
+        - {x: 19, y: 19.5}
+    - name: fireball_anim_rgb_55
+      rect:
+        serializedVersion: 2
+        x: 259
+        y: 40.5
+        width: 37.5
+        height: 37.5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -19, y: 19.5}
+        - {x: -19, y: -18.5}
+        - {x: 19, y: -18.5}
+        - {x: 19, y: 19.5}
+    - name: fireball_anim_rgb_56
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 3.5
+        width: 37.5
+        height: 37.5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -19, y: 19.5}
+        - {x: -19, y: -18.5}
+        - {x: 19, y: -18.5}
+        - {x: 19, y: 19.5}
+    - name: fireball_anim_rgb_57
+      rect:
+        serializedVersion: 2
+        x: 37
+        y: 3.5
+        width: 37.5
+        height: 37.5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -19, y: 19.5}
+        - {x: -19, y: -18.5}
+        - {x: 19, y: -18.5}
+        - {x: 19, y: 19.5}
+    - name: fireball_anim_rgb_58
+      rect:
+        serializedVersion: 2
+        x: 74
+        y: 3.5
+        width: 37.5
+        height: 37.5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -19, y: 19.5}
+        - {x: -19, y: -18.5}
+        - {x: 19, y: -18.5}
+        - {x: 19, y: 19.5}
+    - name: fireball_anim_rgb_59
+      rect:
+        serializedVersion: 2
+        x: 111
+        y: 3.5
+        width: 37.5
+        height: 37.5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -19, y: 19.5}
+        - {x: -19, y: -18.5}
+        - {x: 19, y: -18.5}
+        - {x: 19, y: 19.5}
+    - name: fireball_anim_rgb_60
+      rect:
+        serializedVersion: 2
+        x: 148
+        y: 3.5
+        width: 37.5
+        height: 37.5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -19, y: 19.5}
+        - {x: -19, y: -18.5}
+        - {x: 19, y: -18.5}
+        - {x: 19, y: 19.5}
+    - name: fireball_anim_rgb_61
+      rect:
+        serializedVersion: 2
+        x: 185
+        y: 3.5
+        width: 37.5
+        height: 37.5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -19, y: 19.5}
+        - {x: -19, y: -18.5}
+        - {x: 19, y: -18.5}
+        - {x: 19, y: 19.5}
+    - name: fireball_anim_rgb_62
+      rect:
+        serializedVersion: 2
+        x: 222
+        y: 3.5
+        width: 37.5
+        height: 37.5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -19, y: 19.5}
+        - {x: -19, y: -18.5}
+        - {x: 19, y: -18.5}
+        - {x: 19, y: 19.5}
+    - name: fireball_anim_rgb_63
+      rect:
+        serializedVersion: 2
+        x: 259
+        y: 3.5
+        width: 37.5
+        height: 37.5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -19, y: 19.5}
+        - {x: -19, y: -18.5}
+        - {x: 19, y: -18.5}
+        - {x: 19, y: 19.5}
+    outline: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
