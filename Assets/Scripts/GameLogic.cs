@@ -73,12 +73,70 @@ public class GameLogic : MonoBehaviour {
         }
         
     }
-	
+
+    IEnumerator RespawnCar(PlayerData car)
+    {
+        yield return new WaitForSeconds(1);
+        SpawnCar(car);
+    }
+
     public void SpawnCar(PlayerData data)
     {
         if (data.GetGameObject() != null)
             return;
+        var trackPiece = Data.GetCurrentTrackPiece();
+
+        if (trackPiece.name.Substring(0, 7) == "Track_D") // If TrackPiece where road is separated - wait for 1sec before respawning
+        {
+            StartCoroutine(RespawnCar(data));
+            return;
+        }
         var spawnPos = new Vector3(0,0.5f,myCamera.leadingGameObject.transform.position.z - 1.0f);
+        float xPos = 0.0f;
+        List<float> listOfXPos = new List<float>();
+        foreach(var pData in Data.getCarsSelected())
+        {
+            if(pData.GetGameObject() != null && pData != data)
+            {
+                listOfXPos.Add(pData.GetGameObject().transform.position.x);
+            }
+        }
+
+        float maxDist = 5.0f;
+
+        for(int i = 0; i < trackPiece.transform.childCount; i++) 
+        {
+            if (trackPiece.transform.GetChild(i).name.Substring(0, 4) == "Road")
+            {
+                trackPiece = trackPiece.transform.GetChild(i).gameObject;
+                break;
+            }
+         }
+        for (int i = 0; i < trackPiece.GetComponent<MeshRenderer>().bounds.extents.x; i++)
+        {
+            bool possible = true;
+            foreach (float otherCarXPos in listOfXPos)
+            {
+                if (i > otherCarXPos - maxDist && i < otherCarXPos + maxDist)
+                {
+                    possible = false;
+                }
+            }
+            if (possible)
+            { xPos = i; break; }
+            possible = true;
+            foreach (float otherCarXPos in listOfXPos)
+            {
+                if (-i > otherCarXPos - maxDist && -i < otherCarXPos + maxDist)
+                {
+                    possible = false;
+                }
+            }
+            if (possible)
+            { xPos = -i; break; }
+        }
+        spawnPos.x = xPos;
+
         var spawnVel = myCamera.leadingGameObject.GetComponent<Rigidbody>().velocity;
 
         var newCar = (GameObject)Instantiate(data.GetPrefab(), spawnPos, Quaternion.Euler(0, 180, 0));
@@ -230,7 +288,23 @@ public class GameLogic : MonoBehaviour {
             Destroy(removedPart);
             AddNewTrackPart();
         }
-	}
+
+        var trackPiece = Data.GetCurrentTrackPiece();
+        if (trackPiece != null && trackPiece.name.Substring(0, 7) == "Track_D")
+        {
+            if (UnityEngine.Camera.main.GetComponent<Camera>().leadingGameObject.transform.position.z >= trackPiece.transform.Find("Canyon_Middle_D").GetComponent<MeshRenderer>().bounds.max.z)
+            {
+                UnityEngine.Camera.main.GetComponent<Camera>().ZoomIn();
+                trackPiece.transform.Find("Canyon_Middle_D").GetComponent<MeshRenderer>().enabled = true;
+            }
+            else if (UnityEngine.Camera.main.GetComponent<Camera>().leadingGameObject.transform.position.z >= trackPiece.transform.Find("Canyon_Middle_D").GetComponent<MeshRenderer>().bounds.min.z)
+            {
+                UnityEngine.Camera.main.GetComponent<Camera>().ZoomOut();
+                trackPiece.transform.Find("Canyon_Middle_D").GetComponent<MeshRenderer>().enabled = false;
+            }
+        }
+
+    }
 
     public List<GameObject> GetObstacleList()
     {

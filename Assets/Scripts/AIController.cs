@@ -45,10 +45,10 @@ public class AIController : MonoBehaviour
     {
         try
         {
-            if (plan == null || frameCounter - frameGenerated < 0 || frameCounter - frameGenerated > plan.Length)
-                return "";
-            return plan[frameCounter - frameGenerated];
-        }
+        if (plan == null || frameCounter - frameGenerated < 0 || frameCounter - frameGenerated > plan.Length)
+            return "";
+        return plan[frameCounter - frameGenerated];
+    }
         catch(System.Exception e)
         {
             Debug.Log("Error when returning plan : " + (frameCounter - frameGenerated).ToString() + " / " + plan.Length);
@@ -120,7 +120,13 @@ public class AIController : MonoBehaviour
     void Update()
     {
 
-
+        if (Input.GetKeyDown(KeyCode.F1))
+        {
+            showDebug = !showDebug;
+        }
+        isAggresive = myRand.Next(1) == 4;
+        if (currentState != null && currentState.otherCars != null && currentState.otherCars.Length == 0)
+            isAggresive = false;
     }
 
     void FixedUpdate()
@@ -212,7 +218,7 @@ public class AIController : MonoBehaviour
                 debugPlan += timeStep + ",";
             debugPlan = debugPlan.Substring(0, debugPlan.Length - 1);
             if(showDebug)
-                Debug.Log("Car:" + currentState.myCar.myUniqueID + " - " + debugPlan);
+            Debug.Log("Car:" + currentState.myCar.myUniqueID + " - " + debugPlan);
 
             //Wait for 1sec before calling the planner again
             waitHandle.Reset();

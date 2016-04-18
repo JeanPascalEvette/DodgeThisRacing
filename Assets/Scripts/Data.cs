@@ -107,6 +107,20 @@ public class Data : MonoBehaviour {
         return allCars;
     }
 
+    public static GameObject GetCurrentTrackPiece()
+    {
+        float zPos = UnityEngine.Camera.main.GetComponent<Camera>().leadingGameObject.transform.position.z;
+        for (int i = 0; i < GameObject.Find("Track").transform.childCount; i++)
+        {
+            var tp = GameObject.Find("Track").transform.GetChild(i);
+            var trackZ = tp.transform.position.z;
+            var extentZ = tp.GetComponentInChildren<MeshRenderer>().bounds.extents.z;
+            if (trackZ + extentZ > zPos && trackZ - extentZ < zPos)
+                return tp.gameObject;
+        }
+        return null;
+    }
+
     public static int getNumberCarSelected()
     {
         if (CarsSelected == null)

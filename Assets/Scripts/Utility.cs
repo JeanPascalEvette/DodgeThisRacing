@@ -12,7 +12,6 @@ public class Utility {
     // variables for other cars
     CarState[] cars;
     Vector3[] positions;
-    
 
     public Vector3 CarUtility(State state, bool isAggresive)
     {
@@ -68,6 +67,27 @@ public class Utility {
         CarState thisCar = state.myCar;
         currentPosition = thisCar.myPosition;
         carDirection = (targetPosition - currentPosition);
+        
+        //Check for obstacles
+        for (int i =0; i < state.obstacles.Length; i++)
+        {
+            float distance = Vector3.Distance(state.obstacles[i].myPosition, currentPosition);
+            //Debug.Log(distance);
+            if(distance < 1)
+            {
+                carDirection = Vector3.Scale(carDirection,new Vector3(-1, 1, 1));
+            }
+        }
+        //Need check for distance between other cars
+        for (int i = 0; i < state.otherCars.Length; i++)
+        {
+            //Vector3 intersection between direction and other car position
+            float distance = Vector3.Distance(state.otherCars[i].myPosition, currentPosition);
+            if(distance < 1)
+            {
+                carDirection = Vector3.Scale(carDirection, new Vector3(-1, 1, 1));
+            }
+        }
         carDirection.Normalize();
         return carDirection;
     }
