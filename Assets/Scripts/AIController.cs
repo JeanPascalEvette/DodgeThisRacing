@@ -118,7 +118,7 @@ public class AIController : MonoBehaviour
         {
             showDebug = !showDebug;
         }
-        isAggresive = myRand.Next(1) == 1;
+        isAggresive = myRand.Next(1) == 4;
         if (currentState != null && currentState.otherCars != null && currentState.otherCars.Length == 0)
             isAggresive = false;
     }

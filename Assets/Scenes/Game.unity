@@ -422,10 +422,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b000ca58728a39745b4d638e180393f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 0}
+  target:
+  - {fileID: 0}
+  leadingGameObject: {fileID: 0}
   xDist: 17
   yDist: 15
-  zoom: 1
   myCameraType: 0
 --- !u!81 &1321642224
 AudioListener:
