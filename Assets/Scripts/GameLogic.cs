@@ -91,12 +91,22 @@ public class GameLogic : MonoBehaviour {
             return;
         var trackPiece = Data.GetCurrentTrackPiece();
 
+        Vector3 startPoint = myCamera.leadingGameObject.transform.position;
+
         if (trackPiece.name.Substring(0, 7) == "Track_D") // If TrackPiece where road is separated - wait for 1sec before respawning
         {
-            StartCoroutine(RespawnCar(data));
-            return;
+
+            Ray targetRay = new Ray(new Vector3(-40, 0.5f, myCamera.leadingGameObject.transform.position.z), new Vector3(1, 0, 0));
+            RaycastHit[] hits = Physics.RaycastAll(targetRay, 80, 1 << LayerMask.NameToLayer("AIGuide"));
+            Vector3[] targetPos = new Vector3[hits.Length];
+            for (int i = 0; i < hits.Length; i++)
+                targetPos[i] = hits[i].point;
+
+            if (Vector3.Distance(targetPos[0], myCamera.leadingGameObject.transform.position) < Vector3.Distance(targetPos[1], myCamera.leadingGameObject.transform.position))
+                startPoint = targetPos[0];
+            else
+                startPoint = targetPos[1];
         }
-        var spawnPos = new Vector3(0,0.5f,myCamera.leadingGameObject.transform.position.z - 1.0f);
         float xPos = 0.0f;
         List<float> listOfXPos = new List<float>();
         foreach(var pData in Data.getCarsSelected())
@@ -140,11 +150,11 @@ public class GameLogic : MonoBehaviour {
             if (possible)
             { xPos = -i; break; }
         }
-        spawnPos.x = xPos;
+        startPoint.x = xPos;
 
         var spawnVel = myCamera.leadingGameObject.GetComponent<Rigidbody>().velocity;
 
-        var newCar = (GameObject)Instantiate(data.GetPrefab(), spawnPos, Quaternion.Euler(0, 180, 0));
+        var newCar = (GameObject)Instantiate(data.GetPrefab(), startPoint, Quaternion.Euler(0, 180, 0));
         newCar.GetComponent<Rigidbody>().velocity = spawnVel;
         newCar.GetComponent<CarController>().myPlayerData = data;
             data.AttachGameObject(newCar);

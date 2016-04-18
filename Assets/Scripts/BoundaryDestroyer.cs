@@ -4,11 +4,15 @@ using System.Collections;
 public class BoundaryDestroyer : MonoBehaviour {
 
     private GameLogic GL;
+    private Quaternion OrgRotation;
+    private Vector3 OrgPosition;
+ 
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start () {
         GL = GameObject.Find("GameManager").GetComponent<GameLogic>();
     }
+    
     void OnCollisionEnter(Collision other)
     {
         //Debug.Log("coliision has occured");
@@ -20,6 +24,23 @@ public class BoundaryDestroyer : MonoBehaviour {
             GL.DestroyCar(pData);
             StartCoroutine(RespawnCar(pData));
         }
+    }
+
+    void Awake()
+    {
+        OrgRotation = transform.rotation;
+        OrgPosition = transform.position;
+    }
+
+    void LateUpdate()
+    {
+        transform.rotation = OrgRotation;
+        transform.position = OrgPosition + new Vector3(0,0,transform.parent.position.z - UnityEngine.Camera.main.GetComponent<Camera>().getZoomZDiff());
+    }
+
+    void Update()
+    {
+
     }
 
     IEnumerator RespawnCar(PlayerData car)

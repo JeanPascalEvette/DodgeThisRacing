@@ -40,6 +40,12 @@ public class Camera : MonoBehaviour {
             }
         }
     }
+
+    public float getZoomZDiff()
+    {
+        float zoom = ((currentZoomOut - minZoomOut) / (maxZoomOut - minZoomOut));
+        return zoom * xDist;
+    }
 	
 	// Update is called once per frame
 	void Update ()
