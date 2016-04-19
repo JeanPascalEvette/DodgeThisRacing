@@ -99,7 +99,9 @@ public class CarHitbox : MonoBehaviour {
         Destroy(carModel);
 
         // Logic about respawning later
-
+        // We call the function in GameLogic
+        GameLogic gamelogic;
+        gamelogic.SpawnCar(car.GetComponent<CarController>().PlayerData);
 
     }
 }

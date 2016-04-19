@@ -104,9 +104,9 @@ public class CarController : MonoBehaviour
     private static int carCounter = 0;
     // private bool showDebug = false;
 
-    public AudioSource[] sounds;
-    public AudioSource noise1;
-    public AudioSource noise2;
+    //public AudioSource[] sounds;
+    //public AudioSource noise1;
+    //public AudioSource noise2;
     // public GUISkin aSkin;
 
     //Do not modify - used by the auto rotate
@@ -154,16 +154,15 @@ public class CarController : MonoBehaviour
 
         Physics.IgnoreLayerCollision(LayerMask.NameToLayer("DetachableObjects"), LayerMask.NameToLayer("CarCollisionHitbox"), true);
 
-        sounds = GetComponents<AudioSource>();
-        if (myAI == null)
-        {
-            noise1 = sounds[0];
-            noise2 = sounds[1];
-            noise1.pitch = (rpm / 10000) + 0.7f; // formula to reach ideal pitch from rpm
+        //sounds = GetComponents<AudioSource>();
+        //if (myAI == null)
+        //{
+        //    noise1 = sounds[0];
+        //    noise2 = sounds[1];
+        //    noise1.pitch = (rpm / 10000) + 0.7f; // formula to reach ideal pitch from rpm
+        //}
         // We set the initial health of the car+
         currentHealth = startingHealth;
-
-    }
     }
 
     void Update()
@@ -515,7 +514,7 @@ public class CarController : MonoBehaviour
         //*********************** END ANGULAR ACCELERATION TO BE APPLIED TO DRIVE WHEELS ***********************//
 
 
-        soundOfEngine();
+        //soundOfEngine();
         HandlePartialyOnGround();
         
     }
@@ -666,21 +665,21 @@ public class CarController : MonoBehaviour
         }
     }
 
-    private void soundOfEngine()
-    {
-        //0.70 - 1.20  probably ideal pitch for looping through
-        if(myAI == null)
-        noise1.pitch = (rpm / 10000) + 0.7f; // formula to reach ideal pitch from rpm
-    }
+    //private void soundOfEngine()
+    //{
+    //    //0.70 - 1.20  probably ideal pitch for looping through
+    //    if(myAI == null)
+    //    noise1.pitch = (rpm / 10000) + 0.7f; // formula to reach ideal pitch from rpm
+    //}
 
-    void OnCollisionEnter(Collision other)
-     {
+    //void OnCollisionEnter(Collision other)
+    // {
         
-        if(other.gameObject.tag == "Player" && myAI == null) // or hit on everything?
-        {
-            noise2.Play();
-        }
-     }
+    //    if(other.gameObject.tag == "Player" && myAI == null) // or hit on everything?
+    //    {
+    //        noise2.Play();
+    //    }
+    // }
 }
 
 
