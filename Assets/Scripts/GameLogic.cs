@@ -100,7 +100,7 @@ public class GameLogic : MonoBehaviour {
         else
         {
             winCondition++;
-            if (winCondition == NUMBEROFCARS - 1)
+            if (winCondition == Data.getNumberCarSelected() - 1)
             {
                 for (int n = 0; n < scoreCount.Length; n++)
                 {

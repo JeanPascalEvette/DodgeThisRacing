@@ -58,20 +58,20 @@ public class inGameGUI : MonoBehaviour {
 
     void UpdateScore()
     {
-        if (gmlg.NUMBEROFCARS < 5)
+        if (Data.getNumberCarSelected() < 5)
         {
             score1.text = "Player 1 remaining lives: " + gmlg.scoreCount[0];
             score2.text = "Player 2 remaining lives: " + gmlg.scoreCount[1];
             score3.text = "Player 3 remaining lives: " + gmlg.scoreCount[2];
             score4.text = "Player 4 remaining lives: " + gmlg.scoreCount[3];
         }
-        else if (gmlg.NUMBEROFCARS < 4)
+        else if (Data.getNumberCarSelected() < 4)
         {
             score1.text = "Player 1 remaining lives: " + gmlg.scoreCount[0];
             score2.text = "Player 2 remaining lives: " + gmlg.scoreCount[1];
             score3.text = "Player 3 remaining lives: " + gmlg.scoreCount[2];
         }
-        else if (gmlg.NUMBEROFCARS < 3)
+        else if (Data.getNumberCarSelected() < 3)
         {
             score1.text = "Player 1 remaining lives: " + gmlg.scoreCount[0];
             score2.text = "Player 2 remaining lives: " + gmlg.scoreCount[1];
@@ -86,7 +86,7 @@ public class inGameGUI : MonoBehaviour {
             x++;
             if(x == 2)
             {
-                SceneManager.LoadScene("start");
+                SceneManager.LoadScene("menu");
             }
             timer = 7;
             countdown = true;
@@ -100,13 +100,13 @@ public class inGameGUI : MonoBehaviour {
                     middleText.text = "Player " + gmlg.playerDeathNumber + " is VICTORIOUS! All hail!";
                     break;
                 case 3:
-                    middleText.text = "Player " + gmlg.playerDeathNumber + " has WON! Cheer up Player "  +((gmlg.NUMBEROFCARS - gmlg.playerDeathNumber) + 1) + ". You'll do better next time!";
+                    middleText.text = "Player " + gmlg.playerDeathNumber + " has WON! Cheer up Player "  +((Data.getNumberCarSelected() - gmlg.playerDeathNumber) + 1) + ". You'll do better next time!";
                     break;
                 case 4:
                     middleText.text = "Player " + gmlg.playerDeathNumber + " is the new champion! He will buy champagne for all!";
                     break;
                 case 5:
-                    middleText.text = "Player " + gmlg.playerDeathNumber + " has WON... and NO Player " + ((gmlg.NUMBEROFCARS - gmlg.playerDeathNumber) + 1)  + "... it wasn't a gameplay bug that caused you to lose!";
+                    middleText.text = "Player " + gmlg.playerDeathNumber + " has WON... and NO Player " + ((Data.getNumberCarSelected() - gmlg.playerDeathNumber) + 1)  + "... it wasn't a gameplay bug that caused you to lose!";
                     break;
                 case 6:
                     middleText.text = "Player " + gmlg.playerDeathNumber + " has WON! It's not just about winning, it's about making others lose!";
@@ -138,7 +138,7 @@ public class inGameGUI : MonoBehaviour {
                     middleText.text = "Looks like you needed more than 10 lives Player " + gmlg.playerDeathNumber;
                     break;
                 case 5:
-                    middleText.text = (gmlg.winCondition +1) + " down " + ((gmlg.NUMBEROFCARS - gmlg.winCondition) -1) + " to go!";
+                    middleText.text = (gmlg.winCondition +1) + " down " + ((Data.getNumberCarSelected() - gmlg.winCondition) -1) + " to go!";
                     break;
                 case 6:
                     middleText.text = "Too slow Player " + gmlg.playerDeathNumber + "!";
@@ -153,7 +153,7 @@ public class inGameGUI : MonoBehaviour {
                     middleText.text ="Player " + gmlg.playerDeathNumber + " has been ANNIHILATED!";
                     break;
             }
-            gmlg.playerDeathNumber = gmlg.NUMBEROFCARS;
+            gmlg.playerDeathNumber = Data.getNumberCarSelected();
             rand = 0;
         }
     }
