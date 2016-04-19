@@ -43,9 +43,17 @@ public class AIController : MonoBehaviour
     }
     public string GetPlan()
     {
-        if (plan == null || frameCounter - frameGenerated < 0 || frameCounter - frameGenerated > plan.Length)
+        try
+        {
+            if (plan == null || frameCounter - frameGenerated < 0 || frameCounter - frameGenerated >= plan.Length)
+                return "";
+            return plan[frameCounter - frameGenerated];
+        }
+        catch(System.Exception ex)
+        {
+            Debug.Log("Error when Getting plan. Search value " + (frameCounter - frameGenerated).ToString() + " in array size " + plan.Length);
             return "";
-        return plan[frameCounter - frameGenerated];
+        }
     }
 
     void OnDrawGizmos()

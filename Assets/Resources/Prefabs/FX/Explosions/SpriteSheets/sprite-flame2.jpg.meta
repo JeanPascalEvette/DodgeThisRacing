@@ -1,0 +1,441 @@
+fileFormatVersion: 2
+guid: bd215c7579342134b833ff97f3f89f9d
+timeCreated: 1460807632
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: sprite-flame2_0
+    21300002: sprite-flame2_1
+    21300004: sprite-flame2_2
+    21300006: sprite-flame2_3
+    21300008: sprite-flame2_4
+    21300010: sprite-flame2_5
+    21300012: sprite-flame2_6
+    21300014: sprite-flame2_7
+    21300016: sprite-flame2_8
+    21300018: sprite-flame2_9
+    21300020: sprite-flame2_10
+    21300022: sprite-flame2_11
+    21300024: sprite-flame2_12
+    21300026: sprite-flame2_13
+    21300028: sprite-flame2_14
+    21300030: sprite-flame2_15
+    21300032: sprite-flame2_16
+    21300034: sprite-flame2_17
+    21300036: sprite-flame2_18
+    21300038: sprite-flame2_19
+    21300040: sprite-flame2_20
+    21300042: sprite-flame2_21
+    21300044: sprite-flame2_22
+    21300046: sprite-flame2_23
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 7
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: -1
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  allowsAlphaSplitting: 0
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 72
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: sprite-flame2_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 225.33334
+        width: 112.5
+        height: 112.666664
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -56.5, y: 56.833344}
+        - {x: -56.5, y: -56.166656}
+        - {x: 56.5, y: -56.166656}
+        - {x: 56.5, y: 56.833344}
+    - name: sprite-flame2_1
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 225.33334
+        width: 112.5
+        height: 112.666664
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -56.5, y: 56.833344}
+        - {x: -56.5, y: -56.166656}
+        - {x: 56.5, y: -56.166656}
+        - {x: 56.5, y: 56.833344}
+    - name: sprite-flame2_2
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 225.33334
+        width: 112.5
+        height: 112.666664
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -56.5, y: 56.833344}
+        - {x: -56.5, y: -56.166656}
+        - {x: 56.5, y: -56.166656}
+        - {x: 56.5, y: 56.833344}
+    - name: sprite-flame2_3
+      rect:
+        serializedVersion: 2
+        x: 336
+        y: 225.33334
+        width: 112.5
+        height: 112.666664
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -56.5, y: 56.833344}
+        - {x: -56.5, y: -56.166656}
+        - {x: 56.5, y: -56.166656}
+        - {x: 56.5, y: 56.833344}
+    - name: sprite-flame2_4
+      rect:
+        serializedVersion: 2
+        x: 448
+        y: 225.33334
+        width: 112.5
+        height: 112.666664
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -56.5, y: 56.833344}
+        - {x: -56.5, y: -56.166656}
+        - {x: 56.5, y: -56.166656}
+        - {x: 56.5, y: 56.833344}
+    - name: sprite-flame2_5
+      rect:
+        serializedVersion: 2
+        x: 560
+        y: 225.33334
+        width: 112.5
+        height: 112.666664
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -56.5, y: 56.833344}
+        - {x: -56.5, y: -56.166656}
+        - {x: 56.5, y: -56.166656}
+        - {x: 56.5, y: 56.833344}
+    - name: sprite-flame2_6
+      rect:
+        serializedVersion: 2
+        x: 672
+        y: 225.33334
+        width: 112.5
+        height: 112.666664
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -56.5, y: 56.833344}
+        - {x: -56.5, y: -56.166656}
+        - {x: 56.5, y: -56.166656}
+        - {x: 56.5, y: 56.833344}
+    - name: sprite-flame2_7
+      rect:
+        serializedVersion: 2
+        x: 784
+        y: 225.33334
+        width: 112.5
+        height: 112.666664
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -56.5, y: 56.833344}
+        - {x: -56.5, y: -56.166656}
+        - {x: 56.5, y: -56.166656}
+        - {x: 56.5, y: 56.833344}
+    - name: sprite-flame2_8
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 113.333336
+        width: 112.5
+        height: 112.666664
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -56.5, y: 56.833336}
+        - {x: -56.5, y: -56.166664}
+        - {x: 56.5, y: -56.166664}
+        - {x: 56.5, y: 56.833336}
+    - name: sprite-flame2_9
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 113.333336
+        width: 112.5
+        height: 112.666664
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -56.5, y: 56.833336}
+        - {x: -56.5, y: -56.166664}
+        - {x: 56.5, y: -56.166664}
+        - {x: 56.5, y: 56.833336}
+    - name: sprite-flame2_10
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 113.333336
+        width: 112.5
+        height: 112.666664
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -56.5, y: 56.833336}
+        - {x: -56.5, y: -56.166664}
+        - {x: 56.5, y: -56.166664}
+        - {x: 56.5, y: 56.833336}
+    - name: sprite-flame2_11
+      rect:
+        serializedVersion: 2
+        x: 336
+        y: 113.333336
+        width: 112.5
+        height: 112.666664
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -56.5, y: 56.833336}
+        - {x: -56.5, y: -56.166664}
+        - {x: 56.5, y: -56.166664}
+        - {x: 56.5, y: 56.833336}
+    - name: sprite-flame2_12
+      rect:
+        serializedVersion: 2
+        x: 448
+        y: 113.333336
+        width: 112.5
+        height: 112.666664
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -56.5, y: 56.833336}
+        - {x: -56.5, y: -56.166664}
+        - {x: 56.5, y: -56.166664}
+        - {x: 56.5, y: 56.833336}
+    - name: sprite-flame2_13
+      rect:
+        serializedVersion: 2
+        x: 560
+        y: 113.333336
+        width: 112.5
+        height: 112.666664
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -56.5, y: 56.833336}
+        - {x: -56.5, y: -56.166664}
+        - {x: 56.5, y: -56.166664}
+        - {x: 56.5, y: 56.833336}
+    - name: sprite-flame2_14
+      rect:
+        serializedVersion: 2
+        x: 672
+        y: 113.333336
+        width: 112.5
+        height: 112.666664
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -56.5, y: 56.833336}
+        - {x: -56.5, y: -56.166664}
+        - {x: 56.5, y: -56.166664}
+        - {x: 56.5, y: 56.833336}
+    - name: sprite-flame2_15
+      rect:
+        serializedVersion: 2
+        x: 784
+        y: 113.333336
+        width: 112.5
+        height: 112.666664
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -56.5, y: 56.833336}
+        - {x: -56.5, y: -56.166664}
+        - {x: 56.5, y: -56.166664}
+        - {x: 56.5, y: 56.833336}
+    - name: sprite-flame2_16
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1.3333359
+        width: 112.5
+        height: 112.666664
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -56.5, y: 56.833336}
+        - {x: -56.5, y: -56.166664}
+        - {x: 56.5, y: -56.166664}
+        - {x: 56.5, y: 56.833336}
+    - name: sprite-flame2_17
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 1.3333359
+        width: 112.5
+        height: 112.666664
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -56.5, y: 56.833336}
+        - {x: -56.5, y: -56.166664}
+        - {x: 56.5, y: -56.166664}
+        - {x: 56.5, y: 56.833336}
+    - name: sprite-flame2_18
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 1.3333359
+        width: 112.5
+        height: 112.666664
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -56.5, y: 56.833336}
+        - {x: -56.5, y: -56.166664}
+        - {x: 56.5, y: -56.166664}
+        - {x: 56.5, y: 56.833336}
+    - name: sprite-flame2_19
+      rect:
+        serializedVersion: 2
+        x: 336
+        y: 1.3333359
+        width: 112.5
+        height: 112.666664
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -56.5, y: 56.833336}
+        - {x: -56.5, y: -56.166664}
+        - {x: 56.5, y: -56.166664}
+        - {x: 56.5, y: 56.833336}
+    - name: sprite-flame2_20
+      rect:
+        serializedVersion: 2
+        x: 448
+        y: 1.3333359
+        width: 112.5
+        height: 112.666664
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -56.5, y: 56.833336}
+        - {x: -56.5, y: -56.166664}
+        - {x: 56.5, y: -56.166664}
+        - {x: 56.5, y: 56.833336}
+    - name: sprite-flame2_21
+      rect:
+        serializedVersion: 2
+        x: 560
+        y: 1.3333359
+        width: 112.5
+        height: 112.666664
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -56.5, y: 56.833336}
+        - {x: -56.5, y: -56.166664}
+        - {x: 56.5, y: -56.166664}
+        - {x: 56.5, y: 56.833336}
+    - name: sprite-flame2_22
+      rect:
+        serializedVersion: 2
+        x: 672
+        y: 1.3333359
+        width: 112.5
+        height: 112.666664
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -56.5, y: 56.833336}
+        - {x: -56.5, y: -56.166664}
+        - {x: 56.5, y: -56.166664}
+        - {x: 56.5, y: 56.833336}
+    - name: sprite-flame2_23
+      rect:
+        serializedVersion: 2
+        x: 784
+        y: 1.3333359
+        width: 112.5
+        height: 112.666664
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -56.5, y: 56.833336}
+        - {x: -56.5, y: -56.166664}
+        - {x: 56.5, y: -56.166664}
+        - {x: 56.5, y: 56.833336}
+    outline: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
