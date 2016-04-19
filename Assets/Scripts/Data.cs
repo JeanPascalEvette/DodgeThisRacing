@@ -113,9 +113,8 @@ public class Data : MonoBehaviour {
         for (int i = 0; i < GameObject.Find("Track").transform.childCount; i++)
         {
             var tp = GameObject.Find("Track").transform.GetChild(i);
-            var trackZ = tp.transform.position.z;
-            var extentZ = tp.GetComponentInChildren<MeshRenderer>().bounds.extents.z;
-            if (trackZ + extentZ > zPos && trackZ - extentZ < zPos)
+            var bounds = GameLogic.myInstance.getBoundsOfTrackPiece(tp.GetComponentsInChildren<MeshRenderer>());
+            if (bounds.max.z > zPos && bounds.min.z < zPos)
                 return tp.gameObject;
         }
         return null;

@@ -181,6 +181,11 @@ public class AIController : MonoBehaviour
                 targetPos[i] = hits[i].point;
             currentState.targetPositions = targetPos;
 
+            if (currentState.targetPositions.Length == 0)
+            {
+                GameLogic.myInstance.DestroyCar(myCarController.myPlayerData, true);
+                throw new System.Exception("Error : Could not find target position for car " + transform.gameObject.name + ". Killing car");
+            }
 
             waitHandle.Set();
 

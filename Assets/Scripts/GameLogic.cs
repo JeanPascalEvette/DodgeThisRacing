@@ -192,7 +192,7 @@ public class GameLogic : MonoBehaviour
 
     }
 
-    public void DestroyCar(PlayerData data)
+    public void DestroyCar(PlayerData data, bool respawn = false)
     {
         if (scoreCount[data.GetCarType()] != 0)
         {
@@ -207,6 +207,11 @@ public class GameLogic : MonoBehaviour
             if (data.IsAI())
                 data.GetGameObject().GetComponent<AIController>().stopPlanner();
             Destroy(data.GetGameObject());
+
+            if(respawn)
+            {
+                StartCoroutine(RespawnCar(data));
+            }
         }
     }
 
@@ -232,6 +237,17 @@ public class GameLogic : MonoBehaviour
         }
     }
 
+    Bounds GetBoundsOfTrackPiece(GameObject trackPiece)
+    {
+        Bounds bounds = new Bounds(transform.position, Vector3.one);
+        Renderer[] renderers = GetComponentsInChildren<Renderer>();
+        foreach (Renderer renderer in renderers)
+        {
+            bounds.Encapsulate(renderer.bounds);
+        }
+        return bounds;
+    }
+
     void AddNewTrackPart()
     {
         GameObject trackPrefab;
@@ -241,21 +257,25 @@ public class GameLogic : MonoBehaviour
         else
             trackPrefab = Data.getTrackPart(choice);
         Vector3 startPos = new Vector3(0, 0, 0);
+
+
         if (trackPartsList.Count > 0)
         {
-            startPos.z += trackPartsList[trackPartsList.Count - 1].GetComponentInChildren<MeshRenderer>().bounds.max.z;
-            startPos.z -= trackPrefab.GetComponentInChildren<MeshRenderer>().bounds.min.z;
+            Bounds previousBounds = getBoundsOfTrackPiece(trackPartsList[trackPartsList.Count - 1].GetComponentsInChildren<MeshRenderer>());
+            Bounds currentBounds = getBoundsOfTrackPiece(trackPrefab.GetComponentsInChildren<MeshRenderer>());
+            startPos.z += previousBounds.max.z;
+            startPos.z -= currentBounds.min.z;
 
 
-            Vector3 startBorder = trackPartsList[trackPartsList.Count - 1].GetComponentInChildren<MeshRenderer>().bounds.max;
+            Vector3 startBorder = previousBounds.max;
             Vector3 endBorder = startBorder;
-            endBorder.x = trackPartsList[trackPartsList.Count - 1].GetComponentInChildren<MeshRenderer>().bounds.min.x;
+            endBorder.x = previousBounds.min.x;
             Debug.DrawLine(startBorder, endBorder, Color.yellow, 9999.0f, false);
 
 
-            Vector3 startBorder2 = trackPartsList[trackPartsList.Count - 1].GetComponentInChildren<MeshRenderer>().bounds.min;
+            Vector3 startBorder2 = previousBounds.min;
             Vector3 endBorder2 = startBorder2;
-            endBorder2.x = trackPartsList[trackPartsList.Count - 1].GetComponentInChildren<MeshRenderer>().bounds.max.x;
+            endBorder2.x = previousBounds.max.x;
             Debug.DrawLine(startBorder2, endBorder2, Color.blue, 9999.0f, false);
 
 
@@ -297,7 +317,7 @@ public class GameLogic : MonoBehaviour
         }
     }
 
-    Bounds getBoundsOfTrackPiece(MeshRenderer[] mrList)
+    public Bounds getBoundsOfTrackPiece(MeshRenderer[] mrList)
     {
         Bounds trackBounds = new Bounds();
 
