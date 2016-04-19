@@ -4,7 +4,12 @@ using System.Collections.Generic;
 
 public class GameLogic : MonoBehaviour {
 
-    private readonly int NUMBEROFCARS = 4;
+    public int[] scoreCount = {10, 10, 10, 10};
+    public int winCondition;
+    public bool victory;
+    public int playerDeathNumber;
+
+    public readonly int NUMBEROFCARS = 4;
 
 
     private List<GameObject> trackPartsList;
@@ -27,6 +32,10 @@ public class GameLogic : MonoBehaviour {
     // Use this for initialization
     void Start ()
     {
+        winCondition = 0;
+        victory = false;
+        playerDeathNumber = 1;
+
         if (myInstance != null)
             Destroy(gameObject);
         else
@@ -78,7 +87,7 @@ public class GameLogic : MonoBehaviour {
         }
         
     }
-
+	
     IEnumerator RespawnCar(PlayerData car)
     {
         yield return new WaitForSeconds(1);
@@ -87,9 +96,11 @@ public class GameLogic : MonoBehaviour {
 
     public void SpawnCar(PlayerData data)
     {
-        if (data.GetGameObject() != null)
+        if (data.GetGameObject() != null) {
             return;
-        var trackPiece = Data.GetCurrentTrackPiece();
+        }
+
+        if (scoreCount[data.GetCarType()] != 0) { 
 
         Vector3 startPoint = myCamera.leadingGameObject.transform.position;
 
@@ -118,8 +129,8 @@ public class GameLogic : MonoBehaviour {
         }
 
         float maxDist = 5.0f;
-
-        for(int i = 0; i < trackPiece.transform.childCount; i++) 
+            var trackPiece = Data.GetCurrentTrackPiece();
+            for (int i = 0; i < trackPiece.transform.childCount; i++) 
         {
             if (trackPiece.transform.GetChild(i).name.Substring(0, 4) == "Road")
             {
@@ -159,18 +170,43 @@ public class GameLogic : MonoBehaviour {
         newCar.GetComponent<CarController>().myPlayerData = data;
             data.AttachGameObject(newCar);
     }
+        else
+        {
+            winCondition++;
+            if (winCondition == Data.getNumberCarSelected() - 1)
+            {
+                for (int n = 0; n < scoreCount.Length; n++)
+                {
+                    if (scoreCount[n] != 0)
+                    {
+                        playerDeathNumber = n + 1;
+                    }
+                }
+                victory = true;
+            }
+        }
+
+
+    }
 	
     public void DestroyCar(PlayerData data)
     {
-        string explPrefab = "Prefabs/FX/Explosions/Explosion";
-        if(data.GetGameObject().name.Substring(0,3) == "Van")
-            explPrefab = "Prefabs/FX/Explosions/RaceVanExplosion";
+        if (scoreCount[data.GetCarType()] != 0)
+        {
+            playerDeathNumber = data.GetCarType() + 1;
+            scoreCount[data.GetCarType()]--;
+            string explPrefab = "Prefabs/FX/Explosions/Explosion";
+            if (data.GetGameObject().name.Substring(0, 3) == "Van")
+                explPrefab = "Prefabs/FX/Explosions/RaceVanExplosion";
 
-        var expl = (GameObject)Instantiate(Resources.Load(explPrefab), data.GetGameObject().transform.position, Quaternion.identity);
-        expl.transform.parent = explHolder.transform;
-        if (data.IsAI())
-            data.GetGameObject().GetComponent<AIController>().stopPlanner();
-        Destroy(data.GetGameObject());
+            var expl = (GameObject)Instantiate(Resources.Load(explPrefab), data.GetGameObject().transform.position, Quaternion.identity);
+            expl.transform.parent = explHolder.transform;
+            if (data.IsAI())
+                data.GetGameObject().GetComponent<AIController>().stopPlanner();
+            Destroy(data.GetGameObject());
+        }
+    }
+
     }
 
     void AddObstacles(GameObject trackPart, int trackPartId)
@@ -325,7 +361,7 @@ public class GameLogic : MonoBehaviour {
             }
         }
 
-    }
+	}
 
     public List<GameObject> GetObstacleList()
     {

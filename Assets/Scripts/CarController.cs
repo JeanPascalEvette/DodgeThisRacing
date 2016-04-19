@@ -573,12 +573,6 @@ public class CarController : MonoBehaviour
         rpm = 1000;
     }
 
-    public void ReduceSpeed()
-    {
-        rb.velocity *= .6f;
-        decreaseGear();
-    }
-
     public void decreaseGear()
     {
         if (currentGear <= 1) return;

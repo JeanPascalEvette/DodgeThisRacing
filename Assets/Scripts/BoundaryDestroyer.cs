@@ -15,8 +15,7 @@ public class BoundaryDestroyer : MonoBehaviour {
     
     void OnCollisionEnter(Collision other)
     {
-        //Debug.Log("coliision has occured");
-
+        
         if (other.gameObject.tag == "Player")
         {
             var pData = other.gameObject.GetComponent<CarController>().myPlayerData;
