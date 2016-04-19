@@ -25,21 +25,21 @@ public class CarController : MonoBehaviour
     public Slider healthSlider;
     bool carBroken;
     bool carDamaged;
-   
+
     // Different variables
 
     public int currentGear;
     private float[] gears = { 2.9f, 1.20f, 0.92f, 0.85f, 0.83f, 0.80f, 0.78f }; //0 = Reverse
-                                                                                /*private float gearOne = 2.66f;      // gears should be applied to the equation to get from engine torque to drive force (Fdrive = u * Tengine * gear *xd * transmission efficiency/wheel radius)
-                                                                                private float gearTwo = 1.78f;      // however I will apply it to the traction force that we currently have
-                                                                                private float gearThree = 1.3f;
-                                                                                private float gearFour = 1.0f;
-                                                                                private float gearFive = 0.74f;
-                                                                                private float gearSix = 0.5f;
-                                                                                private float reverse = 2.9f;
-                                                                                */
+	/*private float gearOne = 2.66f;      // gears should be applied to the equation to get from engine torque to drive force (Fdrive = u * Tengine * gear *xd * transmission efficiency/wheel radius)
+    private float gearTwo = 1.78f;      // however I will apply it to the traction force that we currently have
+    private float gearThree = 1.3f;
+    private float gearFour = 1.0f;
+    private float gearFive = 0.74f;
+    private float gearSix = 0.5f;
+    private float reverse = 2.9f;
+    */
     public float newVehicleSpeed;
-    public float rpm;
+	public float rpm;
     private float differentialRatio = 3.42f;     // for off road performance we should increase this parameter (like to 4.10f)         
     public float rpmToTorque; // This is needed to measure the Tengine which is used in the final formula
     private bool isPedalDown = false;   // checks to see if pedal is down in order to set a minimum rpm of 1000
@@ -104,9 +104,10 @@ public class CarController : MonoBehaviour
     private static int carCounter = 0;
     // private bool showDebug = false;
 
-    //public AudioSource[] sounds;
-    //public AudioSource noise1;
-    //public AudioSource noise2;
+    public AudioSource[] sounds;
+    public AudioSource noise1;
+    public AudioSource noise2;
+    private float audioCountdown = 0f;
     // public GUISkin aSkin;
 
     //Do not modify - used by the auto rotate
@@ -117,7 +118,7 @@ public class CarController : MonoBehaviour
     private float autoRotateMinTime = 2.0f;
 
     private AIController myAI;
-    public PlayerData.ControlScheme specificControl;
+    public PlayerData myPlayerData;
 
     // Use this for initialization
     void Start()
@@ -130,7 +131,7 @@ public class CarController : MonoBehaviour
         // plannerThread = new Thread(retrievePlanner); // TODO IMPLEMENT THREADING
         // plannerThread.Start();
 
-        currentGear = 1; 			// bound to change in future // still in testing phase
+		currentGear = 1; 			// bound to change in future // still in testing phase
         rb = GetComponent<Rigidbody>();
 
         if (rearLeftWheel == null)
@@ -152,21 +153,26 @@ public class CarController : MonoBehaviour
         frontRightPosition = frontRightWheel.transform.localPosition.z;
         rearRightPosition = rearRightWheel.transform.localPosition.z;
 
-        Physics.IgnoreLayerCollision(LayerMask.NameToLayer("DetachableObjects"), LayerMask.NameToLayer("CarCollisionHitbox"), true);
 
-        //sounds = GetComponents<AudioSource>();
-        //if (myAI == null)
-        //{
-        //    noise1 = sounds[0];
-        //    noise2 = sounds[1];
-        //    noise1.pitch = (rpm / 10000) + 0.7f; // formula to reach ideal pitch from rpm
-        //}
+        sounds = GetComponents<AudioSource>();
+            noise1 = sounds[0];
+            noise2 = sounds[1];
+
+        if (myAI == null)
+        {
+            noise1.pitch = (rpm / 10000) + 0.7f; // formula to reach ideal pitch from rpm
         // We set the initial health of the car+
         currentHealth = startingHealth;
+    }
+        else
+        {
+            noise1.mute = true;
+    }
     }
 
     void Update()
     {
+
         if (Input.GetKeyDown(KeyCode.F1))
         {
             //   showDebug = !showDebug;
@@ -208,7 +214,7 @@ public class CarController : MonoBehaviour
             for (int i = 0; i < Mathf.Min(5, commands.Count); i++)
             {
                 textPlan = textPlan + commands[i] + "\n";
-            }
+    }
             textPlan = textPlan.Substring(0, textPlan.Length - 1);
             UnityEditor.Handles.Label(transform.position, textPlan, style);
 
@@ -240,7 +246,7 @@ public class CarController : MonoBehaviour
             waitHandle.WaitOne(); //Run only if the handle has been set in fixedUpdate (i.e every 1sec)
 
             plan = planner.GetPlan(currentState); //Retrieve updated plan based on currentState
-
+            
             //Log generated plan
             frameGenerated = frameCounter;
             string debugPlan = "";
@@ -282,7 +288,7 @@ public class CarController : MonoBehaviour
             }
             //Set the waitHandle to make sure that the planner can retrieve a new planning
             waitHandle.Set();
-
+            
         }
           //END AI STUFF */
 
@@ -323,8 +329,13 @@ public class CarController : MonoBehaviour
 
         if (IsGoing('W'))
         {
-
-            direction = 1;
+            direction = 1.0f;
+            isPedalDown = true;
+            if (isPedalDown == true && rpm < 1000.0f)
+            {       // checks that car isn't moving so that rpm can have a minimum of 1000 when it starts movign from inactivity
+                rpm = 1000.0f;
+                isPedalDown = false;
+        }
         }
         else if (IsGoing('S'))
         {
@@ -340,24 +351,6 @@ public class CarController : MonoBehaviour
                 deb.isHanging = true;
             }
         }
-        if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))
-        {
-            direction = 1.0f;
-            isPedalDown = true;
-            if (isPedalDown == true && rpm < 1000.0f)
-            {       // checks that car isn't moving so that rpm can have a minimum of 1000 when it starts movign from inactivity
-                rpm = 1000.0f;
-                isPedalDown = false;
-            }
-        }
-
-        else if (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow))
-        {
-            // We apply a force in the different direction as it was
-            direction = -1.0f;
-        }
-
-
         if (direction >= 0)														// the traction force is the force delivered by the engine via the rear wheels
         {
             if (rpm < 6000)
@@ -376,7 +369,7 @@ public class CarController : MonoBehaviour
                 //set a maximum speed that vehicle will reverse 
                 // We´ve added some differential ratio to be able go reverse and get away from obstacles
                 TractionForce = transform.InverseTransformDirection(transform.forward) * -mCBrake * differentialRatio;
-            }
+        }
             else
             {
                 TractionForce = transform.InverseTransformDirection(transform.forward) * direction;
@@ -386,16 +379,16 @@ public class CarController : MonoBehaviour
         if (transform.InverseTransformDirection(rb.velocity).magnitude > 0.1f)
         {
             if (transform.InverseTransformDirection(rb.velocity).z < 0)
-            {
-                gameObject.transform.Rotate(new Vector3(0, maxTurn, 0));
-            }
-            else
-            {
-                gameObject.transform.Rotate(new Vector3(0, -maxTurn, 0));
-            }
+        {
+            gameObject.transform.Rotate(new Vector3(0, maxTurn, 0));
+        }
+        else
+        {
+            gameObject.transform.Rotate(new Vector3(0, -maxTurn, 0));
+        }
         }
 
-
+        
         var speed = Mathf.Sqrt(TractionForce.x * TractionForce.x + TractionForce.z * TractionForce.z);
         DragForce = new Vector3(-mCDrag * TractionForce.x * speed, 0, -mCDrag * TractionForce.z * speed);
         RollingResistance = -mCRolRes * TractionForce;
@@ -452,7 +445,7 @@ public class CarController : MonoBehaviour
             rpmToTorque = 300.0f - (rpm * 0.05f) + 300.0f;
         }
 
-        if (rpm < 1000.0f && speed < 1)
+        if (rpm < 2000.0f && currentGear > 1)
         {                                                               // when rpm gets below 1000 gear is decreased
 
             decreaseGear();
@@ -514,8 +507,9 @@ public class CarController : MonoBehaviour
         //*********************** END ANGULAR ACCELERATION TO BE APPLIED TO DRIVE WHEELS ***********************//
 
 
-        //soundOfEngine();
         HandlePartialyOnGround();
+        if(noise1 != null && noise2 != null)
+        soundOfEngine();
         
     }
 
@@ -583,6 +577,13 @@ public class CarController : MonoBehaviour
         currentGear--;
         rpm = 6000;
     }
+
+    public void ReduceSpeed()
+    {
+        decreaseGear();
+        rpm *= 0.6f;
+    }
+
     public float GearValue()
     {
         return gears[currentGear];
@@ -597,7 +598,7 @@ public class CarController : MonoBehaviour
     {
         
         KeyCode directionCode = KeyCode.W;
-        if (specificControl == PlayerData.ControlScheme.WASD)
+        if (myPlayerData.GetControlScheme() == PlayerData.ControlScheme.WASD)
         {
             if (direction == 'W')
                 directionCode = KeyCode.W;
@@ -608,7 +609,7 @@ public class CarController : MonoBehaviour
             else if (direction == 'D')
                 directionCode = KeyCode.D;
         }
-        else if (specificControl == PlayerData.ControlScheme.Arrows)
+        else if (myPlayerData.GetControlScheme() == PlayerData.ControlScheme.Arrows)
         {
             if (direction == 'W')       // ascii 24
                 directionCode = KeyCode.UpArrow;
@@ -619,26 +620,36 @@ public class CarController : MonoBehaviour
             else if (direction == 'D') // ascii 28
                 directionCode = KeyCode.RightArrow;
         }
-        else if (specificControl == PlayerData.ControlScheme.XboxController1)
+        else if (myPlayerData.GetControlScheme() == PlayerData.ControlScheme.XboxController1)
         {
             if (direction == 'W')
                 directionCode = KeyCode.Joystick1Button0;
             else if (direction == 'S')
                 directionCode = KeyCode.Joystick1Button2;
-            if ((direction == 'A' || direction == 'D') && Input.GetAxis("HorizontalJoyStickLeft1") > 0)
+            if (direction == 'A'  && Input.GetAxis("HorizontalJoyStickLeft1") < 0)
+            {
+                //   directionCode = KeyCode.A;
+                return true;
+            } else if ( direction == 'D' && Input.GetAxis("HorizontalJoyStickLeft1") > 0)
             {
                 //   directionCode = KeyCode.A;
                 return true;
             }
+
+
         }
-        else if (specificControl == PlayerData.ControlScheme.XboxController2)
+        else if (myPlayerData.GetControlScheme() == PlayerData.ControlScheme.XboxController2)
         {
             if (direction == 'W')
                 directionCode = KeyCode.Joystick2Button0;
 
             else if (direction == 'S')
                 directionCode = KeyCode.Joystick2Button2;
-            if ((direction == 'A' || direction == 'D') && Input.GetAxis("HorizontalJoyStickLeft2") > 0)
+            if (direction == 'A' && Input.GetAxis("HorizontalJoyStickLeft2") < 0)
+            {
+                //   directionCode = KeyCode.A;
+                return true;
+            } else if (direction == 'D' && Input.GetAxis("HorizontalJoyStickLeft2") > 0)
             {
                 //   directionCode = KeyCode.A;
                 return true;
@@ -652,6 +663,9 @@ public class CarController : MonoBehaviour
         }
         else
         {
+            if (myAI.GetPlan() == null || myAI.GetPlan().Length == 0)
+                return false;
+
             if (direction == 'W' || direction == 'S')
             {
                 return myAI.GetPlan()[0] == direction;
@@ -665,21 +679,27 @@ public class CarController : MonoBehaviour
         }
     }
 
-    //private void soundOfEngine()
-    //{
-    //    //0.70 - 1.20  probably ideal pitch for looping through
-    //    if(myAI == null)
-    //    noise1.pitch = (rpm / 10000) + 0.7f; // formula to reach ideal pitch from rpm
-    //}
+    private void soundOfEngine()
+    {
+        if(audioCountdown > 0)
+        {
+            audioCountdown -= Time.deltaTime; // so the crashing sound doesn't occur constantly when 2 objects collide continuesly, it will make it more realistic
+        }
+
+        //0.70 - 1.20  probably ideal pitch for looping through
+        if (myAI == null)
+        noise1.pitch = (rpm / 10000) + 0.7f; // formula to reach ideal pitch from rpm
+    }
 
     //void OnCollisionEnter(Collision other)
     // {
         
-    //    if(other.gameObject.tag == "Player" && myAI == null) // or hit on everything?
-    //    {
-    //        noise2.Play();
-    //    }
-    // }
+        if(other.gameObject.tag == "Player" && myAI == null && audioCountdown <= 0) // or hit on everything?
+        {
+            audioCountdown = 1.2f;
+            noise2.Play();
+        }
+     }
 }
 
 

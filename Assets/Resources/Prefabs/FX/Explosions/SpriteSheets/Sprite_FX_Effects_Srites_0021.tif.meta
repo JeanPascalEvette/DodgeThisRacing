@@ -1,0 +1,197 @@
+fileFormatVersion: 2
+guid: b3d345db8528f624b8fed58044640fb9
+timeCreated: 1460815927
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: Sprite_FX_Effects_Srites_0021_0
+    21300002: Sprite_FX_Effects_Srites_0021_1
+    21300004: Sprite_FX_Effects_Srites_0021_2
+    21300006: Sprite_FX_Effects_Srites_0021_3
+    21300008: Sprite_FX_Effects_Srites_0021_4
+    21300010: Sprite_FX_Effects_Srites_0021_5
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 7
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: -1
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  allowsAlphaSplitting: 0
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 72
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: Sprite_FX_Effects_Srites_0021_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 21, y: 51}
+        - {x: -23, y: 51}
+        - {x: -53, y: 22}
+        - {x: -53, y: -43}
+        - {x: -38, y: -59}
+        - {x: 46, y: -59}
+        - {x: 48, y: -52}
+        - {x: 48, y: 41}
+        - {x: 42, y: 46}
+    - name: Sprite_FX_Effects_Srites_0021_1
+      rect:
+        serializedVersion: 2
+        x: 200
+        y: 0
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 36, y: 63}
+        - {x: -15, y: 63}
+        - {x: -65, y: 34}
+        - {x: -65, y: -38}
+        - {x: -51, y: -65}
+        - {x: -32, y: -68}
+        - {x: 34, y: -68}
+        - {x: 49, y: -50}
+        - {x: 56, y: -22}
+        - {x: 56, y: 52}
+      - - {x: 42, y: -25}
+        - {x: 41, y: -26}
+        - {x: 41, y: -32}
+        - {x: 42, y: -34}
+        - {x: 50, y: -34}
+        - {x: 50, y: -25}
+    - name: Sprite_FX_Effects_Srites_0021_2
+      rect:
+        serializedVersion: 2
+        x: 400
+        y: 0
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -15, y: 78}
+        - {x: -64, y: 57}
+        - {x: -79, y: 20}
+        - {x: -79, y: -55}
+        - {x: -62, y: -76}
+        - {x: 51, y: -76}
+        - {x: 67, y: -68}
+        - {x: 67, y: 61}
+        - {x: 61, y: 78}
+    - name: Sprite_FX_Effects_Srites_0021_3
+      rect:
+        serializedVersion: 2
+        x: 600
+        y: 0
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -35, y: 88}
+        - {x: -83, y: 61}
+        - {x: -85, y: 51}
+        - {x: -85, y: -54}
+        - {x: -78, y: -79}
+        - {x: -75, y: -83}
+        - {x: 52, y: -83}
+        - {x: 83, y: -72}
+        - {x: 83, y: 69}
+        - {x: 39, y: 88}
+    - name: Sprite_FX_Effects_Srites_0021_4
+      rect:
+        serializedVersion: 2
+        x: 800
+        y: 0
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 70, y: 85}
+        - {x: -37, y: 85}
+        - {x: -79, y: 78}
+        - {x: -89, y: 52}
+        - {x: -89, y: -59}
+        - {x: -55, y: -85}
+        - {x: 18, y: -85}
+        - {x: 69, y: -81}
+        - {x: 79, y: -42}
+        - {x: 87, y: 7}
+        - {x: 87, y: 64}
+    - name: Sprite_FX_Effects_Srites_0021_5
+      rect:
+        serializedVersion: 2
+        x: 1000
+        y: 0
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 63, y: -6}
+        - {x: 78, y: -6}
+        - {x: 84, y: 17}
+        - {x: 84, y: 74}
+        - {x: 73, y: 86}
+        - {x: -32, y: 86}
+        - {x: -85, y: 64}
+        - {x: -85, y: -66}
+        - {x: -45, y: -82}
+        - {x: 57, y: -82}
+        - {x: 75, y: -67}
+        - {x: 75, y: -7}
+        - {x: 72, y: -6}
+    outline: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

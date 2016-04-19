@@ -6,18 +6,6 @@ using System;
 
 
 
-/*
-
-    JP NOTES
-    - Not currently true HTN because :
-        - Not trully planning
-        - Not truly recursive
-    - Option to improve : 
-        MoveTo_m generates NumberTimeSteps/10 MoveTo objects
-        Those will each calculate the vector to follow based on utility and simulating positions and then generate 10 input keys based on that
-
-
-    */
 
 public class CarState
 {
@@ -45,18 +33,19 @@ public class State
     public CarState myCar;
     public CarState[] otherCars;
     public ObstacleState[] obstacles;
+    public Vector3[] targetPositions;
 }
 
 public class HTNPlanner {
 
     private const float minSpeedToForceAccel = 10.0f; // Speed of car below which you are always accelerating
+    private const float maxSpeed = 80.0f; //Max speed of cars
     private const float minAngleSharpTurn = 60.0f; // Angle in degrees at which you are braking
     private const float minAngleNormalTurn = 30.0f; //Angle in degrees at which you are not accelerating
-    private const float rotationAmount = 1.0f; // amount of degrees added per frame on rotations
+    private const float rotationAmount = 1f; // amount of degrees added per frame on rotations
     private const int timeStepPerDecision = 10; //Number of time steps processed between each state check
     private const int refreshOccurence = 3; // Number of times the data doesn't refresh before it does
     
-    public CarState targetCar;
     public Vector3 myTarget;
     /// <summary>
     /// A list containing the names of all tasks of the given planning domain for which there are primitive actions
@@ -71,23 +60,23 @@ public class HTNPlanner {
 
     private float planningTime;
     private int numberTimeSteps;
-    private int currentIteration;
     private float lastTurn;
 
     private State currentState;
+    private Utility myUtility;
     char[][] plan;
 
     
     public HTNPlanner(float planningTime)
     {
         this.planningTime = planningTime;
-        currentIteration = 0;
         numberTimeSteps = Mathf.RoundToInt(planningTime * (1.0f / Time.fixedDeltaTime));
         Dictionary<string, MethodInfo[]> myDict = new Dictionary<string, MethodInfo[]>();
         MethodInfo[] moveInfos = new MethodInfo[] { this.GetType().GetMethod("MoveTo_m") };
         myDict.Add("MoveTo", moveInfos);
         MethodInfo[] moveStepInfos = new MethodInfo[] { this.GetType().GetMethod("MoveStep_m") };
         myDict.Add("MoveStep", moveStepInfos);
+        myUtility = new Utility();
 
         DeclareOperators();
         foreach (KeyValuePair<string, MethodInfo[]> method in myDict)
@@ -98,35 +87,12 @@ public class HTNPlanner {
 
 
     //Function called by AIController to Get an update version of the Input Keys pressed by the AI
-    public string[] GetPlan(State newState)
+    public string[] GetPlan(State newState, bool isAggresive)
     {
         lastTurn = 0.0f;
         currentState = newState;
-        if (currentState.otherCars.Length > 0)
-        {
-            if (currentIteration++ % refreshOccurence != 0)
-            {
-                //Refresh the target car with the updated data from the currentState
-                foreach (var car in currentState.otherCars)
-                {
-                    if (car.myUniqueID == targetCar.myUniqueID)
-                    {
-                        targetCar = car;
-                        break;
-                    }
-                }
-                myTarget = targetCar.myPosition + targetCar.myVelocity * (planningTime / refreshOccurence);
-            }
-            else
-            {
-                //Here query the Utility section for a goal
-                //Then convert it to a new targetCar
-                targetCar = currentState.otherCars[0];
-                myTarget = targetCar.myPosition + targetCar.myVelocity * (planningTime / refreshOccurence);
-            }
-        }
-        else
-            myTarget = new Vector3(0, 0, 0);
+        myTarget = myUtility.CarUtility(newState, isAggresive);
+         
 
         List<List<string>> tasks = new List<List<string>>();
         tasks.Add(new List<string>(new string[2] { "MoveTo", myTarget.ToString() }));
@@ -275,14 +241,12 @@ public class HTNPlanner {
 
     public List<List<string>> MoveStep_m(State state, string strTargetPosition, string currentStep)
     {
-        string[] targetPosSplit = strTargetPosition.Substring(1, strTargetPosition.Length - 2).Split(',');
-        Vector3 targetPosition = new Vector3(float.Parse(targetPosSplit[0]), float.Parse(targetPosSplit[1]), float.Parse(targetPosSplit[2]));
-        Vector3 myDisplacement = (targetPosition - state.myCar.myPosition);
+        Vector3 myDisplacement = myUtility.getDirection(state);
         List<List<string>> returnVal = new List<List<string>>();
-
+        
 
         myDisplacement.y = 0;
-        Vector3 v1 = -state.myCar.forward.normalized;
+        Vector3 v1 = new Vector3(0, 0, 1);//-state.myCar.forward.normalized;
         Vector3 v2 = myDisplacement.normalized;
         float dotP = Vector3.Dot(v1, v2);
         float angle = Mathf.Acos(dotP) * Mathf.Rad2Deg;
@@ -299,26 +263,47 @@ public class HTNPlanner {
         return returnVal;
     }
 
+    public State UpdateState(State state)
+    {
+        //state.myCar.myPosition += state.myCar.myVelocity * timeStepPerDecision;
+        foreach (var car in state.otherCars)
+        {
+            car.myPosition += car.myVelocity * timeStepPerDecision;
+        }
+        return state;
+    }
+
     public State GoForward(State state, float distance, int currentStep)
-    { 
-        State newState = currentState;
+    {
+        State newState = UpdateState(currentState);
         //Do stuff
+
         for(int i = currentStep * timeStepPerDecision; i < Mathf.Min(numberTimeSteps, (currentStep + 1)* timeStepPerDecision); i++)
         {
             if (state.myCar.myVelocity.magnitude < minSpeedToForceAccel) //If going very slowly, then always accelrate
+            {
                 plan[i][0] = 'W';
-            else if(lastTurn > minAngleSharpTurn || false) // If currently in a very sharp turn  - slow
+                newState.myCar.myVelocity += newState.myCar.myVelocity * 2.0f * timeStepPerDecision;
+            }
+            else if (lastTurn > minAngleSharpTurn || false) // If currently in a very sharp turn  - slow
+            {
                 plan[i][0] = 'S';
-            else if(lastTurn > minAngleNormalTurn) //If currently in a fairly sharp turn, don't accelerate
+                    newState.myCar.myVelocity -= newState.myCar.myVelocity * 2.0f * timeStepPerDecision;
+            }
+            else if (lastTurn > minAngleNormalTurn) //If currently in a fairly sharp turn, don't accelerate
+            {
                 plan[i][0] = 'X';
+            }
             else // Else accelerate
+            {
                 plan[i][0] = 'W';
-
+                if (state.myCar.myVelocity.magnitude < maxSpeed)
+                    newState.myCar.myVelocity += newState.myCar.myVelocity * 2.0f * timeStepPerDecision;
+            }
             if (lastTurn > 0) //Reduce lastTurn by one on each frame to simulate the rotation of the car
                 lastTurn--;
 
         }
-        //Do stuff
 
         return newState;
     }
@@ -330,16 +315,23 @@ public class HTNPlanner {
         //Do stuff
 
         int numberRotation = Mathf.Abs(Mathf.CeilToInt(angle / rotationAmount));
+        float rotation = 0.0f;
         for (int i = currentStep * timeStepPerDecision; i < Mathf.Min(numberTimeSteps, (currentStep + 1) * timeStepPerDecision); i++)
         {
             if (angle > 0 && numberRotation-- > 0)
+            {
                 plan[i][1] = 'D';
+                rotation = rotationAmount;
+            }
             else if (angle < 0 && numberRotation-- > 0)
+            {
                 plan[i][1] = 'A';
+                rotation = -rotationAmount;
+            }
             else
                 plan[i][1] = 'X';
         }
-        //Do stuff
+        newState.myCar.myVelocity = Quaternion.Euler(0, rotation, 0) * newState.myCar.myVelocity;
 
         return newState;
     }

@@ -101,7 +101,7 @@ public class CarHitbox : MonoBehaviour {
         // Logic about respawning later
         // We call the function in GameLogic
         GameLogic gamelogic;
-        gamelogic.SpawnCar(car.GetComponent<CarController>().PlayerData);
+        //gamelogic.SpawnCar(car.GetComponent<CarController>().PlayerData);
 
     }
 }
