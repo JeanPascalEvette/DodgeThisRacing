@@ -263,6 +263,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 456310}
+  - 114: {fileID: 11428724}
   m_Layer: 0
   m_Name: RaceVanExplosion
   m_TagString: Untagged
@@ -750,6 +751,18 @@ Light:
   m_ShadowRadius: 0
   m_ShadowAngle: 0
   m_AreaSize: {x: 1, y: 1}
+--- !u!114 &11428724
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 167202}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64fc37c819fb5f340a1141cae0ffe5c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  despawnTime: 5
 --- !u!114 &11472604
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -33447,7 +33460,11 @@ Prefab:
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 0}
-    m_Modifications: []
+    m_Modifications:
+    - target: {fileID: 0}
+      propertyPath: despawnTime
+      value: 5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 167202}

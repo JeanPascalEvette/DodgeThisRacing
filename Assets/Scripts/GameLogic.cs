@@ -318,7 +318,7 @@ public class GameLogic : MonoBehaviour {
                 UnityEngine.Camera.main.GetComponent<Camera>().ZoomIn();
                 //trackPiece.transform.Find("Canyon_Middle_D").GetComponent<MeshRenderer>().enabled = true;
             }
-            else if (UnityEngine.Camera.main.GetComponent<Camera>().leadingGameObject.transform.position.z >= trackPiece.transform.Find("Canyon_Middle_D").GetComponent<MeshRenderer>().bounds.min.z)
+            else if (UnityEngine.Camera.main.GetComponent<Camera>().leadingGameObject.transform.position.z >= trackPiece.transform.Find("Road_D").GetComponent<MeshRenderer>().bounds.min.z)
             {
                 UnityEngine.Camera.main.GetComponent<Camera>().ZoomOut();
                 //trackPiece.transform.Find("Canyon_Middle_D").GetComponent<MeshRenderer>().enabled = false;
