@@ -579,6 +579,13 @@ public class CarController : MonoBehaviour
         currentGear--;
         rpm = 6000;
     }
+
+    public void ReduceSpeed()
+    {
+        decreaseGear();
+        rpm *= 0.6f;
+    }
+
     public float GearValue()
     {
         return gears[currentGear];
