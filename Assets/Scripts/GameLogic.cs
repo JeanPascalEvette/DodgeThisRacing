@@ -89,11 +89,6 @@ public class GameLogic : MonoBehaviour
 
     }
 
-    IEnumerator RespawnCar(PlayerData car)
-    {
-        yield return new WaitForSeconds(1);
-        SpawnCar(car);
-    }
 
     public void SpawnCar(PlayerData data)
     {
@@ -210,7 +205,7 @@ public class GameLogic : MonoBehaviour
 
             if(respawn)
             {
-                StartCoroutine(RespawnCar(data));
+                SpawnCar(data);
             }
         }
     }
