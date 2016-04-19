@@ -68,6 +68,17 @@ public class CarHitbox : MonoBehaviour {
             Debug.Log("CAR HEALTH: " + carModel.GetComponent<CarController>().currentHealth);
             // The total slider is reduced in a smallest amount
             healthSlider.value = carModel.GetComponent<CarController>().currentHealth;
+
+            // check the health of the car
+            // Explosion anitmation ARTISTS
+            if (carModel.GetComponent<CarController>().currentHealth < 0)
+            {
+                // Run explosion
+
+                // Call the co routine to spawn the car after some delay
+                StartCoroutine(respawnCar());
+
+            }
         }
     }
 
@@ -78,36 +89,17 @@ public class CarHitbox : MonoBehaviour {
         carSpeed = carModel.velocity.magnitude;
     }
 
+    IEnumerator respawnCar()
+    {
+        // Disable the controls in here to stop moving the car when respawn ******* TO DO ********
 
-    // COLLISION DETECTION
-    //void OnCollisionEnter(Collision col)
-    //{
-    //    Debug.Log("COLLISION WITH WALL");
-    //    if (col.gameObject.name == "Obstacle2")
-    //    {
-    //        // We need to find out which sphere collider we are hitting here
-    //        Debug.Log("IN COLLISION");
-    //        // We make the calculation of the damage created by the collision
-    //        // Force = (mass * speed * speed)/2
-    //        damageCaused = (pieceMass * col.relativeVelocity.magnitude * col.relativeVelocity.magnitude) / 2;
-    //        Debug.Log("DAMAGE: " + damageCaused);
+        yield return new WaitForSeconds(1);
 
-    //        pieceHealth -= damageCaused;
-    //        // The total slider is reduced in a smallest amount
-    //        healthSlider.value = damageCaused * 0.1f;
+        // Destroy the car
+        Destroy(carModel);
 
-    //        // If the piece hasn´t left health we detach the piece
-    //        if (pieceHealth < 0)
-    //        {
-    //            Debug.Log("Detach part");
-    //            //isHanging = true;
-    //        }
+        // Logic about respawning later
 
-    //        // We check which part we´ve collided with
 
-    //        // We check the health of the part to see if we detach it
-
-    //        // everything affects the health of the car
-    //    }
-    //}
+    }
 }
