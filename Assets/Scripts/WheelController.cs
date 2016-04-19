@@ -164,7 +164,7 @@ public class WheelController : MonoBehaviour {
     // COLLISION DETECTION
     void OnCollisionEnter(Collision col)
     {
-        Debug.Log("COLLISION WITH WALL");
+        //Debug.Log("COLLISION WITH WALL");
         if (col.gameObject.name == "Obstacle2")
         {
             // We need to find out which sphere collider we are hitting here
