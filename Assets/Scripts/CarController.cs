@@ -155,7 +155,7 @@ public class CarController : MonoBehaviour
         rearRightPosition = rearRightWheel.transform.localPosition.z;
 
         var txtMsh = transform.Find("Text").GetComponent<TextMesh>();
-        txtMsh.text = (myPlayerData.GetCarType()+1).ToString();
+        txtMsh.text = "P"+(myPlayerData.GetCarType()+1).ToString();
         switch(myPlayerData.GetCarType())
         {
             case 0: txtMsh.color = Color.red; break;

@@ -471,7 +471,6 @@ GameObject:
   - 33: {fileID: 3315818}
   - 23: {fileID: 2328476}
   - 114: {fileID: 11474156}
-  - 114: {fileID: 11460404}
   - 54: {fileID: 5467420}
   - 65: {fileID: 6539752}
   m_Layer: 8
@@ -3322,8 +3321,8 @@ TextMesh:
   m_OffsetZ: 0
   m_CharacterSize: 1
   m_LineSpacing: 1
-  m_Anchor: 0
-  m_Alignment: 0
+  m_Anchor: 4
+  m_Alignment: 1
   m_TabSize: 4
   m_FontSize: 0
   m_FontStyle: 0
@@ -3714,17 +3713,6 @@ MonoBehaviour:
   noise1: {fileID: 0}
   noise2: {fileID: 0}
   autoRotateMinTime: 2
---- !u!114 &11460404
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 158408}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ed1b1f6b9b0501c409570502154bf3aa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &11461694
 MonoBehaviour:
   m_ObjectHideFlags: 1
