@@ -4,7 +4,12 @@ using System.Collections.Generic;
 
 public class GameLogic : MonoBehaviour {
 
-    private readonly int NUMBEROFCARS = 4;
+    public int[] scoreCount = {10, 10, 10, 10};
+    public int winCondition;
+    public bool victory;
+    public int playerDeathNumber;
+
+    public readonly int NUMBEROFCARS = 4;
 
 
     private List<GameObject> trackPartsList;
@@ -25,7 +30,11 @@ public class GameLogic : MonoBehaviour {
 
     // Use this for initialization
     void Start ()
-    {
+    {   
+        winCondition = 0;
+        victory = false;
+        playerDeathNumber = 1;
+
         if (myInstance != null)
             Destroy(gameObject);
         else
@@ -76,22 +85,50 @@ public class GameLogic : MonoBehaviour {
 	
     public void SpawnCar(PlayerData data)
     {
-        if (data.GetGameObject() != null)
+        if (data.GetGameObject() != null) {
             return;
+        }
+
+        if (scoreCount[data.GetCarType()] != 0) { 
         var spawnPos = new Vector3(0,0.5f,myCamera.leadingGameObject.transform.position.z - 1.0f);
         var spawnVel = myCamera.leadingGameObject.GetComponent<Rigidbody>().velocity;
-
         var newCar = (GameObject)Instantiate(data.GetPrefab(), spawnPos, Quaternion.Euler(0, 180, 0));
         newCar.GetComponent<Rigidbody>().velocity = spawnVel;
         newCar.GetComponent<CarController>().myPlayerData = data;
             data.AttachGameObject(newCar);
+        }
+        else
+        {
+            winCondition++;
+            if (winCondition == NUMBEROFCARS - 1)
+            {
+                for (int n = 0; n < scoreCount.Length; n++)
+                {
+                    if (scoreCount[n] != 0)
+                    {
+                        playerDeathNumber = n + 1;
+                    }
+                }
+                victory = true;
+            }
+        }
+
+
     }
 	
     public void DestroyCar(PlayerData data)
     {
-        if(data.IsAI())
-            data.GetGameObject().GetComponent<AIController>().stopPlanner();
-        Destroy(data.GetGameObject());
+        if (scoreCount[data.GetCarType()] != 0)
+        {
+            playerDeathNumber = data.GetCarType() + 1;
+            scoreCount[data.GetCarType()]--;
+
+
+            if (data.IsAI())
+                data.GetGameObject().GetComponent<AIController>().stopPlanner();
+            Destroy(data.GetGameObject());
+        }
+
     }
 
     void AddObstacles(GameObject trackPart, int trackPartId)
