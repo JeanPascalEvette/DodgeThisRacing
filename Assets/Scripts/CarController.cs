@@ -691,10 +691,10 @@ public class CarController : MonoBehaviour
         noise1.pitch = (rpm / 10000) + 0.7f; // formula to reach ideal pitch from rpm
     }
 
-    //void OnCollisionEnter(Collision other)
-    // {
-        
-        if(other.gameObject.tag == "Player" && myAI == null && audioCountdown <= 0) // or hit on everything?
+    void OnCollisionEnter(Collision other)
+    {
+
+        if (other.gameObject.tag == "Player" && myAI == null && audioCountdown <= 0) // or hit on everything?
         {
             audioCountdown = 1.2f;
             noise2.Play();
