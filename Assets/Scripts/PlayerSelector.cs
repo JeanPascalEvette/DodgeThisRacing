@@ -21,10 +21,14 @@ public class PlayerSelector : MonoBehaviour
     string nameplayer;
     public bool is_CPU = false;
 
+    public Sprite default_Empty, CurrentCar;
+   
+
 
     void Start() {
 
         l.is_p1_active = true;
+        this.gameObject.GetComponent<Image>().sprite = default_Empty;
 
         switch (PanelNumber)
         {
@@ -252,6 +256,10 @@ public class PlayerSelector : MonoBehaviour
         }
     }
 
+    public void ImageSwapper() {
+
+        this.gameObject.GetComponent<Image>().sprite = CurrentCar;
+    }
 
     public void ControlManager() {
 

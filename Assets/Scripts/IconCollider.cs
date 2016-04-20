@@ -21,6 +21,7 @@ public class IconCollider : MonoBehaviour {
 
     public bool ThisCarSelected = false; // Bool Variable teeling if this car has been selected by the player
     public int ThisCarType;
+    public Sprite ThisCarImage;
 
     //Initializing
     void Start()
@@ -80,6 +81,26 @@ public class IconCollider : MonoBehaviour {
                 l.num_ready_players++;                          // Increase the number of players who are ready to GO
                 ThisCarSelected = true;                         //Bool variable telling the player has selected this car
 
+                switch (m.playerID) {
+                    case 1:
+                        p1.CurrentCar = ThisCarImage;
+                        p1.ImageSwapper();
+                        break;
+                    case 2:
+                        p2.CurrentCar = ThisCarImage;
+                        p2.ImageSwapper();
+                        break;
+                    case 3:
+                        p3.CurrentCar = ThisCarImage;
+                        p3.ImageSwapper();
+                        break;
+                    case 4:
+                        p4.CurrentCar = ThisCarImage;
+                        p4.ImageSwapper();
+                        break;
+                }
+               
+
                 m.ThisPlayerCar = ThisCarType;
             }
 
@@ -91,6 +112,29 @@ public class IconCollider : MonoBehaviour {
                 Car.GetComponent<Collider2D>().enabled = true; //The car Collider is re-activated
                 l.num_ready_players--;                         //The number of players ready to go is decreased
                 ThisCarSelected = false;                       //The car is deselected
+
+                p1.CurrentCar = p1.default_Empty;
+                p1.ImageSwapper();
+
+                switch (m.playerID)
+                {
+                    case 1:
+                        p1.CurrentCar = p1.default_Empty;
+                        p1.ImageSwapper();
+                        break;
+                    case 2:
+                        p2.CurrentCar = p2.default_Empty;
+                        p2.ImageSwapper();
+                        break;
+                    case 3:
+                        p3.CurrentCar = p3.default_Empty;
+                        p3.ImageSwapper();
+                        break;
+                    case 4:
+                        p4.CurrentCar = p4.default_Empty;
+                        p4.ImageSwapper();
+                        break;
+                }
 
                 m.ThisPlayerCar = 0;
             }
@@ -107,6 +151,26 @@ public class IconCollider : MonoBehaviour {
                 l.num_ready_players++;
                 ThisCarSelected = true;
 
+                switch (m.playerID)
+                {
+                    case 1:
+                        p1.CurrentCar = ThisCarImage;
+                        p1.ImageSwapper();
+                        break;
+                    case 2:
+                        p2.CurrentCar = ThisCarImage;
+                        p2.ImageSwapper();
+                        break;
+                    case 3:
+                        p3.CurrentCar = ThisCarImage;
+                        p3.ImageSwapper();
+                        break;
+                    case 4:
+                        p4.CurrentCar = ThisCarImage;
+                        p4.ImageSwapper();
+                        break;
+                }
+
                 m.ThisPlayerCar = ThisCarType;
             }
 
@@ -117,6 +181,26 @@ public class IconCollider : MonoBehaviour {
                 Car.GetComponent<Collider2D>().enabled = true;
                 l.num_ready_players--;
                 ThisCarSelected = false;
+
+                switch (m.playerID)
+                {
+                    case 1:
+                        p1.CurrentCar = p1.default_Empty;
+                        p1.ImageSwapper();
+                        break;
+                    case 2:
+                        p2.CurrentCar = p2.default_Empty;
+                        p2.ImageSwapper();
+                        break;
+                    case 3:
+                        p3.CurrentCar = p3.default_Empty;
+                        p3.ImageSwapper();
+                        break;
+                    case 4:
+                        p4.CurrentCar = p4.default_Empty;
+                        p4.ImageSwapper();
+                        break;
+                }
 
                 m.ThisPlayerCar = 0;
             }
@@ -132,6 +216,26 @@ public class IconCollider : MonoBehaviour {
                 l.num_ready_players++;
                 ThisCarSelected = true;
 
+                switch (m.playerID)
+                {
+                    case 1:
+                        p1.CurrentCar = ThisCarImage;
+                        p1.ImageSwapper();
+                        break;
+                    case 2:
+                        p2.CurrentCar = ThisCarImage;
+                        p2.ImageSwapper();
+                        break;
+                    case 3:
+                        p3.CurrentCar = ThisCarImage;
+                        p3.ImageSwapper();
+                        break;
+                    case 4:
+                        p4.CurrentCar = ThisCarImage;
+                        p4.ImageSwapper();
+                        break;
+                }
+
                 m.ThisPlayerCar = ThisCarType;
             }
 
@@ -141,6 +245,26 @@ public class IconCollider : MonoBehaviour {
                 Car.GetComponent<Collider2D>().enabled = true;
                 l.num_ready_players--;
                 ThisCarSelected = false;
+
+                switch (m.playerID)
+                {
+                    case 1:
+                        p1.CurrentCar = p1.default_Empty;
+                        p1.ImageSwapper();
+                        break;
+                    case 2:
+                        p2.CurrentCar = p2.default_Empty;
+                        p2.ImageSwapper();
+                        break;
+                    case 3:
+                        p3.CurrentCar = p3.default_Empty;
+                        p3.ImageSwapper();
+                        break;
+                    case 4:
+                        p4.CurrentCar = p4.default_Empty;
+                        p4.ImageSwapper();
+                        break;
+                }
 
                 m.ThisPlayerCar = 0;
             }
@@ -155,6 +279,26 @@ public class IconCollider : MonoBehaviour {
                 l.num_ready_players++;
                 ThisCarSelected = true;
 
+                switch (m.playerID)
+                {
+                    case 1:
+                        p1.CurrentCar = ThisCarImage;
+                        p1.ImageSwapper();
+                        break;
+                    case 2:
+                        p2.CurrentCar = ThisCarImage;
+                        p2.ImageSwapper();
+                        break;
+                    case 3:
+                        p3.CurrentCar = ThisCarImage;
+                        p3.ImageSwapper();
+                        break;
+                    case 4:
+                        p4.CurrentCar = ThisCarImage;
+                        p4.ImageSwapper();
+                        break;
+                }
+
                 m.ThisPlayerCar = ThisCarType;
             }
 
@@ -164,6 +308,26 @@ public class IconCollider : MonoBehaviour {
                 Car.GetComponent<Collider2D>().enabled = true;
                 l.num_ready_players--;
                 ThisCarSelected = false;
+
+                switch (m.playerID)
+                {
+                    case 1:
+                        p1.CurrentCar = p1.default_Empty;
+                        p1.ImageSwapper();
+                        break;
+                    case 2:
+                        p2.CurrentCar = p2.default_Empty;
+                        p2.ImageSwapper();
+                        break;
+                    case 3:
+                        p3.CurrentCar = p3.default_Empty;
+                        p3.ImageSwapper();
+                        break;
+                    case 4:
+                        p4.CurrentCar = p4.default_Empty;
+                        p4.ImageSwapper();
+                        break;
+                }
 
                 m.ThisPlayerCar = 0;
             }
