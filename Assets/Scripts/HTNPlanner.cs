@@ -321,12 +321,12 @@ public class HTNPlanner {
             if (angle > 0 && numberRotation-- > 0)
             {
                 plan[i][1] = 'D';
-                rotation = rotationAmount;
+                rotation = rotationAmount/2;
             }
             else if (angle < 0 && numberRotation-- > 0)
             {
                 plan[i][1] = 'A';
-                rotation = -rotationAmount;
+                rotation = -rotationAmount/2;
             }
             else
                 plan[i][1] = 'X';
