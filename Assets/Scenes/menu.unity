@@ -550,10 +550,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b93abe624df29246b8a9431c79578b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  p1: {fileID: 0}
+  p1: {fileID: 1359102857}
   p2: {fileID: 867536395}
-  p3: {fileID: 0}
-  p4: {fileID: 0}
+  p3: {fileID: 1306703004}
+  p4: {fileID: 1137373016}
   ID: 0
   Car: {fileID: 228496793}
   ThisCarSelected: 0
@@ -665,10 +665,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b93abe624df29246b8a9431c79578b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  p1: {fileID: 0}
+  p1: {fileID: 1359102857}
   p2: {fileID: 867536395}
-  p3: {fileID: 0}
-  p4: {fileID: 0}
+  p3: {fileID: 1306703004}
+  p4: {fileID: 1137373016}
   ID: 0
   Car: {fileID: 346784878}
   ThisCarSelected: 0
@@ -769,10 +769,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b93abe624df29246b8a9431c79578b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  p1: {fileID: 0}
+  p1: {fileID: 1359102857}
   p2: {fileID: 867536395}
-  p3: {fileID: 0}
-  p4: {fileID: 0}
+  p3: {fileID: 1306703004}
+  p4: {fileID: 1137373016}
   ID: 0
   Car: {fileID: 372341581}
   ThisCarSelected: 0
@@ -2162,10 +2162,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b93abe624df29246b8a9431c79578b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  p1: {fileID: 0}
+  p1: {fileID: 1359102857}
   p2: {fileID: 867536395}
-  p3: {fileID: 0}
-  p4: {fileID: 0}
+  p3: {fileID: 1306703004}
+  p4: {fileID: 1137373016}
   ID: 0
   Car: {fileID: 941973851}
   ThisCarSelected: 0
@@ -2504,6 +2504,7 @@ Canvas:
   m_ReceivesEvents: 1
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
+  m_SortingBucketNormalizedSize: 0
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
