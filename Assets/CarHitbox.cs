@@ -24,8 +24,8 @@ public class CarHitbox : MonoBehaviour {
     void OnTriggerEnter(Collider col)
     {
         Debug.Log("COLLISION WITH WALL");
-        if (col.gameObject.name == "Obstacle2")
-        {
+        //if (col.gameObject.name == "Obstacle2")
+        //{
             // We need to find out which sphere collider we are hitting here
             Debug.Log("IN COLLISION");
 
@@ -78,8 +78,10 @@ public class CarHitbox : MonoBehaviour {
                 // Call the co routine to spawn the car after some delay
                 StartCoroutine(respawnCar());
 
+            // Reduce the number of lives (Speak with Stefanos)
+
             }
-        }
+        //}
     }
 
     // Update is called once per frame
