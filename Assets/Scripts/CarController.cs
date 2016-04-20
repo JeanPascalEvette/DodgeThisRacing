@@ -118,6 +118,8 @@ public class CarController : MonoBehaviour
     [SerializeField]
     private float autoRotateMinTime = 2.0f;
 
+    private ParticleSystem[] exhausts;
+
     private AIController myAI;
     public PlayerData myPlayerData;
 
@@ -134,6 +136,8 @@ public class CarController : MonoBehaviour
 
         currentGear = 1; 			// bound to change in future // still in testing phase
         rb = GetComponent<Rigidbody>();
+
+        exhausts = GetComponentsInChildren<ParticleSystem>();
 
         if (rearLeftWheel == null)
             rearLeftWheel = transform.GetChild(0).Find("Wheel").transform.Find("LeftRear").GetComponent<WheelController>();
@@ -183,6 +187,10 @@ public class CarController : MonoBehaviour
 
     void Update()
     {
+        foreach(var exhaust in exhausts)
+        {
+            exhaust.emissionRate =  rpm;
+        }
 
         if (Input.GetKeyDown(KeyCode.F1))
         {
