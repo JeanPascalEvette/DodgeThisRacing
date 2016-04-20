@@ -74,76 +74,44 @@ public class IconCollider : MonoBehaviour {
         {
             //If the A button is pressed the coin is assigned to that car icon and the cursor doesn't move it around anymore (Selection of the car)
             if (Input.GetButtonDown("ButtonAJoyStick1") && l.is_joy1_taken && m.is_this_inside == true && !ThisCarSelected)
-            {
-
-                SelectCar();
-
-            }
+            { SelectCar(); }
 
             //If the cursor is near the coin inside the area of the car icon and presses B he re-acquires the coin and deselects the car
             if (Input.GetButtonDown("ButtonXJoyStick1") && l.is_joy1_taken && m.is_this_inside == true && b.is_player_near &&ThisCarSelected)
-            {
+            { DeSelectCar(); }
 
-                DeSelectCar();
-
-            }
         }
 
         //Same for all the other control types
         else if (m.ThisPlayerControl == MoveSelector.ControlTypesHere.Joy2)
         {
             if (Input.GetButtonDown("ButtonAJoyStick2") && l.is_joy2_taken && m.is_this_inside == true && !ThisCarSelected)
-            {
-
-                SelectCar();
-
-            }
+            { SelectCar(); }
 
             if (Input.GetButtonDown("ButtonXJoyStick2") && l.is_joy2_taken && m.is_this_inside == true && b.is_player_near && ThisCarSelected)
-            {
-
-                DeSelectCar();
-
-            }
+            { DeSelectCar(); }
         }
 
         else if (m.ThisPlayerControl == MoveSelector.ControlTypesHere.ArrowKeys)
         {
             if (Input.GetButtonDown("ButtonAArrows") && l.is_arrowKeys_taken && m.is_this_inside == true && !ThisCarSelected)
-            {
-
-                SelectCar();
-
-            }
+            { SelectCar(); }
 
             if (Input.GetButtonDown("ButtonXArrows") && l.is_arrowKeys_taken && m.is_this_inside == true && b.is_player_near && ThisCarSelected)
-            {
-
-                DeSelectCar();
-
-            }
+            { DeSelectCar(); }
         }
 
         else if (m.ThisPlayerControl == MoveSelector.ControlTypesHere.WSDA)
         {
             if (Input.GetButtonDown("ButtonAWSDA") && l.is_wsda_taken && m.is_this_inside == true && !ThisCarSelected)
-            {
-
-                SelectCar();
-
-            }
+            { SelectCar(); }
 
             if (Input.GetButtonDown("ButtonXWSDA") && l.is_wsda_taken && m.is_this_inside == true && b.is_player_near && ThisCarSelected)
-            {
-
-                DeSelectCar();
-
-            }
+            { DeSelectCar(); }
         }
     }
 
     void SelectCar() {
-
 
         t.transform.parent = Car.transform;             //The coin is given the car icon as a parent
         Car.GetComponent<Collider2D>().enabled = false; //The collider of the car icon is deactivated. This car cannot be selected by other players
