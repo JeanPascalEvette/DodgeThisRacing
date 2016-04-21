@@ -223,7 +223,7 @@ public class GameLogic : MonoBehaviour
         int preset = Random.Range(0, numPresets);
         for (int obstacleNum = 0; obstacleNum < Data.GetNumObstacleAvailable(); obstacleNum++)
         {
-            if (numPresets > Data.getObstacle(obstacleNum).GetComponent<ObstacleController>().GetNumberOfPresets(trackPartId))
+            if (Data.getObstacle(obstacleNum).GetComponent<ObstacleController>() == null || numPresets > Data.getObstacle(obstacleNum).GetComponent<ObstacleController>().GetNumberOfPresets(trackPartId))
                 continue;
             GameObject obstaclePrefab = Data.getObstacle(obstacleNum);
             for (int i = 0; i < obstaclePrefab.GetComponent<ObstacleController>().GetNumberOfInstances(trackPartId, preset); i++)
