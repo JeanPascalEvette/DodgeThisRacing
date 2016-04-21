@@ -8,6 +8,7 @@ public class Utility {
     Vector3 currentPosition;
     Vector3 targetPosition;
     Vector3 carDirection;
+    float carSpeed;
 
     // variables for other cars
     CarState[] cars;
@@ -20,6 +21,7 @@ public class Utility {
         ID = currentCarState.myUniqueID;
         currentPosition = currentCarState.myPosition;
         currentVelocity = currentCarState.myVelocity;
+        carSpeed = currentVelocity.magnitude;
 
         //Get position of the other cars
         cars = state.otherCars;
@@ -51,7 +53,7 @@ public class Utility {
             int selectedPath = 0;
             if(numberOfPaths > 1)
             {
-                selectedPath = new System.Random().Next(numberOfPaths-1);
+                selectedPath = new System.Random().Next(numberOfPaths);
             }
             targetPosition = state.targetPositions[selectedPath];
         }
@@ -61,6 +63,23 @@ public class Utility {
     public Vector3 getDirection(State state)
     {
         CarState thisCar = state.myCar;
+
+        //Checks number of cars on track
+        int numberOfCarsInPlay = state.otherCars.Length;
+
+        //If no other cars then change target position
+        if (numberOfCarsInPlay == 0)
+        {
+            int numberOfPaths = state.targetPositions.Length;
+            int selectedPath = 0;
+            if (numberOfPaths > 1)
+            {
+                selectedPath = new System.Random().Next(numberOfPaths);
+            }
+            targetPosition = state.targetPositions[selectedPath];
+        }
+
+        //Get direction for the car
         currentPosition = thisCar.myPosition;
         carDirection = (targetPosition - currentPosition);
         
@@ -69,9 +88,10 @@ public class Utility {
         {
             float distance = Vector3.Distance(state.obstacles[i].myPosition, currentPosition);
             //Debug.Log(distance);
-            if(distance < 1)
+            if(distance < 300)
             {
-                carDirection = Vector3.Scale(carDirection,new Vector3(-1, 1, 1));
+                carDirection = Vector3.Scale(carDirection,new Vector3(-1, 0, 1));
+                carSpeed -= 10;
             }
         }
         //Need check for distance between other cars
@@ -79,11 +99,14 @@ public class Utility {
         {
             //Vector3 intersection between direction and other car position
             float distance = Vector3.Distance(state.otherCars[i].myPosition, currentPosition);
-            if(distance < 1)
+            if(distance < 300)
             {
-                carDirection = Vector3.Scale(carDirection, new Vector3(-1, 1, 1));
+                carDirection = Vector3.Scale(carDirection, new Vector3(-1, 0, 1));
+                carSpeed -= 10;
             }
         }
+
+        
         carDirection.Normalize();
         return carDirection;
     }
