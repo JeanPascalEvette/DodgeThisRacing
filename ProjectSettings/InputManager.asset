@@ -474,7 +474,7 @@ InputManager:
     descriptiveName: 
     descriptiveNegativeName: 
     negativeButton: 
-    positiveButton: b
+    positiveButton: backspace
     altNegativeButton: 
     altPositiveButton: 
     gravity: 0
@@ -490,7 +490,7 @@ InputManager:
     descriptiveName: 
     descriptiveNegativeName: 
     negativeButton: 
-    positiveButton: n
+    positiveButton: backspace
     altNegativeButton: 
     altPositiveButton: 
     gravity: 0
@@ -538,7 +538,7 @@ InputManager:
     descriptiveName: 
     descriptiveNegativeName: 
     negativeButton: 
-    positiveButton: l
+    positiveButton: space
     altNegativeButton: 
     altPositiveButton: 
     gravity: 0
@@ -554,7 +554,7 @@ InputManager:
     descriptiveName: 
     descriptiveNegativeName: 
     negativeButton: 
-    positiveButton: p
+    positiveButton: space
     altNegativeButton: 
     altPositiveButton: 
     gravity: 0

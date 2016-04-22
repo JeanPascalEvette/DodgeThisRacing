@@ -97,7 +97,7 @@ public class IconCollider : MonoBehaviour {
             if (Input.GetButtonDown("ButtonAArrows") && l.is_arrowKeys_taken && m.is_this_inside == true && !ThisCarSelected)
             { SelectCar(); }
 
-            if (Input.GetButtonDown("ButtonXArrows") && l.is_arrowKeys_taken && m.is_this_inside == true && b.is_player_near && ThisCarSelected)
+            else if (Input.GetButtonDown("ButtonXArrows") && l.is_arrowKeys_taken && m.is_this_inside == true && b.is_player_near && ThisCarSelected)
             { DeSelectCar(); }
         }
 
@@ -106,7 +106,7 @@ public class IconCollider : MonoBehaviour {
             if (Input.GetButtonDown("ButtonAWSDA") && l.is_wsda_taken && m.is_this_inside == true && !ThisCarSelected)
             { SelectCar(); }
 
-            if (Input.GetButtonDown("ButtonXWSDA") && l.is_wsda_taken && m.is_this_inside == true && b.is_player_near && ThisCarSelected)
+            else if (Input.GetButtonDown("ButtonXWSDA") && l.is_wsda_taken && m.is_this_inside == true && b.is_player_near && ThisCarSelected)
             { DeSelectCar(); }
         }
     }
