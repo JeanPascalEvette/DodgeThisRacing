@@ -160,6 +160,7 @@ public class GameLogic : MonoBehaviour
                 { xPos = -i; break; }
             }
             startPoint.x = xPos;
+            startPoint.y = 0f;
 
             var spawnVel = myCamera.leadingGameObject.GetComponent<Rigidbody>().velocity;
 
@@ -374,6 +375,14 @@ public class GameLogic : MonoBehaviour
             {
                 UnityEngine.Camera.main.GetComponent<Camera>().ZoomOut();
                 //trackPiece.transform.Find("Canyon_Middle_D").GetComponent<MeshRenderer>().enabled = false;
+            }
+        }
+
+        foreach(PlayerData pd in Data.GetPlayerData())
+        {
+            if(pd.GetGameObject() != null && pd.GetGameObject().transform.position.y < -2f)
+            {
+                DestroyCar(pd, true);
             }
         }
 
