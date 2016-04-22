@@ -364,7 +364,6 @@ GameObject:
   - 4: {fileID: 420484}
   - 198: {fileID: 19868506}
   - 199: {fileID: 19974426}
-  - 114: {fileID: 11405618}
   - 114: {fileID: 11460892}
   m_Layer: 0
   m_Name: Exhaust_R
@@ -1029,7 +1028,6 @@ GameObject:
   - 4: {fileID: 470208}
   - 198: {fileID: 19807380}
   - 199: {fileID: 19951274}
-  - 114: {fileID: 11465168}
   - 114: {fileID: 11404308}
   m_Layer: 0
   m_Name: Exhaust_L
@@ -4565,17 +4563,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   multiplier: 1
---- !u!114 &11405618
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 129788}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &11408288
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4882,17 +4869,6 @@ MonoBehaviour:
   noise1: {fileID: 0}
   noise2: {fileID: 0}
   autoRotateMinTime: 2
---- !u!114 &11465168
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 196362}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &11466330
 MonoBehaviour:
   m_ObjectHideFlags: 1

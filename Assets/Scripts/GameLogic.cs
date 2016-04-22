@@ -4,8 +4,7 @@ using System.Collections.Generic;
 
 public class GameLogic : MonoBehaviour
 {
-
-    public int[] scoreCount = { 10, 10, 10, 10 };
+    
     public int winCondition;
     public bool victory;
     public int playerDeathNumber;
@@ -66,7 +65,7 @@ public class GameLogic : MonoBehaviour
             Data.selectCars(myCars);
         }
         else
-            myCars = Data.getCarsSelected();
+            myCars = Data.GetPlayerData();
 
 
         GameObject[] carPrefabs = Data.generateCars();
@@ -76,8 +75,8 @@ public class GameLogic : MonoBehaviour
             var newCar = (GameObject)Instantiate(carPrefabs[i], new Vector3((i - carPrefabs.Length / 2) * 3.0f, 0, 3.0f), Quaternion.Euler(0, 180, 0));
             var carCtrler = newCar.GetComponent<CarController>();
             carCtrler.myPlayerData = myCars[i];
-            Data.getCarsSelected()[i].AttachGameObject(newCar);
-            Data.getCarsSelected()[i].AttachPrefab(carPrefabs[i]);
+            Data.GetPlayerData()[i].AttachGameObject(newCar);
+            Data.GetPlayerData()[i].AttachPrefab(carPrefabs[i]);
         }
 
 
@@ -97,7 +96,7 @@ public class GameLogic : MonoBehaviour
             return;
         }
 
-        if (scoreCount[data.GetCarType()] != 0)
+        if (data.getLives() != 0)
         {
 
             Vector3 startPoint = myCamera.leadingGameObject.transform.position;
@@ -119,7 +118,7 @@ public class GameLogic : MonoBehaviour
             }
             float xPos = 0.0f;
             List<float> listOfXPos = new List<float>();
-            foreach (var pData in Data.getCarsSelected())
+            foreach (var pData in Data.GetPlayerData())
             {
                 if (pData.GetGameObject() != null && pData != data)
                 {
@@ -170,16 +169,19 @@ public class GameLogic : MonoBehaviour
         }
         else
         {
-            winCondition++;
-            if (winCondition == Data.getNumberCarSelected() - 1)
+            var allPD = Data.GetPlayerData();
+            int bodyCount = 0;
+            int winner = 0;
+            for (int i = 0; i < allPD.Length; i++)
             {
-                for (int n = 0; n < scoreCount.Length; n++)
-                {
-                    if (scoreCount[n] != 0)
-                    {
-                        playerDeathNumber = n + 1;
-                    }
-                }
+                if (allPD[i] != data && allPD[i].getLives() == 0)
+                    bodyCount++;
+                if (allPD[i].getLives() != 0)
+                    winner = i + 1;
+            }
+            if(bodyCount == allPD.Length - 1)
+            {
+                playerDeathNumber = winner;
                 victory = true;
             }
         }
@@ -189,10 +191,10 @@ public class GameLogic : MonoBehaviour
 
     public void DestroyCar(PlayerData data, bool respawn = false)
     {
-        if (scoreCount[data.GetCarType()] != 0)
+        if (data.getLives() != 0)
         {
+            data.reduceLives();
             playerDeathNumber = data.GetCarType() + 1;
-            scoreCount[data.GetCarType()]--;
             string explPrefab = "Prefabs/FX/Explosions/Explosion";
             if (data.GetGameObject().name.Substring(0, 3) == "Van")
                 explPrefab = "Prefabs/FX/Explosions/RaceVanExplosion";

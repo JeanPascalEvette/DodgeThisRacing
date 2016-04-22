@@ -94,7 +94,7 @@ public class Data : MonoBehaviour {
         CarsSelected = cars;
     }
 
-    public static PlayerData[] getCarsSelected()
+    public static PlayerData[] GetPlayerData()
     {
         return CarsSelected;
     }

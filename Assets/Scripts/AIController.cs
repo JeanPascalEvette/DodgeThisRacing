@@ -184,7 +184,7 @@ public class AIController : MonoBehaviour
             if (currentState.targetPositions.Length == 0)
             {
                 GameLogic.myInstance.DestroyCar(myCarController.myPlayerData, true);
-                throw new System.Exception("Error : Could not find target position for car " + transform.gameObject.name + ". Killing car");
+                Debug.LogWarning("Error : Could not find target position for car " + transform.gameObject.name + ". Killing car");
             }
 
             waitHandle.Set();

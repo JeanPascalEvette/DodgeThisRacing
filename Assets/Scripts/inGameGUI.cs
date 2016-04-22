@@ -60,21 +60,21 @@ public class inGameGUI : MonoBehaviour {
     {
         if (Data.getNumberCarSelected() < 5)
         {
-            score1.text = "Player 1 remaining lives: " + gmlg.scoreCount[0];
-            score2.text = "Player 2 remaining lives: " + gmlg.scoreCount[1];
-            score3.text = "Player 3 remaining lives: " + gmlg.scoreCount[2];
-            score4.text = "Player 4 remaining lives: " + gmlg.scoreCount[3];
+            score1.text = "Player 1 remaining lives: " + Data.GetPlayerData()[0].getLives();
+            score2.text = "Player 2 remaining lives: " + Data.GetPlayerData()[1].getLives();
+            score3.text = "Player 3 remaining lives: " + Data.GetPlayerData()[2].getLives();
+            score4.text = "Player 4 remaining lives: " + Data.GetPlayerData()[3].getLives();
         }
         else if (Data.getNumberCarSelected() < 4)
         {
-            score1.text = "Player 1 remaining lives: " + gmlg.scoreCount[0];
-            score2.text = "Player 2 remaining lives: " + gmlg.scoreCount[1];
-            score3.text = "Player 3 remaining lives: " + gmlg.scoreCount[2];
+            score1.text = "Player 1 remaining lives: " + Data.GetPlayerData()[0].getLives();
+            score2.text = "Player 2 remaining lives: " + Data.GetPlayerData()[1].getLives();
+            score3.text = "Player 3 remaining lives: " + Data.GetPlayerData()[2].getLives();
         }
         else if (Data.getNumberCarSelected() < 3)
         {
-            score1.text = "Player 1 remaining lives: " + gmlg.scoreCount[0];
-            score2.text = "Player 2 remaining lives: " + gmlg.scoreCount[1];
+            score1.text = "Player 1 remaining lives: " + Data.GetPlayerData()[0].getLives();
+            score2.text = "Player 2 remaining lives: " + Data.GetPlayerData()[1].getLives();
         }
     }
 
@@ -117,7 +117,7 @@ public class inGameGUI : MonoBehaviour {
             }
         }
 
-        else if (gmlg.scoreCount[gmlg.playerDeathNumber - 1] == 0 && countdown == false)
+        else if (Data.GetPlayerData()[gmlg.playerDeathNumber - 1].getLives() == 0 && countdown == false)
         {
             
             timer = 2;
