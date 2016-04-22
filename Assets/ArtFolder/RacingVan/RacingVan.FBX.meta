@@ -1,0 +1,271 @@
+fileFormatVersion: 2
+guid: e841825151b1d8b4ea107e756d83b3f0
+timeCreated: 1461183618
+licenseType: Free
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: BackBumper
+    100002: CarBody
+    100004: Damper
+    100006: Damper 1
+    100008: Damper 2
+    100010: Damper 3
+    100012: Detachables
+    100014: FronGrider
+    100016: FrontBumper
+    100018: FrontWindow
+    100020: Hood
+    100022: LeftBackDoor
+    100024: LeftBackDoorWindow
+    100026: LeftDoor
+    100028: LeftDoorWindow
+    100030: LeftExhaustion
+    100032: LeftFront
+    100034: LeftMirror
+    100036: LeftRear
+    100038: //RootNode
+    100040: RighRear
+    100042: RightBackDoor
+    100044: RightBackDoorWindow
+    100046: RightDoor
+    100048: RightDoorWindow
+    100050: RightExhaustion
+    100052: RightFront
+    100054: RightMirror
+    100056: Rim
+    100058: Rim 1
+    100060: Rim 2
+    100062: Rim 3
+    100064: RoofLights
+    100066: Wheel
+    100068: Wheel 1
+    100070: Wheel 2
+    100072: Wheel 3
+    100074: Wheels
+    400000: BackBumper
+    400002: CarBody
+    400004: Damper
+    400006: Damper 1
+    400008: Damper 2
+    400010: Damper 3
+    400012: Detachables
+    400014: FronGrider
+    400016: FrontBumper
+    400018: FrontWindow
+    400020: Hood
+    400022: LeftBackDoor
+    400024: LeftBackDoorWindow
+    400026: LeftDoor
+    400028: LeftDoorWindow
+    400030: LeftExhaustion
+    400032: LeftFront
+    400034: LeftMirror
+    400036: LeftRear
+    400038: //RootNode
+    400040: RighRear
+    400042: RightBackDoor
+    400044: RightBackDoorWindow
+    400046: RightDoor
+    400048: RightDoorWindow
+    400050: RightExhaustion
+    400052: RightFront
+    400054: RightMirror
+    400056: Rim
+    400058: Rim 1
+    400060: Rim 2
+    400062: Rim 3
+    400064: RoofLights
+    400066: Wheel
+    400068: Wheel 1
+    400070: Wheel 2
+    400072: Wheel 3
+    400074: Wheels
+    2300000: BackBumper
+    2300002: CarBody
+    2300004: Damper
+    2300006: Damper 1
+    2300008: Damper 2
+    2300010: Damper 3
+    2300012: FronGrider
+    2300014: FrontBumper
+    2300016: FrontWindow
+    2300018: Hood
+    2300020: LeftBackDoor
+    2300022: LeftBackDoorWindow
+    2300024: LeftDoor
+    2300026: LeftDoorWindow
+    2300028: LeftExhaustion
+    2300030: LeftMirror
+    2300032: RightBackDoor
+    2300034: RightBackDoorWindow
+    2300036: RightDoor
+    2300038: RightDoorWindow
+    2300040: RightExhaustion
+    2300042: RightMirror
+    2300044: Rim
+    2300046: Rim 1
+    2300048: Rim 2
+    2300050: Rim 3
+    2300052: RoofLights
+    2300054: Wheel
+    2300056: Wheel 1
+    2300058: Wheel 2
+    2300060: Wheel 3
+    3300000: BackBumper
+    3300002: CarBody
+    3300004: Damper
+    3300006: Damper 1
+    3300008: Damper 2
+    3300010: Damper 3
+    3300012: FronGrider
+    3300014: FrontBumper
+    3300016: FrontWindow
+    3300018: Hood
+    3300020: LeftBackDoor
+    3300022: LeftBackDoorWindow
+    3300024: LeftDoor
+    3300026: LeftDoorWindow
+    3300028: LeftExhaustion
+    3300030: LeftMirror
+    3300032: RightBackDoor
+    3300034: RightBackDoorWindow
+    3300036: RightDoor
+    3300038: RightDoorWindow
+    3300040: RightExhaustion
+    3300042: RightMirror
+    3300044: Rim
+    3300046: Rim 1
+    3300048: Rim 2
+    3300050: Rim 3
+    3300052: RoofLights
+    3300054: Wheel
+    3300056: Wheel 1
+    3300058: Wheel 2
+    3300060: Wheel 3
+    4300000: BackBumper
+    4300002: FronGrider
+    4300004: FrontBumper
+    4300006: Hood
+    4300008: LeftDoor
+    4300010: LeftDoorWindow
+    4300012: LeftExhaustion
+    4300014: LeftMirror
+    4300016: RightBackDoor
+    4300018: RightBackDoorWindow
+    4300020: LeftBackDoor
+    4300022: LeftBackDoorWindow
+    4300024: RightDoor
+    4300026: RightDoorWindow
+    4300028: RightExhaustion
+    4300030: RightMirror
+    4300032: RoofLights
+    4300034: Wheel
+    4300036: Rim
+    4300038: Damper
+    4300040: Damper
+    4300042: Rim
+    4300044: Wheel
+    4300046: Damper
+    4300048: Wheel
+    4300050: Rim
+    4300052: Rim
+    4300054: Wheel
+    4300056: Damper
+    4300058: CarBody
+    4300060: FrontWindow
+    6400000: BackBumper
+    6400002: CarBody
+    6400004: Damper
+    6400006: Damper 1
+    6400008: Damper 2
+    6400010: Damper 3
+    6400012: FronGrider
+    6400014: FrontBumper
+    6400016: FrontWindow
+    6400018: Hood
+    6400020: LeftBackDoor
+    6400022: LeftBackDoorWindow
+    6400024: LeftDoor
+    6400026: LeftDoorWindow
+    6400028: LeftExhaustion
+    6400030: LeftMirror
+    6400032: RightBackDoor
+    6400034: RightBackDoorWindow
+    6400036: RightDoor
+    6400038: RightDoorWindow
+    6400040: RightExhaustion
+    6400042: RightMirror
+    6400044: Rim
+    6400046: Rim 1
+    6400048: Rim 2
+    6400050: Rim 3
+    6400052: RoofLights
+    6400054: Wheel
+    6400056: Wheel 1
+    6400058: Wheel 2
+    6400060: Wheel 3
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 0
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleRotations: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 1
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 0
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

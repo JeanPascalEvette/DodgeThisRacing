@@ -61,7 +61,12 @@ public class WheelController : MonoBehaviour {
     // Use this for initialization
     void Start () {
         mCarController = transform.parent.GetComponent<CarController>();
-        wheelRadius = transform.GetComponent<MeshRenderer>().bounds.size.y / 2;
+        var meshRenderer = transform.GetComponent<MeshRenderer>();
+        if (meshRenderer == null)
+            meshRenderer = transform.GetChild(2).GetComponent<MeshRenderer>();
+        wheelRadius = meshRenderer.bounds.size.y / 2;
+        if (carModel == null)
+            carModel = transform.root.GetComponent<Rigidbody>();
     }
 	
 	// Update is called once per frame
@@ -161,7 +166,7 @@ public class WheelController : MonoBehaviour {
     // COLLISION DETECTION
     void OnCollisionEnter(Collision col)
     {
-        Debug.Log("COLLISION WITH WALL");
+        //Debug.Log("COLLISION WITH WALL");
         if (col.gameObject.name == "Obstacle2")
         {
             // We need to find out which sphere collider we are hitting here
@@ -194,7 +199,7 @@ public class WheelController : MonoBehaviour {
     {
         isOnGround = false;
         Color myColor = Color.red;
-        float wheelHeight = transform.GetComponent<SphereCollider>().radius * 1.25f;
+        float wheelHeight = transform.GetComponent<SphereCollider>().radius * transform.lossyScale.y * 1.25f;
         Vector3 direction = new Vector3(0, -1, 0);
 
         int numRaycast = 10;
@@ -202,7 +207,7 @@ public class WheelController : MonoBehaviour {
         for (int i = 0; i < 360/numRaycast; i++)
         {
             direction = Quaternion.Euler(i*360/numRaycast, 0, 0) * direction;
-            direction = GetComponent<Collider>().transform.root.rotation * direction;
+            direction = transform.root.rotation * direction;
             myRay = new Ray(transform.position, direction.normalized);
             if (Physics.Raycast(myRay, wheelHeight))
             {

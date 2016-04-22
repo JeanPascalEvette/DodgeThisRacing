@@ -118,6 +118,8 @@ public class CarController : MonoBehaviour
     [SerializeField]
     private float autoRotateMinTime = 2.0f;
 
+    private ParticleSystem[] exhausts;
+
     private AIController myAI;
     public PlayerData myPlayerData;
 
@@ -134,6 +136,8 @@ public class CarController : MonoBehaviour
 
         currentGear = 1; 			// bound to change in future // still in testing phase
         rb = GetComponent<Rigidbody>();
+
+        exhausts = GetComponentsInChildren<ParticleSystem>();
 
         if (rearLeftWheel == null)
             rearLeftWheel = transform.GetChild(0).Find("Wheel").transform.Find("LeftRear").GetComponent<WheelController>();
@@ -154,6 +158,15 @@ public class CarController : MonoBehaviour
         frontRightPosition = frontRightWheel.transform.localPosition.z;
         rearRightPosition = rearRightWheel.transform.localPosition.z;
 
+        var txtMsh = transform.Find("Text").GetComponent<TextMesh>();
+        txtMsh.text = "P"+(myPlayerData.GetCarType()+1).ToString();
+        switch(myPlayerData.GetCarType())
+        {
+            case 0: txtMsh.color = Color.red; break;
+            case 1: txtMsh.color = Color.blue; break;
+            case 2: txtMsh.color = Color.green; break;
+            case 3: txtMsh.color = Color.yellow; break;
+        }
 
         sounds = GetComponents<AudioSource>();
             noise1 = sounds[0];
@@ -174,6 +187,10 @@ public class CarController : MonoBehaviour
 
     void Update()
     {
+        foreach(var exhaust in exhausts)
+        {
+            exhaust.emissionRate =  rpm;
+        }
 
         if (Input.GetKeyDown(KeyCode.F1))
         {
@@ -447,7 +464,7 @@ public class CarController : MonoBehaviour
             rpmToTorque = 300.0f - (rpm * 0.05f) + 300.0f;
         }
 
-        if (rpm < 1000.0f && speed < 1)
+        if (rpm < 2000.0f && currentGear > 1)
         {                                                               // when rpm gets below 1000 gear is decreased
 
             decreaseGear();
@@ -579,6 +596,13 @@ public class CarController : MonoBehaviour
         currentGear--;
         rpm = 6000;
     }
+
+    public void ReduceSpeed()
+    {
+        decreaseGear();
+        rpm *= 0.6f;
+    }
+
     public float GearValue()
     {
         return gears[currentGear];
@@ -621,18 +645,19 @@ public class CarController : MonoBehaviour
                 directionCode = KeyCode.Joystick1Button0;
             else if (direction == 'S')
                 directionCode = KeyCode.Joystick1Button2;
-            if (direction == 'A' && Input.GetAxis("HorizontalJoyStickLeft1") < 0)
+            if (direction == 'A'  && Input.GetAxis("HorizontalJoyStickLeft1") < 0)
+            {
+                //   directionCode = KeyCode.A;
+                return true;
+            } else if ( direction == 'D' && Input.GetAxis("HorizontalJoyStickLeft1") > 0)
             {
                 //   directionCode = KeyCode.A;
                 return true;
             }
 
-            else if (direction == 'D' && Input.GetAxis("HorizontalJoyStickLeft1") > 0)
-            {
-                //   directionCode = KeyCode.A;
-                return true;
-            }
+
         }
+        
         else if (myPlayerData.GetControlScheme() == PlayerData.ControlScheme.XboxController2)
         {
             if (direction == 'W')
@@ -644,9 +669,7 @@ public class CarController : MonoBehaviour
             {
                 //   directionCode = KeyCode.A;
                 return true;
-            }
-
-            else if (direction == 'D' && Input.GetAxis("HorizontalJoyStickLeft2") > 0)
+            } else if (direction == 'D' && Input.GetAxis("HorizontalJoyStickLeft2") > 0)
             {
                 //   directionCode = KeyCode.A;
                 return true;
@@ -660,6 +683,9 @@ public class CarController : MonoBehaviour
         }
         else
         {
+            if (myAI.GetPlan() == null || myAI.GetPlan().Length == 0)
+                return false;
+
             if (direction == 'W' || direction == 'S')
             {
                 return myAI.GetPlan()[0] == direction;

@@ -65,12 +65,18 @@ public class Data : MonoBehaviour {
         return TrackPartsAvailable[choice];
     }
 
-    public static GameObject getObstacle()
+    public static GameObject getObstacle(int choice = -1)
     {
         if (ObstaclesAvailable == null || ObstaclesAvailable.Length == 0)
             return null;
-        int choice = Random.Range(0, ObstaclesAvailable.Length);
+        if(choice == -1 || choice > ObstaclesAvailable.Length)
+            choice = Random.Range(0, ObstaclesAvailable.Length);
         return ObstaclesAvailable[choice];
+    }
+
+    public static int GetNumObstacleAvailable()
+    {
+        return ObstaclesAvailable.Length;
     }
 
     public static GameObject[] generateCars()
@@ -88,9 +94,30 @@ public class Data : MonoBehaviour {
         CarsSelected = cars;
     }
 
-    public static PlayerData[] getCarsSelected()
+    public static PlayerData[] GetPlayerData()
     {
         return CarsSelected;
+    }
+
+    public static GameObject[] GetAllCars()
+    {
+        GameObject[] allCars = new GameObject[CarsSelected.Length];
+        for (int i = 0; i < allCars.Length; i++)
+            allCars[i] = CarsSelected[i].GetGameObject();
+        return allCars;
+    }
+
+    public static GameObject GetCurrentTrackPiece()
+    {
+        float zPos = UnityEngine.Camera.main.GetComponent<Camera>().leadingGameObject.transform.position.z;
+        for (int i = 0; i < GameObject.Find("Track").transform.childCount; i++)
+        {
+            var tp = GameObject.Find("Track").transform.GetChild(i);
+            var bounds = GameLogic.myInstance.getBoundsOfTrackPiece(tp.GetComponentsInChildren<MeshRenderer>());
+            if (bounds.max.z > zPos && bounds.min.z < zPos)
+                return tp.gameObject;
+        }
+        return null;
     }
 
     public static int getNumberCarSelected()

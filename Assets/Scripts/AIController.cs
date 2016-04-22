@@ -17,7 +17,7 @@ public class AIController : MonoBehaviour
     private GameObject[] allCars;
 
     [SerializeField]
-    private bool showDebug = false;
+    public static bool showDebug = false;
 
     [SerializeField]
     private GUISkin aSkin;
@@ -26,21 +26,34 @@ public class AIController : MonoBehaviour
     private float rayWidth = 80.0f;
 
 
+    private System.Random myRand;
+    private bool isAggresive;
+
     // Use this for initialization
     void Start()
     {
         if (aSkin == null) aSkin = (GUISkin)Resources.Load("AILabel");
         if (aSkin == null) aSkin = new GUISkin();
         myCarController = GetComponent<CarController>();
-        allCars = GameObject.FindGameObjectsWithTag("Player");
+        allCars = Data.GetAllCars();
         planner = new HTNPlanner(1.5f);
         plannerThread = new Thread(retrievePlanner); // TODO IMPLEMENT THREADING
         plannerThread.Start();
-
+        myRand = new System.Random(System.Guid.NewGuid().GetHashCode());
     }
     public string GetPlan()
     {
-        return plan[frameCounter - frameGenerated];
+        try
+        {
+            if (plan == null || frameCounter - frameGenerated < 0 || frameCounter - frameGenerated >= plan.Length)
+                return "";
+            return plan[frameCounter - frameGenerated];
+        }
+        catch(System.Exception ex)
+        {
+            Debug.Log("Error when Getting plan. Search value " + (frameCounter - frameGenerated).ToString() + " in array size " + plan.Length);
+            return "";
+        }
     }
 
     void OnDrawGizmos()
@@ -52,6 +65,10 @@ public class AIController : MonoBehaviour
         {
             var style = new GUIStyle(aSkin.GetStyle("box"));
             style.alignment = TextAnchor.MiddleCenter;
+            if (isAggresive)
+                style.normal.textColor = Color.red;
+            else
+                style.normal.textColor = Color.blue;
             var textPlan = "";
             System.Collections.Generic.List<string> commands = new System.Collections.Generic.List<string>();
             int counter = 1;
@@ -85,12 +102,6 @@ public class AIController : MonoBehaviour
             UnityEditor.Handles.ArrowCap(0, transform.position, Quaternion.LookRotation(dir.normalized), Mathf.Min(10, dir.magnitude));
             UnityEditor.Handles.color = Color.blue;
             UnityEditor.Handles.DrawSolidDisc(planner.myTarget, Vector3.up, 1.0f);
-            if (planner.targetCar != null)
-            {
-                Vector3 dirGO = getCarByUniqueID(planner.targetCar.myUniqueID).transform.position - transform.position;
-                UnityEditor.Handles.color = Color.red;
-                UnityEditor.Handles.ArrowCap(1, transform.position, Quaternion.LookRotation(dirGO.normalized), Mathf.Min(10, dirGO.magnitude));
-            }
 
             UnityEditor.Handles.color = Color.yellow;
             for (int i = 0; i < currentState.targetPositions.Length; i++)
@@ -109,10 +120,7 @@ public class AIController : MonoBehaviour
     void Update()
     {
 
-        if (Input.GetKeyDown(KeyCode.F1))
-        {
-            showDebug = !showDebug;
-        }
+
     }
 
     void FixedUpdate()
@@ -120,15 +128,27 @@ public class AIController : MonoBehaviour
         //AI STUFF
         if (frameCounter++ % (int)(1.0f / Time.fixedDeltaTime) == 0)
         {
+            isAggresive = myRand.Next(0, 11) == 0;
+            if (currentState != null && currentState.otherCars != null && currentState.otherCars.Length == 0)
+                isAggresive = false;
             currentState = new State();// Generate a state representing the world to be passed to the HTNPlanner
             currentState.myCar = new CarState(myCarController.carUniqueID, transform.position, GetComponent<Rigidbody>().velocity, transform.forward);
             if (allCars.Length > 0)
             {
-                currentState.otherCars = new CarState[allCars.Length - 1];
                 int otherCarCount = 0;
+
                 foreach (GameObject car in allCars)
                 {
                     if (car == gameObject) continue;
+                    if (car == null) continue;
+                    otherCarCount++;
+                }
+                currentState.otherCars = new CarState[otherCarCount];
+                otherCarCount = 0;
+                foreach (GameObject car in allCars)
+                {
+                    if (car == gameObject) continue;
+                    if (car == null) continue;
                     currentState.otherCars[otherCarCount++] = new CarState(car.GetComponent<CarController>().carUniqueID, car.transform.position, car.GetComponent<Rigidbody>().velocity, car.transform.forward);
                 }
             }
@@ -151,8 +171,8 @@ public class AIController : MonoBehaviour
             //Set the waitHandle to make sure that the planner can retrieve a new planning
 
 
-
-            Vector3 midPos = transform.position + new Vector3(0, 0.5f, 25f);
+            float zPos = Mathf.Max(myCarController.GetComponent<Rigidbody>().velocity.z * 1.0f, 5.0f);
+            Vector3 midPos = transform.position + new Vector3(0, 0.5f, zPos);
 
             Ray targetRay = new Ray(midPos + new Vector3(1, 0, 0) * rayWidth/2, - new Vector3(1, 0, 0));
             RaycastHit[] hits = Physics.RaycastAll(targetRay, rayWidth, 1 << LayerMask.NameToLayer("AIGuide"));
@@ -161,6 +181,11 @@ public class AIController : MonoBehaviour
                 targetPos[i] = hits[i].point;
             currentState.targetPositions = targetPos;
 
+            if (currentState.targetPositions.Length == 0)
+            {
+                GameLogic.myInstance.DestroyCar(myCarController.myPlayerData, true);
+                Debug.LogWarning("Error : Could not find target position for car " + transform.gameObject.name + ". Killing car");
+            }
 
             waitHandle.Set();
 
@@ -184,8 +209,7 @@ public class AIController : MonoBehaviour
             waitHandle.WaitOne(); //Run only if the handle has been set in fixedUpdate (i.e every 1sec)
 
 
-
-            plan = planner.GetPlan(currentState); //Retrieve updated plan based on currentState
+            plan = planner.GetPlan(currentState, isAggresive); //Retrieve updated plan based on currentState
             //Log generated plan
             frameGenerated = frameCounter;
             string debugPlan = "";
@@ -199,5 +223,10 @@ public class AIController : MonoBehaviour
         }
     }
 
+
+    public void stopPlanner()
+    {
+        plannerThread.Abort();
+    }
 }
 

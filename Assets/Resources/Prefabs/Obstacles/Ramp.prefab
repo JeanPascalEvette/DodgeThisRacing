@@ -9,15 +9,15 @@ GameObject:
   m_Component:
   - 4: {fileID: 481558}
   - 33: {fileID: 3361376}
-  - 65: {fileID: 6577432}
   - 23: {fileID: 2300834}
+  - 64: {fileID: 6453386}
   - 114: {fileID: 11461838}
   m_Layer: 0
   m_Name: Ramp
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 1
   m_IsActive: 1
 --- !u!4 &481558
 Transform:
@@ -25,9 +25,9 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 105914}
-  m_LocalRotation: {x: -0.000000023580798, y: 0.98947006, z: -0.1447379, w: -0.00000016120515}
-  m_LocalPosition: {x: 0, y: 1.45, z: 45.9}
-  m_LocalScale: {x: 3.5733824, y: 0.11967193, z: -11.696879}
+  m_LocalRotation: {x: -0.5, y: -0.5, z: -0.5000001, w: 0.49999994}
+  m_LocalPosition: {x: -1.35, y: 1.76, z: 7.76}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -41,14 +41,14 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 3ce137e259a5ec843ab185c088368162, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 1
   m_ReflectionProbeUsage: 1
   m_ProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
-  m_PreserveUVs: 1
+  m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
   m_MinimumChartSize: 4
@@ -63,9 +63,9 @@ MeshFilter:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 105914}
-  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!65 &6577432
-BoxCollider:
+  m_Mesh: {fileID: 4300000, guid: b914b2125b939bd41b5d30ec67659353, type: 3}
+--- !u!64 &6453386
+MeshCollider:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
@@ -74,8 +74,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Convex: 0
+  m_Mesh: {fileID: 4300000, guid: b914b2125b939bd41b5d30ec67659353, type: 3}
 --- !u!114 &11461838
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -87,15 +87,58 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9990946ddd3089041b6187fc454a448e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  positionOptions:
-  - {x: 0, y: 0, z: 0}
+  trackPieceNumber:
+  - ConfigPresetNumber:
+    - ObstacleInstance:
+      - {x: 0, y: 0, z: 0}
+    - ObstacleInstance:
+      - {x: 0, y: 0, z: 0}
+  - ConfigPresetNumber: []
+  - ConfigPresetNumber: []
+  - ConfigPresetNumber: []
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 0}
-    m_Modifications: []
+    m_Modifications:
+    - target: {fileID: 0}
+      propertyPath: trackPieceNumber.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: trackPieceNumber.Array.data[0].ConfigPresetNumber.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: trackPieceNumber.Array.data[0].ConfigPresetNumber.Array.data[0].ObstacleInstance.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: trackPieceNumber.Array.data[0].ConfigPresetNumber.Array.data[1].ObstacleInstance.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_LocalRotation.x
+      value: 0.5000002
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_LocalRotation.y
+      value: 0.4999998
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_LocalRotation.z
+      value: 0.49999988
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_LocalRotation.w
+      value: -0.50000006
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_LocalPosition.y
+      value: -0.002
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 105914}

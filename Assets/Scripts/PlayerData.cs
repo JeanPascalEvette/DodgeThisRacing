@@ -11,15 +11,24 @@ public class PlayerData
     private PlayerType _playerType;
     private GameObject _carObject;
     private GameObject _prefab;
+    private int _lives;
+    private int ID;
 
     public enum ControlScheme { WASD, Arrows, XboxController1, XboxController2, NotAssigned };
     public enum PlayerType { AI, Player, None };
     public PlayerData() {  }
-    public PlayerData(int carType, ControlScheme ctrlScheme, PlayerType playerType)
+    public PlayerData(int id, int carType, ControlScheme ctrlScheme, PlayerType playerType)
     {
         _carType = carType;
         _ctrlScheme = ctrlScheme;
         _playerType = playerType;
+        _lives = 10;
+        ID = id;
+    }
+
+    public int getID() {
+
+        return ID;
     }
 
     public bool IsAI()
@@ -40,6 +49,16 @@ public class PlayerData
     public int GetCarType()
     {
         return _carType;
+    }
+
+    public int getLives()
+    {
+        return _lives;
+    }
+
+    public void reduceLives()
+    {
+        _lives--;
     }
 
     public void AttachGameObject(GameObject car)
