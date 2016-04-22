@@ -1724,7 +1724,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 169640, guid: 56d85edf13363e84186bda7089f36bcd, type: 2}
       propertyPath: m_Name
-      value: CAR_GUI _2
+      value: CAR_GUI_2
       objectReference: {fileID: 0}
     - target: {fileID: 11442658, guid: 56d85edf13363e84186bda7089f36bcd, type: 2}
       propertyPath: m_Text
@@ -3405,6 +3405,14 @@ Prefab:
       propertyPath: yMaximum
       value: 175
       objectReference: {fileID: 0}
+    - target: {fileID: 22458844, guid: 3cfec0dd1c27b5245b265515ecd148bd, type: 2}
+      propertyPath: m_AnchoredPosition.x
+      value: 70
+      objectReference: {fileID: 0}
+    - target: {fileID: 22458844, guid: 3cfec0dd1c27b5245b265515ecd148bd, type: 2}
+      propertyPath: m_AnchoredPosition.y
+      value: 19
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 11429000, guid: 3cfec0dd1c27b5245b265515ecd148bd, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 3cfec0dd1c27b5245b265515ecd148bd, type: 2}
@@ -3968,7 +3976,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 169640, guid: 56d85edf13363e84186bda7089f36bcd, type: 2}
       propertyPath: m_Name
-      value: CAR_GUI _4
+      value: CAR_GUI_4
       objectReference: {fileID: 0}
     - target: {fileID: 11442658, guid: 56d85edf13363e84186bda7089f36bcd, type: 2}
       propertyPath: m_Text
