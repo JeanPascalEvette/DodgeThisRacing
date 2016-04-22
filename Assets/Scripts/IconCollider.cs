@@ -21,6 +21,7 @@ public class IconCollider : MonoBehaviour {
 
     public bool ThisCarSelected = false; // Bool Variable teeling if this car has been selected by the player
     public int ThisCarType;
+    public Sprite ThisCarImage;
 
     //Initializing
     void Start()
@@ -73,101 +74,103 @@ public class IconCollider : MonoBehaviour {
         {
             //If the A button is pressed the coin is assigned to that car icon and the cursor doesn't move it around anymore (Selection of the car)
             if (Input.GetButtonDown("ButtonAJoyStick1") && l.is_joy1_taken && m.is_this_inside == true && !ThisCarSelected)
-            {
-
-                t.transform.parent = Car.transform;             //The coin is given the car icon as a parent
-                Car.GetComponent<Collider2D>().enabled = false; //The collider of the car icon is deactivated. This car cannot be selected by other players
-                l.num_ready_players++;                          // Increase the number of players who are ready to GO
-                ThisCarSelected = true;                         //Bool variable telling the player has selected this car
-
-                m.ThisPlayerCar = ThisCarType;
-            }
+            { SelectCar(); }
 
             //If the cursor is near the coin inside the area of the car icon and presses B he re-acquires the coin and deselects the car
             if (Input.GetButtonDown("ButtonXJoyStick1") && l.is_joy1_taken && m.is_this_inside == true && b.is_player_near &&ThisCarSelected)
-            {
+            { DeSelectCar(); }
 
-                t.transform.parent = old;                      //The coin is given the old parent back (the cursor)
-                Car.GetComponent<Collider2D>().enabled = true; //The car Collider is re-activated
-                l.num_ready_players--;                         //The number of players ready to go is decreased
-                ThisCarSelected = false;                       //The car is deselected
-
-                m.ThisPlayerCar = 0;
-            }
         }
 
         //Same for all the other control types
         else if (m.ThisPlayerControl == MoveSelector.ControlTypesHere.Joy2)
         {
             if (Input.GetButtonDown("ButtonAJoyStick2") && l.is_joy2_taken && m.is_this_inside == true && !ThisCarSelected)
-            {
-
-                t.transform.parent = Car.transform;
-                Car.GetComponent<Collider2D>().enabled = false;
-                l.num_ready_players++;
-                ThisCarSelected = true;
-
-                m.ThisPlayerCar = ThisCarType;
-            }
+            { SelectCar(); }
 
             if (Input.GetButtonDown("ButtonXJoyStick2") && l.is_joy2_taken && m.is_this_inside == true && b.is_player_near && ThisCarSelected)
-            {
-
-                t.transform.parent = old;
-                Car.GetComponent<Collider2D>().enabled = true;
-                l.num_ready_players--;
-                ThisCarSelected = false;
-
-                m.ThisPlayerCar = 0;
-            }
+            { DeSelectCar(); }
         }
 
         else if (m.ThisPlayerControl == MoveSelector.ControlTypesHere.ArrowKeys)
         {
             if (Input.GetButtonDown("ButtonAArrows") && l.is_arrowKeys_taken && m.is_this_inside == true && !ThisCarSelected)
-            {
-
-                t.transform.parent = Car.transform;
-                Car.GetComponent<Collider2D>().enabled = false;
-                l.num_ready_players++;
-                ThisCarSelected = true;
-
-                m.ThisPlayerCar = ThisCarType;
-            }
+            { SelectCar(); }
 
             if (Input.GetButtonDown("ButtonXArrows") && l.is_arrowKeys_taken && m.is_this_inside == true && b.is_player_near && ThisCarSelected)
-            {
-                t.transform.parent = old;
-                Car.GetComponent<Collider2D>().enabled = true;
-                l.num_ready_players--;
-                ThisCarSelected = false;
-
-                m.ThisPlayerCar = 0;
-            }
+            { DeSelectCar(); }
         }
 
         else if (m.ThisPlayerControl == MoveSelector.ControlTypesHere.WSDA)
         {
             if (Input.GetButtonDown("ButtonAWSDA") && l.is_wsda_taken && m.is_this_inside == true && !ThisCarSelected)
-            {
-                t.transform.parent = Car.transform;
-                Car.GetComponent<Collider2D>().enabled = false;
-                l.num_ready_players++;
-                ThisCarSelected = true;
-
-                m.ThisPlayerCar = ThisCarType;
-            }
+            { SelectCar(); }
 
             if (Input.GetButtonDown("ButtonXWSDA") && l.is_wsda_taken && m.is_this_inside == true && b.is_player_near && ThisCarSelected)
-            {
-                t.transform.parent = old;
-                Car.GetComponent<Collider2D>().enabled = true;
-                l.num_ready_players--;
-                ThisCarSelected = false;
-
-                m.ThisPlayerCar = 0;
-            }
+            { DeSelectCar(); }
         }
+    }
+
+    void SelectCar() {
+
+        t.transform.parent = Car.transform;             //The coin is given the car icon as a parent
+        Car.GetComponent<Collider2D>().enabled = false; //The collider of the car icon is deactivated. This car cannot be selected by other players
+        l.num_ready_players++;                          // Increase the number of players who are ready to GO
+        ThisCarSelected = true;                         //Bool variable telling the player has selected this car
+
+        switch (m.playerID)   //Assign the car image to the correct player
+        {
+            case 1:
+                p1.CurrentCar = ThisCarImage;
+                p1.ImageSwapper();
+                break;
+            case 2:
+                p2.CurrentCar = ThisCarImage;
+                p2.ImageSwapper();
+                break;
+            case 3:
+                p3.CurrentCar = ThisCarImage;
+                p3.ImageSwapper();
+                break;
+            case 4:
+                p4.CurrentCar = ThisCarImage;
+                p4.ImageSwapper();
+                break;
+        }
+
+        m.ThisPlayerCar = ThisCarType;
+
+    }
+
+    void DeSelectCar()
+    {
+        t.transform.parent = old;                      //The coin is given the old parent back (the cursor)
+        Car.GetComponent<Collider2D>().enabled = true; //The car Collider is re-activated
+        l.num_ready_players--;                         //The number of players ready to go is decreased
+        ThisCarSelected = false;                       //The car is deselected
+
+        switch (m.playerID) //Assign the "NO Car" image to the correct player
+        {
+            case 1:
+                p1.CurrentCar = p1.default_Empty;
+                p1.ImageSwapper();
+                break;
+            case 2:
+                p2.CurrentCar = p2.default_Empty;
+                p2.ImageSwapper();
+                break;
+            case 3:
+                p3.CurrentCar = p3.default_Empty;
+                p3.ImageSwapper();
+                break;
+            case 4:
+                p4.CurrentCar = p4.default_Empty;
+                p4.ImageSwapper();
+                break;
+        }
+
+        m.ThisPlayerCar = 0;
+
     }
 
     //This function is called in the script PlayerSelector controlling the panels. If a player is deactivated by a panel the coin, the cursor and their positions are re-set to default

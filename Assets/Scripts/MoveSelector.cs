@@ -20,6 +20,8 @@ public class MoveSelector : MonoBehaviour {
 
     public bool is_on_button1 = false; //Bool variable to be used in the Script PlayerActivation (Currently not in use)
 
+    public float xMaximum, yMaximum;
+
     //The enum Containing the different control Schemes
     public enum ControlTypesHere
     {
@@ -35,34 +37,56 @@ public class MoveSelector : MonoBehaviour {
     // A variable of type ControlTypeshere that specifies which control scheme this player has chosen
     public ControlTypesHere ThisPlayerControl;
 
-    public  PlayerData ThisPlayerData;
+    public PlayerData ThisPlayerData;
     private PlayerData.ControlScheme ThisControlScheme;
     private PlayerData.PlayerType ThisPlayerType;
     public int ThisPlayerCar;
-   
+
     //initialization
-    void Start ()
+    void Start()
     {
-       l = GameObject.FindWithTag("LevelManager").GetComponent<LevelManager>();
+        l = GameObject.FindWithTag("LevelManager").GetComponent<LevelManager>();
 
-       //Obtaining and saving the initial positions of the cursor and the coin
-       CoinPosition = Coin.transform.position;
-       playerPosition = playerButton.transform.position;
+        //Obtaining and saving the initial positions of the cursor and the coin
+        CoinPosition = Coin.transform.position;
+        playerPosition = playerButton.transform.position;
 
-       ThisPlayerCar = 0;
-       ThisControlScheme = PlayerData.ControlScheme.NotAssigned;
-       ThisPlayerType = PlayerData.PlayerType.None;
+        ThisPlayerCar = 0;
+        ThisControlScheme = PlayerData.ControlScheme.NotAssigned;
+        ThisPlayerType = PlayerData.PlayerType.None;
     }
-
 
     //Called once per frame
     void Update()
     {
-       HandleMovement();
-       UpdatePlayerData();
-
+        HandleMovement();
     }
 
+    void LateUpdate()
+    {
+        Vector3 pos = transform.localPosition;
+        if (pos.x > xMaximum)
+        {
+            pos.x = xMaximum;
+            transform.localPosition = pos;
+        }
+       else if (pos.x < - xMaximum)
+        {
+            pos.x = - xMaximum;
+            transform.localPosition = pos;
+        }
+
+        if (pos.y > yMaximum)
+        {
+            pos.y = yMaximum;
+            transform.localPosition = pos;
+        }
+        else if (pos.y < -yMaximum)
+        {
+            pos.y = -yMaximum;
+            transform.localPosition = pos;
+        }
+    }
 
     //Handles the movement of the cursors according to the selected control Scheme
     void HandleMovement()
@@ -101,11 +125,10 @@ public class MoveSelector : MonoBehaviour {
         }
     }
 
-
     public void CreatePlayerData()
     {
-
-        ThisPlayerData = new PlayerData(ThisPlayerCar, ThisControlScheme, ThisPlayerType);
+        UpdatePlayerData();
+        ThisPlayerData = new PlayerData(playerID,ThisPlayerCar, ThisControlScheme, ThisPlayerType);
     }
 
     void UpdatePlayerData()

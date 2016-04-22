@@ -167,7 +167,7 @@ public class CarController : MonoBehaviour
             case 2: txtMsh.color = Color.green; break;
             case 3: txtMsh.color = Color.yellow; break;
         }
-        
+
         sounds = GetComponents<AudioSource>();
             noise1 = sounds[0];
             noise2 = sounds[1];
@@ -657,6 +657,7 @@ public class CarController : MonoBehaviour
 
 
         }
+        
         else if (myPlayerData.GetControlScheme() == PlayerData.ControlScheme.XboxController2)
         {
             if (direction == 'W')
