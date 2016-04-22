@@ -58,10 +58,10 @@ public class GameLogic : MonoBehaviour
         if (Data.getNumberCarSelected() == 0) // IF did not go through main menu (DEBUG ONLY)
         {
             int ctrlScheme = 0;
-            myCars[0] = new PlayerData(0,0, (PlayerData.ControlScheme)ctrlScheme++, PlayerData.PlayerType.Player);
+            myCars[0] = new PlayerData(1,0, (PlayerData.ControlScheme)ctrlScheme++, PlayerData.PlayerType.Player);
             for (int i = 1; i < NUMBEROFCARS; i++)
             {
-                myCars[i] = new PlayerData(i,i, (PlayerData.ControlScheme)ctrlScheme++, PlayerData.PlayerType.AI);
+                myCars[i] = new PlayerData(i+1,i, (PlayerData.ControlScheme)ctrlScheme++, PlayerData.PlayerType.AI);
             }
             Data.selectCars(myCars);
         }
@@ -196,7 +196,7 @@ public class GameLogic : MonoBehaviour
         if (data.getLives() != 0)
         {
             data.reduceLives();
-            playerDeathNumber = data.getID() + 1;
+            playerDeathNumber = data.getID();
             string explPrefab = "Prefabs/FX/Explosions/Explosion";
             if (data.GetGameObject().name.IndexOf("Van - Classic") != -1) 
                 explPrefab = "Prefabs/FX/Explosions/RaceVanExplosion";

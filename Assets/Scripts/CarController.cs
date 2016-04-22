@@ -160,13 +160,13 @@ public class CarController : MonoBehaviour
         rearRightPosition = rearRightWheel.transform.localPosition.z;
 
         var txtMsh = transform.Find("Text").GetComponent<TextMesh>();
-        txtMsh.text = "P"+(myPlayerData.getID() + 1).ToString();
+        txtMsh.text = "P"+(myPlayerData.getID()).ToString();
         switch(myPlayerData.getID())
         {
-            case 0: txtMsh.color = Color.blue; break;
-            case 1: txtMsh.color = Color.red; break;
-            case 2: txtMsh.color = Color.green; break;
-            case 3: txtMsh.color = Color.yellow; break;
+            case 1: txtMsh.color = Color.blue; break;
+            case 2: txtMsh.color = Color.red; break;
+            case 3: txtMsh.color = Color.green; break;
+            case 4: txtMsh.color = Color.yellow; break;
         }
 
         sounds = GetComponents<AudioSource>();
