@@ -15,7 +15,7 @@ public class ButtonCollider : MonoBehaviour {
         if (trigger == player.GetComponent<Collider2D>()) {is_player_near = true;}
 
         //Debug stuff(Delete later)
-        print("Enter Button" + is_player_near);
+        //print("Enter Button" + is_player_near);
     }
 
 
@@ -27,6 +27,6 @@ public class ButtonCollider : MonoBehaviour {
         if (trigger == player.GetComponent<Collider2D>()) {is_player_near = false;}
 
         //Debug stuff(Delete later)
-        print("Exit Button"+ is_player_near);
+       // print("Exit Button"+ is_player_near);
     }
 }
