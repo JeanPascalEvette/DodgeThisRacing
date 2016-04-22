@@ -22,6 +22,7 @@ public class IconCollider : MonoBehaviour {
     public bool ThisCarSelected = false; // Bool Variable teeling if this car has been selected by the player
     public int ThisCarType;
     public Sprite ThisCarImage;
+    private Vector3 ParentPosition;
 
     //Initializing
     void Start()
@@ -34,10 +35,9 @@ public class IconCollider : MonoBehaviour {
     void Update()
     {
 
-        if (isActive) { checkControlType(); } //If a cursor is on the Icon call the function for interaction with it
-        
+        if (isActive)        { checkControlType(); } //If a cursor is on the Icon call the function for interaction with it
+       
     }
-
 
     //Function to detect a cursor entering in the trigger area of the Car icon selection
     void OnTriggerEnter2D(Collider2D trigger)
@@ -52,8 +52,10 @@ public class IconCollider : MonoBehaviour {
         m.is_this_inside = true;                        // Change the bool variable telling if the cursor is inside the icon area
 
         ID = m.playerID;           //Get the ID of the player that entered that icon area
-        t = trigger.gameObject;    //Set the geenric t object to the cursor/trigger
-        old = t.transform.parent;  //Save the current parent of the coin (the cursor) so it can be reassigned to the coin later       
+        t = trigger.gameObject;    //Set the generic t object to the cursor/trigger
+        old = t.transform.parent;//Save the current parent of the coin (the cursor) so it can be reassigned to the coin later  
+
+        ParentPosition = t.transform.localPosition;
     }
 
     //Function to detect a cursor exiting from the trigger area of the Car selection icon
@@ -77,7 +79,7 @@ public class IconCollider : MonoBehaviour {
             { SelectCar(); }
 
             //If the cursor is near the coin inside the area of the car icon and presses B he re-acquires the coin and deselects the car
-            if (Input.GetButtonDown("ButtonXJoyStick1") && l.is_joy1_taken && m.is_this_inside == true && b.is_player_near &&ThisCarSelected)
+            if (Input.GetButtonDown("ButtonXJoyStick1") && l.is_joy1_taken &&ThisCarSelected)
             { DeSelectCar(); }
 
         }
@@ -88,7 +90,7 @@ public class IconCollider : MonoBehaviour {
             if (Input.GetButtonDown("ButtonAJoyStick2") && l.is_joy2_taken && m.is_this_inside == true && !ThisCarSelected)
             { SelectCar(); }
 
-            if (Input.GetButtonDown("ButtonXJoyStick2") && l.is_joy2_taken && m.is_this_inside == true && b.is_player_near && ThisCarSelected)
+            if (Input.GetButtonDown("ButtonXJoyStick2") && l.is_joy2_taken && ThisCarSelected)
             { DeSelectCar(); }
         }
 
@@ -97,7 +99,7 @@ public class IconCollider : MonoBehaviour {
             if (Input.GetButtonDown("ButtonAArrows") && l.is_arrowKeys_taken && m.is_this_inside == true && !ThisCarSelected)
             { SelectCar(); }
 
-            else if (Input.GetButtonDown("ButtonXArrows") && l.is_arrowKeys_taken && m.is_this_inside == true && b.is_player_near && ThisCarSelected)
+            else if (Input.GetButtonDown("ButtonXArrows") && l.is_arrowKeys_taken && ThisCarSelected)
             { DeSelectCar(); }
         }
 
@@ -106,7 +108,7 @@ public class IconCollider : MonoBehaviour {
             if (Input.GetButtonDown("ButtonAWSDA") && l.is_wsda_taken && m.is_this_inside == true && !ThisCarSelected)
             { SelectCar(); }
 
-            else if (Input.GetButtonDown("ButtonXWSDA") && l.is_wsda_taken && m.is_this_inside == true && b.is_player_near && ThisCarSelected)
+            else if (Input.GetButtonDown("ButtonXWSDA") && l.is_wsda_taken && ThisCarSelected)
             { DeSelectCar(); }
         }
     }
@@ -115,8 +117,8 @@ public class IconCollider : MonoBehaviour {
 
         t.transform.parent = Car.transform;             //The coin is given the car icon as a parent
         Car.GetComponent<Collider2D>().enabled = false; //The collider of the car icon is deactivated. This car cannot be selected by other players
-        l.num_ready_players++;                          // Increase the number of players who are ready to GO
         ThisCarSelected = true;                         //Bool variable telling the player has selected this car
+        l.num_ready_players++;                          // Increase the number of players who are ready to GO
 
         switch (m.playerID)   //Assign the car image to the correct player
         {
@@ -145,9 +147,13 @@ public class IconCollider : MonoBehaviour {
     void DeSelectCar()
     {
         t.transform.parent = old;                      //The coin is given the old parent back (the cursor)
+        t.transform.localPosition = ParentPosition;
+        m.is_this_inside = false;
+        TextColorCar.color = Color.white;    
         Car.GetComponent<Collider2D>().enabled = true; //The car Collider is re-activated
-        l.num_ready_players--;                         //The number of players ready to go is decreased
         ThisCarSelected = false;                       //The car is deselected
+        isActive = false;
+        l.num_ready_players--;                         //The number of players ready to go is decreased
 
         switch (m.playerID) //Assign the "NO Car" image to the correct player
         {
