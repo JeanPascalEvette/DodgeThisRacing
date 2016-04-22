@@ -58,23 +58,27 @@ public class inGameGUI : MonoBehaviour {
 
     void UpdateScore()
     {
-        if (Data.getNumberCarSelected() < 5)
+        if (Data.getNumberCarSelected() == 4)
         {
             score1.text = "Player 1 remaining lives: " + Data.GetPlayerData()[0].getLives();
             score2.text = "Player 2 remaining lives: " + Data.GetPlayerData()[1].getLives();
             score3.text = "Player 3 remaining lives: " + Data.GetPlayerData()[2].getLives();
             score4.text = "Player 4 remaining lives: " + Data.GetPlayerData()[3].getLives();
         }
-        else if (Data.getNumberCarSelected() < 4)
+        else if (Data.getNumberCarSelected() == 3)
         {
             score1.text = "Player 1 remaining lives: " + Data.GetPlayerData()[0].getLives();
             score2.text = "Player 2 remaining lives: " + Data.GetPlayerData()[1].getLives();
             score3.text = "Player 3 remaining lives: " + Data.GetPlayerData()[2].getLives();
         }
-        else if (Data.getNumberCarSelected() < 3)
+        else if (Data.getNumberCarSelected() == 2)
         {
             score1.text = "Player 1 remaining lives: " + Data.GetPlayerData()[0].getLives();
             score2.text = "Player 2 remaining lives: " + Data.GetPlayerData()[1].getLives();
+        }
+        else if (Data.getNumberCarSelected() == 1)
+        {
+            score1.text = "Player 1 remaining lives: " + Data.GetPlayerData()[0].getLives();
         }
     }
 
