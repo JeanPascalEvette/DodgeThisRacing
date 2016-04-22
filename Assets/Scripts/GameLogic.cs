@@ -197,11 +197,13 @@ public class GameLogic : MonoBehaviour
             data.reduceLives();
             playerDeathNumber = data.getID() + 1;
             string explPrefab = "Prefabs/FX/Explosions/Explosion";
-            if (data.GetGameObject().name.Substring(0, 3) == "Van")
+            if (data.GetGameObject().name.IndexOf("Van - Classic") != -1) 
                 explPrefab = "Prefabs/FX/Explosions/RaceVanExplosion";
-            if (data.GetGameObject().name.Length >= 8 && data.GetGameObject().name.Substring(0, 8) == "Car - Cl")
+            if (data.GetGameObject().name.IndexOf("Van - Turbo") != -1) 
+                explPrefab = "Prefabs/FX/Explosions/RaceVan#2Explosion";
+            if (data.GetGameObject().name.Length >= 8 && data.GetGameObject().name.IndexOf("Car - Classic") != -1)
                 explPrefab = "Prefabs/FX/Explosions/ClasicMGTExplosion"; 
-            if (data.GetGameObject().name.Length >= 8 && data.GetGameObject().name.Substring(0, 8) == "Car - Ra")
+            if (data.GetGameObject().name.Length >= 8 && data.GetGameObject().name.IndexOf("Car - Racing") != -1)
                 explPrefab = "Prefabs/FX/Explosions/RaceMGTEExplosion"; 
 
              var expl = (GameObject)Instantiate(Resources.Load(explPrefab), data.GetGameObject().transform.position, Quaternion.identity);

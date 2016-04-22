@@ -17,6 +17,7 @@ TagManager:
   - p
   - Coin
   - Player1
+  - Obstacle
   layers:
   - Default
   - TransparentFX
