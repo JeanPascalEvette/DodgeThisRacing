@@ -194,7 +194,7 @@ public class GameLogic : MonoBehaviour
         if (data.getLives() != 0)
         {
             data.reduceLives();
-            playerDeathNumber = data.GetCarType() + 1;
+            playerDeathNumber = data.getID() + 1;
             string explPrefab = "Prefabs/FX/Explosions/Explosion";
             if (data.GetGameObject().name.Substring(0, 3) == "Van")
                 explPrefab = "Prefabs/FX/Explosions/RaceVanExplosion";
