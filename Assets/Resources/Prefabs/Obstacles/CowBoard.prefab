@@ -30,7 +30,7 @@ GameObject:
   - 114: {fileID: 11497696}
   m_Layer: 0
   m_Name: CowBoard
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 1
@@ -137,13 +137,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9990946ddd3089041b6187fc454a448e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  trackPieceNumber:
-  - ConfigPresetNumber:
-    - ObstacleInstance: []
-    - ObstacleInstance: []
-  - ConfigPresetNumber: []
-  - ConfigPresetNumber: []
-  - ConfigPresetNumber: []
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
@@ -194,6 +187,10 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: m_LocalRotation.w
       value: 0.49999994
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_TagString
+      value: Obstacle
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 
 public class GameLogic : MonoBehaviour
 {
@@ -159,6 +160,7 @@ public class GameLogic : MonoBehaviour
                 { xPos = -i; break; }
             }
             startPoint.x = xPos;
+            startPoint.y = 0f;
 
             var spawnVel = myCamera.leadingGameObject.GetComponent<Rigidbody>().velocity;
 
@@ -174,9 +176,9 @@ public class GameLogic : MonoBehaviour
             int winner = 0;
             for (int i = 0; i < allPD.Length; i++)
             {
-                if (allPD[i] != data && allPD[i].getLives() == 0)
+                if (allPD[i].getLives() == 0)
                     bodyCount++;
-                if (allPD[i].getLives() != 0)
+                else
                     winner = i + 1;
             }
             if(bodyCount == allPD.Length - 1)
@@ -194,13 +196,15 @@ public class GameLogic : MonoBehaviour
         if (data.getLives() != 0)
         {
             data.reduceLives();
-            playerDeathNumber = data.GetCarType() + 1;
+            playerDeathNumber = data.getID() + 1;
             string explPrefab = "Prefabs/FX/Explosions/Explosion";
-            if (data.GetGameObject().name.Substring(0, 3) == "Van")
+            if (data.GetGameObject().name.IndexOf("Van - Classic") != -1) 
                 explPrefab = "Prefabs/FX/Explosions/RaceVanExplosion";
-            if (data.GetGameObject().name.Length >= 8 && data.GetGameObject().name.Substring(0, 8) == "Car - Cl")
+            if (data.GetGameObject().name.IndexOf("Van - Turbo") != -1) 
+                explPrefab = "Prefabs/FX/Explosions/RaceVan#2Explosion";
+            if (data.GetGameObject().name.Length >= 8 && data.GetGameObject().name.IndexOf("Car - Classic") != -1)
                 explPrefab = "Prefabs/FX/Explosions/ClasicMGTExplosion"; 
-            if (data.GetGameObject().name.Length >= 8 && data.GetGameObject().name.Substring(0, 8) == "Car - Ra")
+            if (data.GetGameObject().name.Length >= 8 && data.GetGameObject().name.IndexOf("Car - Racing") != -1)
                 explPrefab = "Prefabs/FX/Explosions/RaceMGTEExplosion"; 
 
              var expl = (GameObject)Instantiate(Resources.Load(explPrefab), data.GetGameObject().transform.position, Quaternion.identity);
@@ -218,24 +222,11 @@ public class GameLogic : MonoBehaviour
 
 
 
-    void AddObstacles(GameObject trackPart, int trackPartId)
+    void AddObstaclesToList(GameObject trackPart)
     {
-        int numPresets = Data.getObstacle(0).GetComponent<ObstacleController>().GetNumberOfPresets(trackPartId);
-        if (numPresets == 0) return;
-        int preset = Random.Range(0, numPresets);
-        for (int obstacleNum = 0; obstacleNum < Data.GetNumObstacleAvailable(); obstacleNum++)
-        {
-            if (Data.getObstacle(obstacleNum).GetComponent<ObstacleController>() == null || numPresets > Data.getObstacle(obstacleNum).GetComponent<ObstacleController>().GetNumberOfPresets(trackPartId))
-                continue;
-            GameObject obstaclePrefab = Data.getObstacle(obstacleNum);
-            for (int i = 0; i < obstaclePrefab.GetComponent<ObstacleController>().GetNumberOfInstances(trackPartId, preset); i++)
-            {
-                var newObstacle = (GameObject)Instantiate(obstaclePrefab, Vector3.zero, obstaclePrefab.transform.rotation);
-                newObstacle.transform.parent = trackPart.transform;
-                newObstacle.GetComponent<ObstacleController>().SetupPosition(trackPartId, preset, i);
-                obstacleList.Add(newObstacle);
-            }
-        }
+        var arrayOfChildren = trackPart.transform.Cast<Transform>().Where(c => c.gameObject.tag == "Obstacle").ToArray();
+        foreach (var child in arrayOfChildren)
+            obstacleList.Add(child.gameObject);
     }
 
     Bounds GetBoundsOfTrackPiece(GameObject trackPiece)
@@ -287,7 +278,8 @@ public class GameLogic : MonoBehaviour
         newTrackPart.transform.parent = Track.transform;
         if (trackPartsList.Count != 1)
         {
-            AddObstacles(newTrackPart, choice);
+            //Commented out for new implementage of presets
+            AddObstaclesToList(newTrackPart);
         }
 
         if (trackPartsList.Count == NumberOfTrackParts)
@@ -383,6 +375,14 @@ public class GameLogic : MonoBehaviour
             {
                 UnityEngine.Camera.main.GetComponent<Camera>().ZoomOut();
                 //trackPiece.transform.Find("Canyon_Middle_D").GetComponent<MeshRenderer>().enabled = false;
+            }
+        }
+
+        foreach(PlayerData pd in Data.GetPlayerData())
+        {
+            if(pd.GetGameObject() != null && pd.GetGameObject().transform.position.y < -2f)
+            {
+                DestroyCar(pd, true);
             }
         }
 

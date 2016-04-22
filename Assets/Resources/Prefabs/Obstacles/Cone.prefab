@@ -15,7 +15,7 @@ GameObject:
   - 54: {fileID: 5466722}
   m_Layer: 0
   m_Name: Cone
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -103,17 +103,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9990946ddd3089041b6187fc454a448e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  trackPieceNumber:
-  - ConfigPresetNumber:
-    - ObstacleInstance:
-      - {x: 5, y: 0, z: 0}
-    - ObstacleInstance:
-      - {x: 5, y: 0, z: 5}
-      - {x: 2, y: 0, z: 5}
-      - {x: 1, y: 0, z: 5}
-  - ConfigPresetNumber: []
-  - ConfigPresetNumber: []
-  - ConfigPresetNumber: []
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
@@ -164,6 +153,10 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: trackPieceNumber.Array.data[0].ConfigPresetNumber.Array.data[1].ObstacleInstance.Array.data[1].x
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_TagString
+      value: Obstacle
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

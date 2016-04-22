@@ -6,7 +6,7 @@ using System.Linq;
 public class Data : MonoBehaviour {
 
     private static GameObject[] CarsAvailable;
-    private static GameObject[] TrackPartsAvailable;
+    private static GameObject[][] TrackPartsAvailable;
     private static GameObject[] ObstaclesAvailable;
     private static PlayerData[] CarsSelected;
     
@@ -25,12 +25,17 @@ public class Data : MonoBehaviour {
     // Use this for initialization
     void Start ()
     {
-        CarsAvailable = Resources.LoadAll("Prefabs/Vehicules", typeof(GameObject))
+        var listTrackDirectories = System.IO.Directory.GetDirectories(System.IO.Directory.GetCurrentDirectory() + @"\Assets\Resources\Prefabs\TrackParts");
+        CarsAvailable = Resources.LoadAll("Prefabs/Vehicules", typeof(GameObject)) 
              .Cast<GameObject>()
              .ToArray();
-        TrackPartsAvailable = Resources.LoadAll("Prefabs/TrackParts", typeof(GameObject))
-             .Cast<GameObject>()
-             .ToArray();
+        TrackPartsAvailable = new GameObject[listTrackDirectories.Length][];
+        for (int i = 0; i < listTrackDirectories.Length; i++)
+        {
+            TrackPartsAvailable[i] = Resources.LoadAll("Prefabs/TrackParts/"+listTrackDirectories[i].Substring(listTrackDirectories[i].LastIndexOf("\\")+1), typeof(GameObject))
+                 .Cast<GameObject>()
+                 .ToArray();
+        }
         ObstaclesAvailable = Resources.LoadAll("Prefabs/Obstacles", typeof(GameObject))
              .Cast<GameObject>()
              .ToArray();
@@ -56,13 +61,15 @@ public class Data : MonoBehaviour {
         return TrackPartsAvailable.Length;
     }
 
-    public static GameObject getTrackPart(int choice = -1)
+    public static GameObject getTrackPart(int prefab = -1, int preset = -1)
     {
-        if (TrackPartsAvailable == null || TrackPartsAvailable.Length < choice)
+        if (TrackPartsAvailable == null || TrackPartsAvailable.Length < prefab || TrackPartsAvailable[prefab].Length < preset)
             return null;
-        if(choice == -1)
-            choice = Random.Range(0, TrackPartsAvailable.Length);
-        return TrackPartsAvailable[choice];
+        if (prefab == -1)
+            prefab = Random.Range(0, TrackPartsAvailable.Length);
+        if (preset == -1)
+            preset = Random.Range(0, TrackPartsAvailable[prefab].Length);
+        return TrackPartsAvailable[prefab][preset];
     }
 
     public static GameObject getObstacle(int choice = -1)

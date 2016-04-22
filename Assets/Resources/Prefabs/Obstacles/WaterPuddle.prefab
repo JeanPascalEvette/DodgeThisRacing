@@ -15,7 +15,7 @@ GameObject:
   - 65: {fileID: 6504984}
   m_Layer: 0
   m_Name: WaterPuddle
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 1
@@ -129,15 +129,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9990946ddd3089041b6187fc454a448e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  trackPieceNumber:
-  - ConfigPresetNumber:
-    - ObstacleInstance:
-      - {x: 5, y: 0.0001, z: 5}
-    - ObstacleInstance:
-      - {x: 5, y: 0.0001, z: 10}
-  - ConfigPresetNumber: []
-  - ConfigPresetNumber: []
-  - ConfigPresetNumber: []
 --- !u!215 &21512658
 ReflectionProbe:
   m_ObjectHideFlags: 1
@@ -216,6 +207,10 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: trackPieceNumber.Array.data[0].ConfigPresetNumber.Array.data[1].ObstacleInstance.Array.data[0].y
       value: 0.0001
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_TagString
+      value: Obstacle
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
