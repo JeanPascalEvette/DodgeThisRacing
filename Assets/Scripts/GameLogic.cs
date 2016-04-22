@@ -181,7 +181,7 @@ public class GameLogic : MonoBehaviour
                 else
                     winner = i + 1;
             }
-            if(bodyCount == allPD.Length - 1)
+            if(bodyCount == Data.getNumberCarSelected() - 1)
             {
                 playerDeathNumber = winner;
                 victory = true;

@@ -30,6 +30,7 @@ public class CarController : MonoBehaviour
     // Different variables
 
     public int currentGear;
+    [SerializeField]
     private float[] gears = { 2.9f, 1.20f, 0.92f, 0.85f, 0.83f, 0.80f, 0.78f }; //0 = Reverse
                                                                                 /*private float gearOne = 2.66f;      // gears should be applied to the equation to get from engine torque to drive force (Fdrive = u * Tengine * gear *xd * transmission efficiency/wheel radius)
                                                                                 private float gearTwo = 1.78f;      // however I will apply it to the traction force that we currently have
