@@ -31,15 +31,9 @@ public class CarController : MonoBehaviour
 
     public int currentGear;
     [SerializeField]
-    private float[] gears = { 2.9f, 1.20f, 0.92f, 0.85f, 0.83f, 0.80f, 0.78f }; //0 = Reverse
-                                                                                /*private float gearOne = 2.66f;      // gears should be applied to the equation to get from engine torque to drive force (Fdrive = u * Tengine * gear *xd * transmission efficiency/wheel radius)
-                                                                                private float gearTwo = 1.78f;      // however I will apply it to the traction force that we currently have
-                                                                                private float gearThree = 1.3f;
-                                                                                private float gearFour = 1.0f;
-                                                                                private float gearFive = 0.74f;
-                                                                                private float gearSix = 0.5f;
-                                                                                private float reverse = 2.9f;
-                                                                                */
+    private float[] gears = { 1.80f, 1.65f, 1.52f, 1.42f, 1.34f, 1.3f };
+    [SerializeField]
+    private float[] gearsMaxRpm = { 2000, 3500, 4500, 5000, 5500, 5750 };
     public float newVehicleSpeed;
     public float rpm;
     private float differentialRatio = 3.42f;     // for off road performance we should increase this parameter (like to 4.10f)         
@@ -135,7 +129,7 @@ public class CarController : MonoBehaviour
         // plannerThread = new Thread(retrievePlanner); // TODO IMPLEMENT THREADING
         // plannerThread.Start();
 
-        currentGear = 1; 			// bound to change in future // still in testing phase
+        currentGear = 0; 			// bound to change in future // still in testing phase
         rb = GetComponent<Rigidbody>();
 
         exhausts = GetComponentsInChildren<ParticleSystem>();
@@ -454,25 +448,24 @@ public class CarController : MonoBehaviour
 
         }
 
-        if (rpm >= 1000.0f && rpm < 5000.0f)
-        {
+        //if (rpm >= 1000.0f && rpm < 5000.0f)
+       // {
             rpmToTorque = ((rpm - 1000.0f) * 0.012f) + 300.0f;                                          // rpm converter to torque from 1000- 5000 rpm
-        }
+        //}
 
 
-        if (rpm >= 5000.0f && rpm <= 6000.0f)
-        {                                                           // rpm converter to torque from 5000-6000 rpm
-            rpmToTorque = 300.0f - (rpm * 0.05f) + 300.0f;
-        }
+       // if (rpm >= 5000.0f && rpm <= 6000.0f)
+       // {                                                           // rpm converter to torque from 5000-6000 rpm
+       //     rpmToTorque = 300.0f - (rpm * 0.05f) + 300.0f;
+        //}
 
-        if (rpm < 2000.0f && currentGear > 1)
+        if (currentGear > 0 && rpm < gearsMaxRpm[currentGear-1] *0.9f)
         {                                                               // when rpm gets below 1000 gear is decreased
-
             decreaseGear();
         }
 
 
-        if (rpm > 6000.0f)
+        if (rpm > gearsMaxRpm[currentGear])
         {                                                                           // when rpm gets above 6000 gear is increased
             increaseGear();
         }
@@ -586,16 +579,14 @@ public class CarController : MonoBehaviour
 
     public void increaseGear()
     {
-        if (currentGear >= 6) return;
+        if (currentGear >= 5) return;
         currentGear++;
-        rpm = 1000;
     }
 
     public void decreaseGear()
     {
-        if (currentGear <= 1) return;
+        if (currentGear <= 0) return;
         currentGear--;
-        rpm = 6000;
     }
 
     public void ReduceSpeed()
