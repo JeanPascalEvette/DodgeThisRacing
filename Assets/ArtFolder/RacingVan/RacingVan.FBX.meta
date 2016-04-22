@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: 75ca2cb6377edd44db780f1d0002c8a6
-timeCreated: 1458740987
+guid: e841825151b1d8b4ea107e756d83b3f0
+timeCreated: 1461183618
 licenseType: Free
 ModelImporter:
   serializedVersion: 19
@@ -174,10 +174,41 @@ ModelImporter:
     4300056: Damper
     4300058: CarBody
     4300060: FrontWindow
+    6400000: BackBumper
+    6400002: CarBody
+    6400004: Damper
+    6400006: Damper 1
+    6400008: Damper 2
+    6400010: Damper 3
+    6400012: FronGrider
+    6400014: FrontBumper
+    6400016: FrontWindow
+    6400018: Hood
+    6400020: LeftBackDoor
+    6400022: LeftBackDoorWindow
+    6400024: LeftDoor
+    6400026: LeftDoorWindow
+    6400028: LeftExhaustion
+    6400030: LeftMirror
+    6400032: RightBackDoor
+    6400034: RightBackDoorWindow
+    6400036: RightDoor
+    6400038: RightDoorWindow
+    6400040: RightExhaustion
+    6400042: RightMirror
+    6400044: Rim
+    6400046: Rim 1
+    6400048: Rim 2
+    6400050: Rim 3
+    6400052: RoofLights
+    6400054: Wheel
+    6400056: Wheel 1
+    6400058: Wheel 2
+    6400060: Wheel 3
   materials:
     importMaterials: 1
     materialName: 0
-    materialSearch: 1
+    materialSearch: 0
   animations:
     legacyGenerateAnimations: 4
     bakeSimulation: 0
@@ -200,7 +231,7 @@ ModelImporter:
     lODScreenPercentages: []
     globalScale: 1
     meshCompression: 0
-    addColliders: 0
+    addColliders: 1
     importBlendShapes: 1
     swapUVChannels: 0
     generateSecondaryUV: 0
@@ -216,7 +247,7 @@ ModelImporter:
   tangentSpace:
     normalSmoothAngle: 60
     normalImportMode: 0
-    tangentImportMode: 3
+    tangentImportMode: 0
   importAnimation: 1
   copyAvatar: 0
   humanDescription:
