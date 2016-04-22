@@ -22,7 +22,7 @@ public class PlayerData
         _carType = carType;
         _ctrlScheme = ctrlScheme;
         _playerType = playerType;
-        _lives = 1;
+        _lives = 10;
         ID = id;
     }
 

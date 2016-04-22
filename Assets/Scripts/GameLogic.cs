@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 
 public class GameLogic : MonoBehaviour
 {
@@ -218,24 +219,11 @@ public class GameLogic : MonoBehaviour
 
 
 
-    void AddObstacles(GameObject trackPart, int trackPartId)
+    void AddObstaclesToList(GameObject trackPart)
     {
-        int numPresets = Data.getObstacle(0).GetComponent<ObstacleController>().GetNumberOfPresets(trackPartId);
-        if (numPresets == 0) return;
-        int preset = Random.Range(0, numPresets);
-        for (int obstacleNum = 0; obstacleNum < Data.GetNumObstacleAvailable(); obstacleNum++)
-        {
-            if (Data.getObstacle(obstacleNum).GetComponent<ObstacleController>() == null || numPresets > Data.getObstacle(obstacleNum).GetComponent<ObstacleController>().GetNumberOfPresets(trackPartId))
-                continue;
-            GameObject obstaclePrefab = Data.getObstacle(obstacleNum);
-            for (int i = 0; i < obstaclePrefab.GetComponent<ObstacleController>().GetNumberOfInstances(trackPartId, preset); i++)
-            {
-                var newObstacle = (GameObject)Instantiate(obstaclePrefab, Vector3.zero, obstaclePrefab.transform.rotation);
-                newObstacle.transform.parent = trackPart.transform;
-                newObstacle.GetComponent<ObstacleController>().SetupPosition(trackPartId, preset, i);
-                obstacleList.Add(newObstacle);
-            }
-        }
+        var arrayOfChildren = trackPart.transform.Cast<Transform>().Where(c => c.gameObject.tag == "Obstacle").ToArray();
+        foreach (var child in arrayOfChildren)
+            obstacleList.Add(child.gameObject);
     }
 
     Bounds GetBoundsOfTrackPiece(GameObject trackPiece)
@@ -287,7 +275,8 @@ public class GameLogic : MonoBehaviour
         newTrackPart.transform.parent = Track.transform;
         if (trackPartsList.Count != 1)
         {
-            AddObstacles(newTrackPart, choice);
+            //Commented out for new implementage of presets
+            AddObstaclesToList(newTrackPart);
         }
 
         if (trackPartsList.Count == NumberOfTrackParts)
