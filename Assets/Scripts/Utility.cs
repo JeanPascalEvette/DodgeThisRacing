@@ -9,6 +9,7 @@ public class Utility {
     Vector3 targetPosition;
     Vector3 carDirection;
     float carSpeed;
+    bool agression;
 
     // variables for other cars
     CarState[] cars;
@@ -22,6 +23,7 @@ public class Utility {
         currentPosition = currentCarState.myPosition;
         currentVelocity = currentCarState.myVelocity;
         carSpeed = currentVelocity.magnitude;
+        agression = isAggresive;
 
         //Get position of the other cars
         cars = state.otherCars;
@@ -79,6 +81,12 @@ public class Utility {
             targetPosition = state.targetPositions[selectedPath];
         }
 
+        //Reset target if already passed
+        if(state.myCar.myPosition.z > targetPosition.z)
+        {
+            CarUtility(state, agression);
+        }
+
         //Get direction for the car
         currentPosition = thisCar.myPosition;
         carDirection = (targetPosition - currentPosition);
@@ -86,20 +94,32 @@ public class Utility {
         //Check for obstacles
         for (int i =0; i < state.obstacles.Length; i++)
         {
-            float distance = Vector3.Distance(state.obstacles[i].myPosition, currentPosition);
-            //Debug.Log(distance);
-            if(distance < 300)
+            float xDif;
+            float zDif;
+            float diag;
+            xDif = state.obstacles[i].myPosition.x - currentPosition.x;
+            zDif = state.obstacles[i].myPosition.z - currentPosition.z;
+            diag = Mathf.Sqrt((xDif * xDif) + (zDif * zDif));
+            
+            //float distance = Vector3.Distance(state.obstacles[i].myPosition, currentPosition);
+            if (diag < 5)
             {
-                carDirection = Vector3.Scale(carDirection,new Vector3(-1, 0, 1));
+                carDirection = Vector3.Scale(carDirection, new Vector3(-1, 0, 1));
                 carSpeed -= 10;
             }
         }
         //Need check for distance between other cars
         for (int i = 0; i < state.otherCars.Length; i++)
         {
+            float xDif;
+            float zDif;
+            float diag;
+            xDif = state.otherCars[i].myPosition.x - currentPosition.x;
+            zDif = state.otherCars[i].myPosition.z - currentPosition.z;
+            diag = Mathf.Sqrt((xDif * xDif) + (zDif * zDif));
             //Vector3 intersection between direction and other car position
-            float distance = Vector3.Distance(state.otherCars[i].myPosition, currentPosition);
-            if(distance < 300)
+            //float distance = Vector3.Distance(state.otherCars[i].myPosition, currentPosition);
+            if(diag < 5)
             {
                 carDirection = Vector3.Scale(carDirection, new Vector3(-1, 0, 1));
                 carSpeed -= 10;
