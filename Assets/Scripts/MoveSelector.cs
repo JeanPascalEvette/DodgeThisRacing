@@ -128,7 +128,7 @@ public class MoveSelector : MonoBehaviour {
     public void CreatePlayerData()
     {
         UpdatePlayerData();
-        ThisPlayerData = new PlayerData(ThisPlayerCar, ThisControlScheme, ThisPlayerType);
+        ThisPlayerData = new PlayerData(playerID,ThisPlayerCar, ThisControlScheme, ThisPlayerType);
     }
 
     void UpdatePlayerData()
