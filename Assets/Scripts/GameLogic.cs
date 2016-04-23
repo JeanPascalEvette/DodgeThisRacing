@@ -95,6 +95,7 @@ public class GameLogic : MonoBehaviour
             return;
         }
 
+        data.reduceLives();
         if (data.getLives() != 0)
         {
 
@@ -110,7 +111,7 @@ public class GameLogic : MonoBehaviour
                 for (int i = 0; i < hits.Length; i++)
                     targetPos[i] = hits[i].point;
 
-                if (Vector3.Distance(targetPos[0], myCamera.leadingGameObject.transform.position) < Vector3.Distance(targetPos[1], myCamera.leadingGameObject.transform.position))
+                if (targetPos.Length == 1 || Vector3.Distance(targetPos[0], myCamera.leadingGameObject.transform.position) < Vector3.Distance(targetPos[1], myCamera.leadingGameObject.transform.position))
                     startPoint = targetPos[0];
                 else
                     startPoint = targetPos[1];
@@ -192,7 +193,6 @@ public class GameLogic : MonoBehaviour
     {
         if (data.getLives() != 0)
         {
-            data.reduceLives();
             lastDeath = data.getID();
             string explPrefab = "Prefabs/FX/Explosions/Explosion";
             if (data.GetGameObject().name.IndexOf("Van - Classic") != -1) 
