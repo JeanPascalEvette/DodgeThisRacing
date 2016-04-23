@@ -6,9 +6,8 @@ using System.Linq;
 public class GameLogic : MonoBehaviour
 {
     
-    public int winCondition;
-    public bool victory;
-    public int playerDeathNumber;
+    public int winner;
+    public int lastDeath;
 
     public readonly int NUMBEROFCARS = 4;
 
@@ -33,9 +32,8 @@ public class GameLogic : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        winCondition = 0;
-        victory = false;
-        playerDeathNumber = 1;
+        winner = -1;
+        lastDeath = 1;
 
         if (myInstance != null)
             Destroy(gameObject);
@@ -173,18 +171,17 @@ public class GameLogic : MonoBehaviour
         {
             var allPD = Data.GetPlayerData();
             int bodyCount = 0;
-            int winner = 0;
+            int winnerNumber = 0;
             for (int i = 0; i < allPD.Length; i++)
             {
                 if (allPD[i].getLives() == 0)
                     bodyCount++;
                 else
-                    winner = i + 1;
+                    winnerNumber = i + 1;
             }
             if(bodyCount == Data.getNumberCarSelected() - 1)
             {
-                playerDeathNumber = winner;
-                victory = true;
+                winner = winnerNumber;
             }
         }
 
@@ -196,7 +193,7 @@ public class GameLogic : MonoBehaviour
         if (data.getLives() != 0)
         {
             data.reduceLives();
-            playerDeathNumber = data.getID();
+            lastDeath = data.getID();
             string explPrefab = "Prefabs/FX/Explosions/Explosion";
             if (data.GetGameObject().name.IndexOf("Van - Classic") != -1) 
                 explPrefab = "Prefabs/FX/Explosions/RaceVanExplosion";
