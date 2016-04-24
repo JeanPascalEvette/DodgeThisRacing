@@ -10,7 +10,7 @@ public class Camera : MonoBehaviour {
     private float currentZoomOut = 1.0f;
     private float minZoomOut = 1.0f;
     private float maxZoomOut = 3.0f;
-    Vector3 leadingCar;
+    Vector3 leadingPosition;
     bool zoomOut = false;
     float zoomOutTime;
     // Use this for initialization
@@ -25,20 +25,23 @@ public class Camera : MonoBehaviour {
     void Start () {
 	}
 
-    void GetLeadingPlayer()
+    public Vector3 GetLeadingPlayerPosition()
     {
-            target = Data.GetAllCars();
-        leadingCar = Vector3.zero;
+        if (leadingGameObject != null)
+            return leadingGameObject.transform.position;
+        target = Data.GetAllCars();
         for (int i = 0; i < target.Length; i++)
         {
             if (target[i] == null) continue;
             Vector3 position = target[i].transform.position;
-            if(leadingCar == Vector3.zero || position.z > leadingCar.z)
+            if (leadingPosition == Vector3.zero || position.z > leadingPosition.z)
             {
-                leadingCar = position;
+                leadingPosition = position;
                 leadingGameObject = target[i];
             }
         }
+        
+            return leadingPosition;
     }
 
     public float getZoomZDiff()
@@ -58,10 +61,21 @@ public class Camera : MonoBehaviour {
         {
             currentZoomOut = Mathf.Lerp(maxZoomOut, minZoomOut, Time.time - zoomOutTime);
         }
+        target = Data.GetAllCars();
+        for (int i = 0; i < target.Length; i++)
+        {
+            if (target[i] == null) continue;
+            Vector3 position = target[i].transform.position;
+            if (position.z > leadingPosition.z)
+            {
+                leadingPosition = position;
+                leadingGameObject = target[i];
+            }
+        }
 
-        GetLeadingPlayer();
-        this.transform.position = new Vector3(0, yDist * currentZoomOut, leadingCar.z - ((1.0f / currentZoomOut) * xDist));
-        transform.LookAt(new Vector3(0, 0, leadingCar.z));
+
+        this.transform.position = new Vector3(0, yDist * currentZoomOut, leadingPosition.z - ((1.0f / currentZoomOut) * xDist));
+        transform.LookAt(new Vector3(0, 0, leadingPosition.z));
     }
 
     public void ZoomOut()

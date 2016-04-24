@@ -13,6 +13,8 @@ public class CarHitbox : MonoBehaviour
     private float damageCaused;
     public float carSpeed;
 
+    private float collisionCD = -1;
+
     // Use this for initialization
     void Start()
     {
@@ -23,21 +25,28 @@ public class CarHitbox : MonoBehaviour
     // COLLISION DETECTION
     void OnTriggerEnter(Collider col)
     {
+        if (collisionCD > 0)
+            return;
         Debug.Log("COLLISION WITH WALL");
-        //if (col.gameObject.name == "Obstacle2")
+
+        if (col.gameObject.name == "Track")
+            return; // Ignore collisions with ground
+        if (col.transform.root == transform.root)
+            return; // Ignore self collisions
         //{
         // We need to find out which sphere collider we are hitting here
+        
+
         Debug.Log("IN COLLISION");
 
         // We choose one random detachable part from the list
         Debug.Log("PARTS: " + DetachableParts.Length);
         int elementPosition = Random.Range(0, DetachableParts.Length);
         Transform partAffected = DetachableParts[elementPosition];
-        Debug.Log("PART CHOSEN: " + partAffected.name + " -> HEALTH: " + partAffected.GetComponent<DetachableElementBehaviour>().pieceHealth);
         // We check if the piece chosen has any health left or has been 
         carSpeed = carModel.velocity.magnitude;
         Debug.Log("CAR SPEED: " + carSpeed);
-        if (partAffected != null && partAffected.GetComponent<DetachableElementBehaviour>().pieceHealth > 0)
+        if (partAffected != null && partAffected.GetComponent<DetachableElementBehaviour>() != null && partAffected.GetComponent<DetachableElementBehaviour>().pieceHealth > 0)
         {
             // We have health so we make all the calculation with the piece data
             // We calculate the force of the impact with the obstacle
@@ -54,8 +63,6 @@ public class CarHitbox : MonoBehaviour
                 partAffected.GetComponent<DetachableElementBehaviour>().isHanging = true;
                 // We remove the part from the list so it´s not available any more
                 DetachableParts[elementPosition] = null;
-                Object.Destroy(partAffected.GetComponent<Rigidbody>());
-                Debug.Log("PARTS: " + DetachableParts.Length);
             }
 
         }
@@ -67,9 +74,9 @@ public class CarHitbox : MonoBehaviour
         }
         // We reduce the car health & the slider at the same time (round down to have more health) ***** POSSIBLE CHANGE OF CAR HEALTH TO FLOAT *******
         Debug.Log("CAR HEALTH BEFORE: " + car.currentHealth);
-        car.currentHealth -= Mathf.FloorToInt(damageCaused * 0.1f);
+        car.currentHealth -= Mathf.FloorToInt(damageCaused * 0.01f);
         Debug.Log("CAR HEALTH: " + car.currentHealth);
-
+        collisionCD = 0.1f;
         // check the health of the car
         // Explosion anitmation ARTISTS
         //}
@@ -81,6 +88,8 @@ public class CarHitbox : MonoBehaviour
 
         // We calculate the speed of the car for the collision force
         carSpeed = carModel.velocity.magnitude;
+        if (collisionCD > 0)
+            collisionCD -= Time.deltaTime;
     }
     
 }

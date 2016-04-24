@@ -117,7 +117,7 @@ public class Data : MonoBehaviour {
 
     public static GameObject GetCurrentTrackPiece()
     {
-        float zPos = UnityEngine.Camera.main.GetComponent<Camera>().leadingGameObject.transform.position.z;
+        float zPos = UnityEngine.Camera.main.GetComponent<Camera>().GetLeadingPlayerPosition().z;
         for (int i = 0; i < GameObject.Find("Track").transform.childCount; i++)
         {
             var tp = GameObject.Find("Track").transform.GetChild(i);

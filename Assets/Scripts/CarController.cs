@@ -174,11 +174,11 @@ public class CarController : MonoBehaviour
             noise1 = sounds[0];
             noise2 = sounds[1];
 
+        // We set the initial health of the car+
+        currentHealth = startingHealth;
         if (myAI == null)
         {
             noise1.pitch = (rpm / 10000) + 0.7f; // formula to reach ideal pitch from rpm
-        // We set the initial health of the car+
-        currentHealth = startingHealth;
 
         }
         else

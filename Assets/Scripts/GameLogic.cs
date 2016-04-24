@@ -71,7 +71,7 @@ public class GameLogic : MonoBehaviour
 
         for (int i = 0; i < carPrefabs.Length; i++)
         {
-            var newCar = (GameObject)Instantiate(carPrefabs[i], new Vector3((i - carPrefabs.Length / 2) * 3.0f, 0, 3.0f), Quaternion.Euler(0, 180, 0));
+            var newCar = (GameObject)Instantiate(carPrefabs[i], new Vector3((i - carPrefabs.Length / 2) * 3.0f, 0.5f, 3.0f), Quaternion.Euler(0, 180, 0));
             var carCtrler = newCar.GetComponent<CarController>();
             carCtrler.myPlayerData = myCars[i];
             Data.GetPlayerData()[i].AttachGameObject(newCar);
@@ -99,19 +99,19 @@ public class GameLogic : MonoBehaviour
         if (data.getLives() != 0)
         {
 
-            Vector3 startPoint = myCamera.leadingGameObject.transform.position;
+            Vector3 startPoint = myCamera.GetLeadingPlayerPosition();
             var trackPiece = Data.GetCurrentTrackPiece();
 
             if (trackPiece.name.Substring(0, 7) == "Track_D") // If TrackPiece where road is separated - wait for 1sec before respawning
             {
 
-                Ray targetRay = new Ray(new Vector3(-40, 0.5f, myCamera.leadingGameObject.transform.position.z), new Vector3(1, 0, 0));
+                Ray targetRay = new Ray(new Vector3(-40, 0.5f, myCamera.GetLeadingPlayerPosition().z), new Vector3(1, 0, 0));
                 RaycastHit[] hits = Physics.RaycastAll(targetRay, 80, 1 << LayerMask.NameToLayer("AIGuide"));
                 Vector3[] targetPos = new Vector3[hits.Length];
                 for (int i = 0; i < hits.Length; i++)
                     targetPos[i] = hits[i].point;
 
-                if (targetPos.Length == 1 || Vector3.Distance(targetPos[0], myCamera.leadingGameObject.transform.position) < Vector3.Distance(targetPos[1], myCamera.leadingGameObject.transform.position))
+                if (targetPos.Length == 1 || Vector3.Distance(targetPos[0], myCamera.GetLeadingPlayerPosition()) < Vector3.Distance(targetPos[1], myCamera.GetLeadingPlayerPosition()))
                     startPoint = targetPos[0];
                 else
                     startPoint = targetPos[1];
@@ -159,9 +159,11 @@ public class GameLogic : MonoBehaviour
                 { xPos = -i; break; }
             }
             startPoint.x = xPos;
-            startPoint.y = 0f;
+            startPoint.y = 0.5f;
 
-            var spawnVel = myCamera.leadingGameObject.GetComponent<Rigidbody>().velocity;
+            var spawnVel = Vector3.zero;
+            if (myCamera.leadingGameObject != null)
+                spawnVel = myCamera.leadingGameObject.GetComponent<Rigidbody>().velocity;
 
             var newCar = (GameObject)Instantiate(data.GetPrefab(), startPoint, Quaternion.Euler(0, 180, 0));
             newCar.GetComponent<Rigidbody>().velocity = spawnVel;
@@ -189,6 +191,12 @@ public class GameLogic : MonoBehaviour
 
     }
 
+    private IEnumerator TriggerRespawn(PlayerData data)
+    {
+        yield return new WaitForSeconds(1);
+        SpawnCar(data);
+    }
+
     public void DestroyCar(PlayerData data, bool respawn = false)
     {
         if (data.getLives() != 0)
@@ -212,7 +220,7 @@ public class GameLogic : MonoBehaviour
 
             if(respawn)
             {
-                SpawnCar(data);
+                StartCoroutine(TriggerRespawn(data));
             }
         }
     }
@@ -348,7 +356,7 @@ public class GameLogic : MonoBehaviour
             AIController.showDebug = !AIController.showDebug;
         }
 
-        if (trackPartsList.Count > 2 && trackPartsList[2].transform.position.z < myCamera.leadingGameObject.transform.position.z)
+        if (trackPartsList.Count > 2 && trackPartsList[2].transform.position.z < myCamera.GetLeadingPlayerPosition().z)
         {
             var removedPart = trackPartsList[0];
             for (int i = 0; i < removedPart.transform.childCount; i++)
@@ -363,12 +371,12 @@ public class GameLogic : MonoBehaviour
         var trackPiece = Data.GetCurrentTrackPiece();
         if (trackPiece != null && trackPiece.name.Substring(0, 7) == "Track_D")
         {
-            if (UnityEngine.Camera.main.GetComponent<Camera>().leadingGameObject.transform.position.z >= trackPiece.transform.Find("Canyon_Middle_D").GetComponent<MeshRenderer>().bounds.max.z)
+            if (UnityEngine.Camera.main.GetComponent<Camera>().GetLeadingPlayerPosition().z >= trackPiece.transform.Find("Canyon_Middle_D").GetComponent<MeshRenderer>().bounds.max.z)
             {
                 UnityEngine.Camera.main.GetComponent<Camera>().ZoomIn();
                 //trackPiece.transform.Find("Canyon_Middle_D").GetComponent<MeshRenderer>().enabled = true;
             }
-            else if (UnityEngine.Camera.main.GetComponent<Camera>().leadingGameObject.transform.position.z >= trackPiece.transform.Find("Road_D").GetComponent<MeshRenderer>().bounds.min.z)
+            else if (UnityEngine.Camera.main.GetComponent<Camera>().GetLeadingPlayerPosition().z >= trackPiece.transform.Find("Road_D").GetComponent<MeshRenderer>().bounds.min.z)
             {
                 UnityEngine.Camera.main.GetComponent<Camera>().ZoomOut();
                 //trackPiece.transform.Find("Canyon_Middle_D").GetComponent<MeshRenderer>().enabled = false;
