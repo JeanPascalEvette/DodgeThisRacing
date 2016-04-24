@@ -14,12 +14,16 @@ public class CarHitbox : MonoBehaviour
     public float carSpeed;
 
     private float collisionCD = -1;
-
+    private GameObject explHolder;
     // Use this for initialization
     void Start()
     {
         car = transform.root.GetComponent<CarController>();
         carModel = car.GetComponent<Rigidbody>();
+
+        explHolder = GameObject.Find("ExplosionHolder");
+        if (explHolder == null)
+            explHolder = new GameObject("ExplosionHolder");
     }
 
     // COLLISION DETECTION
@@ -28,6 +32,9 @@ public class CarHitbox : MonoBehaviour
         if (collisionCD > 0)
             return;
         Debug.Log("COLLISION WITH WALL");
+
+        if (col.transform.root.name == "Main Camera")
+            return; //Ignore collision with camera
 
         if (col.gameObject.name == "Track")
             return; // Ignore collisions with ground
@@ -76,6 +83,17 @@ public class CarHitbox : MonoBehaviour
         Debug.Log("CAR HEALTH BEFORE: " + car.currentHealth);
         car.currentHealth -= Mathf.FloorToInt(damageCaused * 0.01f);
         Debug.Log("CAR HEALTH: " + car.currentHealth);
+
+
+        RaycastHit hit;
+        if (Physics.Raycast(transform.position, (col.transform.position - transform.position), out hit))
+        {
+            var sparks = (GameObject)Instantiate(Resources.Load("Prefabs/FX/Explosions/CollisionSparks"), hit.point, Quaternion.identity);
+            sparks.transform.parent = explHolder.transform;
+            sparks.GetComponent<Rigidbody>().velocity = transform.root.GetComponent<Rigidbody>().velocity;
+        }
+
+
         collisionCD = 0.1f;
         // check the health of the car
         // Explosion anitmation ARTISTS

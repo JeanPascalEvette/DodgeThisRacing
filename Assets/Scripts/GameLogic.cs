@@ -177,7 +177,7 @@ public class GameLogic : MonoBehaviour
             int winnerNumber = 0;
             for (int i = 0; i < allPD.Length; i++)
             {
-                if (allPD[i].getLives() == 0)
+                if (allPD[i].getLives() <= 0)
                     bodyCount++;
                 else
                     winnerNumber = i + 1;
