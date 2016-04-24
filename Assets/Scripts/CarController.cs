@@ -95,6 +95,8 @@ public class CarController : MonoBehaviour
     // private State currentState;
     // private int frameCounter = 0;
     // private GameObject[] allCars;
+    
+
 
     public int carUniqueID;
     private static int carCounter = 0;
@@ -155,7 +157,12 @@ public class CarController : MonoBehaviour
 
         var txtMsh = transform.Find("Text").GetComponent<TextMesh>();
         txtMsh.text = "P"+(myPlayerData.getID()).ToString();
-        switch(myPlayerData.getID())
+
+        
+        healthSlider = GameObject.Find("HealthSliderP" + (myPlayerData.GetCarType() + 1).ToString()).GetComponentInChildren<Slider>();
+
+
+        switch (myPlayerData.getID())
         {
             case 1: txtMsh.color = Color.blue; break;
             case 2: txtMsh.color = Color.red; break;
@@ -185,6 +192,13 @@ public class CarController : MonoBehaviour
         foreach(var exhaust in exhausts)
         {
             exhaust.emissionRate =  rpm;
+        }
+
+
+        healthSlider.value = currentHealth;
+        if (currentHealth < 0)
+        {
+            GameLogic.myInstance.DestroyCar(myPlayerData, true);
         }
 
         if (Input.GetKeyDown(KeyCode.F1))
