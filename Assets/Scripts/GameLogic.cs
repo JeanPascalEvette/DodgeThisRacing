@@ -89,11 +89,6 @@ public class GameLogic : MonoBehaviour
 
     }
 
-    IEnumerator RespawnCar(PlayerData car)
-    {
-        yield return new WaitForSeconds(1);
-        SpawnCar(car);
-    }
 
     public void SpawnCar(PlayerData data)
     {
@@ -201,8 +196,12 @@ public class GameLogic : MonoBehaviour
             string explPrefab = "Prefabs/FX/Explosions/Explosion";
             if (data.GetGameObject().name.Substring(0, 3) == "Van")
                 explPrefab = "Prefabs/FX/Explosions/RaceVanExplosion";
+            if (data.GetGameObject().name.Length >= 8 && data.GetGameObject().name.Substring(0, 8) == "Car - Cl")
+                explPrefab = "Prefabs/FX/Explosions/ClasicMGTExplosion"; 
+            if (data.GetGameObject().name.Length >= 8 && data.GetGameObject().name.Substring(0, 8) == "Car - Ra")
+                explPrefab = "Prefabs/FX/Explosions/RaceMGTEExplosion"; 
 
-            var expl = (GameObject)Instantiate(Resources.Load(explPrefab), data.GetGameObject().transform.position, Quaternion.identity);
+             var expl = (GameObject)Instantiate(Resources.Load(explPrefab), data.GetGameObject().transform.position, Quaternion.identity);
             expl.transform.parent = explHolder.transform;
             if (data.IsAI())
                 data.GetGameObject().GetComponent<AIController>().stopPlanner();
@@ -210,7 +209,7 @@ public class GameLogic : MonoBehaviour
 
             if(respawn)
             {
-                StartCoroutine(RespawnCar(data));
+                SpawnCar(data);
             }
         }
     }

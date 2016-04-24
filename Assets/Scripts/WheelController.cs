@@ -162,7 +162,7 @@ public class WheelController : MonoBehaviour {
     {
         isOnGround = false;
         Color myColor = Color.red;
-        float wheelHeight = transform.GetComponent<SphereCollider>().radius * 1.25f;
+        float wheelHeight = transform.GetComponent<SphereCollider>().radius * transform.lossyScale.y * 1.25f;
         Vector3 direction = new Vector3(0, -1, 0);
 
         int numRaycast = 10;
@@ -170,7 +170,7 @@ public class WheelController : MonoBehaviour {
         for (int i = 0; i < 360/numRaycast; i++)
         {
             direction = Quaternion.Euler(i*360/numRaycast, 0, 0) * direction;
-            direction = GetComponent<Collider>().transform.root.rotation * direction;
+            direction = transform.root.rotation * direction;
             myRay = new Ray(transform.position, direction.normalized);
             if (Physics.Raycast(myRay, wheelHeight))
             {
