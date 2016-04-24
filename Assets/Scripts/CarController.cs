@@ -153,6 +153,8 @@ public class CarController : MonoBehaviour
         frontRightPosition = frontRightWheel.transform.localPosition.z;
         rearRightPosition = rearRightWheel.transform.localPosition.z;
 
+        var test = GameObject.Find("HealthSliderP" + (myPlayerData.GetCarType() + 1).ToString());
+        healthSlider = test.GetComponentInChildren<Slider>();
 
         sounds = GetComponents<AudioSource>();
             noise1 = sounds[0];

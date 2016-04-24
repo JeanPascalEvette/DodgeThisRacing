@@ -669,6 +669,22 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &157404
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 460642}
+  - 114: {fileID: 11461636}
+  m_Layer: 9
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &160644
 GameObject:
   m_ObjectHideFlags: 0
@@ -1134,7 +1150,8 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 460642}
   m_Father: {fileID: 452666}
   m_RootOrder: 2
 --- !u!4 &414170
@@ -1483,6 +1500,18 @@ Transform:
   - {fileID: 408574}
   m_Father: {fileID: 498604}
   m_RootOrder: 9
+--- !u!4 &460642
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 157404}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 413936}
+  m_RootOrder: 0
 --- !u!4 &464602
 Transform:
   m_ObjectHideFlags: 1
@@ -4344,7 +4373,6 @@ MonoBehaviour:
   timeToBreak: 0
   pieceHealth: 0
   pieceMass: 0
-  healthSlider: {fileID: 0}
   DebrisHolder: {fileID: 0}
 --- !u!114 &11416596
 MonoBehaviour:
@@ -4373,7 +4401,6 @@ MonoBehaviour:
   timeToBreak: 0
   pieceHealth: 0
   pieceMass: 0
-  healthSlider: {fileID: 0}
   DebrisHolder: {fileID: 0}
 --- !u!114 &11440776
 MonoBehaviour:
@@ -4391,7 +4418,6 @@ MonoBehaviour:
   timeToBreak: 5
   pieceHealth: 0
   pieceMass: 0
-  healthSlider: {fileID: 0}
   DebrisHolder: {fileID: 0}
 --- !u!114 &11440978
 MonoBehaviour:
@@ -4454,7 +4480,6 @@ MonoBehaviour:
   timeToBreak: 5
   pieceHealth: 0
   pieceMass: 0
-  healthSlider: {fileID: 0}
   DebrisHolder: {fileID: 0}
 --- !u!114 &11443562
 MonoBehaviour:
@@ -4472,7 +4497,6 @@ MonoBehaviour:
   timeToBreak: 5
   pieceHealth: 0
   pieceMass: 0
-  healthSlider: {fileID: 0}
   DebrisHolder: {fileID: 0}
 --- !u!114 &11455192
 MonoBehaviour:
@@ -4490,7 +4514,6 @@ MonoBehaviour:
   timeToBreak: 5
   pieceHealth: 0
   pieceMass: 0
-  healthSlider: {fileID: 0}
   DebrisHolder: {fileID: 0}
 --- !u!114 &11456092
 MonoBehaviour:
@@ -4508,7 +4531,6 @@ MonoBehaviour:
   timeToBreak: 0
   pieceHealth: 0
   pieceMass: 0
-  healthSlider: {fileID: 0}
   DebrisHolder: {fileID: 0}
 --- !u!114 &11458232
 MonoBehaviour:
@@ -4526,8 +4548,22 @@ MonoBehaviour:
   timeToBreak: 5
   pieceHealth: 0
   pieceMass: 0
-  healthSlider: {fileID: 0}
   DebrisHolder: {fileID: 0}
+--- !u!114 &11461636
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 157404}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4bb823983a201104d8646acceca912fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthSlider: {fileID: 0}
+  DetachableParts: []
+  carModel: {fileID: 0}
+  carSpeed: 0
 --- !u!114 &11462282
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4672,7 +4708,6 @@ MonoBehaviour:
   timeToBreak: 0
   pieceHealth: 0
   pieceMass: 0
-  healthSlider: {fileID: 0}
   DebrisHolder: {fileID: 0}
 --- !u!114 &11472408
 MonoBehaviour:
@@ -4690,7 +4725,6 @@ MonoBehaviour:
   timeToBreak: 5
   pieceHealth: 0
   pieceMass: 0
-  healthSlider: {fileID: 0}
   DebrisHolder: {fileID: 0}
 --- !u!114 &11478178
 MonoBehaviour:
@@ -4753,7 +4787,6 @@ MonoBehaviour:
   timeToBreak: 0
   pieceHealth: 0
   pieceMass: 0
-  healthSlider: {fileID: 0}
   DebrisHolder: {fileID: 0}
 --- !u!114 &11485850
 MonoBehaviour:
@@ -4771,7 +4804,6 @@ MonoBehaviour:
   timeToBreak: 5
   pieceHealth: 0
   pieceMass: 0
-  healthSlider: {fileID: 0}
   DebrisHolder: {fileID: 0}
 --- !u!114 &11486092
 MonoBehaviour:
@@ -4789,7 +4821,6 @@ MonoBehaviour:
   timeToBreak: 5
   pieceHealth: 0
   pieceMass: 0
-  healthSlider: {fileID: 0}
   DebrisHolder: {fileID: 0}
 --- !u!114 &11489696
 MonoBehaviour:
@@ -4807,7 +4838,6 @@ MonoBehaviour:
   timeToBreak: 0
   pieceHealth: 0
   pieceMass: 0
-  healthSlider: {fileID: 0}
   DebrisHolder: {fileID: 0}
 --- !u!114 &11491232
 MonoBehaviour:
@@ -4825,7 +4855,6 @@ MonoBehaviour:
   timeToBreak: 0
   pieceHealth: 0
   pieceMass: 0
-  healthSlider: {fileID: 0}
   DebrisHolder: {fileID: 0}
 --- !u!114 &11496104
 MonoBehaviour:
@@ -4843,7 +4872,6 @@ MonoBehaviour:
   timeToBreak: 0
   pieceHealth: 0
   pieceMass: 0
-  healthSlider: {fileID: 0}
   DebrisHolder: {fileID: 0}
 --- !u!114 &11497904
 MonoBehaviour:
@@ -4861,7 +4889,6 @@ MonoBehaviour:
   timeToBreak: 0
   pieceHealth: 0
   pieceMass: 0
-  healthSlider: {fileID: 0}
   DebrisHolder: {fileID: 0}
 --- !u!114 &11499376
 MonoBehaviour:
