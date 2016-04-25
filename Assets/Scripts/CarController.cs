@@ -20,8 +20,8 @@ public class CarController : MonoBehaviour
     private Vector3 currentCenterOfGravity = new Vector3(0.2f, 0.5f, 0);
 
     // Health Variables
-    public int startingHealth = 100;
-    public int currentHealth;
+    public float startingHealth = 100;
+    public float currentHealth;
     public Slider healthSlider;
     private float damageCaused;
     bool carBroken;
@@ -291,11 +291,6 @@ public class CarController : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        float maxTurn = turning * HorizontalIsGoing();
-        if(LeftDirection != null)
-            LeftDirection.localRotation = Quaternion.Euler(0, maxTurn * 30, 0);
-        if (RightDirection != null)
-            RightDirection.localRotation = Quaternion.Euler(0, maxTurn * 30, 0);
 
 
 
@@ -344,7 +339,7 @@ public class CarController : MonoBehaviour
         }
         direction = 0.0f;						//speed of object
 
-        maxTurn = 0;
+        float maxTurn = 0;
 
         if (IsGoing('A'))
         {
@@ -354,6 +349,17 @@ public class CarController : MonoBehaviour
         {
             maxTurn = 1;
         }
+
+        if (LeftDirection != null)
+            LeftDirection.gameObject.transform.localRotation = Quaternion.Euler(0, maxTurn * 30, 0);
+        else
+            frontLeftWheel.gameObject.transform.localRotation = Quaternion.Euler(0, maxTurn * 30, 0);
+
+        if (RightDirection != null)
+            RightDirection.gameObject.transform.localRotation = Quaternion.Euler(0, maxTurn * 30, 0);
+        else
+            frontRightWheel.gameObject.transform.localRotation = Quaternion.Euler(0, maxTurn * 30, 0);
+
 
         if (IsGoing('W'))
         {
@@ -619,6 +625,11 @@ public class CarController : MonoBehaviour
         return currentGear == 6 && rpm > 5800;
     }
 
+    public void ReduceLife(float health)
+    {
+        currentHealth -= health;
+    }
+
     private float HorizontalIsGoing()
     {
         if (myPlayerData.GetControlScheme() == PlayerData.ControlScheme.WASD)
@@ -640,7 +651,7 @@ public class CarController : MonoBehaviour
         return 0;
     }
 
-   private bool IsGoing(char direction)
+   public bool IsGoing(char direction)
     {
         
         KeyCode directionCode = KeyCode.Alpha0;
