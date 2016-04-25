@@ -291,7 +291,7 @@ public class CarController : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        float maxTurn = turning * Input.GetAxis("Horizontal");
+        float maxTurn = turning * HorizontalIsGoing();
         if(LeftDirection != null)
             LeftDirection.localRotation = Quaternion.Euler(0, maxTurn * 30, 0);
         if (RightDirection != null)
@@ -344,7 +344,7 @@ public class CarController : MonoBehaviour
         }
         direction = 0.0f;						//speed of object
 
-        // float maxTurn = 0;
+        maxTurn = 0;
 
         if (IsGoing('A'))
         {
@@ -619,10 +619,31 @@ public class CarController : MonoBehaviour
         return currentGear == 6 && rpm > 5800;
     }
 
+    private float HorizontalIsGoing()
+    {
+        if (myPlayerData.GetControlScheme() == PlayerData.ControlScheme.WASD)
+        {
+            return Input.GetAxis("HorizontalWSDA");
+        }
+        else if (myPlayerData.GetControlScheme() == PlayerData.ControlScheme.Arrows)
+        {
+            return Input.GetAxis("HorizontalArrows");
+        }
+        else if (myPlayerData.GetControlScheme() == PlayerData.ControlScheme.XboxController1)
+        {
+            return Input.GetAxis("HorizontalJoyStickLeft1");
+        }
+        else if (myPlayerData.GetControlScheme() == PlayerData.ControlScheme.XboxController2)
+        {
+            return Input.GetAxis("HorizontalJoyStickLeft2");
+        }
+        return 0;
+    }
+
    private bool IsGoing(char direction)
     {
         
-        KeyCode directionCode = KeyCode.W;
+        KeyCode directionCode = KeyCode.Alpha0;
         if (myPlayerData.GetControlScheme() == PlayerData.ControlScheme.WASD)
         {
             if (direction == 'W')

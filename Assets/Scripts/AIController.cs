@@ -94,6 +94,8 @@ public class AIController : MonoBehaviour
                 textPlan = textPlan + commands[i] + "\n";
             }
             textPlan = textPlan.Substring(0, textPlan.Length - 1);
+
+#if UNITY_EDITOR
             UnityEditor.Handles.Label(transform.position, textPlan, style);
 
 
@@ -111,13 +113,15 @@ public class AIController : MonoBehaviour
 
             Vector3 midPos = transform.position + new Vector3(0, 0.5f, 25f);
             UnityEditor.Handles.DrawLine(midPos + new Vector3(1, 0, 0) * rayWidth / 2, midPos - new Vector3(1, 0, 0) * rayWidth / 2);
+#endif
         }
 
 
-    }
 
-    // Update is called once per frame
-    void Update()
+        }
+
+        // Update is called once per frame
+        void Update()
     {
 
 

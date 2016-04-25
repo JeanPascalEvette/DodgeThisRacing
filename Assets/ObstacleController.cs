@@ -35,7 +35,7 @@ public class ObstacleController : MonoBehaviour
             Debug.Log("Col btwn " + colCC.gameObject.name + " & " + gameObject.name);
             hitCoolDowns.Add(new KeyValuePair<GameObject, float>(colCC.gameObject, Time.time));
 
-            if(colCC.gameObject.name.Contains("Water"))
+            if(transform.name.Contains("Water"))
             {
                 //Here code for effect of water
             }
