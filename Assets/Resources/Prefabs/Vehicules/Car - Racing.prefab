@@ -214,6 +214,40 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &116008
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 456256}
+  - 135: {fileID: 13542500}
+  - 114: {fileID: 11448718}
+  m_Layer: 9
+  m_Name: RearLeft
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &116368
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 442190}
+  - 135: {fileID: 13532368}
+  - 114: {fileID: 11443200}
+  m_Layer: 9
+  m_Name: FrontLeft
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &116670
 GameObject:
   m_ObjectHideFlags: 1
@@ -352,6 +386,23 @@ GameObject:
   - 59: {fileID: 5919456}
   m_Layer: 0
   m_Name: FrontAxle
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &132416
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 487544}
+  - 135: {fileID: 13584104}
+  - 114: {fileID: 11465510}
+  m_Layer: 9
+  m_Name: FrontRight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -878,6 +929,40 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &177368
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 474334}
+  - 135: {fileID: 13544522}
+  - 114: {fileID: 11400634}
+  m_Layer: 9
+  m_Name: MidCarLeft
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &180432
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 444684}
+  - 135: {fileID: 13546850}
+  - 114: {fileID: 11426648}
+  m_Layer: 9
+  m_Name: MidCarRight
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &184444
 GameObject:
   m_ObjectHideFlags: 1
@@ -1004,6 +1089,23 @@ GameObject:
   - 23: {fileID: 2316222}
   m_Layer: 8
   m_Name: SubHeadLight_R
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &193558
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 496088}
+  - 135: {fileID: 13597476}
+  - 114: {fileID: 11451960}
+  m_Layer: 9
+  m_Name: RearRight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1316,6 +1418,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 497562}
   m_RootOrder: 1
+--- !u!4 &442190
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 116368}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.403, y: 0.34, z: -1.45}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 469958}
+  m_RootOrder: 2
 --- !u!4 &443622
 Transform:
   m_ObjectHideFlags: 1
@@ -1329,6 +1443,18 @@ Transform:
   - {fileID: 410582}
   m_Father: {fileID: 429850}
   m_RootOrder: 14
+--- !u!4 &444684
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 180432}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.244, y: 0.57, z: -0.13}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 469958}
+  m_RootOrder: 5
 --- !u!4 &446306
 Transform:
   m_ObjectHideFlags: 1
@@ -1450,6 +1576,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 439232}
   m_RootOrder: 3
+--- !u!4 &456256
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 116008}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.421, y: 0.37, z: 1.03}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 469958}
+  m_RootOrder: 0
 --- !u!4 &456622
 Transform:
   m_ObjectHideFlags: 1
@@ -1534,7 +1672,13 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 456256}
+  - {fileID: 496088}
+  - {fileID: 442190}
+  - {fileID: 487544}
+  - {fileID: 474334}
+  - {fileID: 444684}
   m_Father: {fileID: 458472}
   m_RootOrder: 1
 --- !u!4 &470906
@@ -1578,6 +1722,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 429850}
   m_RootOrder: 1
+--- !u!4 &474334
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 177368}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.136, y: 0.66, z: -0.12}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 469958}
+  m_RootOrder: 4
 --- !u!4 &474412
 Transform:
   m_ObjectHideFlags: 1
@@ -1701,6 +1857,18 @@ Transform:
   - {fileID: 461696}
   m_Father: {fileID: 458472}
   m_RootOrder: 2
+--- !u!4 &487544
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 132416}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.418, y: 0.36, z: -1.41}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 469958}
+  m_RootOrder: 3
 --- !u!4 &487554
 Transform:
   m_ObjectHideFlags: 1
@@ -1760,6 +1928,18 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 0.13417447}
   m_Children: []
   m_Father: {fileID: 471498}
+  m_RootOrder: 1
+--- !u!4 &496088
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 193558}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.459, y: 0.35, z: 1.04}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 469958}
   m_RootOrder: 1
 --- !u!4 &497536
 Transform:
@@ -3202,7 +3382,7 @@ HingeJoint:
   m_Anchor: {x: 0.6, y: 0.24, z: 0.47}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.6000004, y: 0.61100006, z: -0.47000122}
+  m_ConnectedAnchor: {x: -0.6000004, y: 0.311, z: -0.47000122}
   m_UseSpring: 0
   m_Spring:
     spring: 0
@@ -3234,7 +3414,7 @@ HingeJoint:
   m_Anchor: {x: -0.5, y: 0, z: 0}
   m_Axis: {x: -1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.08700663, y: -0.29606017, z: 0.0015217066}
+  m_ConnectedAnchor: {x: -0.08700663, y: 0.003939837, z: 0.0015217066}
   m_UseSpring: 0
   m_Spring:
     spring: 0
@@ -3266,7 +3446,7 @@ HingeJoint:
   m_Anchor: {x: 0, y: 1.124739, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0, y: 1.495739, z: 0}
+  m_ConnectedAnchor: {x: 0, y: 1.195739, z: 0}
   m_UseSpring: 0
   m_Spring:
     spring: 0
@@ -3330,7 +3510,7 @@ HingeJoint:
   m_Anchor: {x: -0.03, y: 0.01022961, z: -0.025}
   m_Axis: {x: -1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0.029999733, y: 0.38122964, z: 0.024993896}
+  m_ConnectedAnchor: {x: 0.029999733, y: 0.08122969, z: 0.024993896}
   m_UseSpring: 0
   m_Spring:
     spring: 0
@@ -3362,7 +3542,7 @@ HingeJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0.58702093, y: -0.29606017, z: 0.0017424822}
+  m_ConnectedAnchor: {x: 0.58702093, y: 0.003939837, z: 0.0017424822}
   m_UseSpring: 0
   m_Spring:
     spring: 0
@@ -3394,7 +3574,7 @@ HingeJoint:
   m_Anchor: {x: 0, y: 0.560659, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0, y: 0.931659, z: 0}
+  m_ConnectedAnchor: {x: 0, y: 0.63165903, z: 0}
   m_UseSpring: 0
   m_Spring:
     spring: 0
@@ -3426,7 +3606,7 @@ HingeJoint:
   m_Anchor: {x: 0, y: 0.8646815, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0, y: 1.2356815, z: 0}
+  m_ConnectedAnchor: {x: 0, y: 0.93568146, z: 0}
   m_UseSpring: 0
   m_Spring:
     spring: 0
@@ -3458,7 +3638,7 @@ HingeJoint:
   m_Anchor: {x: 0, y: 1.124739, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0, y: 1.495739, z: 0}
+  m_ConnectedAnchor: {x: 0, y: 1.195739, z: 0}
   m_UseSpring: 0
   m_Spring:
     spring: 0
@@ -3490,7 +3670,7 @@ HingeJoint:
   m_Anchor: {x: 0.5, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0.0870201, y: -0.29606017, z: 0.0015214682}
+  m_ConnectedAnchor: {x: 0.0870201, y: 0.003939837, z: 0.0015214682}
   m_UseSpring: 0
   m_Spring:
     spring: 0
@@ -3522,7 +3702,7 @@ HingeJoint:
   m_Anchor: {x: 0.03, y: 0.01022961, z: -0.025}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.029999733, y: 0.38122964, z: 0.024993896}
+  m_ConnectedAnchor: {x: -0.029999733, y: 0.08122969, z: 0.024993896}
   m_UseSpring: 0
   m_Spring:
     spring: 0
@@ -3554,7 +3734,7 @@ HingeJoint:
   m_Anchor: {x: 0, y: 0.3672108, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0, y: 0.7382108, z: 0}
+  m_ConnectedAnchor: {x: 0, y: 0.43821084, z: 0}
   m_UseSpring: 0
   m_Spring:
     spring: 0
@@ -3586,7 +3766,7 @@ HingeJoint:
   m_Anchor: {x: -0.4, y: 0.24, z: 0.47}
   m_Axis: {x: -1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0.39999962, y: 0.61100006, z: -0.47000122}
+  m_ConnectedAnchor: {x: 0.39999962, y: 0.311, z: -0.47000122}
   m_UseSpring: 0
   m_Spring:
     spring: 0
@@ -3618,7 +3798,7 @@ HingeJoint:
   m_Anchor: {x: 0, y: 0.8646815, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0, y: 1.2356815, z: 0}
+  m_ConnectedAnchor: {x: 0, y: 0.93568146, z: 0}
   m_UseSpring: 0
   m_Spring:
     spring: 0
@@ -3650,7 +3830,7 @@ HingeJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.5870058, y: -0.29606017, z: 0.0017424822}
+  m_ConnectedAnchor: {x: -0.5870058, y: 0.003939837, z: 0.0017424822}
   m_UseSpring: 0
   m_Spring:
     spring: 0
@@ -4146,6 +4326,24 @@ TextMesh:
   m_Color:
     serializedVersion: 2
     rgba: 4294967295
+--- !u!114 &11400634
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 177368}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4bb823983a201104d8646acceca912fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DetachableParts:
+  - {fileID: 455476}
+  - {fileID: 480218}
+  - {fileID: 429160}
+  - {fileID: 484590}
+  carModel: {fileID: 5485130}
+  carSpeed: 0
 --- !u!114 &11400808
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4319,6 +4517,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 601a16e50b8e0744ead3c2cb903a1769, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &11426648
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 180432}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4bb823983a201104d8646acceca912fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DetachableParts:
+  - {fileID: 455476}
+  - {fileID: 421258}
+  - {fileID: 443622}
+  - {fileID: 416790}
+  carModel: {fileID: 5485130}
+  carSpeed: 0
 --- !u!114 &11436300
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4373,6 +4589,22 @@ MonoBehaviour:
   pieceMass: 0
   healthSlider: {fileID: 0}
   DebrisHolder: {fileID: 0}
+--- !u!114 &11443200
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 116368}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4bb823983a201104d8646acceca912fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DetachableParts:
+  - {fileID: 439232}
+  - {fileID: 452206}
+  carModel: {fileID: 5485130}
+  carSpeed: 0
 --- !u!114 &11443620
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4391,6 +4623,36 @@ MonoBehaviour:
   pieceMass: 0
   healthSlider: {fileID: 0}
   DebrisHolder: {fileID: 0}
+--- !u!114 &11448718
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 116008}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4bb823983a201104d8646acceca912fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DetachableParts:
+  - {fileID: 419906}
+  carModel: {fileID: 5485130}
+  carSpeed: 0
+--- !u!114 &11451960
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 193558}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4bb823983a201104d8646acceca912fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DetachableParts:
+  - {fileID: 462080}
+  carModel: {fileID: 5485130}
+  carSpeed: 0
 --- !u!114 &11452018
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4465,6 +4727,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 928a966bc872db74d865b3849d7fe7d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &11465510
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 132416}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4bb823983a201104d8646acceca912fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DetachableParts:
+  - {fileID: 460514}
+  - {fileID: 452206}
+  carModel: {fileID: 5485130}
+  carSpeed: 0
 --- !u!114 &11467432
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4503,6 +4781,20 @@ MonoBehaviour:
   currentHealth: 0
   healthSlider: {fileID: 0}
   currentGear: 0
+  gears:
+  - 1.8
+  - 1.65
+  - 1.52
+  - 1.42
+  - 1.34
+  - 1.3
+  gearsMaxRpm:
+  - 2000
+  - 3500
+  - 4500
+  - 5000
+  - 5500
+  - 5750
   newVehicleSpeed: 0
   rpm: 0
   rpmToTorque: 0
@@ -4693,7 +4985,7 @@ SphereCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 0.6
   m_Center: {x: 0, y: 0.6, z: 1}
 --- !u!135 &13502394
 SphereCollider:
@@ -4705,7 +4997,7 @@ SphereCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 0.6
   m_Center: {x: 0, y: 0.6, z: -1}
 --- !u!135 &13523742
 SphereCollider:
@@ -4719,6 +5011,18 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.36507455
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!135 &13532368
+SphereCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 116368}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.4
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!135 &13533888
 SphereCollider:
   m_ObjectHideFlags: 1
@@ -4730,6 +5034,42 @@ SphereCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.36507455
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!135 &13542500
+SphereCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 116008}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.4
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!135 &13544522
+SphereCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 177368}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.6
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!135 &13546850
+SphereCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 180432}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.6
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!135 &13552570
 SphereCollider:
@@ -4755,6 +5095,18 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.36507353
   m_Center: {x: 0.000000059604645, y: 0, z: 0}
+--- !u!135 &13584104
+SphereCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 132416}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.4
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!135 &13586456
 SphereCollider:
   m_ObjectHideFlags: 1
@@ -4765,8 +5117,20 @@ SphereCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 0.6
   m_Center: {x: 0, y: 0.6, z: 0}
+--- !u!135 &13597476
+SphereCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 193558}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.4
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!138 &13831290
 FixedJoint:
   m_ObjectHideFlags: 1
@@ -4820,7 +5184,7 @@ SpringJoint:
   m_ConnectedBody: {fileID: 5485130}
   m_Anchor: {x: 0, y: 0.36507353, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.58700657, y: 1.0231338, z: -1.4404602}
+  m_ConnectedAnchor: {x: -0.58700657, y: 0.7231337, z: -1.4404602}
   serializedVersion: 2
   m_Spring: 10
   m_Damper: 0.2
@@ -4840,7 +5204,7 @@ SpringJoint:
   m_ConnectedBody: {fileID: 5485130}
   m_Anchor: {x: 0, y: -0.006, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.55166626, y: 0.86823726, z: 0.5137634}
+  m_ConnectedAnchor: {x: -0.55166626, y: 0.5682373, z: 0.5137634}
   serializedVersion: 2
   m_Spring: 5000
   m_Damper: 0.2
@@ -4860,7 +5224,7 @@ SpringJoint:
   m_ConnectedBody: {fileID: 5485130}
   m_Anchor: {x: 0, y: 0.36507353, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0.5870199, y: 1.0231338, z: -1.4404602}
+  m_ConnectedAnchor: {x: 0.5870199, y: 0.7231337, z: -1.4404602}
   serializedVersion: 2
   m_Spring: 10
   m_Damper: 0.2
@@ -4880,7 +5244,7 @@ SpringJoint:
   m_ConnectedBody: {fileID: 5485130}
   m_Anchor: {x: 0, y: 0.00521813, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.55166626, y: 0.87945545, z: 0.5137634}
+  m_ConnectedAnchor: {x: -0.55166626, y: 0.5794554, z: 0.5137634}
   serializedVersion: 2
   m_Spring: 5000
   m_Damper: 0.2
@@ -4900,7 +5264,7 @@ SpringJoint:
   m_ConnectedBody: {fileID: 5485130}
   m_Anchor: {x: 0, y: 0.0025, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0.5519762, y: 0.8773966, z: 0.51382446}
+  m_ConnectedAnchor: {x: 0.5519762, y: 0.57739663, z: 0.51382446}
   serializedVersion: 2
   m_Spring: 5000
   m_Damper: 0.2
@@ -4920,7 +5284,7 @@ SpringJoint:
   m_ConnectedBody: {fileID: 5485130}
   m_Anchor: {x: 0, y: 0.36507353, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.5870056, y: 1.0231338, z: 1.0247498}
+  m_ConnectedAnchor: {x: -0.5870056, y: 0.7231337, z: 1.0247498}
   serializedVersion: 2
   m_Spring: 10
   m_Damper: 0.2
@@ -4940,7 +5304,7 @@ SpringJoint:
   m_ConnectedBody: {fileID: 5485130}
   m_Anchor: {x: 0, y: -0.0025, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0.5519762, y: 0.8723967, z: 0.51382446}
+  m_ConnectedAnchor: {x: 0.5519762, y: 0.57239664, z: 0.51382446}
   serializedVersion: 2
   m_Spring: 5000
   m_Damper: 0.2
@@ -4960,7 +5324,7 @@ SpringJoint:
   m_ConnectedBody: {fileID: 5485130}
   m_Anchor: {x: 0, y: 0.36507353, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0.5870209, y: 1.0231338, z: 1.0247498}
+  m_ConnectedAnchor: {x: 0.5870209, y: 0.7231337, z: 1.0247498}
   serializedVersion: 2
   m_Spring: 10
   m_Damper: 0.2

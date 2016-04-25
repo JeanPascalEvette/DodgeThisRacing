@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Linq;
+using System;
 
 //This class is designed to go through scenes and to hold data
 public class Data : MonoBehaviour {
@@ -66,9 +67,9 @@ public class Data : MonoBehaviour {
         if (TrackPartsAvailable == null || TrackPartsAvailable.Length < prefab || TrackPartsAvailable[prefab].Length < preset)
             return null;
         if (prefab == -1)
-            prefab = Random.Range(0, TrackPartsAvailable.Length);
+            prefab = UnityEngine.Random.Range(0, TrackPartsAvailable.Length);
         if (preset == -1)
-            preset = Random.Range(0, TrackPartsAvailable[prefab].Length);
+            preset = UnityEngine.Random.Range(0, TrackPartsAvailable[prefab].Length);
         return TrackPartsAvailable[prefab][preset];
     }
 
@@ -77,7 +78,7 @@ public class Data : MonoBehaviour {
         if (ObstaclesAvailable == null || ObstaclesAvailable.Length == 0)
             return null;
         if(choice == -1 || choice > ObstaclesAvailable.Length)
-            choice = Random.Range(0, ObstaclesAvailable.Length);
+            choice = UnityEngine.Random.Range(0, ObstaclesAvailable.Length);
         return ObstaclesAvailable[choice];
     }
 
@@ -116,7 +117,7 @@ public class Data : MonoBehaviour {
 
     public static GameObject GetCurrentTrackPiece()
     {
-        float zPos = UnityEngine.Camera.main.GetComponent<Camera>().leadingGameObject.transform.position.z;
+        float zPos = UnityEngine.Camera.main.GetComponent<Camera>().GetLeadingPlayerPosition().z;
         for (int i = 0; i < GameObject.Find("Track").transform.childCount; i++)
         {
             var tp = GameObject.Find("Track").transform.GetChild(i);
@@ -132,5 +133,17 @@ public class Data : MonoBehaviour {
         if (CarsSelected == null)
             return 0;
         return CarsSelected.Length;
+    }
+
+    internal static int GetCountPlayersDead()
+    {
+        var allPD = GetPlayerData();
+        int bodyCount = 0;
+        for (int i = 0; i < allPD.Length; i++)
+        {
+            if (allPD[i].getLives() == 0)
+                bodyCount++;
+        }
+        return bodyCount;
     }
 }
