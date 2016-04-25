@@ -7,6 +7,7 @@ In this Post Mortem, I will focus mainly on evaluating the challenges involved i
 ##Project Overview
 
 This is a Unity project for the Physics in Video Games course in which we were separated in groups and had to work on creating a Destruction Derby based video game over the course of several months. My team contained 6 programmers: Me, Javier Osa Escalada, Baggio Pereira, Stefanos Katsaros, Federico Soncini, and Elio de Berardinis. In addition, we had two artists: Martin Skarregaard and Kun An Li. 
+
 After doing some research on the existing local multiplayer driving games, we decided that we wanted to follow the example of the game Pressure. We were particularly interested in the point of view of the camera, which would allow us to display all 4 players on the same screen thus avoiding the need to render the scene 4 times in local multiplayer. In addition this point of view was advantageous compared to a top down view because we were afraid that a game where the camera is not behind the player might not feel right for the player.
 ![](Pictures/JP/JpPic2.jpg)
 
@@ -30,16 +31,21 @@ Figure 3 - The SSBM character selection screen which inspired ours
 ##Team’s communication
 
 One of the biggest issues we faced in the team communication was to be able to work with everyone’s schedule. In our team, we had multiple people that were part time first year, someone that was part time second year, and only very few people that were full time. This meant that have everyone present in meetings was not possible. We did still try to meet quite frequently (every Monday & Friday) with the people that were available. After those meetings, I would generally try to write up a summary of the meeting & the state of the project for anyone that wasn’t able to attend.
+
 Something else that would did to help keep everyone up to date is to create a Facebook group for the project, which was used to inform everybody of the latest news and set up meetings and assignments. In addition, I would often meet after classes with someone from the team who wasn’t able to attend meeting to work on issues and agree on assignments.
 The Holidays did have an impact, as people were less available to meet and work on assignments, but that was expected so we had made sure to make enough progress beforehand to make sure not to be caught. Overall we still ended up doing more progress than I expected during the Holidays which was a very nice surprise.
+
 The Search for a Star round 2 competition was also a bit of an issue because it happened right at the start of the assignment. I knew that I wanted to focus on the SFAS competition because it was an important opportunity for me so I warned my teammates that I would not be able to devote as much time as I wanted to this project during the first two weeks. This meant that the first two weeks of the project did not see much progress. It was especially problematic because we had to build a basis before we could really split the assignment in different tasks. Ultimately however, we got a lot of work done after those two weeks and managed to catch up on our late start.
+
 I had some concerns regarding the communication at the start of the project, however I think it turned out quite well in the end. We knew from the start that everybody wouldn’t be able to attend the meetings, but the Facebook group was very important in keeping everyone on the same page, and in giving everyone something to work on.
+
 Because I was the most experienced developer of the team, I found myself to be in a position where I had to handle assignments and keeping everyone working in the same direction. It was a challenge, and not something I had a lot of experience in, however I think everyone in the team really tried to pull their own weight and contribute to the project, which made my work much easier. While being in a position of leadership was a bit daunting at the start, it ended up being a very interesting experience that I look forward to repeating.
 
 
 ##Team’s use of technology
 
 Everybody in the team had previously used Unity for other projects, which means that everybody was able to contribute to the project from the start. Some people were not very familiar with GitHub however, but after some explanations they were able to pick it up quickly.
+
 Our two artists were using two different modeling software, which caused some consistency issues with the structure of the models, however once they learned the differences between their software, the structure of the gameobjects became consistent.
 Despite having used Unity before, this project was the opportunity to learn a lot about some features of Unity we had not used before. As an example, daunting we implemented the AI on a different thread to improve performance. It would run in the background and update the car’s instructions regularly. We learned that with Unity, you are not able to access any object of the scene from a different thread, which meant that we had to store all the data we needed on the main thread and then access that object to handle the calculations of the AI.
 
