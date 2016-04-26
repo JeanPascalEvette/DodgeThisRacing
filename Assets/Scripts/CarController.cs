@@ -155,12 +155,9 @@ public class CarController : MonoBehaviour
         frontRightPosition = frontRightWheel.transform.localPosition.z;
         rearRightPosition = rearRightWheel.transform.localPosition.z;
 
+        // Text over the car with the player it is
         var txtMsh = transform.Find("Text").GetComponent<TextMesh>();
         txtMsh.text = "P"+(myPlayerData.getID()).ToString();
-
-        
-        healthSlider = GameObject.Find("HealthSliderP" + (myPlayerData.GetCarType() + 1).ToString()).GetComponentInChildren<Slider>();
-
 
         switch (myPlayerData.getID())
         {
@@ -169,6 +166,11 @@ public class CarController : MonoBehaviour
             case 3: txtMsh.color = Color.green; break;
             case 4: txtMsh.color = Color.yellow; break;
         }
+
+        // We set the health slider to each player
+        healthSlider = GameObject.Find("HealthSliderP" + (myPlayerData.GetCarType() + 1).ToString()).GetComponentInChildren<Slider>();
+        // We try to set the background colour as well the same as appear in top of the car
+        healthSlider.GetComponentInChildren<Image>().color = txtMsh.color;
 
         sounds = GetComponents<AudioSource>();
             noise1 = sounds[0];
