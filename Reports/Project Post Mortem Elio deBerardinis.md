@@ -5,7 +5,7 @@
 ##Individual Assessment
 
 
-**What you did on the project and what responsibilities you took on board on the team?  **
+**What you did on the project and what responsibilities you took on board on the team?**
 
 The main responsibility that I took on in this project, as a first year part-time student and therefore not involved in the Physics programming, was the implementation of the Graphic User Interface. I formed a team with Federico, another first year part-time student, and we worked collaboratively with the rest of the team programmers, in particular Stefanos and Jean-Pascal, who also did work on the player input system. As a part-time, I started contributing to the project one month into development.
 I have implemented the functionalities that regulate the menu scene, which allows players to select up to four cars and enter the game in play mode. The GUI was directly inspired by Nintendo’s Smash Brothers. The system detects automatically when a player is active, based on the controller that is being used. It creates a new player and assigns it the relative control scheme. Players can also be created, assigned a control scheme, set as AI players or deleted by apposite panels. The system supports two joystick controllers and two keyboard based (WASD and Arrows). 
@@ -31,7 +31,7 @@ Although GUI programming is relatively straightforward, it took longer than anti
 I feel like there could have been perhaps a more organized schedule, although it has to be considered how this project had to be developed in the midst of other assignments and deadlines. It is conceivable that we could have used the time resources more efficiently. Probably it could have been a good idea to have a clearer project management approach and a specific person in charge of its implementation. It would have helped and sped up the process. 
 I know there were time constraints and people had to prioritize but I would have liked a bit more input from the artists on the GUI that could have been in a more polished state at this point.
 
-**What you'd do different next time - i.e. what did you learn and how would you go about processes or collaborative efforts differently next time? e.g. Task tracking was an issue, so next time we'd use a backlog. **
+**What you'd do different next time - i.e. what did you learn and how would you go about processes or collaborative efforts differently next time? e.g. Task tracking was an issue, so next time we'd use a backlog.**
 
 Federico and I were in a particular position this time as we worked on a very separate task. I would have liked a bit more involvement in the main decisions about the game. Perhaps, with more time and an official leader role in the team this could have been accomplished. Often time I was oblivious of what other teammates were doing and was difficult to keep track. Probably keeping a diary for each person would have helped the others understand better what was going on. Maybe having small individual presentation at each meeting would have helped keeping the team more on track, focused and aligned with the main vision . I would definitely implement this things in a future project. Specifically, electing a project leader is something I would definitely do in the future. Not necessarily to give special powers to a single person but to better convey different ideas and avoid useless discussions. 
 I definitely learned how to compromise with people and I think this really helped me and the others in the team. When you work in solo you often think your ideas are the best. You only realize this is not the case when you are challenged by another person who makes you look at the problem from another angle. I wish I had more chances for healthy discussions with more experienced programmers such as Jean-Pascal and also with the artists with whom I had very little contact unfortunately.
@@ -39,5 +39,8 @@ Ultimately, this was a very good simulation of a game development team that gave
 
 ##Images
 
+**Intro Screen**
 ![Alt text](https://github.com/JeanPascalEvette/DodgeThisRacing/blob/master/Reports/Pictures/Elio/CarGameIntro.JPG?raw=true"Screen 1")
+
+**Car Select Screen**
 ![Alt text](https://github.com/JeanPascalEvette/DodgeThisRacing/blob/master/Reports/Pictures/Elio/SelectScreen.JPG?raw=true"Screen 2")
