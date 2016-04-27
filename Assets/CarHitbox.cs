@@ -35,7 +35,8 @@ public class CarHitbox : MonoBehaviour
 
         if (col.transform.root.name == "Main Camera")
             return; //Ignore collision with camera
-
+        if (col.gameObject.name.Contains("WaterPuddle"))
+            return;
         if (col.gameObject.name == "Track")
             return; // Ignore collisions with ground
         if (col.transform.root == transform.root)

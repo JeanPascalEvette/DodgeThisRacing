@@ -96,7 +96,7 @@ public class GameLogic : MonoBehaviour
         }
 
         data.reduceLives();
-        if (data.getLives() != 0)
+        if (data.getLives() > 0)
         {
 
             Vector3 startPoint = myCamera.GetLeadingPlayerPosition();
@@ -199,7 +199,7 @@ public class GameLogic : MonoBehaviour
 
     public void DestroyCar(PlayerData data, bool respawn = false)
     {
-        if (data.getLives() != 0)
+        if (data.getLives() > 0)
         {
             lastDeath = data.getID();
             string explPrefab = "Prefabs/FX/Explosions/Explosion";
