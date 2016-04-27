@@ -86,6 +86,9 @@ public class CarController : MonoBehaviour
     private Transform RightDirection;
     [SerializeField]
     private AnimationCurve testRpmResistance;
+    [SerializeField]
+    private float boostValue;
+    
     // private string[] plan;
     // private int frameGenerated;
     // private HTNPlanner planner;
@@ -206,114 +209,13 @@ public class CarController : MonoBehaviour
             //   showDebug = !showDebug;
         }
     }
-
-    /* void OnDrawGizmos()
-     {
-         if (!showDebug) return;
-         Gizmos.color = Color.red;
-         Gizmos.DrawSphere(transform.position + currentCenterOfGravity, 0.1f);
-
-
-         //This draws the list of commands than an AI controlled car receives - might want to show/hide it based on some input at some point
-         if (plan != null && plan.Length > frameCounter - frameGenerated && frameCounter - frameGenerated >= 0)
-         {
-             var style = new GUIStyle(aSkin.GetStyle("box"));
-             style.alignment = TextAnchor.MiddleCenter;
-             var textPlan = "";
-             System.Collections.Generic.List<string> commands = new System.Collections.Generic.List<string>();
-             int counter = 1;
-            for (int i = 0; i < 1.0f / Time.fixedDeltaTime; i++)
-             {
-                if (commands.Count > 0 && frameCounter - frameGenerated + i < plan.Length && commands[commands.Count - 1] == plan[frameCounter - frameGenerated + i])
-                 {
-                     counter++;
-                 }
-                else if (plan.Length > frameCounter - frameGenerated + i && frameCounter - frameGenerated + i > 0)
-                 {
-                    if (commands.Count > 0)
-                     {
-                         commands[commands.Count - 1] += "(x" + counter + ")";
-                         counter = 1;
-                     }
-                     commands.Add(plan[frameCounter - frameGenerated + i]);
-                 }
-             }
-             commands[commands.Count - 1] += "(x" + counter + ")";
-            for (int i = 0; i < Mathf.Min(5, commands.Count); i++)
-             {
-                 textPlan = textPlan + commands[i] + "\n";
-     }
-             textPlan = textPlan.Substring(0, textPlan.Length - 1);
-             UnityEditor.Handles.Label(transform.position, textPlan, style);
-
-
-             Vector3 dir = planner.myTarget - transform.position;
-             UnityEditor.Handles.color = Color.white;
-             UnityEditor.Handles.ArrowCap(0, transform.position, Quaternion.LookRotation(dir.normalized), Mathf.Min(10, dir.magnitude));
-             UnityEditor.Handles.color = Color.blue;
-             UnityEditor.Handles.DrawSolidDisc(planner.myTarget, Vector3.up, 1.0f);
-             if (planner.targetCar != null)
-             {
-                 Vector3 dirGO = getCarByUniqueID(planner.targetCar.myUniqueID).transform.position - transform.position;
-                 UnityEditor.Handles.color = Color.red;
-                 UnityEditor.Handles.ArrowCap(1, transform.position, Quaternion.LookRotation(dirGO.normalized), Mathf.Min(10, dirGO.magnitude));
-             }
-         } 
-     }*/
-    /* GameObject getCarByUniqueID(int id)
-     {
-         foreach (var car in allCars)
-             if (car.GetComponent<CarController>().carUniqueID == id)
-                 return car;
-         return null;
-     }   */
-    /* void retrievePlanner()
-     {
-         while (true) //Loop continuously after started
-         {
-             waitHandle.WaitOne(); //Run only if the handle has been set in fixedUpdate (i.e every 1sec)
-
-             plan = planner.GetPlan(currentState); //Retrieve updated plan based on currentState
-
-             //Log generated plan
-             frameGenerated = frameCounter;
-            //string debugPlan = "";
-            //foreach (string timeStep in plan)
-            //    debugPlan += timeStep + ",";
-            //debugPlan = debugPlan.Substring(0, debugPlan.Length - 1);
-            //Debug.Log("Car:"+currentState.myCar.myUniqueID + " - " + debugPlan);
-
-             //Wait for 1sec before calling the planner again
-             waitHandle.Reset();
-         }
-     }*/
+    
 
     // Update is called once per frame
     void FixedUpdate()
     {
 
-
-
-        /*  //AI STUFF
-          if (frameCounter++ % (int)(1.0f / Time.fixedDeltaTime) == 0)
-          {
-              currentState = new State();// Generate a state representing the world to be passed to the HTNPlanner
-              currentState.myCar = new CarState(carUniqueID, transform.position, GetComponent<Rigidbody>().velocity, transform.forward);
-              if (allCars.Length > 0)
-              {
-                  currentState.otherCars = new CarState[allCars.Length - 1];
-                  int otherCarCount = 0;
-                  foreach (GameObject car in allCars)
-                  {
-                      if (car == gameObject) continue;
-                      currentState.otherCars[otherCarCount++] = new CarState(car.GetComponent<CarController>().carUniqueID, car.transform.position, car.GetComponent<Rigidbody>().velocity, car.transform.forward);
-                  }
-              }
-              //Set the waitHandle to make sure that the planner can retrieve a new planning
-              waitHandle.Set();
-
-          }
-          //END AI STUFF */
+        
 
 
         IsCarOnGround = IsOnGround();
@@ -410,6 +312,8 @@ public class CarController : MonoBehaviour
             }
         }
 
+
+
         if (transform.InverseTransformDirection(rb.velocity).magnitude > 0.1f)
         {
             if (transform.InverseTransformDirection(rb.velocity).z < 0)
@@ -425,8 +329,12 @@ public class CarController : MonoBehaviour
 
         var speed = Mathf.Sqrt(TractionForce.x * TractionForce.x + TractionForce.z * TractionForce.z);
         DragForce = new Vector3(-mCDrag * TractionForce.x * speed, 0, -mCDrag * TractionForce.z * speed);
+        if (boostValue > 0) // Increase acceleration when behind
+            DragForce *= 1.5f+boostValue;
         RollingResistance = -mCRolRes * TractionForce;
 
+
+        
 
         LongtitudinalForce = TractionForce + DragForce + RollingResistance; //Flong = Ftraction + Fdrag + Frr
         Acceleration = LongtitudinalForce / rb.mass;                    // a = F + M
@@ -468,15 +376,19 @@ public class CarController : MonoBehaviour
 
         }
 
+
+        
         //if (rpm >= 1000.0f && rpm < 5000.0f)
-       // {
-            rpmToTorque = ((rpm - 1000.0f) * 0.012f) + 300.0f;                                          // rpm converter to torque from 1000- 5000 rpm
-        //}
+        // {
+        rpmToTorque = ((rpm - 1000.0f) * 0.012f) + 300.0f;                                          // rpm converter to torque from 1000- 5000 rpm
+                                                                                                    //}
 
+        if (boostValue > 0) // Increase acceleration when behind
+            rpmToTorque += 1000 * boostValue;
 
-       // if (rpm >= 5000.0f && rpm <= 6000.0f)
-       // {                                                           // rpm converter to torque from 5000-6000 rpm
-       //     rpmToTorque = 300.0f - (rpm * 0.05f) + 300.0f;
+        // if (rpm >= 5000.0f && rpm <= 6000.0f)
+        // {                                                           // rpm converter to torque from 5000-6000 rpm
+        //     rpmToTorque = 300.0f - (rpm * 0.05f) + 300.0f;
         //}
 
         if (currentGear > 0 && rpm < gearsMaxRpm[currentGear-1] *0.9f)
@@ -547,6 +459,10 @@ public class CarController : MonoBehaviour
     }
 
 
+    public void SetBoost(float newValue)
+    {
+        boostValue = newValue;
+    }
 
 
     public float GetMassOnAxle(float zCoord)
