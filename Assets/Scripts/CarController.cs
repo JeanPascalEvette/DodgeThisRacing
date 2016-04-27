@@ -170,7 +170,7 @@ public class CarController : MonoBehaviour
         // We set the health slider to each player
         healthSlider = GameObject.Find("HealthSliderP" + (myPlayerData.GetCarType() + 1).ToString()).GetComponentInChildren<Slider>();
         // We try to set the background colour as well the same as appear in top of the car
-        healthSlider.GetComponentInChildren<Image>().color = txtMsh.color;
+        healthSlider.transform.GetChild(1).GetChild(0).GetComponent<Image>().color = txtMsh.color;
 
         sounds = GetComponents<AudioSource>();
             noise1 = sounds[0];
