@@ -3738,6 +3738,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
+  boostValue: 0
   carUniqueID: 0
   sounds: []
   noise1: {fileID: 0}
@@ -3912,6 +3913,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  currentRotation: {x: 0, y: 0, z: 0}
 --- !u!114 &11451044
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4027,6 +4029,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  currentRotation: {x: 0, y: 0, z: 0}
 --- !u!114 &11460840
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4072,6 +4075,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  currentRotation: {x: 0, y: 0, z: 0}
 --- !u!114 &11461018
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4164,6 +4168,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  currentRotation: {x: 0, y: 0, z: 0}
 --- !u!114 &11483628
 MonoBehaviour:
   m_ObjectHideFlags: 1

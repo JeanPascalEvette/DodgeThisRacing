@@ -105,13 +105,18 @@ public class GameLogic : MonoBehaviour
             if (trackPiece.name.Substring(0, 7) == "Track_D") // If TrackPiece where road is separated - wait for 1sec before respawning
             {
 
-                Ray targetRay = new Ray(new Vector3(-40, 0.5f, myCamera.GetLeadingPlayerPosition().z), new Vector3(1, 0, 0));
-                RaycastHit[] hits = Physics.RaycastAll(targetRay, 80, 1 << LayerMask.NameToLayer("AIGuide"));
+                Ray targetRay = new Ray(new Vector3(myCamera.GetLeadingPlayerPosition().x - 50, 0.5f, myCamera.GetLeadingPlayerPosition().z), new Vector3(1, 0, 0));
+                RaycastHit[] hits = Physics.RaycastAll(targetRay, 180, 1 << LayerMask.NameToLayer("AIGuide"));
                 Vector3[] targetPos = new Vector3[hits.Length];
                 for (int i = 0; i < hits.Length; i++)
                     targetPos[i] = hits[i].point;
 
-                if (targetPos.Length == 1 || Vector3.Distance(targetPos[0], myCamera.GetLeadingPlayerPosition()) < Vector3.Distance(targetPos[1], myCamera.GetLeadingPlayerPosition()))
+                if (targetPos.Length == 0)
+                {
+                    Debug.LogError("Could not find Spawnpoint");
+                    startPoint = myCamera.GetLeadingPlayerPosition();
+                }
+                else if (targetPos.Length == 1 || Vector3.Distance(targetPos[0], myCamera.GetLeadingPlayerPosition()) < Vector3.Distance(targetPos[1], myCamera.GetLeadingPlayerPosition()))
                     startPoint = targetPos[0];
                 else
                     startPoint = targetPos[1];
@@ -371,19 +376,25 @@ public class GameLogic : MonoBehaviour
         var trackPiece = Data.GetCurrentTrackPiece();
         if (trackPiece != null && trackPiece.name.Substring(0, 7) == "Track_D")
         {
-            if (UnityEngine.Camera.main.GetComponent<Camera>().GetLeadingPlayerPosition().z >= trackPiece.transform.Find("Canyon_Middle_D").GetComponent<MeshRenderer>().bounds.max.z)
+            var trackBounds = getBoundsOfTrackPiece(trackPiece.GetComponentsInChildren<MeshRenderer>());
+            if (UnityEngine.Camera.main.GetComponent<Camera>().GetLeadingPlayerPosition().z >= trackBounds.max.z)
             {
                 UnityEngine.Camera.main.GetComponent<Camera>().ZoomIn();
                 //trackPiece.transform.Find("Canyon_Middle_D").GetComponent<MeshRenderer>().enabled = true;
             }
-            else if (UnityEngine.Camera.main.GetComponent<Camera>().GetLeadingPlayerPosition().z >= trackPiece.transform.Find("Road_D").GetComponent<MeshRenderer>().bounds.min.z)
+            else if (UnityEngine.Camera.main.GetComponent<Camera>().GetLeadingPlayerPosition().z >= trackBounds.min.z)
             {
-                UnityEngine.Camera.main.GetComponent<Camera>().ZoomOut();
+                float dist = 4.0f;
+                if (trackPiece.name.Length >= 8 && trackPiece.name.Substring(0, 8) == "Track_DE")
+                    dist = 9.0f;
+                UnityEngine.Camera.main.GetComponent<Camera>().ZoomOut(dist);
                 //trackPiece.transform.Find("Canyon_Middle_D").GetComponent<MeshRenderer>().enabled = false;
             }
         }
+        else
+            UnityEngine.Camera.main.GetComponent<Camera>().ZoomIn();
 
-        foreach(PlayerData pd in Data.GetPlayerData())
+        foreach (PlayerData pd in Data.GetPlayerData())
         {
             if(pd.GetGameObject() != null && pd.GetGameObject().transform.position.y < -2f)
             {

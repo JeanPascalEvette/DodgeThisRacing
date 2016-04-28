@@ -78,10 +78,12 @@ public class Camera : MonoBehaviour {
         transform.LookAt(new Vector3(0, 0, leadingPosition.z));
     }
 
-    public void ZoomOut()
+    public void ZoomOut(float newMaxZoomOut = -1)
     {
         if (!zoomOut)
         {
+            if (newMaxZoomOut != -1)
+                maxZoomOut = newMaxZoomOut;
             zoomOut = true;
             zoomOutTime = Time.time;
         }
