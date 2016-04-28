@@ -23,7 +23,7 @@ public class AIController : MonoBehaviour
     private GUISkin aSkin;
 
     private CarController myCarController;
-    private float rayWidth = 80.0f;
+    private float rayWidth = 500.0f;
 
 
     private System.Random myRand;
@@ -176,9 +176,9 @@ public class AIController : MonoBehaviour
 
 
             float zPos = Mathf.Max(myCarController.GetComponent<Rigidbody>().velocity.z * 1.0f, 5.0f);
-            Vector3 midPos = transform.position + new Vector3(0, 0.5f, zPos);
+            Vector3 midPos = new Vector3(transform.position.x, 0.5f, transform.position.z + zPos);
 
-            Ray targetRay = new Ray(midPos + new Vector3(1, 0, 0) * rayWidth/2, - new Vector3(1, 0, 0));
+            Ray targetRay = new Ray(midPos - new Vector3(1, 0, 0) * rayWidth/2, new Vector3(1, 0, 0));
             RaycastHit[] hits = Physics.RaycastAll(targetRay, rayWidth, 1 << LayerMask.NameToLayer("AIGuide"));
             Vector3[] targetPos = new Vector3[hits.Length];
             for (int i = 0; i < hits.Length; i++)
@@ -187,7 +187,7 @@ public class AIController : MonoBehaviour
 
             if (currentState.targetPositions.Length == 0)
             {
-                GameLogic.myInstance.DestroyCar(myCarController.myPlayerData, true);
+                //GameLogic.myInstance.DestroyCar(myCarController.myPlayerData, true);
                 Debug.LogWarning("Error : Could not find target position for car " + transform.gameObject.name + ". Killing car");
             }
 

@@ -1023,7 +1023,7 @@ BoxCollider:
   m_GameObject: {fileID: 851432732}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -1045,6 +1045,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed1b1f6b9b0501c409570502154bf3aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  lifeDecreaseSpeed: 10
 --- !u!1 &1077436251
 GameObject:
   m_ObjectHideFlags: 0
@@ -1408,7 +1409,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 60
+  field of view: 100
   orthographic: 0
   orthographic size: 5
   m_Depth: -1

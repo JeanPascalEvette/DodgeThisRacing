@@ -13,7 +13,7 @@ GameObject:
   - 54: {fileID: 5497054}
   - 65: {fileID: 6572168}
   - 114: {fileID: 11417740}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: LeftDoor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -85,7 +85,7 @@ GameObject:
   - 54: {fileID: 5478088}
   - 59: {fileID: 5949784}
   - 114: {fileID: 11478726}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: FronGrider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -105,7 +105,7 @@ GameObject:
   - 65: {fileID: 6521180}
   - 54: {fileID: 5405800}
   - 114: {fileID: 11428374}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: RightDoorWindow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -125,7 +125,7 @@ GameObject:
   - 65: {fileID: 6593784}
   - 54: {fileID: 5449092}
   - 114: {fileID: 11488948}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: RightBackDoorWindow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -163,7 +163,7 @@ GameObject:
   - 54: {fileID: 5420250}
   - 114: {fileID: 11456226}
   - 59: {fileID: 5985102}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: BackBumper
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -201,7 +201,7 @@ GameObject:
   - 54: {fileID: 5452750}
   - 114: {fileID: 11427666}
   - 59: {fileID: 5906604}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: RoofLights
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -222,7 +222,7 @@ GameObject:
   - 54: {fileID: 5454334}
   - 59: {fileID: 5902820}
   - 114: {fileID: 11473472}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: LeftMirror
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -313,7 +313,7 @@ GameObject:
   - 114: {fileID: 11483628}
   - 65: {fileID: 6525630}
   - 59: {fileID: 5973892}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Hood
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -330,7 +330,7 @@ GameObject:
   - 4: {fileID: 463480}
   - 33: {fileID: 3347122}
   - 23: {fileID: 2320366}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: RightExhaustion
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -402,7 +402,7 @@ GameObject:
   - 65: {fileID: 6573568}
   - 54: {fileID: 5496624}
   - 114: {fileID: 11422580}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: RightDoor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -439,7 +439,7 @@ GameObject:
   - 114: {fileID: 11449552}
   - 54: {fileID: 5491470}
   - 65: {fileID: 6505518}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: RightBackDoor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -495,7 +495,7 @@ GameObject:
   - 54: {fileID: 5443198}
   - 59: {fileID: 5904168}
   - 114: {fileID: 11451044}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: LeftBackDoor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -688,7 +688,7 @@ GameObject:
   - 54: {fileID: 5414630}
   - 65: {fileID: 6567638}
   - 114: {fileID: 11433854}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: LeftDoorWindow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -776,7 +776,7 @@ GameObject:
   - 65: {fileID: 6569760}
   - 54: {fileID: 5474542}
   - 114: {fileID: 11428590}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: RightMirror
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -796,7 +796,7 @@ GameObject:
   - 65: {fileID: 6561500}
   - 54: {fileID: 5475880}
   - 114: {fileID: 11420306}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: LeftBackDoorWindow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -817,7 +817,7 @@ GameObject:
   - 54: {fileID: 5467398}
   - 59: {fileID: 5988146}
   - 114: {fileID: 11444150}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: FrontBumper
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -855,7 +855,7 @@ GameObject:
   - 54: {fileID: 5493838}
   - 114: {fileID: 11451398}
   - 59: {fileID: 5985572}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: LeftExhaustion
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -885,7 +885,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 410760}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Detachables
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2767,9 +2767,9 @@ Rigidbody:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 168026}
   serializedVersion: 2
-  m_Mass: 1500
-  m_Drag: 0
-  m_AngularDrag: 0.05
+  m_Mass: 2000
+  m_Drag: 0.1
+  m_AngularDrag: 100
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
@@ -3738,6 +3738,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
+  boostValue: 0
   carUniqueID: 0
   sounds: []
   noise1: {fileID: 0}
@@ -3912,6 +3913,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  currentRotation: {x: 0, y: 0, z: 0}
 --- !u!114 &11451044
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4027,6 +4029,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  currentRotation: {x: 0, y: 0, z: 0}
 --- !u!114 &11460840
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4072,6 +4075,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  currentRotation: {x: 0, y: 0, z: 0}
 --- !u!114 &11461018
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4164,6 +4168,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  currentRotation: {x: 0, y: 0, z: 0}
 --- !u!114 &11483628
 MonoBehaviour:
   m_ObjectHideFlags: 1

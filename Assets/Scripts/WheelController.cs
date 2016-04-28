@@ -54,19 +54,23 @@ public class WheelController : MonoBehaviour {
     private float wheelRadius;
     private float spinningSpeed = 10;
 
-    private Vector3 currentRotation = new Vector3(0, 0, 0);
+    public Vector3 currentRotation = new Vector3(0, 0, 0);
 
-
+    private Transform direction;
 
     // Use this for initialization
     void Start () {
-        mCarController = transform.parent.GetComponent<CarController>();
+        mCarController = transform.root.GetComponent<CarController>();
         var meshRenderer = transform.GetComponent<MeshRenderer>();
         if (meshRenderer == null)
             meshRenderer = transform.GetChild(2).GetComponent<MeshRenderer>();
         wheelRadius = meshRenderer.bounds.size.y / 2;
         if (carModel == null)
             carModel = transform.root.GetComponent<Rigidbody>();
+        if (gameObject.name == "LeftRear" && transform.root.Find("FrontAxle") != null)
+            direction = transform.root.Find("FrontAxle").GetChild(0);
+        else if (gameObject.name == "RightRear" && transform.root.Find("FrontAxle") != null)
+            direction = transform.root.Find("FrontAxle").GetChild(1);
     }
 	
 	// Update is called once per frame
@@ -81,14 +85,39 @@ public class WheelController : MonoBehaviour {
     }
 
 
+    void LateUpdate()
+    {
+        currentRotation.x += spinningSpeed;
+
+        float maxTurn = 0;
+
+        if (mCarController.IsGoing('A'))
+        {
+            maxTurn = -1;
+        }
+        else if (mCarController.IsGoing('D'))
+        {
+            maxTurn = 1;
+        }
+
+        float angle = 0f;
+
+        if (direction != null)
+            direction.gameObject.transform.localRotation = Quaternion.Euler(0, maxTurn * 30, 0);
+        else
+            angle = maxTurn * 30;
+
+
+        if (isRearWheel)
+            transform.localRotation = Quaternion.Euler(currentRotation);
+        else
+            transform.localRotation = Quaternion.Euler(currentRotation.x, angle, 0);
+    }
 
     // Fixed Update Function
     void FixedUpdate()
     {
-        currentRotation.x += spinningSpeed;
 
-        currentRotation = new Vector3(currentRotation.x, 0, 0);
-        transform.localRotation = Quaternion.Euler(currentRotation);
 
         // Car velocity (Find out which direction to use) (negative sign as before the speed was opposite it should be)
         carSpeed = carModel.transform.InverseTransformDirection(carModel.velocity).z;
