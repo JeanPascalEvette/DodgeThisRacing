@@ -13,7 +13,7 @@ public class BoundaryDestroyer : MonoBehaviour {
     
     float boostDistMax = 40.0f;
     float boostDistMin = 10.0f;
-    float lifeLossDistMin = 20.0f;
+    float lifeLossDistMin = 18.0f;
 
     // Use this for initialization
     void Start () {
