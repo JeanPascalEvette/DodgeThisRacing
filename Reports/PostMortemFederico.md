@@ -6,7 +6,7 @@ MSc. Computer Games & Entertainment – PT 1st year, 2016/17.
 
 Assignment for Advanced Game Programming II.
 
-*1) What you did on the project and what responsibilities you took on board on the team?*
+***1) What you did on the project and what responsibilities you took on board on the team?***
 
 In this project I worked in team with Elio De Bernardinis in the development of the Graphics User Interface of our racing game. We chose Nintendo’s Smash Brothers as a template for it, a system that in our opinion lent itself very well to a flexible and easy to use selection of game objects and players.
 Both mine and Elio’s involvement was proportionate to our being first time part-time students in the course, so we did not take upon us any other programming tasks related to the Physics part, and we officially got on board one month into development, in accordance with the requirements of our status.
