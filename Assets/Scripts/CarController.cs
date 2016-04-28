@@ -123,11 +123,14 @@ public class CarController : MonoBehaviour
     private AIController myAI;
     public PlayerData myPlayerData;
 
+    private BoundaryDestroyer bDestroyer;
+
     // Use this for initialization
     void Start()
     {   
 
         myAI = GetComponent<AIController>();
+        bDestroyer = UnityEngine.Camera.main.GetComponentInChildren<BoundaryDestroyer>();
         carUniqueID = carCounter++;
         // allCars = GameObject.FindGameObjectsWithTag("Player");
         // planner = new HTNPlanner(1.5f);
@@ -214,8 +217,8 @@ public class CarController : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        if (transform.position.z < UnityEngine.Camera.main.GetComponent<Camera>().GetLeadingPlayerPosition().z - 20.0f)
-            transform.position = new Vector3(transform.position.x, transform.position.y, UnityEngine.Camera.main.GetComponent<Camera>().GetLeadingPlayerPosition().z - 20.0f);
+        if (transform.position.z < (bDestroyer.GetPushingWall()) )
+            transform.position = new Vector3(transform.position.x, transform.position.y, (bDestroyer.GetPushingWall()));
         var txtMsh = transform.Find("Text").GetComponent<TextMesh>();
         txtMsh.text = (rb.velocity.magnitude).ToString();
 
