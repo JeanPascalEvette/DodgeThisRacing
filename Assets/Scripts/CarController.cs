@@ -170,11 +170,16 @@ public class CarController : MonoBehaviour
             case 4: txtMsh.color = Color.yellow; break;
         }
 
-        Vector2 pos = gameObject.transform.position;  // get the game object position
-        Vector2 viewportPoint = UnityEngine.Camera.main.WorldToViewportPoint(pos);  //convert game object position to VievportPoint
-        healthSlider.transform.localPosition = new Vector3(viewportPoint.x, viewportPoint.y, 0);
+        //Vector2 screenPoint = RectTransformUtility.WorldToScreenPoint(UnityEngine.Camera.main, transform.position);
+
+        var wantedPos = UnityEngine.Camera.main.WorldToViewportPoint(transform.position);
+
+        //Vector2 pos = gameObject.transform.position;  // get the game object position
+        //Vector2 viewportPoint = UnityEngine.Camera.main.WorldToViewportPoint(pos);  //convert game object position to VievportPoint
+        //healthSlider.transform.localPosition = new Vector3(viewportPoint.x, viewportPoint.y, 0);
 
         healthSlider = transform.GetChild(0).Find("HealthSlider").GetComponentInChildren<Slider>();
+        healthSlider.transform.position = wantedPos;
 
         // We set the health slider to each player
         //healthSlider = GameObject.Find("HealthSliderP" + (myPlayerData.GetCarType() + 1).ToString()).GetComponentInChildren<Slider>();
