@@ -216,8 +216,8 @@ public class CarController : MonoBehaviour
     {
         if (transform.position.z < UnityEngine.Camera.main.GetComponent<Camera>().GetLeadingPlayerPosition().z - 20.0f)
             transform.position = new Vector3(transform.position.x, transform.position.y, UnityEngine.Camera.main.GetComponent<Camera>().GetLeadingPlayerPosition().z - 20.0f);
-        //var txtMsh = transform.Find("Text").GetComponent<TextMesh>();
-        //txtMsh.text = (rb.velocity.magnitude).ToString();
+        var txtMsh = transform.Find("Text").GetComponent<TextMesh>();
+        txtMsh.text = (rb.velocity.magnitude).ToString();
 
 
 
