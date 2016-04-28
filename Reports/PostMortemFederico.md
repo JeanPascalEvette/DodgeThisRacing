@@ -15,7 +15,7 @@ I contributed to the PlayerSelector.cs and LevelManager.cs scripts, providing th
 I contributed to the conception of the GUI design and principles, which we agreed upon in collaboration with the other team members.
 I provided some graphics and font design for the start menu and a musical loop before the game starts.
 
-**2) Details of some of the challenges you faced and how you dealt with them (i.e. your approach to resolving any technical or artistic challenges you faced) **
+**2) Details of some of the challenges you faced and how you dealt with them (i.e. your approach to resolving any technical or artistic challenges you faced)**
 
 Most of the technical challenges were due to the intricacies of having two people working on the same code base and the same scripts, essentially duplicating the same tasks in few occasions. We resolved this by working on separate GitHub branches on the same problems and then either merging or continuing from a single branch. This approach could have been streamlined and created an excess of branching in my opinion.
 There were difficulties, as often happens in software development, in the naming of variables and functions, and also in the consistency of the naming standards. We resolved this by allowing the code to be heavily commented, more than it would normally be, privileging therefore communication among us rather than worrying too much about legacy code.
