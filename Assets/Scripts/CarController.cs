@@ -214,8 +214,11 @@ public class CarController : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+        if (transform.position.z < UnityEngine.Camera.main.GetComponent<Camera>().GetLeadingPlayerPosition().z - 20.0f)
+            transform.position = new Vector3(transform.position.x, transform.position.y, UnityEngine.Camera.main.GetComponent<Camera>().GetLeadingPlayerPosition().z - 20.0f);
+        var txtMsh = transform.Find("Text").GetComponent<TextMesh>();
+        txtMsh.text = (rb.velocity.magnitude).ToString();
 
-        
 
 
         IsCarOnGround = IsOnGround();
@@ -330,7 +333,7 @@ public class CarController : MonoBehaviour
         var speed = Mathf.Sqrt(TractionForce.x * TractionForce.x + TractionForce.z * TractionForce.z);
         DragForce = new Vector3(-mCDrag * TractionForce.x * speed, 0, -mCDrag * TractionForce.z * speed);
         if (boostValue > 0) // Increase acceleration when behind
-            DragForce *= 1.5f+boostValue;
+            DragForce *= 1.0f+(boostValue/2.0f);
         RollingResistance = -mCRolRes * TractionForce;
 
 
@@ -383,7 +386,7 @@ public class CarController : MonoBehaviour
         rpmToTorque = ((rpm - 1000.0f) * 0.012f) + 300.0f;                                          // rpm converter to torque from 1000- 5000 rpm
                                                                                                     //}
 
-        if (boostValue > 0) // Increase acceleration when behind
+        if (boostValue > 0) // Increase top speed when behind
             rpmToTorque += 1000 * boostValue;
 
         // if (rpm >= 5000.0f && rpm <= 6000.0f)
