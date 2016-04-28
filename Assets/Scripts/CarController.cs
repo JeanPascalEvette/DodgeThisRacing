@@ -171,18 +171,16 @@ public class CarController : MonoBehaviour
         }
 
         //Vector2 screenPoint = RectTransformUtility.WorldToScreenPoint(UnityEngine.Camera.main, transform.position);
-
-        var wantedPos = UnityEngine.Camera.main.WorldToViewportPoint(transform.position);
+        
 
         //Vector2 pos = gameObject.transform.position;  // get the game object position
         //Vector2 viewportPoint = UnityEngine.Camera.main.WorldToViewportPoint(pos);  //convert game object position to VievportPoint
         //healthSlider.transform.localPosition = new Vector3(viewportPoint.x, viewportPoint.y, 0);
 
-        healthSlider = transform.GetChild(0).Find("HealthSlider").GetComponentInChildren<Slider>();
-        healthSlider.transform.position = wantedPos;
+        //healthSlider = transform.GetChild(0).Find("HealthSlider").GetComponentInChildren<Slider>();
 
         // We set the health slider to each player
-        //healthSlider = GameObject.Find("HealthSliderP" + (myPlayerData.GetCarType() + 1).ToString()).GetComponentInChildren<Slider>();
+        healthSlider = GameObject.Find("HealthSliderP" + (myPlayerData.GetCarType() + 1).ToString()).GetComponentInChildren<Slider>();
         // We try to set the background colour as well the same as appear in top of the car
         healthSlider.transform.GetChild(1).GetChild(0).GetComponent<Image>().color = txtMsh.color;
 
@@ -205,7 +203,11 @@ public class CarController : MonoBehaviour
 
     void Update()
     {
-        foreach(var exhaust in exhausts)
+
+        var wantedPos = UnityEngine.Camera.main.WorldToScreenPoint(transform.position);
+        healthSlider.transform.position = wantedPos;
+
+        foreach (var exhaust in exhausts)
         {
             exhaust.emissionRate =  rpm;
         }
