@@ -11,8 +11,9 @@ public class BoundaryDestroyer : MonoBehaviour {
     private float lifeDecreaseSpeed = 10.0f;
 
     
-    float boostDistMax = 20.0f;
-    float boostDistMin = 5.0f;
+    float boostDistMax = 40.0f;
+    float boostDistMin = 10.0f;
+    float lifeLossDistMin = 10.0f;
 
     // Use this for initialization
     void Start () {
@@ -39,19 +40,20 @@ public class BoundaryDestroyer : MonoBehaviour {
             var car = pd.GetGameObject();
             if (car == null) continue;
 
+            var leadingCar = UnityEngine.Camera.main.GetComponent<Camera>().GetLeadingPlayerPosition();
 
             //If vry far behind wall just kill the car
-            if (car.transform.position.z < transform.position.z - 200.0f)
+            if (car.transform.position.z < leadingCar.z - 200.0f)
                 GL.DestroyCar(pd, true);
-            else if (car.transform.position.z < transform.position.z) //If behind wall damage car progressively
+            else if (car.transform.position.z < leadingCar.z - lifeLossDistMin) //If behind wall damage car progressively
                 car.GetComponent<CarController>().ReduceLife(Time.deltaTime * lifeDecreaseSpeed);
 
 
             //If close to the wall - boost car a bit
-            if (car.transform.position.z < transform.position.z + boostDistMin)
+            if (car.transform.position.z < leadingCar.z - boostDistMin)
             {
                 float boost = 0.0f;
-                float dist = transform.position.z - car.transform.position.z;
+                float dist = leadingCar.z - car.transform.position.z;
                 if (dist >= boostDistMax)
                     boost = 1.0f;
                 else
