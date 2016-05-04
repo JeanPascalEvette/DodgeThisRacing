@@ -18,7 +18,7 @@ public class MoveSelector : MonoBehaviour {
     public bool is_this_inside = false; //Bool variable that tells if the current cursor is inside a Car Icon
     public bool is_this_active = false; //Bool variable that tells if this player is active or not
 
-    public bool is_on_button1 = false; //Bool variable to be used in the Script PlayerActivation (Currently not in use)
+    public bool is_this_ready = false; //Bool variable to be used to check if player is ready to start
 
     public float xMaximum, yMaximum;
 

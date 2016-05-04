@@ -118,6 +118,7 @@ public class IconCollider : MonoBehaviour {
         t.transform.parent = Car.transform;             //The coin is given the car icon as a parent
         Car.GetComponent<Collider2D>().enabled = false; //The collider of the car icon is deactivated. This car cannot be selected by other players
         ThisCarSelected = true;                         //Bool variable telling the player has selected this car
+        m.is_this_ready = true;                         //This player has selected the car and is ready to GO
         l.num_ready_players++;                          // Increase the number of players who are ready to GO
 
         switch (m.playerID)   //Assign the car image to the correct player
@@ -153,6 +154,7 @@ public class IconCollider : MonoBehaviour {
         Car.GetComponent<Collider2D>().enabled = true; //The car Collider is re-activated
         ThisCarSelected = false;                       //The car is deselected
         isActive = false;
+        m.is_this_ready = false;
         l.num_ready_players--;                         //The number of players ready to go is decreased
 
         switch (m.playerID) //Assign the "NO Car" image to the correct player

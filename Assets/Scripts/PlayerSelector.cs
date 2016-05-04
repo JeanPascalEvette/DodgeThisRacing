@@ -266,7 +266,7 @@ public class PlayerSelector : MonoBehaviour
 
     public void ControlManager() {
 
-        if (m.is_this_active)
+        if (m.is_this_active && !m.is_this_ready)
         {
             Controls++;
 

@@ -25,16 +25,16 @@ public class PlayerActivation : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
-        if (m1.is_on_button1)
-        {
-            if (m1.ThisPlayerControl == MoveSelector.ControlTypesHere.Joy1 && Input.GetButtonDown("ButtonAJoyStick1"))
-            {
+        //if (m1.is_on_button1)
+        //{
+        //    if (m1.ThisPlayerControl == MoveSelector.ControlTypesHere.Joy1 && Input.GetButtonDown("ButtonAJoyStick1"))
+        //    {
 
-                Panel.player_selector();
-                Panel.PanelManager();
+        //        Panel.player_selector();
+        //        Panel.PanelManager();
 
-            }
-        }
+        //    }
+        //}
     }
 
 
@@ -53,10 +53,10 @@ public class PlayerActivation : MonoBehaviour {
 
         {
            // m = m1.GetComponent<MoveSelector>();
-            m1.is_on_button1 = true;
+            //m1.is_on_button1 = true;
         }
 
-        print("Enter Button player " + m1.is_on_button1);
+        //print("Enter Button player " + m1.is_on_button1);
     }
 
 
@@ -67,10 +67,10 @@ public class PlayerActivation : MonoBehaviour {
 
         {
             //m = m1.GetComponent<MoveSelector>();
-            m1.is_on_button1 = false;
+            //m1.is_on_button1 = false;
         }
 
 
-        print("Exit Button player " + m1.is_on_button1);
+        //print("Exit Button player " + m1.is_on_button1);
     }
 }
