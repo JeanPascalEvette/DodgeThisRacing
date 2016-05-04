@@ -1641,7 +1641,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 192472}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: 0.25881907, z: 0, w: 0.9659259}
   m_LocalPosition: {x: 0, y: 0, z: -0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -1911,7 +1911,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 147384}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: 0.25881907, z: 0, w: 0.9659259}
   m_LocalPosition: {x: 0, y: 0, z: -0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -3350,7 +3350,7 @@ HingeJoint:
   m_Anchor: {x: 0.5, y: 0, z: 0}
   m_Axis: {x: 0, y: 1, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0.5, y: 0, z: 0.000013947487}
+  m_ConnectedAnchor: {x: 0.43301967, y: 0, z: -0.24998794}
   m_UseSpring: 0
   m_Spring:
     spring: 0
@@ -3414,7 +3414,7 @@ HingeJoint:
   m_Anchor: {x: -0.5, y: 0, z: 0}
   m_Axis: {x: -1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.08700663, y: 0.003939837, z: 0.0015217066}
+  m_ConnectedAnchor: {x: -0.15399373, y: 0.003939837, z: 0.2515217}
   m_UseSpring: 0
   m_Spring:
     spring: 0
@@ -3478,7 +3478,7 @@ HingeJoint:
   m_Anchor: {x: -0.5, y: 0, z: 0}
   m_Axis: {x: 0, y: 1, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.5, y: 0, z: 0.000013947487}
+  m_ConnectedAnchor: {x: -0.43300572, y: 0, z: 0.2500121}
   m_UseSpring: 0
   m_Spring:
     spring: 0
@@ -3670,7 +3670,7 @@ HingeJoint:
   m_Anchor: {x: 0.5, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0.0870201, y: 0.003939837, z: 0.0015214682}
+  m_ConnectedAnchor: {x: 0.15400723, y: 0.003939837, z: -0.24847853}
   m_UseSpring: 0
   m_Spring:
     spring: 0
@@ -4389,6 +4389,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  currentRotation: {x: 0, y: 0, z: 0}
 --- !u!114 &11412324
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4434,6 +4435,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  currentRotation: {x: 0, y: 0, z: 0}
 --- !u!114 &11413828
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4716,6 +4718,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  currentRotation: {x: 0, y: 0, z: 0}
 --- !u!114 &11458814
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4853,6 +4856,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
+  boostValue: 0
   carUniqueID: 0
   sounds: []
   noise1: {fileID: 0}
@@ -4957,6 +4961,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  currentRotation: {x: 0, y: 0, z: 0}
 --- !u!114 &11492188
 MonoBehaviour:
   m_ObjectHideFlags: 1

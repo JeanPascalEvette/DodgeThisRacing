@@ -4922,8 +4922,8 @@ MonoBehaviour:
   WeightOnRearWheels: 0
   IsCarOnGround: 0
   estimatedLandingTime: 0
-  LeftDirection: {fileID: 490434, guid: eec4267e6878ee34dba7cab1bcec6d5a, type: 2}
-  RightDirection: {fileID: 461696, guid: eec4267e6878ee34dba7cab1bcec6d5a, type: 2}
+  LeftDirection: {fileID: 417958}
+  RightDirection: {fileID: 488208}
   testRpmResistance:
     serializedVersion: 2
     m_Curve:
@@ -4945,6 +4945,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
+  boostValue: 0
   carUniqueID: 0
   sounds: []
   noise1: {fileID: 0}
@@ -5013,6 +5014,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  currentRotation: {x: 0, y: 0, z: 0}
 --- !u!114 &11442488
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5178,6 +5180,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  currentRotation: {x: 0, y: 0, z: 0}
 --- !u!114 &11467248
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5259,6 +5262,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  currentRotation: {x: 0, y: 0, z: 0}
 --- !u!114 &11483318
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5462,6 +5466,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  currentRotation: {x: 0, y: 0, z: 0}
 --- !u!135 &13514190
 SphereCollider:
   m_ObjectHideFlags: 1

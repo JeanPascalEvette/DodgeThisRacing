@@ -97,7 +97,7 @@ Material:
       data:
         first:
           name: _Cutoff
-        second: 0.77
+        second: 0.5
       data:
         first:
           name: _Parallax

@@ -23,7 +23,7 @@ public class AIController : MonoBehaviour
     private GUISkin aSkin;
 
     private CarController myCarController;
-    private float rayWidth = 80.0f;
+    private float rayWidth = 200.0f;
 
 
     private System.Random myRand;
@@ -51,7 +51,7 @@ public class AIController : MonoBehaviour
         }
         catch(System.Exception ex)
         {
-            Debug.Log("Error when Getting plan. Search value " + (frameCounter - frameGenerated).ToString() + " in array size " + plan.Length);
+            Debug.LogWarning("Error when Getting plan. Search value " + (frameCounter - frameGenerated).ToString() + " in array size " + plan.Length);
             return "";
         }
     }
@@ -94,6 +94,8 @@ public class AIController : MonoBehaviour
                 textPlan = textPlan + commands[i] + "\n";
             }
             textPlan = textPlan.Substring(0, textPlan.Length - 1);
+
+#if UNITY_EDITOR
             UnityEditor.Handles.Label(transform.position, textPlan, style);
 
 
@@ -111,13 +113,15 @@ public class AIController : MonoBehaviour
 
             Vector3 midPos = transform.position + new Vector3(0, 0.5f, 25f);
             UnityEditor.Handles.DrawLine(midPos + new Vector3(1, 0, 0) * rayWidth / 2, midPos - new Vector3(1, 0, 0) * rayWidth / 2);
+#endif
         }
 
 
-    }
 
-    // Update is called once per frame
-    void Update()
+        }
+
+        // Update is called once per frame
+        void Update()
     {
 
 
@@ -172,9 +176,9 @@ public class AIController : MonoBehaviour
 
 
             float zPos = Mathf.Max(myCarController.GetComponent<Rigidbody>().velocity.z * 1.0f, 5.0f);
-            Vector3 midPos = transform.position + new Vector3(0, 0.5f, zPos);
+            Vector3 midPos = new Vector3(transform.position.x, 0.5f, transform.position.z + zPos);
 
-            Ray targetRay = new Ray(midPos + new Vector3(1, 0, 0) * rayWidth/2, - new Vector3(1, 0, 0));
+            Ray targetRay = new Ray(midPos - new Vector3(1, 0, 0) * rayWidth/2, new Vector3(1, 0, 0));
             RaycastHit[] hits = Physics.RaycastAll(targetRay, rayWidth, 1 << LayerMask.NameToLayer("AIGuide"));
             Vector3[] targetPos = new Vector3[hits.Length];
             for (int i = 0; i < hits.Length; i++)
@@ -183,7 +187,7 @@ public class AIController : MonoBehaviour
 
             if (currentState.targetPositions.Length == 0)
             {
-                GameLogic.myInstance.DestroyCar(myCarController.myPlayerData, true);
+                //GameLogic.myInstance.DestroyCar(myCarController.myPlayerData, true);
                 Debug.LogWarning("Error : Could not find target position for car " + transform.gameObject.name + ". Killing car");
             }
 
@@ -216,7 +220,7 @@ public class AIController : MonoBehaviour
             foreach (string timeStep in plan)
                 debugPlan += timeStep + ",";
             debugPlan = debugPlan.Substring(0, debugPlan.Length - 1);
-            Debug.Log("Car:" + currentState.myCar.myUniqueID + " - " + debugPlan);
+            //Debug.Log("Car:" + currentState.myCar.myUniqueID + " - " + debugPlan);
 
             //Wait for 1sec before calling the planner again
             waitHandle.Reset();

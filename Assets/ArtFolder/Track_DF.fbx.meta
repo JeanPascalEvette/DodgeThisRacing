@@ -1,0 +1,124 @@
+fileFormatVersion: 2
+guid: 2456e4059f203fa469dfff3944c68406
+timeCreated: 1461924009
+licenseType: Free
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: AI_mesh_DF
+    100002: Canyon_DF
+    100004: Canyon_Middle_DF
+    100006: Canyon_Outer_DF
+    100008: Guard_DF
+    100010: Road_DF
+    100012: Sand_DF
+    100014: Side1_DF
+    100016: Side2_DF
+    100018: //RootNode
+    100020: Walls_DF
+    400000: AI_mesh_DF
+    400002: Canyon_DF
+    400004: Canyon_Middle_DF
+    400006: Canyon_Outer_DF
+    400008: Guard_DF
+    400010: Road_DF
+    400012: Sand_DF
+    400014: Side1_DF
+    400016: Side2_DF
+    400018: //RootNode
+    400020: Walls_DF
+    2300000: AI_mesh_DF
+    2300002: Canyon_DF
+    2300004: Canyon_Middle_DF
+    2300006: Canyon_Outer_DF
+    2300008: Guard_DF
+    2300010: Road_DF
+    2300012: Sand_DF
+    2300014: Side1_DF
+    2300016: Side2_DF
+    2300018: Walls_DF
+    3300000: AI_mesh_DF
+    3300002: Canyon_DF
+    3300004: Canyon_Middle_DF
+    3300006: Canyon_Outer_DF
+    3300008: Guard_DF
+    3300010: Road_DF
+    3300012: Sand_DF
+    3300014: Side1_DF
+    3300016: Side2_DF
+    3300018: Walls_DF
+    4300000: Canyon_Middle_DF
+    4300002: Canyon_Outer_DF
+    4300004: Side1_DF
+    4300006: Guard_DF
+    4300008: Road_DF
+    4300010: Walls_DF
+    4300012: AI_mesh_DF
+    4300014: Canyon_DF
+    4300016: Side2_DF
+    4300018: Sand_DF
+    9500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleRotations: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
