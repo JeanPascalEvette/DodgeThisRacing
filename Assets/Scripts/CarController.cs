@@ -680,6 +680,15 @@ public class CarController : MonoBehaviour
             noise2.Play();
         }
      }
+
+    public void SetLights(bool isOn)
+    {
+        var lights = GetComponentsInChildren<Light>();
+        foreach (Light l in lights)
+        {
+            l.enabled = isOn;
+        }
+    }
    }
 
 
