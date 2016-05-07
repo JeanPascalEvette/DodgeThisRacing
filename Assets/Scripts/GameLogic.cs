@@ -121,6 +121,8 @@ public class GameLogic : MonoBehaviour
                 else
                     startPoint = targetPos[1];
             }
+            startPoint.z -= 7.5f;
+
             float xPos = 0.0f;
             List<float> listOfXPos = new List<float>();
             foreach (var pData in Data.GetPlayerData())
