@@ -61,6 +61,11 @@ public class PlayerData
         _lives--;
     }
 
+    public void addLives()
+    {
+        _lives++;
+    }
+
     public void AttachGameObject(GameObject car)
     {
         _carObject = car;

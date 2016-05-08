@@ -10,6 +10,12 @@ public class CarHitbox : MonoBehaviour
 
     private CarController car;
     public Rigidbody carModel;
+
+    //
+    Shield shieldDome;
+    GameObject carShield;
+    float shieldTime;
+
     private float damageCaused;
     public float carSpeed;
 
@@ -18,6 +24,7 @@ public class CarHitbox : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        shieldDome = new Shield();
         car = transform.root.GetComponent<CarController>();
         carModel = car.GetComponent<Rigidbody>();
 
@@ -41,6 +48,40 @@ public class CarHitbox : MonoBehaviour
             return; // Ignore collisions with ground
         if (col.transform.root == transform.root)
             return; // Ignore self collisions
+        
+        if(col.transform.root.tag == "Pickups")
+        {
+            
+            if(col.gameObject.GetComponent<Pickups>().healthPickup)
+            {
+                car.currentHealth += (int) col.gameObject.GetComponent<Pickups>().health;
+                if (car.currentHealth > 100)
+                    car.currentHealth = 100;
+                Destroy(col.gameObject);
+            }
+
+            else if(col.gameObject.GetComponent<Pickups>().lifePickup)
+            {
+                car.myPlayerData.addLives();
+                Destroy(col.gameObject);
+            }
+
+            else if(col.gameObject.GetComponent<Pickups>().shieldPickup)
+            {
+                shieldDome.createShield(true, car);
+                shieldTime = col.gameObject.GetComponent<Pickups>().shield;
+                carShield = car.gameObject.GetComponentInChildren<shieldScript>().gameObject;
+                Destroy(col.gameObject);
+            }
+
+            else if(col.gameObject.GetComponent<Pickups>().speedPickup)
+            {
+                Vector3 speedIncrease = new Vector3(0, 0, col.gameObject.GetComponent<Pickups>().speed);
+                car.GetComponent<Rigidbody>().velocity += speedIncrease;
+            }
+
+            return;
+        }
         //{
         // We need to find out which sphere collider we are hitting here
         
@@ -94,6 +135,8 @@ public class CarHitbox : MonoBehaviour
             sparks.GetComponent<Rigidbody>().velocity = transform.root.GetComponent<Rigidbody>().velocity;
         }
 
+        
+
 
         collisionCD = 0.1f;
         // check the health of the car
@@ -109,6 +152,15 @@ public class CarHitbox : MonoBehaviour
         carSpeed = carModel.velocity.magnitude;
         if (collisionCD > 0)
             collisionCD -= Time.deltaTime;
+
+        if(shieldTime > 0)
+        {
+            shieldTime -= Time.deltaTime;
+        }
+        else
+        {
+            Destroy(carShield);
+        }
     }
     
 }
