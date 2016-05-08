@@ -79,8 +79,14 @@ public class CarHitbox : MonoBehaviour
                 Vector3 speedIncrease = new Vector3(0, 0, col.gameObject.GetComponent<Pickups>().speed);
                 car.GetComponent<Rigidbody>().velocity += speedIncrease;
             }
-
             return;
+        }
+
+        if(col.gameObject.GetComponent<shieldScript>())
+        {
+            GameObject collisionEffect = Instantiate(Resources.Load("Prefabs/Pickups/ShieldCollisionEffect")) as GameObject;
+            collisionEffect.transform.parent = car.transform;
+            collisionEffect.transform.position = car.transform.position;
         }
         //{
         // We need to find out which sphere collider we are hitting here
