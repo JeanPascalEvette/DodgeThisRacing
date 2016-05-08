@@ -84,9 +84,12 @@ public class CarHitbox : MonoBehaviour
 
         if(col.gameObject.GetComponent<shieldScript>())
         {
-            GameObject collisionEffect = Instantiate(Resources.Load("Prefabs/Pickups/ShieldCollisionEffect")) as GameObject;
-            collisionEffect.transform.parent = car.transform;
-            collisionEffect.transform.position = car.transform.position;
+            RaycastHit shieldHit;
+            if(Physics.Raycast(transform.position, (col.transform.position - transform.position), out shieldHit))
+            {
+                GameObject collisionEffect = Instantiate(Resources.Load("Prefabs/Pickups/ShieldCollisionEffect"), shieldHit.point, Quaternion.identity) as GameObject;
+                collisionEffect.transform.parent = col.transform;
+            }
         }
         //{
         // We need to find out which sphere collider we are hitting here

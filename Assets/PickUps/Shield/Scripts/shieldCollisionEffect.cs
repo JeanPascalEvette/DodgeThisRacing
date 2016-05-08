@@ -11,13 +11,14 @@ public class shieldCollisionEffect : MonoBehaviour {
 	void Start () {
 
         collisionLight = this.GetComponentInChildren<Light>();
+        collisionLight.range = 5;
 	
 	}
 	
 	// Update is called once per frame
 	void Update () {
 
-        collisionLight.range = collisionLight.range - Time.time * fadeSpeed;
+        collisionLight.range = collisionLight.range - Time.deltaTime * fadeSpeed;
 
         if (collisionLight.range < 0.01f)
         {

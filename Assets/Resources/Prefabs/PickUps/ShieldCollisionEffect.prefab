@@ -9,7 +9,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 476170}
   - 108: {fileID: 10833124}
-  - 114: {fileID: 11476710}
+  - 114: {fileID: 11466858}
   m_Layer: 0
   m_Name: ShieldCollisionEffect
   m_TagString: Untagged
@@ -38,7 +38,7 @@ Light:
   m_Enabled: 1
   serializedVersion: 6
   m_Type: 2
-  m_Color: {r: 0, g: 0.9632353, b: 0.8436613, a: 1}
+  m_Color: {r: 0.034482718, g: 1, b: 0, a: 1}
   m_Intensity: 8
   m_Range: 5
   m_SpotAngle: 30
@@ -62,7 +62,7 @@ Light:
   m_ShadowRadius: 0
   m_ShadowAngle: 0
   m_AreaSize: {x: 1, y: 1}
---- !u!114 &11476710
+--- !u!114 &11466858
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -70,7 +70,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 195542}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ad0aa447fa6f7af46b2077b1d6d69821, type: 3}
+  m_Script: {fileID: 11500000, guid: 378a81baba43c1246a80caf5d07a32a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   fadeSpeed: 0.5
