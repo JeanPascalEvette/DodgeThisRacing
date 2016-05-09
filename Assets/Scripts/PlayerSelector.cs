@@ -21,16 +21,18 @@ public class PlayerSelector : MonoBehaviour
     string nameplayer;
     public bool is_CPU = false;
 
-    public Sprite default_Empty, CurrentCar;
+    public Sprite default_Empty, CurrentCar,hand_closed,hand_opened;
 
     private Image carImage;
+    public Image Hand;
 
     void Start() {
 
         l.is_p1_active = true;
 
         carImage = transform.FindChild("CarImage").GetComponent<Image>();
-        carImage.sprite = default_Empty;       
+        carImage.sprite = default_Empty;
+
 
         switch (PanelNumber)
         {

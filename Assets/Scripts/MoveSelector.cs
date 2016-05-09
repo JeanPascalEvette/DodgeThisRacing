@@ -42,6 +42,8 @@ public class MoveSelector : MonoBehaviour {
     private PlayerData.PlayerType ThisPlayerType;
     public int ThisPlayerCar;
 
+    public RectTransform Hand;
+
     //initialization
     void Start()
     {
@@ -86,6 +88,12 @@ public class MoveSelector : MonoBehaviour {
             pos.y = -yMaximum;
             transform.localPosition = pos;
         }
+    }
+
+    //Function to correctly position the wheel behind the hand when deselecting a car
+    public void ResetChildPosition() {
+
+        Hand.SetAsLastSibling();
     }
 
     //Handles the movement of the cursors according to the selected control Scheme
