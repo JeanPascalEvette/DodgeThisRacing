@@ -23,7 +23,7 @@ public class AIController : MonoBehaviour
     private GUISkin aSkin;
 
     private CarController myCarController;
-    private float rayWidth = 500.0f;
+    private float rayWidth = 200.0f;
 
 
     private System.Random myRand;
@@ -51,7 +51,7 @@ public class AIController : MonoBehaviour
         }
         catch(System.Exception ex)
         {
-            Debug.Log("Error when Getting plan. Search value " + (frameCounter - frameGenerated).ToString() + " in array size " + plan.Length);
+            Debug.LogWarning("Error when Getting plan. Search value " + (frameCounter - frameGenerated).ToString() + " in array size " + plan.Length);
             return "";
         }
     }
@@ -220,7 +220,7 @@ public class AIController : MonoBehaviour
             foreach (string timeStep in plan)
                 debugPlan += timeStep + ",";
             debugPlan = debugPlan.Substring(0, debugPlan.Length - 1);
-            Debug.Log("Car:" + currentState.myCar.myUniqueID + " - " + debugPlan);
+            //Debug.Log("Car:" + currentState.myCar.myUniqueID + " - " + debugPlan);
 
             //Wait for 1sec before calling the planner again
             waitHandle.Reset();

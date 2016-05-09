@@ -297,7 +297,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64fc37c819fb5f340a1141cae0ffe5c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  despawnTime: 0.5
+  despawnTime: 0.3
 --- !u!198 &19810052
 ParticleSystem:
   m_ObjectHideFlags: 1
@@ -2121,7 +2121,7 @@ ParticleSystem:
       minMaxState: 3
     randomizeRotationDirection: 0
     gravityModifier: 0
-    maxNumParticles: 1000
+    maxNumParticles: 250
     rotation3D: 0
   ShapeModule:
     serializedVersion: 2

@@ -17,9 +17,22 @@ public class SunController : MonoBehaviour {
 	void Update () {
         transform.Rotate(Time.deltaTime * rotateSpeed, 0, 0);
         if (transform.rotation.eulerAngles.x > 270 || transform.rotation.eulerAngles.x < 20)
-            lightsOn = true;
+        {
+            foreach(var pd in Data.GetPlayerData())
+            {
+                var car = pd.GetGameObject();
+                if (car != null)
+                    car.GetComponent<CarController>().SetLights(true);
+            }
+        }
         else
-            lightsOn = false;
-
+        {
+            foreach (var pd in Data.GetPlayerData())
+            {
+                var car = pd.GetGameObject();
+                if (car != null)
+                    car.GetComponent<CarController>().SetLights(false);
+            }
+        }
     }
 }

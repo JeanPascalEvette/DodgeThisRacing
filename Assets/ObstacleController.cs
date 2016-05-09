@@ -32,7 +32,6 @@ public class ObstacleController : MonoBehaviour
             foreach (var existingCD in hitCoolDowns)
                 if (existingCD.Key == colCC.gameObject)
                     return;
-            Debug.Log("Col btwn " + colCC.gameObject.name + " & " + gameObject.name);
             hitCoolDowns.Add(new KeyValuePair<GameObject, float>(colCC.gameObject, Time.time));
 
             if(transform.name.Contains("Water"))
