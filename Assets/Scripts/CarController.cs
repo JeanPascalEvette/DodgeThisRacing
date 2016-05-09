@@ -205,6 +205,7 @@ public class CarController : MonoBehaviour
     {
 
         var wantedPos = UnityEngine.Camera.main.WorldToScreenPoint(transform.position);
+        wantedPos.y += 35;
         healthSlider.transform.position = wantedPos;
 
         foreach (var exhaust in exhausts)
