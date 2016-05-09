@@ -125,6 +125,9 @@ public class CarController : MonoBehaviour
 
     private BoundaryDestroyer bDestroyer;
 
+    private float respawnInvTime = -1.0f;
+    private float respawnBlinkTime = -1.0f;
+
     // Use this for initialization
     void Start()
     {   
@@ -190,11 +193,48 @@ public class CarController : MonoBehaviour
         else
         {
             noise1.mute = true;
-    }
+        }
+
+        // If this is a respawn
+        if(transform.position.z > 3.0f)
+        {
+            respawnInvTime = 3.0f;
+            var col = transform.Find("Colliders");
+            col.gameObject.layer = LayerMask.NameToLayer("CarRespawningHitbox");
+            for(int i = 0; i < col.transform.childCount; i++)
+            {
+                col.GetChild(i).gameObject.layer = LayerMask.NameToLayer("CarRespawningHitbox");
+            }
+        }
     }
 
     void Update()
     {
+        if (respawnInvTime > 0.0f)
+        {
+
+
+                respawnInvTime -= Time.deltaTime;
+            respawnBlinkTime -= Time.deltaTime;
+             var renderers = GetComponentsInChildren<Renderer>();
+            if (respawnBlinkTime < 0f)
+            {
+                respawnBlinkTime = 0.3f;
+                foreach (var renderer in renderers)
+                    renderer.enabled = !renderer.enabled;
+            }
+        }
+        else if(respawnInvTime != -1.0f)
+        {
+            var col = transform.Find("Colliders");
+            col.gameObject.layer = LayerMask.NameToLayer("CarCollisionHitbox");
+            for (int i = 0; i < col.transform.childCount; i++)
+            {
+                col.GetChild(i).gameObject.layer = LayerMask.NameToLayer("CarCollisionHitbox");
+            }
+            respawnInvTime = -1.0f;
+        }
+
         foreach(var exhaust in exhausts)
         {
             exhaust.emissionRate =  rpm;
@@ -468,6 +508,11 @@ public class CarController : MonoBehaviour
     public void SetBoost(float newValue)
     {
         boostValue = newValue;
+        //If Respawning give small boost
+        if (respawnInvTime > 2.0f && boostValue < 0.3f)
+        {
+            boostValue = 0.3f;
+        }
     }
 
 
@@ -680,6 +725,15 @@ public class CarController : MonoBehaviour
             noise2.Play();
         }
      }
+
+    public void SetLights(bool isOn)
+    {
+        var lights = GetComponentsInChildren<Light>();
+        foreach (Light l in lights)
+        {
+            l.enabled = isOn;
+        }
+    }
    }
 
 

@@ -29,9 +29,9 @@ TagManager:
   - 
   - DetachableObjects
   - CarCollisionHitbox
+  - CarRespawningHitbox
   - AIGuide
   - wheelGUI
-  - 
   - 
   - 
   - 
