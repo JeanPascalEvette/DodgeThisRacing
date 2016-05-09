@@ -24,12 +24,22 @@ public class IconCollider : MonoBehaviour {
     public Sprite ThisCarImage;
     private Vector3 ParentPosition;
 
+    private AudioSource source; 
+    public AudioClip click;
+
+   
+        
+    
+
+
+
     //Initializing
     void Start()
     {
         l = GameObject.FindWithTag("LevelManager").GetComponent<LevelManager>(); //Getting an instance of the level manager
         isActive = false;
-        
+        source = GetComponent<AudioSource>(); //initialize audio source
+
     }
 
     void Update()
@@ -115,16 +125,19 @@ public class IconCollider : MonoBehaviour {
 
     void SelectCar() {
 
+        source.PlayOneShot(click);
         t.transform.parent = Car.transform;             //The coin is given the car icon as a parent
         Car.GetComponent<Collider2D>().enabled = false; //The collider of the car icon is deactivated. This car cannot be selected by other players
         ThisCarSelected = true;                         //Bool variable telling the player has selected this car
         l.num_ready_players++;                          // Increase the number of players who are ready to GO
+        
 
         switch (m.playerID)   //Assign the car image to the correct player
         {
             case 1:
                 p1.CurrentCar = ThisCarImage;
                 p1.ImageSwapper();
+                
                 break;
             case 2:
                 p2.CurrentCar = ThisCarImage;
