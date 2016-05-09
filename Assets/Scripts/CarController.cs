@@ -123,11 +123,17 @@ public class CarController : MonoBehaviour
     private AIController myAI;
     public PlayerData myPlayerData;
 
+    private BoundaryDestroyer bDestroyer;
+
+    private float respawnInvTime = -1.0f;
+    private float respawnBlinkTime = -1.0f;
+
     // Use this for initialization
     void Start()
     {   
 
         myAI = GetComponent<AIController>();
+        bDestroyer = UnityEngine.Camera.main.GetComponentInChildren<BoundaryDestroyer>();
         carUniqueID = carCounter++;
         // allCars = GameObject.FindGameObjectsWithTag("Player");
         // planner = new HTNPlanner(1.5f);
@@ -199,16 +205,48 @@ public class CarController : MonoBehaviour
         {
             noise1.mute = true;
     }
+
+        // If this is a respawn
+        if(transform.position.z > 3.0f)
+        {
+            respawnInvTime = 3.0f;
+            var col = transform.Find("Colliders");
+            col.gameObject.layer = LayerMask.NameToLayer("CarRespawningHitbox");
+            for(int i = 0; i < col.transform.childCount; i++)
+            {
+                col.GetChild(i).gameObject.layer = LayerMask.NameToLayer("CarRespawningHitbox");
+    }
+        }
     }
 
     void Update()
     {
+        if (respawnInvTime > 0.0f)
+        {
 
-        var wantedPos = UnityEngine.Camera.main.WorldToScreenPoint(transform.position);
-        wantedPos.y += 35;
-        healthSlider.transform.position = wantedPos;
 
-        foreach (var exhaust in exhausts)
+                respawnInvTime -= Time.deltaTime;
+            respawnBlinkTime -= Time.deltaTime;
+             var renderers = GetComponentsInChildren<Renderer>();
+            if (respawnBlinkTime < 0f)
+            {
+                respawnBlinkTime = 0.3f;
+                foreach (var renderer in renderers)
+                    renderer.enabled = !renderer.enabled;
+            }
+        }
+        else if(respawnInvTime != -1.0f)
+        {
+            var col = transform.Find("Colliders");
+            col.gameObject.layer = LayerMask.NameToLayer("CarCollisionHitbox");
+            for (int i = 0; i < col.transform.childCount; i++)
+            {
+                col.GetChild(i).gameObject.layer = LayerMask.NameToLayer("CarCollisionHitbox");
+            }
+            respawnInvTime = -1.0f;
+        }
+
+        foreach(var exhaust in exhausts)
         {
             exhaust.emissionRate =  rpm;
         }
@@ -230,8 +268,8 @@ public class CarController : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        if (transform.position.z < UnityEngine.Camera.main.GetComponent<Camera>().GetLeadingPlayerPosition().z - 20.0f)
-            transform.position = new Vector3(transform.position.x, transform.position.y, UnityEngine.Camera.main.GetComponent<Camera>().GetLeadingPlayerPosition().z - 20.0f);
+        if (transform.position.z < (bDestroyer.GetPushingWall()) )
+            transform.position = new Vector3(transform.position.x, transform.position.y, (bDestroyer.GetPushingWall()));
         var txtMsh = transform.Find("Text").GetComponent<TextMesh>();
         txtMsh.text = (rb.velocity.magnitude).ToString();
 
@@ -481,6 +519,11 @@ public class CarController : MonoBehaviour
     public void SetBoost(float newValue)
     {
         boostValue = newValue;
+        //If Respawning give small boost
+        if (respawnInvTime > 2.0f && boostValue < 0.3f)
+        {
+            boostValue = 0.3f;
+        }
     }
 
 
@@ -693,6 +736,15 @@ public class CarController : MonoBehaviour
             noise2.Play();
         }
      }
+
+    public void SetLights(bool isOn)
+    {
+        var lights = GetComponentsInChildren<Light>();
+        foreach (Light l in lights)
+        {
+            l.enabled = isOn;
+        }
+    }
    }
 
 
