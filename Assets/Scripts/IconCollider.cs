@@ -55,12 +55,13 @@ public class IconCollider : MonoBehaviour {
         m = trigger.GetComponentInParent<MoveSelector>(); //Make the object that entered the icon space (the trigger) your moveselector target (it will be one of the cursors)
         m.is_this_inside = true;                        // Change the bool variable telling if the cursor is inside the icon area
         t = trigger.gameObject;    //Set the generic t object to the cursor/trigger
+        old = t.transform.parent;  //Save the current parent of the coin (the cursor) so it can be reassigned to the coin later
 
         if (!CPU.is_coin_cpu)
         {
             
             ID = m.playerID;           //Get the ID of the player that entered that icon area
-            old = t.transform.parent;  //Save the current parent of the coin (the cursor) so it can be reassigned to the coin later  
+              
             ParentPosition = t.transform.localPosition;
         }
 
@@ -113,7 +114,15 @@ public class IconCollider : MonoBehaviour {
             if (Input.GetButtonDown("ButtonAArrows") && l.is_arrowKeys_taken && m.is_this_inside == true && !ThisCarSelected)
             { SelectCar(); }
 
+            //if (Input.GetButtonDown("ButtonAArrows") && l.is_arrowKeys_taken && m.is_this_inside == true && !ThisCarSelected && CPU.is_coin_cpu)
+            //{ SelectCar(); }
+
+            //Controls for normal players
             else if (Input.GetButtonDown("ButtonXArrows") && l.is_arrowKeys_taken && ThisCarSelected)
+            { DeSelectCar(); }
+
+            //Controls for CPU
+            else if (Input.GetButtonDown("ButtonAArrows") && l.is_arrowKeys_taken && m.is_this_inside == true && ThisCarSelected && CPU.is_coin_cpu && CPU.is_player_near)
             { DeSelectCar(); }
         }
 
@@ -129,11 +138,11 @@ public class IconCollider : MonoBehaviour {
 
     void SelectCar() {
 
-        t.transform.parent = Car.transform;             //The coin is given the car icon as a parent
-        Car.GetComponent<Collider2D>().enabled = false; //The collider of the car icon is deactivated. This car cannot be selected by other players
-        ThisCarSelected = true;                         //Bool variable telling the player has selected this car
-        m.is_this_ready = true;                         //This player has selected the car and is ready to GO
-        l.num_ready_players++;                          // Increase the number of players who are ready to GO
+        t.transform.parent = Car.transform;               //The coin is given the car icon as a parent
+        Car.GetComponent<Collider2D>().enabled = false;   //The collider of the car icon is deactivated. This car cannot be selected by other players
+        ThisCarSelected = true;                           //Bool variable telling the player has selected this car
+        if (!CPU.is_coin_cpu) { m.is_this_ready = true; } //This player has selected the car and is ready to GO
+        l.num_ready_players++;                            // Increase the number of players who are ready to GO
 
         if (!CPU.is_coin_cpu)
         {
@@ -166,7 +175,6 @@ public class IconCollider : MonoBehaviour {
 
         else {
 
-            //CPU.is_grabbed = false; 
             switch (CPU.CoinID)   //Assign the car image to the correct player
             {
                 case 1:
@@ -174,24 +182,28 @@ public class IconCollider : MonoBehaviour {
                     p1.ImageSwapper();
                     p1.Hand.sprite = p1.hand_opened;
                     m1.ThisPlayerCar = ThisCarType;
+                    m1.is_this_ready = true;
                     break;
                 case 2:
                     p2.CurrentCar = ThisCarImage;
                     p2.ImageSwapper();
                     p2.Hand.sprite = p2.hand_opened;
                     m2.ThisPlayerCar = ThisCarType;
+                    m2.is_this_ready = true;
                     break;
                 case 3:
                     p3.CurrentCar = ThisCarImage;
                     p3.ImageSwapper();
                     p3.Hand.sprite = p3.hand_opened;
                     m3.ThisPlayerCar = ThisCarType;
+                    m3.is_this_ready = true;
                     break;
                 case 4:
                     p4.CurrentCar = ThisCarImage;
                     p4.ImageSwapper();
                     p4.Hand.sprite = p4.hand_opened;
                     m4.ThisPlayerCar = ThisCarType;
+                    m4.is_this_ready = true;
                     break;
             }
 
@@ -201,42 +213,95 @@ public class IconCollider : MonoBehaviour {
 
     void DeSelectCar()
     {
+         
         t.transform.parent = old;                      //The coin is given the old parent back (the cursor)
-        t.transform.localPosition = ParentPosition;
+        if (!CPU.is_coin_cpu)
+        {   t.transform.localPosition = ParentPosition;
+            
+        }
         m.is_this_inside = false;
-        m.ResetChildPosition();
+        if (!CPU.is_coin_cpu) { m.ResetChildPosition(); }
         TextColorCar.color = Color.white;    
         ThisCarSelected = false;                       //The car is deselected
+
         isActive = false;
-        m.is_this_ready = false;
+        if (!CPU.is_coin_cpu)
+        {
+            
+            m.is_this_ready = false;
+        }
         l.num_ready_players--;                         //The number of players ready to go is decreased
         Car.GetComponent<Collider2D>().enabled = true; //The car Collider is re-activated
 
-        switch (m.playerID) //Assign the "NO Car" image to the correct player
+        if (!CPU.is_coin_cpu)
         {
-            case 1:
-                p1.CurrentCar = p1.default_Empty;
-                p1.ImageSwapper();
-                p1.Hand.sprite = p1.hand_closed;
-                break;
-            case 2:
-                p2.CurrentCar = p2.default_Empty;
-                p2.ImageSwapper();
-                p2.Hand.sprite = p2.hand_closed;
-                break;
-            case 3:
-                p3.CurrentCar = p3.default_Empty;
-                p3.ImageSwapper();
-                p3.Hand.sprite = p3.hand_closed;
-                break;
-            case 4:
-                p4.CurrentCar = p4.default_Empty;
-                p4.ImageSwapper();
-                p4.Hand.sprite = p4.hand_closed;
-                break;
+            switch (m.playerID) //Assign the "NO Car" image to the correct player
+            {
+                case 1:
+                    p1.CurrentCar = p1.default_Empty;
+                    p1.ImageSwapper();
+                    p1.Hand.sprite = p1.hand_closed;
+                    
+                    break;
+                case 2:
+                    p2.CurrentCar = p2.default_Empty;
+                    p2.ImageSwapper();
+                    p2.Hand.sprite = p2.hand_closed;
+                    
+                    break;
+                case 3:
+                    p3.CurrentCar = p3.default_Empty;
+                    p3.ImageSwapper();
+                    p3.Hand.sprite = p3.hand_closed;
+                    
+                    break;
+                case 4:
+                    p4.CurrentCar = p4.default_Empty;
+                    p4.ImageSwapper();
+                    p4.Hand.sprite = p4.hand_closed;
+                    
+                    break;
+            }
+
+            m.ThisPlayerCar = 0;
         }
 
-        m.ThisPlayerCar = 0;
+        else {
+            switch (CPU.CoinID) //Assign the "NO Car" image to the correct player
+            {
+                case 1:
+                    p1.CurrentCar = p1.default_Empty;
+                    p1.ImageSwapper();
+                    p1.Hand.sprite = p1.hand_closed;
+                    m1.ThisPlayerCar = 0;
+                    m1.is_this_ready = false;
+                    break;
+                case 2:
+                    p2.CurrentCar = p2.default_Empty;
+                    p2.ImageSwapper();
+                    p1.Hand.sprite = p1.hand_closed;
+                    m2.ThisPlayerCar = 0;
+                    m2.is_this_ready = false;
+                    break;
+                case 3:
+                    p3.CurrentCar = p3.default_Empty;
+                    p3.ImageSwapper();
+                    p1.Hand.sprite = p1.hand_closed;
+                    m3.ThisPlayerCar = 0;
+                    m3.is_this_ready = false;
+                    break;
+                case 4:
+                    p4.CurrentCar = p4.default_Empty;
+                    p4.ImageSwapper();
+                    p1.Hand.sprite = p1.hand_closed;
+                    m4.ThisPlayerCar = 0;
+                    m4.is_this_ready = false;
+                    break;
+            }
+
+          
+
+        }
 
     }
 
