@@ -617,6 +617,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b93abe624df29246b8a9431c79578b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m1: {fileID: 2062963154}
+  m2: {fileID: 444208909}
+  m3: {fileID: 1263739610}
+  m4: {fileID: 752248854}
   p1: {fileID: 1359102857}
   p2: {fileID: 867536395}
   p3: {fileID: 1306703004}
@@ -800,6 +804,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b93abe624df29246b8a9431c79578b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m1: {fileID: 2062963154}
+  m2: {fileID: 444208909}
+  m3: {fileID: 1263739610}
+  m4: {fileID: 752248854}
   p1: {fileID: 1359102857}
   p2: {fileID: 867536395}
   p3: {fileID: 1306703004}
@@ -905,6 +913,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b93abe624df29246b8a9431c79578b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m1: {fileID: 2062963154}
+  m2: {fileID: 444208909}
+  m3: {fileID: 1263739610}
+  m4: {fileID: 752248854}
   p1: {fileID: 1359102857}
   p2: {fileID: 867536395}
   p3: {fileID: 1306703004}
@@ -1335,6 +1347,21 @@ CanvasRenderer:
 GameObject:
   m_PrefabParentObject: {fileID: 116298, guid: 3cfec0dd1c27b5245b265515ecd148bd, type: 2}
   m_PrefabInternal: {fileID: 717862259}
+--- !u!114 &510688236
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 510688235}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 22927c69e3d086745ab230f038b35e35, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 2062963151}
+  player1Control: {fileID: 2062963154}
+  is_coin_cpu: 0
+  CoinID: 4
 --- !u!114 &510688239
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2425,6 +2452,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b93abe624df29246b8a9431c79578b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m1: {fileID: 2062963154}
+  m2: {fileID: 444208909}
+  m3: {fileID: 1263739610}
+  m4: {fileID: 752248854}
   p1: {fileID: 1359102857}
   p2: {fileID: 867536395}
   p3: {fileID: 1306703004}
@@ -2885,6 +2916,21 @@ CanvasRenderer:
 GameObject:
   m_PrefabParentObject: {fileID: 116298, guid: 3cfec0dd1c27b5245b265515ecd148bd, type: 2}
   m_PrefabInternal: {fileID: 1606142468}
+--- !u!114 &1176644638
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1176644637}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 22927c69e3d086745ab230f038b35e35, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 2062963151}
+  player1Control: {fileID: 2062963154}
+  is_coin_cpu: 0
+  CoinID: 1
 --- !u!224 &1176644642 stripped
 RectTransform:
   m_PrefabParentObject: {fileID: 22458844, guid: 3cfec0dd1c27b5245b265515ecd148bd,
@@ -3146,6 +3192,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 2062963151}
   player1Control: {fileID: 2062963154}
+  is_coin_cpu: 1
+  CoinID: 2
 --- !u!1 &1431870247
 GameObject:
   m_ObjectHideFlags: 0
@@ -3514,6 +3562,21 @@ RectTransform:
   m_PrefabParentObject: {fileID: 22458844, guid: 3cfec0dd1c27b5245b265515ecd148bd,
     type: 2}
   m_PrefabInternal: {fileID: 723471587}
+--- !u!114 &1581721570
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1581721568}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 22927c69e3d086745ab230f038b35e35, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 2062963151}
+  player1Control: {fileID: 2062963154}
+  is_coin_cpu: 0
+  CoinID: 3
 --- !u!114 &1581721572
 MonoBehaviour:
   m_ObjectHideFlags: 0
