@@ -8,7 +8,7 @@ public class CPUController : MonoBehaviour {
     public PlayerSelector Panel;
 
 
-    public bool is_player_near = false;
+    bool is_player_near = false;
     public bool is_coin_cpu = false;
     public int CoinID;
     public bool is_grabbed = false;
@@ -46,7 +46,7 @@ public class CPUController : MonoBehaviour {
             Debug.Log("Player exited");
         }
 
-        if (is_grabbed && is_coin_cpu) { is_grabbed = false; }
+        if (is_grabbed) { is_grabbed = false; }
     }
 
     void TokenController() {
