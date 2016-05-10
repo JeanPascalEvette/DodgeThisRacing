@@ -45,7 +45,7 @@ GameObject:
   - 33: {fileID: 3365368}
   - 23: {fileID: 2369736}
   - 65: {fileID: 6518166}
-  m_Layer: 10
+  m_Layer: 11
   m_Name: AI_mesh_B
   m_TagString: Untagged
   m_Icon: {fileID: 0}
