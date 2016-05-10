@@ -8,10 +8,8 @@ public class IconCollider : MonoBehaviour {
     Text TextColorCar;//An instance of the text object of the Car icons
     LevelManager l;   //An instance of LevelManager
     MoveSelector m;   //An instance of MoveSelector. Script attached to the Cursor/player objects (player, player2 etc.) to handle its movements
-    public MoveSelector m1, m2, m3, m4;
     ButtonCollider b; //An instance of ButtonCollider. Scripts attached to the coins objects (coin1, coin2 etc.) to detect if the cursor is near the coin
     GameObject t;     //Generic GameObject to be used in the script and assigned under certain conditions
-    CPUController CPU;
 
     public PlayerSelector p1, p2, p3, p4; //Instances of The PlayerSelector scripts attached to each Panel controlling each player
     public int ID = 0;                    //A public int (set in the inspector) to differentiate each Car Icon object
@@ -48,27 +46,16 @@ public class IconCollider : MonoBehaviour {
 
         TextColorCar = this.GetComponent<Text>(); //Get the instance of the car text and change it to yellow
         TextColorCar.color = Color.yellow;
-       
-
-        CPU = trigger.GetComponent<CPUController>();
 
         m = trigger.GetComponentInParent<MoveSelector>(); //Make the object that entered the icon space (the trigger) your moveselector target (it will be one of the cursors)
+        b = trigger.GetComponent<ButtonCollider>();      // Same thing for the coin script ButtonCollider
         m.is_this_inside = true;                        // Change the bool variable telling if the cursor is inside the icon area
+
+        ID = m.playerID;           //Get the ID of the player that entered that icon area
         t = trigger.gameObject;    //Set the generic t object to the cursor/trigger
+        old = t.transform.parent;//Save the current parent of the coin (the cursor) so it can be reassigned to the coin later  
 
-        if (!CPU.is_coin_cpu)
-        {
-            
-            ID = m.playerID;           //Get the ID of the player that entered that icon area
-            old = t.transform.parent;  //Save the current parent of the coin (the cursor) so it can be reassigned to the coin later  
-            ParentPosition = t.transform.localPosition;
-        }
-
-        else {
-
-            ID = CPU.CoinID;
-
-         }
+        ParentPosition = t.transform.localPosition;
     }
 
     //Function to detect a cursor exiting from the trigger area of the Car selection icon
@@ -78,7 +65,6 @@ public class IconCollider : MonoBehaviour {
         TextColorCar = this.GetComponent<Text>(); //The car text goes back to white
         TextColorCar.color = Color.white;
         m.is_this_inside = false;               //The specific cursor is not inside the icon area anymore
-       
 
     }
 
@@ -135,67 +121,31 @@ public class IconCollider : MonoBehaviour {
         m.is_this_ready = true;                         //This player has selected the car and is ready to GO
         l.num_ready_players++;                          // Increase the number of players who are ready to GO
 
-        if (!CPU.is_coin_cpu)
+        switch (m.playerID)   //Assign the car image to the correct player
         {
-            switch (m.playerID)   //Assign the car image to the correct player
-            {
-                case 1:
-                    p1.CurrentCar = ThisCarImage;
-                    p1.ImageSwapper();
-                    p1.Hand.sprite = p1.hand_opened;
-                    break;
-                case 2:
-                    p2.CurrentCar = ThisCarImage;
-                    p2.ImageSwapper();
-                    p2.Hand.sprite = p2.hand_opened;
-                    break;
-                case 3:
-                    p3.CurrentCar = ThisCarImage;
-                    p3.ImageSwapper();
-                    p3.Hand.sprite = p3.hand_opened;
-                    break;
-                case 4:
-                    p4.CurrentCar = ThisCarImage;
-                    p4.ImageSwapper();
-                    p4.Hand.sprite = p4.hand_opened;
-                    break;
-            }
-
-            m.ThisPlayerCar = ThisCarType;
+            case 1:
+                p1.CurrentCar = ThisCarImage;
+                p1.ImageSwapper();
+                p1.Hand.sprite = p1.hand_opened;
+                break;
+            case 2:
+                p2.CurrentCar = ThisCarImage;
+                p2.ImageSwapper();
+                p2.Hand.sprite = p2.hand_opened;
+                break;
+            case 3:
+                p3.CurrentCar = ThisCarImage;
+                p3.ImageSwapper();
+                p3.Hand.sprite = p3.hand_opened;
+                break;
+            case 4:
+                p4.CurrentCar = ThisCarImage;
+                p4.ImageSwapper();
+                p4.Hand.sprite = p4.hand_opened;
+                break;
         }
 
-        else {
-
-            //CPU.is_grabbed = false; 
-            switch (CPU.CoinID)   //Assign the car image to the correct player
-            {
-                case 1:
-                    p1.CurrentCar = ThisCarImage;
-                    p1.ImageSwapper();
-                    p1.Hand.sprite = p1.hand_opened;
-                    m1.ThisPlayerCar = ThisCarType;
-                    break;
-                case 2:
-                    p2.CurrentCar = ThisCarImage;
-                    p2.ImageSwapper();
-                    p2.Hand.sprite = p2.hand_opened;
-                    m2.ThisPlayerCar = ThisCarType;
-                    break;
-                case 3:
-                    p3.CurrentCar = ThisCarImage;
-                    p3.ImageSwapper();
-                    p3.Hand.sprite = p3.hand_opened;
-                    m3.ThisPlayerCar = ThisCarType;
-                    break;
-                case 4:
-                    p4.CurrentCar = ThisCarImage;
-                    p4.ImageSwapper();
-                    p4.Hand.sprite = p4.hand_opened;
-                    m4.ThisPlayerCar = ThisCarType;
-                    break;
-            }
-
-        }
+        m.ThisPlayerCar = ThisCarType;
 
     }
 

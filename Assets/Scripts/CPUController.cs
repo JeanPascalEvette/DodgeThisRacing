@@ -5,13 +5,8 @@ public class CPUController : MonoBehaviour {
 
     public GameObject player;
     public MoveSelector player1Control;
-    public PlayerSelector Panel;
-
 
     bool is_player_near = false;
-    public bool is_coin_cpu = false;
-    public int CoinID;
-    public bool is_grabbed = false;
 
     // Use this for initialization
     void Start () {
@@ -21,10 +16,7 @@ public class CPUController : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-        if (Panel.is_CPU == true) { is_coin_cpu = true; }
-        else                      { is_coin_cpu = false; }
-
-        if (is_player_near && is_coin_cpu && !is_grabbed) {
+        if (is_player_near) {
 
             TokenController();
         }
@@ -38,6 +30,7 @@ public class CPUController : MonoBehaviour {
             Debug.Log("Player is near");
         }
 
+       // Debug.Log("Player is near");
     }
 
     void OnTriggerExit2D(Collider2D trigger) {
@@ -45,8 +38,6 @@ public class CPUController : MonoBehaviour {
         if (trigger.gameObject == player) { is_player_near = false;
             Debug.Log("Player exited");
         }
-
-        if (is_grabbed) { is_grabbed = false; }
     }
 
     void TokenController() {
@@ -61,7 +52,6 @@ public class CPUController : MonoBehaviour {
             if (Input.GetButtonDown("ButtonAArrows")) {
 
                 transform.parent = player.transform;
-                is_grabbed = true;
             }
         }
         else if (player1Control.ThisPlayerControl == MoveSelector.ControlTypesHere.WSDA) { }
