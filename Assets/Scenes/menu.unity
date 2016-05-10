@@ -559,7 +559,8 @@ MonoBehaviour:
   ThisCarSelected: 0
   ThisCarType: 1
   ThisCarImage: {fileID: 21300000, guid: 12f7480bf2630374a9d3dbad61442c57, type: 3}
-  click: {fileID: 8300000, guid: efc0b33971d2d4944af13c17a7130143, type: 3}
+  click: {fileID: 8300000, guid: c596148fe6351404b97843f5bd67a306, type: 3}
+  click2: {fileID: 8300000, guid: ab96d0f9a3bcf1e4fa1d0b102f02a36b, type: 3}
 --- !u!82 &228496798
 AudioSource:
   m_ObjectHideFlags: 0
@@ -569,7 +570,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: efc0b33971d2d4944af13c17a7130143, type: 3}
+  m_audioClip: {fileID: 8300000, guid: c596148fe6351404b97843f5bd67a306, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -817,7 +818,8 @@ MonoBehaviour:
   ThisCarSelected: 0
   ThisCarType: 0
   ThisCarImage: {fileID: 21300000, guid: d8988e60cba5b08468f9be3737b486bd, type: 3}
-  click: {fileID: 8300000, guid: efc0b33971d2d4944af13c17a7130143, type: 3}
+  click: {fileID: 8300000, guid: c596148fe6351404b97843f5bd67a306, type: 3}
+  click2: {fileID: 8300000, guid: ab96d0f9a3bcf1e4fa1d0b102f02a36b, type: 3}
 --- !u!82 &346784883
 AudioSource:
   m_ObjectHideFlags: 0
@@ -827,7 +829,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: efc0b33971d2d4944af13c17a7130143, type: 3}
+  m_audioClip: {fileID: 8300000, guid: c596148fe6351404b97843f5bd67a306, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -997,7 +999,8 @@ MonoBehaviour:
   ThisCarSelected: 0
   ThisCarType: 3
   ThisCarImage: {fileID: 21300000, guid: cf4dd36ac063b954db85eb328ad18124, type: 3}
-  click: {fileID: 8300000, guid: efc0b33971d2d4944af13c17a7130143, type: 3}
+  click: {fileID: 8300000, guid: c596148fe6351404b97843f5bd67a306, type: 3}
+  click2: {fileID: 8300000, guid: ab96d0f9a3bcf1e4fa1d0b102f02a36b, type: 3}
 --- !u!82 &372341586
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1007,7 +1010,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: efc0b33971d2d4944af13c17a7130143, type: 3}
+  m_audioClip: {fileID: 8300000, guid: c596148fe6351404b97843f5bd67a306, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -2497,7 +2500,8 @@ MonoBehaviour:
   ThisCarSelected: 0
   ThisCarType: 2
   ThisCarImage: {fileID: 21300000, guid: e7ffdb2f75f700f4b85acbb16db444c1, type: 3}
-  click: {fileID: 8300000, guid: efc0b33971d2d4944af13c17a7130143, type: 3}
+  click: {fileID: 8300000, guid: c596148fe6351404b97843f5bd67a306, type: 3}
+  click2: {fileID: 8300000, guid: ab96d0f9a3bcf1e4fa1d0b102f02a36b, type: 3}
 --- !u!82 &941973856
 AudioSource:
   m_ObjectHideFlags: 0
@@ -2507,7 +2511,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: efc0b33971d2d4944af13c17a7130143, type: 3}
+  m_audioClip: {fileID: 8300000, guid: c596148fe6351404b97843f5bd67a306, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1

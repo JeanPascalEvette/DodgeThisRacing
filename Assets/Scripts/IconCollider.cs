@@ -24,21 +24,16 @@ public class IconCollider : MonoBehaviour {
     public Sprite ThisCarImage;
     private Vector3 ParentPosition;
 
-    private AudioSource source; 
-    public AudioClip click;
-
-   
-        
-    
-
-
+    private AudioSource source; //test
+    //public AudioClip click; //instance for selection sound
+    public AudioClip click2; //instance for deselection sound
 
     //Initializing
     void Start()
     {
         l = GameObject.FindWithTag("LevelManager").GetComponent<LevelManager>(); //Getting an instance of the level manager
         isActive = false;
-        source = GetComponent<AudioSource>(); //initialize audio source
+        source = GetComponent<AudioSource>(); //initialize audio source 
 
     }
 
@@ -125,12 +120,11 @@ public class IconCollider : MonoBehaviour {
 
     void SelectCar() {
 
-        source.PlayOneShot(click);
         t.transform.parent = Car.transform;             //The coin is given the car icon as a parent
         Car.GetComponent<Collider2D>().enabled = false; //The collider of the car icon is deactivated. This car cannot be selected by other players
         ThisCarSelected = true;                         //Bool variable telling the player has selected this car
         l.num_ready_players++;                          // Increase the number of players who are ready to GO
-        
+        source.PlayOneShot(click2);
 
         switch (m.playerID)   //Assign the car image to the correct player
         {
@@ -159,6 +153,7 @@ public class IconCollider : MonoBehaviour {
 
     void DeSelectCar()
     {
+       
         t.transform.parent = old;                      //The coin is given the old parent back (the cursor)
         t.transform.localPosition = ParentPosition;
         m.is_this_inside = false;
@@ -167,6 +162,7 @@ public class IconCollider : MonoBehaviour {
         ThisCarSelected = false;                       //The car is deselected
         isActive = false;
         l.num_ready_players--;                         //The number of players ready to go is decreased
+        //source.PlayOneShot(click2);
 
         switch (m.playerID) //Assign the "NO Car" image to the correct player
         {

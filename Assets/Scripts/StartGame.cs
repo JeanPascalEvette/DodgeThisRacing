@@ -4,13 +4,12 @@ using UnityEngine.SceneManagement;
 
 public class StartGame : MonoBehaviour {
 
-	
-	// Update is called once per frame
-	void Update () {
+    // Update is called once per frame
+    void Update () {
 
-        if (Input.GetButtonDown("SubmitJoy")) { SceneManager.LoadScene("menu"); }
+        if (Input.GetButtonDown("SubmitJoy")) { SceneManager.LoadScene("menu"); };
 
-    }
+       }
 
   
 }
