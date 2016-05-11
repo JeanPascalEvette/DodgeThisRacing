@@ -56,8 +56,9 @@ public class LevelManager : MonoBehaviour
         is_p1_active = true;
         player1move.is_this_active = true;
 
-        player1move.ThisPlayerControl = MoveSelector.ControlTypesHere.Joy1;
-        is_joy1_taken = true;
+        //player1move.ThisPlayerControl = MoveSelector.ControlTypesHere.Joy1;
+        player1move.ThisPlayerControl = MoveSelector.ControlTypesHere.NotAssigned;
+        //is_joy1_taken = true;
     }
 
 

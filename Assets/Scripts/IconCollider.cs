@@ -123,6 +123,7 @@ public class IconCollider : MonoBehaviour {
         t.transform.parent = Car.transform;             //The coin is given the car icon as a parent
         Car.GetComponent<Collider2D>().enabled = false; //The collider of the car icon is deactivated. This car cannot be selected by other players
         ThisCarSelected = true;                         //Bool variable telling the player has selected this car
+        m.is_this_ready = true;                         //This player has selected the car and is ready to GO
         l.num_ready_players++;                          // Increase the number of players who are ready to GO
         source.PlayOneShot(click2);
 
@@ -131,19 +132,22 @@ public class IconCollider : MonoBehaviour {
             case 1:
                 p1.CurrentCar = ThisCarImage;
                 p1.ImageSwapper();
-                
+                p1.Hand.sprite = p1.hand_opened;
                 break;
             case 2:
                 p2.CurrentCar = ThisCarImage;
                 p2.ImageSwapper();
+                p2.Hand.sprite = p2.hand_opened;
                 break;
             case 3:
                 p3.CurrentCar = ThisCarImage;
                 p3.ImageSwapper();
+                p3.Hand.sprite = p3.hand_opened;
                 break;
             case 4:
                 p4.CurrentCar = ThisCarImage;
                 p4.ImageSwapper();
+                p4.Hand.sprite = p4.hand_opened;
                 break;
         }
 
@@ -157,30 +161,37 @@ public class IconCollider : MonoBehaviour {
         t.transform.parent = old;                      //The coin is given the old parent back (the cursor)
         t.transform.localPosition = ParentPosition;
         m.is_this_inside = false;
+        m.ResetChildPosition();
         TextColorCar.color = Color.white;    
-        Car.GetComponent<Collider2D>().enabled = true; //The car Collider is re-activated
         ThisCarSelected = false;                       //The car is deselected
         isActive = false;
+        m.is_this_ready = false;
         l.num_ready_players--;                         //The number of players ready to go is decreased
-        //source.PlayOneShot(click2);
+
+        Car.GetComponent<Collider2D>().enabled = true; //The car Collider is re-activated
+
 
         switch (m.playerID) //Assign the "NO Car" image to the correct player
         {
             case 1:
                 p1.CurrentCar = p1.default_Empty;
                 p1.ImageSwapper();
+                p1.Hand.sprite = p1.hand_closed;
                 break;
             case 2:
                 p2.CurrentCar = p2.default_Empty;
                 p2.ImageSwapper();
+                p2.Hand.sprite = p2.hand_closed;
                 break;
             case 3:
                 p3.CurrentCar = p3.default_Empty;
                 p3.ImageSwapper();
+                p3.Hand.sprite = p3.hand_closed;
                 break;
             case 4:
                 p4.CurrentCar = p4.default_Empty;
                 p4.ImageSwapper();
+                p4.Hand.sprite = p4.hand_closed;
                 break;
         }
 
