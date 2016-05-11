@@ -5,7 +5,7 @@ public class CPUController : MonoBehaviour {
 
     public GameObject player;
     public MoveSelector player1Control;
-    public PlayerSelector Panel;
+    public PlayerSelector Panel,Player1Panel;
 
 
     public bool is_player_near = false;
@@ -62,6 +62,7 @@ public class CPUController : MonoBehaviour {
 
                 transform.parent = player.transform;
                 is_grabbed = true;
+                Player1Panel.Hand.sprite = Player1Panel.hand_closed;
             }
         }
         else if (player1Control.ThisPlayerControl == MoveSelector.ControlTypesHere.WSDA) { }
