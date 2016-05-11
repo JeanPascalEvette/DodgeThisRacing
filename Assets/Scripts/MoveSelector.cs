@@ -62,6 +62,13 @@ public class MoveSelector : MonoBehaviour {
     void Update()
     {
         HandleMovement();
+
+        if (playerID == 1)
+        {
+            if (!is_this_ready) { playerButton.GetComponent<Collider2D>().enabled = false; }
+            //else              { playerButton.GetComponent<Collider2D>().enabled = true; }
+        }
+        
     }
 
     void LateUpdate()

@@ -12,6 +12,7 @@ public class CPUController : MonoBehaviour {
     public bool is_coin_cpu = false;
     public int CoinID;
     public bool is_grabbed = false;
+    public bool is_car_selected = false;
 
     // Use this for initialization
     void Start () {
@@ -24,12 +25,13 @@ public class CPUController : MonoBehaviour {
         if (Panel.is_CPU == true) { is_coin_cpu = true; }
         else                      { is_coin_cpu = false; }
 
-        if (is_player_near && is_coin_cpu && !is_grabbed) {
+        if (is_player_near && is_coin_cpu /*&& !is_grabbed*/ && !is_car_selected)
+        {
 
             TokenController();
         }
 
-	}
+    }
 
     void OnTriggerEnter2D(Collider2D trigger)
     {
@@ -46,10 +48,10 @@ public class CPUController : MonoBehaviour {
             Debug.Log("Player exited");
         }
 
-        if (is_grabbed && is_coin_cpu) { is_grabbed = false; }
+        //if (is_grabbed && is_coin_cpu) { is_grabbed = false; }
     }
 
-    void TokenController() {
+   public void TokenController() {
 
         if (player1Control.ThisPlayerControl == MoveSelector.ControlTypesHere.Joy1)
         {
@@ -61,13 +63,13 @@ public class CPUController : MonoBehaviour {
             if (Input.GetButtonDown("ButtonAArrows")) {
 
                 transform.parent = player.transform;
-                is_grabbed = true;
+                //is_grabbed = true;
+                player.GetComponent<Collider2D>().enabled = false;
                 Player1Panel.Hand.sprite = Player1Panel.hand_closed;
             }
         }
         else if (player1Control.ThisPlayerControl == MoveSelector.ControlTypesHere.WSDA) { }
 
     }
-
 
 }

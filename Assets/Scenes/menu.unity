@@ -1361,10 +1361,12 @@ MonoBehaviour:
   player: {fileID: 2062963151}
   player1Control: {fileID: 2062963154}
   Panel: {fileID: 1137373016}
+  Player1Panel: {fileID: 1359102857}
   is_player_near: 0
   is_coin_cpu: 0
   CoinID: 4
   is_grabbed: 0
+  is_car_selected: 0
 --- !u!114 &510688239
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2933,10 +2935,12 @@ MonoBehaviour:
   player: {fileID: 2062963151}
   player1Control: {fileID: 2062963154}
   Panel: {fileID: 1359102857}
+  Player1Panel: {fileID: 1359102857}
   is_player_near: 0
   is_coin_cpu: 0
   CoinID: 1
   is_grabbed: 0
+  is_car_selected: 0
 --- !u!224 &1176644642 stripped
 RectTransform:
   m_PrefabParentObject: {fileID: 22458844, guid: 3cfec0dd1c27b5245b265515ecd148bd,
@@ -3199,10 +3203,12 @@ MonoBehaviour:
   player: {fileID: 2062963151}
   player1Control: {fileID: 2062963154}
   Panel: {fileID: 867536395}
+  Player1Panel: {fileID: 1359102857}
   is_player_near: 0
   is_coin_cpu: 1
   CoinID: 2
   is_grabbed: 0
+  is_car_selected: 0
 --- !u!1 &1431870247
 GameObject:
   m_ObjectHideFlags: 0
@@ -3585,10 +3591,12 @@ MonoBehaviour:
   player: {fileID: 2062963151}
   player1Control: {fileID: 2062963154}
   Panel: {fileID: 1306703004}
+  Player1Panel: {fileID: 1359102857}
   is_player_near: 0
   is_coin_cpu: 0
   CoinID: 3
   is_grabbed: 0
+  is_car_selected: 0
 --- !u!114 &1581721572
 MonoBehaviour:
   m_ObjectHideFlags: 0

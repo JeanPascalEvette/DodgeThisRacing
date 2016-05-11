@@ -112,7 +112,7 @@ public class IconCollider : MonoBehaviour {
         else if (m.ThisPlayerControl == MoveSelector.ControlTypesHere.ArrowKeys)
         {
             //Controls for normal players
-            if (Input.GetButtonDown("ButtonAArrows") && l.is_arrowKeys_taken && m.is_this_inside == true && !ThisCarSelected && m.playerID == CPU.CoinID)
+            if (Input.GetButtonDown("ButtonAArrows") && l.is_arrowKeys_taken && m.is_this_inside == true && !ThisCarSelected && !CPU.is_coin_cpu && m.playerID == CPU.CoinID)
             { SelectCar(); }
 
             //Controls for CPU
@@ -145,6 +145,7 @@ public class IconCollider : MonoBehaviour {
         ThisCarSelected = true;                           //Bool variable telling the player has selected this car
         m.is_this_ready = true;  //This player has selected the car and is ready to GO
         l.num_ready_players++;                            // Increase the number of players who are ready to GO
+        if (m.playerID == 1) { CPU.player.GetComponent<Collider2D>().enabled = true; }
 
         switch (m.playerID)   //Assign the car image to the correct player
             {
@@ -181,6 +182,9 @@ public class IconCollider : MonoBehaviour {
         Car.GetComponent<Collider2D>().enabled = false;
         ThisCarSelected = true;
         l.num_ready_players++;
+
+        CPU.player.GetComponent<Collider2D>().enabled = true;
+        CPU.is_car_selected = true;
 
         switch (CPU.CoinID)   //Assign the car image to the correct player
         {
@@ -230,6 +234,8 @@ public class IconCollider : MonoBehaviour {
         l.num_ready_players--;                         //The number of players ready to go is decreased
         Car.GetComponent<Collider2D>().enabled = true; //The car Collider is re-activated
 
+        
+
         switch (m.playerID) //Assign the "NO Car" image to the correct player
             {
                 case 1:
@@ -264,14 +270,18 @@ public class IconCollider : MonoBehaviour {
     void CPUDeSelectCar()
 
     {
-        t.transform.parent = old;
+        //t.transform.parent = old;
         //t.transform.localPosition = ParentPosition;
+
         m.is_this_inside = false;
         TextColorCar.color = Color.white;
         ThisCarSelected = false;
         isActive = false;
         l.num_ready_players--;
         Car.GetComponent<Collider2D>().enabled = true;
+
+        CPU.is_car_selected = false;
+        CPU.player.GetComponent<Collider2D>().enabled = true;
 
         switch (CPU.CoinID) //Assign the "NO Car" image to the correct player
         {
