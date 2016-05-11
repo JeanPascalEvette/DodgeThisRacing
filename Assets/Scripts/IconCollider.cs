@@ -24,7 +24,7 @@ public class IconCollider : MonoBehaviour {
     public Sprite ThisCarImage;
     private Vector3 ParentPosition;
 
-    private AudioSource source; //test
+    private AudioSource source; 
     //public AudioClip click; //instance for selection sound
     public AudioClip click2; //instance for deselection sound
 
