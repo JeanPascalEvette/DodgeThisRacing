@@ -44,6 +44,9 @@ public class IconCollider : MonoBehaviour {
     //Function to detect a cursor entering in the trigger area of the Car icon selection
     void OnTriggerEnter2D(Collider2D trigger)
     {
+        if (isActive)
+            return;
+
         isActive = true; //If the cursor enters the icon space the icon becomes active
 
         TextColorCar = this.GetComponent<Text>(); //Get the instance of the car text and change it to yellow
@@ -186,6 +189,8 @@ public class IconCollider : MonoBehaviour {
         CPU.player.GetComponent<Collider2D>().enabled = true;
         CPU.is_car_selected = true;
 
+        //CPU.is_grabbed = false;
+
         switch (CPU.CoinID)   //Assign the car image to the correct player
         {
             case 1:
@@ -270,9 +275,7 @@ public class IconCollider : MonoBehaviour {
     void CPUDeSelectCar()
 
     {
-        //t.transform.parent = old;
-        //t.transform.localPosition = ParentPosition;
-
+      
         m.is_this_inside = false;
         TextColorCar.color = Color.white;
         ThisCarSelected = false;

@@ -26,7 +26,11 @@ public class PlayerSelector : MonoBehaviour
     private Image carImage;
     public Image Hand;
 
+    private ButtonController buttonController;
+
     void Start() {
+
+        buttonController = GetComponentInChildren<ButtonController>();
 
         l.is_p1_active = true;
 
@@ -90,7 +94,6 @@ public class PlayerSelector : MonoBehaviour
     }
 
     void switch_reset() { switch_case = 0; }
-
 
     public void player_selector()
     {
@@ -226,6 +229,9 @@ public class PlayerSelector : MonoBehaviour
                     CPU_Controls = 0;
                     t.text = "N/A";
                     cpuText.text = nameplayer;
+
+                    buttonController.SetOverlay(false);
+
                     break;
             }
         }

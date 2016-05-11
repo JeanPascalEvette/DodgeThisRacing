@@ -25,7 +25,7 @@ public class CPUController : MonoBehaviour {
         if (Panel.is_CPU == true) { is_coin_cpu = true; }
         else                      { is_coin_cpu = false; }
 
-        if (is_player_near && is_coin_cpu /*&& !is_grabbed*/ && !is_car_selected)
+        if (is_player_near && is_coin_cpu && !is_car_selected)
         {
 
             TokenController();
@@ -48,7 +48,6 @@ public class CPUController : MonoBehaviour {
             Debug.Log("Player exited");
         }
 
-        //if (is_grabbed && is_coin_cpu) { is_grabbed = false; }
     }
 
    public void TokenController() {

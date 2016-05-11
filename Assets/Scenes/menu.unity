@@ -94,8 +94,11 @@ GameObject:
   m_Component:
   - 224: {fileID: 1530478}
   - 222: {fileID: 1530482}
+  - 50: {fileID: 1530484}
   - 114: {fileID: 1530481}
   - 114: {fileID: 1530480}
+  - 61: {fileID: 1530479}
+  - 114: {fileID: 1530483}
   m_Layer: 5
   m_Name: P_Button1
   m_TagString: p1
@@ -121,6 +124,20 @@ RectTransform:
   m_AnchoredPosition: {x: -28, y: 41}
   m_SizeDelta: {x: 68, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!61 &1530479
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1530477}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Size: {x: 60, y: 25}
 --- !u!114 &1530480
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -206,6 +223,34 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1530477}
+--- !u!114 &1530483
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1530477}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b3fca8b5becef349ad4794197bb00d0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!50 &1530484
+Rigidbody2D:
+  serializedVersion: 2
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1530477}
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &16601273
 GameObject:
   m_ObjectHideFlags: 0
@@ -1233,6 +1278,7 @@ GameObject:
   - 222: {fileID: 510256572}
   - 114: {fileID: 510256571}
   - 114: {fileID: 510256570}
+  - 114: {fileID: 510256569}
   m_Layer: 5
   m_Name: P_Button2
   m_TagString: p2
@@ -1258,6 +1304,17 @@ RectTransform:
   m_AnchoredPosition: {x: -28, y: 41}
   m_SizeDelta: {x: 68, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &510256569
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 510256567}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b3fca8b5becef349ad4794197bb00d0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &510256570
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2481,6 +2538,7 @@ GameObject:
   - 222: {fileID: 984705797}
   - 114: {fileID: 984705796}
   - 114: {fileID: 984705795}
+  - 114: {fileID: 984705794}
   m_Layer: 5
   m_Name: P_Button 4
   m_TagString: p
@@ -2506,6 +2564,17 @@ RectTransform:
   m_AnchoredPosition: {x: -28, y: 41}
   m_SizeDelta: {x: 68, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &984705794
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 984705792}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b3fca8b5becef349ad4794197bb00d0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &984705795
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2851,12 +2920,12 @@ MonoBehaviour:
   m_Script: {fileID: 1980459831, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
+  m_ReferenceResolution: {x: 1080, y: 600}
   m_ScreenMatchMode: 0
-  m_MatchWidthOrHeight: 0
+  m_MatchWidthOrHeight: 1
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
@@ -4949,6 +5018,7 @@ GameObject:
   - 222: {fileID: 2092579177}
   - 114: {fileID: 2092579176}
   - 114: {fileID: 2092579175}
+  - 114: {fileID: 2092579174}
   m_Layer: 5
   m_Name: P_Button 3
   m_TagString: p
@@ -4974,6 +5044,17 @@ RectTransform:
   m_AnchoredPosition: {x: -28, y: 41}
   m_SizeDelta: {x: 68, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &2092579174
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2092579172}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b3fca8b5becef349ad4794197bb00d0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &2092579175
 MonoBehaviour:
   m_ObjectHideFlags: 0
