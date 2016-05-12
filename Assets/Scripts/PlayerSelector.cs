@@ -188,7 +188,7 @@ public class PlayerSelector : MonoBehaviour
                         print("deleting player");
 
                         playerCoin.SetActive(false);
-                        //playerToken.SetActive(false);
+                       
 
                         if (m.ThisPlayerControl == MoveSelector.ControlTypesHere.Joy1)
                         {
@@ -229,11 +229,15 @@ public class PlayerSelector : MonoBehaviour
                     playerCoin.transform.position = m.playerPosition;
                     carImage.sprite = default_Empty;
 
-                    if      (Car1.ThisCarSelected == true && m.playerID == Car1.ID) { Car1.CheckPlayerActivation(); }
-                    else if (Car2.ThisCarSelected == true && m.playerID == Car2.ID) { Car2.CheckPlayerActivation(); }
-                    else if (Car3.ThisCarSelected == true && m.playerID == Car3.ID) { Car3.CheckPlayerActivation(); }
-                    else if (Car4.ThisCarSelected == true && m.playerID == Car4.ID) { Car4.CheckPlayerActivation(); }
-                    
+                    //if      (Car1.ThisCarSelected == true && m.playerID == Car1.ID) { Car1.CheckPlayerActivation(); }
+                    //else if (Car2.ThisCarSelected == true && m.playerID == Car2.ID) { Car2.CheckPlayerActivation(); }
+                    //else if (Car3.ThisCarSelected == true && m.playerID == Car3.ID) { Car3.CheckPlayerActivation(); }
+                    //else if (Car4.ThisCarSelected == true && m.playerID == Car4.ID) { Car4.CheckPlayerActivation(); }
+
+                    if      (Car1.ThisCarSelected == true && CoinController.CoinID == Car1.ID) { Car1.CheckPlayerActivation(); }
+                    else if (Car2.ThisCarSelected == true && CoinController.CoinID == Car2.ID) { Car2.CheckPlayerActivation(); }
+                    else if (Car3.ThisCarSelected == true && CoinController.CoinID == Car3.ID) { Car3.CheckPlayerActivation(); }
+                    else if (Car4.ThisCarSelected == true && CoinController.CoinID == Car4.ID) { Car4.CheckPlayerActivation(); }
 
                     CPU_Controls = 0;
                     t.text = "N/A";

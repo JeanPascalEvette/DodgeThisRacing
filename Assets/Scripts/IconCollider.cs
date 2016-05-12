@@ -14,7 +14,7 @@ public class IconCollider : MonoBehaviour {
     CPUController CPU;
 
     public PlayerSelector p1, p2, p3, p4; //Instances of The PlayerSelector scripts attached to each Panel controlling each player
-    public int ID = 0;                    //A public int (set in the inspector) to differentiate each Car Icon object
+    public int ID = 0;                    
  
     Transform old;  //A variable of type transform to save the position/parent of a specific object in the script in order to go back to it.
 
@@ -22,7 +22,7 @@ public class IconCollider : MonoBehaviour {
     public GameObject Car; // The Object of the specific car icon this script is attached to
 
     public bool ThisCarSelected = false; // Bool Variable teeling if this car has been selected by the player
-    public int ThisCarType;
+    public int ThisCarType;              //A public int (set in the inspector) to differentiate each Car Icon object
     public Sprite ThisCarImage;
     private Vector3 ParentPosition;
 
@@ -72,7 +72,7 @@ public class IconCollider : MonoBehaviour {
 
             ID = CPU.CoinID;
 
-         }
+             }
     }
 
     //Function to detect a cursor exiting from the trigger area of the Car selection icon
@@ -146,7 +146,7 @@ public class IconCollider : MonoBehaviour {
         t.transform.parent = Car.transform;               //The coin is given the car icon as a parent
         Car.GetComponent<Collider2D>().enabled = false;   //The collider of the car icon is deactivated. This car cannot be selected by other players
         ThisCarSelected = true;                           //Bool variable telling the player has selected this car
-        m.is_this_ready = true;  //This player has selected the car and is ready to GO
+        m.is_this_ready = true;                           //This player has selected the car and is ready to GO
         l.num_ready_players++;                            // Increase the number of players who are ready to GO
         if (m.playerID == 1) { CPU.player.GetComponent<Collider2D>().enabled = true; }
 
@@ -322,17 +322,26 @@ public class IconCollider : MonoBehaviour {
     //This function is called in the script PlayerSelector controlling the panels. If a player is deactivated by a panel the coin, the cursor and their positions are re-set to default
     public void CheckPlayerActivation()
     {
+        if (m.playerID == CPU.CoinID)
+        {
             m.ThisPlayerCar = 0;
             t.transform.parent = old;                       //The coin is given its parent back (the cursor)
             t.transform.position = m.CoinPosition;          //It gets shifter to its original position
             TextColorCar.color = Color.white;               //The text color of the car icon is set to white
             Car.GetComponent<Collider2D>().enabled = true;  //The icon collider is set to active
+            isActive = false;
 
             if (ThisCarSelected)
-        {
-            l.num_ready_players--;                          //The number of ready players is decreased
-            m.ThisPlayerCar = 0; 
-        } 
+            {
+                l.num_ready_players--;                          //The number of ready players is decreased
+                m.ThisPlayerCar = 0;
+            }
             ThisCarSelected = false;                        //The boolian for the car selection is set to false
+        }
+
+        else {
+
+            //write code here to reset the CPU coin
+             }
     }
 }

@@ -2501,6 +2501,7 @@ MonoBehaviour:
   CPU_Controls: -1
   PanelNumber: 2
   playerCoin: {fileID: 444208906}
+  playerToken: {fileID: 1428113740}
   CoinController: {fileID: 1428113747}
   Car1: {fileID: 346784880}
   Car2: {fileID: 228496795}
@@ -2929,6 +2930,7 @@ MonoBehaviour:
   CPU_Controls: -1
   PanelNumber: 4
   playerCoin: {fileID: 752248851}
+  playerToken: {fileID: 510688235}
   CoinController: {fileID: 510688236}
   Car1: {fileID: 346784880}
   Car2: {fileID: 228496795}
@@ -3218,6 +3220,7 @@ MonoBehaviour:
   CPU_Controls: -1
   PanelNumber: 3
   playerCoin: {fileID: 1263739607}
+  playerToken: {fileID: 1581721568}
   CoinController: {fileID: 1581721570}
   Car1: {fileID: 346784880}
   Car2: {fileID: 228496795}
@@ -3293,6 +3296,7 @@ MonoBehaviour:
   CPU_Controls: -1
   PanelNumber: 1
   playerCoin: {fileID: 2062963151}
+  playerToken: {fileID: 1176644637}
   CoinController: {fileID: 1176644638}
   Car1: {fileID: 346784880}
   Car2: {fileID: 228496795}
