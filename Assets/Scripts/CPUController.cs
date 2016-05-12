@@ -62,7 +62,7 @@ public class CPUController : MonoBehaviour {
             if (Input.GetButtonDown("ButtonAArrows")) {
 
                 transform.parent = player.transform;
-                //is_grabbed = true;
+                is_grabbed = true;
                 player.GetComponent<Collider2D>().enabled = false;
                 Player1Panel.Hand.sprite = Player1Panel.hand_closed;
             }

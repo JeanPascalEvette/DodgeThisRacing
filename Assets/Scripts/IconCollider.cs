@@ -12,6 +12,7 @@ public class IconCollider : MonoBehaviour {
     ButtonCollider b; //An instance of ButtonCollider. Scripts attached to the coins objects (coin1, coin2 etc.) to detect if the cursor is near the coin
     GameObject t;     //Generic GameObject to be used in the script and assigned under certain conditions
     CPUController CPU;
+    public CPUController C1, C2, C3, C4;
 
     public PlayerSelector p1, p2, p3, p4; //Instances of The PlayerSelector scripts attached to each Panel controlling each player
     public int ID = 0;                    
@@ -124,7 +125,16 @@ public class IconCollider : MonoBehaviour {
 
             //Controls for normal players
             else if (Input.GetButtonDown("ButtonXArrows") && l.is_arrowKeys_taken && ThisCarSelected && m.playerID == CPU.CoinID)
-            { DeSelectCar(); }
+            {
+                if (m.playerID != 1)
+                { DeSelectCar(); }
+
+                else {
+
+                    if (!C1.is_grabbed && !C2.is_grabbed && !C3.is_grabbed && !C4.is_grabbed)
+                       { DeSelectCar(); }    
+                    }
+            }
 
             //Controls for CPU
             else if (Input.GetButtonDown("ButtonAArrows") && l.is_arrowKeys_taken && ThisCarSelected && CPU.is_coin_cpu && CPU.is_player_near && m.playerID != CPU.CoinID)
@@ -189,7 +199,7 @@ public class IconCollider : MonoBehaviour {
         CPU.player.GetComponent<Collider2D>().enabled = true;
         CPU.is_car_selected = true;
 
-        //CPU.is_grabbed = false;
+        CPU.is_grabbed = false;
 
         switch (CPU.CoinID)   //Assign the car image to the correct player
         {
@@ -341,7 +351,40 @@ public class IconCollider : MonoBehaviour {
 
         else {
 
-            //write code here to reset the CPU coin
-             }
+            switch (CPU.CoinID)
+            {
+                case 1:
+                    m1.ThisPlayerCar = 0;
+                    t.transform.parent = m1.transform;
+                    t.transform.position = m1.CoinPosition;
+                    break;
+                case 2:
+                    m2.ThisPlayerCar = 0;
+                    t.transform.parent = m2.transform;
+                    t.transform.position = m2.CoinPosition;
+                    break;
+                case 3:
+                    m3.ThisPlayerCar = 0;
+                    t.transform.parent = m3.transform;
+                    t.transform.position = m3.CoinPosition;
+                    break;
+                case 4:
+                    m4.ThisPlayerCar = 0;
+                    t.transform.parent = m4.transform;
+                    t.transform.position = m4.CoinPosition;
+                    break;
+            }
+
+            TextColorCar.color = Color.white;               //The text color of the car icon is set to white
+            Car.GetComponent<Collider2D>().enabled = true;  //The icon collider is set to active
+            isActive = false;
+
+            if (ThisCarSelected)
+            {
+                l.num_ready_players--;                          //The number of ready players is decreased
+            }
+            ThisCarSelected = false;                        //The boolian for the car selection is set to false
+
+        }
     }
 }

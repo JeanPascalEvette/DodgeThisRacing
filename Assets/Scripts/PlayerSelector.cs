@@ -124,6 +124,7 @@ public class PlayerSelector : MonoBehaviour
     public void PanelManager()
     {
         if (l.num_players == m.playerID || l.num_players == m.playerID - 1)
+        //if ((l.num_players == m.playerID || l.num_players == m.playerID - 1) && (!m.is_this_ready))
         {
             switch_case++;
             switch (switch_case)
