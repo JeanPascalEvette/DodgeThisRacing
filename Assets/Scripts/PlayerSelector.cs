@@ -28,10 +28,12 @@ public class PlayerSelector : MonoBehaviour
     public Image Hand;
 
     private ButtonController buttonController;
+    private ControlsController controlController;
 
     void Start() {
 
         buttonController = GetComponentInChildren<ButtonController>();
+        controlController = GetComponentInChildren<ControlsController>();
 
         l.is_p1_active = true;
 
@@ -247,7 +249,11 @@ public class PlayerSelector : MonoBehaviour
                     t.text = "N/A";
                     cpuText.text = nameplayer;
 
-                    buttonController.SetOverlay(false);
+                    if (m.playerID == 1)
+                    {
+                        buttonController.SetOverlay(false);
+                        controlController.SetOverlay(false);
+                    }
 
                     break;
             }

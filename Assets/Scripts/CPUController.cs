@@ -54,12 +54,12 @@ public class CPUController : MonoBehaviour {
 
         if (player1Control.ThisPlayerControl == MoveSelector.ControlTypesHere.Joy1)
         {
-            if (Input.GetButtonDown("ButtonAJoystick1")) { CollectToken(); }
+            if (Input.GetButtonDown("ButtonAJoyStick1")) { CollectToken(); }
         }
 
         else if (player1Control.ThisPlayerControl == MoveSelector.ControlTypesHere.Joy2)
         {
-            if (Input.GetButtonDown("ButtonAJoystick2")) { CollectToken(); }
+            if (Input.GetButtonDown("ButtonAJoyStick2")) { CollectToken(); }
         }
 
         else if (player1Control.ThisPlayerControl == MoveSelector.ControlTypesHere.ArrowKeys)
@@ -81,6 +81,7 @@ public class CPUController : MonoBehaviour {
         is_grabbed = true;
         player.GetComponent<Collider2D>().enabled = false;
         Player1Panel.Hand.sprite = Player1Panel.hand_closed;
+        player1Control.Hand.SetAsLastSibling();
 
     }
 
