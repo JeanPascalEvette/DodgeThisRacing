@@ -13,6 +13,8 @@ public class IconCollider : MonoBehaviour {
     GameObject t;     //Generic GameObject to be used in the script and assigned under certain conditions
     CPUController CPU;
     public CPUController C1, C2, C3, C4;
+    public ButtonController buttoncontroller1, buttoncontroller2, buttoncontroller3, buttoncontroller4;
+    public ControlsController controlscontroller1, controlscontroller2, controlscontroller3, controlscontroller4;
 
     public PlayerSelector p1, p2, p3, p4; //Instances of The PlayerSelector scripts attached to each Panel controlling each player
     public int ID = 0;                    
@@ -76,6 +78,11 @@ public class IconCollider : MonoBehaviour {
              }
     }
 
+    //void OnTriggerStay2D(Collider2D trigger)
+    //{
+
+    //}
+
     //Function to detect a cursor exiting from the trigger area of the Car selection icon
     void OnTriggerExit2D(Collider2D trigger)
     {
@@ -84,7 +91,6 @@ public class IconCollider : MonoBehaviour {
         TextColorCar.color = Color.white;
         m.is_this_inside = false;               //The specific cursor is not inside the icon area anymore
        
-
     }
 
   //This function checks the control types used by the cursor entering the car icon area and then makes it possible to select or deselect it
@@ -119,7 +125,10 @@ public class IconCollider : MonoBehaviour {
                 {
 
                     if (!C1.is_grabbed && !C2.is_grabbed && !C3.is_grabbed && !C4.is_grabbed)
-                    { DeSelectCar(); }
+                    {
+                        ResetOverlay();
+                        DeSelectCar();
+                    }
                 }
             }
 
@@ -156,7 +165,10 @@ public class IconCollider : MonoBehaviour {
                 {
 
                     if (!C1.is_grabbed && !C2.is_grabbed && !C3.is_grabbed && !C4.is_grabbed)
-                    { DeSelectCar(); }
+                    {
+                        ResetOverlay();
+                        DeSelectCar();
+                    }
                 }
             }
 
@@ -184,7 +196,10 @@ public class IconCollider : MonoBehaviour {
                 else {
 
                     if (!C1.is_grabbed && !C2.is_grabbed && !C3.is_grabbed && !C4.is_grabbed)
-                       { DeSelectCar(); }    
+                       {
+                        ResetOverlay();
+                        DeSelectCar();
+                       }    
                     }
             }
 
@@ -219,7 +234,10 @@ public class IconCollider : MonoBehaviour {
                 {
 
                     if (!C1.is_grabbed && !C2.is_grabbed && !C3.is_grabbed && !C4.is_grabbed)
-                    { DeSelectCar(); }
+                    {
+                        ResetOverlay();
+                        DeSelectCar();
+                    }
                 }
             }
 
@@ -405,6 +423,24 @@ public class IconCollider : MonoBehaviour {
                 m4.is_this_ready = false;
                 break;
         }
+    }
+
+    void ResetOverlay() {
+
+        C1.is_player_near = false;
+        C2.is_player_near = false;
+        C3.is_player_near = false;
+        C4.is_player_near = false;
+
+        buttoncontroller1.SetOverlay(false);
+        buttoncontroller2.SetOverlay(false);
+        buttoncontroller3.SetOverlay(false);
+        buttoncontroller4.SetOverlay(false);
+
+        controlscontroller1.SetOverlay(false);
+        controlscontroller2.SetOverlay(false);
+        controlscontroller3.SetOverlay(false);
+        controlscontroller4.SetOverlay(false);
     }
 
     //This function is called in the script PlayerSelector controlling the panels. If a player is deactivated by a panel the coin, the cursor and their positions are re-set to default

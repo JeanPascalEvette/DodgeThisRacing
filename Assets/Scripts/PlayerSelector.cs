@@ -22,9 +22,9 @@ public class PlayerSelector : MonoBehaviour
     string nameplayer;
     public bool is_CPU = false;
 
-    public Sprite default_Empty, CurrentCar,hand_closed,hand_opened;
+    public Sprite default_Empty, CurrentCar,hand_closed,hand_opened,default_notActive;
 
-    private Image carImage;
+    public Image carImage;
     public Image Hand;
 
     private ButtonController buttonController;
@@ -39,6 +39,9 @@ public class PlayerSelector : MonoBehaviour
 
         carImage = transform.FindChild("CarImage").GetComponent<Image>();
         carImage.sprite = default_Empty;
+
+        if   (!m.is_this_active) { carImage.sprite = default_notActive; }
+        else { carImage.sprite = default_Empty; }
 
 
         switch (PanelNumber)
@@ -94,6 +97,9 @@ public class PlayerSelector : MonoBehaviour
         }
 
         else { Control_Type.text = "Not Assigned"; }
+
+        //if (!m.is_this_active) { carImage.sprite = default_notActive; }
+        //else                  { carImage.sprite = default_Empty; }
     }
 
     void switch_reset() { switch_case = 0; }
@@ -155,6 +161,7 @@ public class PlayerSelector : MonoBehaviour
                         m.is_this_active = true;
                         CPU_Controls = 1;
                         is_CPU = false;
+                        carImage.sprite = default_Empty;
                     }
 
                     break;
@@ -179,10 +186,10 @@ public class PlayerSelector : MonoBehaviour
                         t.text = "CPU";
                         is_CPU = true;
                         CPU_Controls = 2;
+                        carImage.sprite = default_Empty;
+                        Controls = 4;
+                        ControlManager();
                     }
-
-                    Controls = 4;
-                    ControlManager();
 
                     break;
 
@@ -233,7 +240,8 @@ public class PlayerSelector : MonoBehaviour
 
                     switch_case = 0;
                     playerCoin.transform.position = m.playerPosition;
-                    carImage.sprite = default_Empty;
+                    //carImage.sprite = default_Empty;
+                    carImage.sprite = default_notActive;
 
                     //if      (Car1.ThisCarSelected == true && m.playerID == Car1.ID) { Car1.CheckPlayerActivation(); }
                     //else if (Car2.ThisCarSelected == true && m.playerID == Car2.ID) { Car2.CheckPlayerActivation(); }

@@ -244,7 +244,8 @@ public class LevelManager : MonoBehaviour
             ps.CPU_Controls = 1;
             ps.switch_case  = 1;
             ps.Hand.sprite = ps.hand_closed;
-            
+            ps.carImage.sprite = ps.default_Empty;
+
         }
 
         setControlScheme();

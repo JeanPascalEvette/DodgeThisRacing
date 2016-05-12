@@ -121,7 +121,7 @@ RectTransform:
   m_RootOrder: 1
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -28, y: 41}
+  m_AnchoredPosition: {x: -27.999985, y: 81}
   m_SizeDelta: {x: 68, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!61 &1530479
@@ -763,6 +763,14 @@ MonoBehaviour:
   C2: {fileID: 1428113747}
   C3: {fileID: 1581721570}
   C4: {fileID: 510688236}
+  buttoncontroller1: {fileID: 1530483}
+  buttoncontroller2: {fileID: 510256569}
+  buttoncontroller3: {fileID: 2092579174}
+  buttoncontroller4: {fileID: 984705794}
+  controlscontroller1: {fileID: 1755242672}
+  controlscontroller2: {fileID: 215446492}
+  controlscontroller3: {fileID: 114217958}
+  controlscontroller4: {fileID: 1695360365}
   p1: {fileID: 1359102857}
   p2: {fileID: 867536395}
   p3: {fileID: 1306703004}
@@ -808,8 +816,8 @@ RectTransform:
   m_RootOrder: 0
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 100, y: 100}
+  m_AnchoredPosition: {x: 26.250015, y: 24.750011}
+  m_SizeDelta: {x: 176.5, y: 142.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &246071498
 MonoBehaviour:
@@ -954,6 +962,14 @@ MonoBehaviour:
   C2: {fileID: 1428113747}
   C3: {fileID: 1581721570}
   C4: {fileID: 510688236}
+  buttoncontroller1: {fileID: 1530483}
+  buttoncontroller2: {fileID: 510256569}
+  buttoncontroller3: {fileID: 2092579174}
+  buttoncontroller4: {fileID: 984705794}
+  controlscontroller1: {fileID: 1755242672}
+  controlscontroller2: {fileID: 215446492}
+  controlscontroller3: {fileID: 114217958}
+  controlscontroller4: {fileID: 1695360365}
   p1: {fileID: 1359102857}
   p2: {fileID: 867536395}
   p3: {fileID: 1306703004}
@@ -1067,6 +1083,14 @@ MonoBehaviour:
   C2: {fileID: 1428113747}
   C3: {fileID: 1581721570}
   C4: {fileID: 510688236}
+  buttoncontroller1: {fileID: 1530483}
+  buttoncontroller2: {fileID: 510256569}
+  buttoncontroller3: {fileID: 2092579174}
+  buttoncontroller4: {fileID: 984705794}
+  controlscontroller1: {fileID: 1755242672}
+  controlscontroller2: {fileID: 215446492}
+  controlscontroller3: {fileID: 114217958}
+  controlscontroller4: {fileID: 1695360365}
   p1: {fileID: 1359102857}
   p2: {fileID: 867536395}
   p3: {fileID: 1306703004}
@@ -1107,8 +1131,8 @@ RectTransform:
   m_RootOrder: 0
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 100, y: 100}
+  m_AnchoredPosition: {x: 27.500015, y: 25}
+  m_SizeDelta: {x: 179, y: 143}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &394415474
 MonoBehaviour:
@@ -1408,7 +1432,7 @@ RectTransform:
   m_RootOrder: 1
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -28, y: 41}
+  m_AnchoredPosition: {x: -27.999977, y: 81.5}
   m_SizeDelta: {x: 68, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &510256569
@@ -2620,6 +2644,7 @@ MonoBehaviour:
   CurrentCar: {fileID: 0}
   hand_closed: {fileID: 21300000, guid: 3f918271710d51b4c9bdd934bcf78a89, type: 3}
   hand_opened: {fileID: 21300000, guid: 4cb28ca158457fa45a8a9395dafa5ba9, type: 3}
+  default_notActive: {fileID: 21300000, guid: bdf933a5cc9ef3549be87941f757c107, type: 3}
   Hand: {fileID: 1006530413}
 --- !u!224 &886345490 stripped
 RectTransform:
@@ -2663,6 +2688,14 @@ MonoBehaviour:
   C2: {fileID: 1428113747}
   C3: {fileID: 1581721570}
   C4: {fileID: 510688236}
+  buttoncontroller1: {fileID: 1530483}
+  buttoncontroller2: {fileID: 510256569}
+  buttoncontroller3: {fileID: 2092579174}
+  buttoncontroller4: {fileID: 984705794}
+  controlscontroller1: {fileID: 1755242672}
+  controlscontroller2: {fileID: 215446492}
+  controlscontroller3: {fileID: 114217958}
+  controlscontroller4: {fileID: 1695360365}
   p1: {fileID: 1359102857}
   p2: {fileID: 867536395}
   p3: {fileID: 1306703004}
@@ -2708,7 +2741,7 @@ RectTransform:
   m_RootOrder: 1
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -40.03, y: 57}
+  m_AnchoredPosition: {x: -28.999985, y: 98.07599}
   m_SizeDelta: {x: 68, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &984705794
@@ -3054,6 +3087,7 @@ MonoBehaviour:
   CurrentCar: {fileID: 0}
   hand_closed: {fileID: 21300000, guid: 244f1c2530bb0ea4cb34fb4e74c82610, type: 3}
   hand_opened: {fileID: 21300000, guid: 05e4a9c7123dc404b9974fd2e14febd9, type: 3}
+  default_notActive: {fileID: 21300000, guid: bdf933a5cc9ef3549be87941f757c107, type: 3}
   Hand: {fileID: 151109576}
 --- !u!1 &1141588965
 GameObject:
@@ -3344,6 +3378,7 @@ MonoBehaviour:
   CurrentCar: {fileID: 0}
   hand_closed: {fileID: 21300000, guid: b4b4c3393dec899478485e1e0ac62c05, type: 3}
   hand_opened: {fileID: 21300000, guid: 499e293136183d0428caa163853d7868, type: 3}
+  default_notActive: {fileID: 21300000, guid: bdf933a5cc9ef3549be87941f757c107, type: 3}
   Hand: {fileID: 1896442177}
 --- !u!1 &1359102853
 GameObject:
@@ -3420,6 +3455,7 @@ MonoBehaviour:
   CurrentCar: {fileID: 0}
   hand_closed: {fileID: 21300000, guid: 12c23baa3e5e98c45b9068289c8d4825, type: 3}
   hand_opened: {fileID: 21300000, guid: ea885fb2941b3cb46a008549a7d22c3c, type: 3}
+  default_notActive: {fileID: 21300000, guid: bdf933a5cc9ef3549be87941f757c107, type: 3}
   Hand: {fileID: 1668059612}
 --- !u!1 &1428113740 stripped
 GameObject:
@@ -3561,8 +3597,8 @@ RectTransform:
   m_RootOrder: 0
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.601266}
-  m_AnchoredPosition: {x: 0, y: 8.499992}
-  m_SizeDelta: {x: 100, y: 70}
+  m_AnchoredPosition: {x: 23.250061, y: 28.249992}
+  m_SizeDelta: {x: 172.5, y: 109.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1437700173
 MonoBehaviour:
@@ -4694,8 +4730,8 @@ RectTransform:
   m_RootOrder: 0
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 23.500004}
-  m_SizeDelta: {x: 100, y: 100}
+  m_AnchoredPosition: {x: 31.00003, y: 45}
+  m_SizeDelta: {x: 179, y: 143}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1757188050
 MonoBehaviour:
@@ -5320,7 +5356,7 @@ RectTransform:
   m_RootOrder: 1
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -40.03, y: 65}
+  m_AnchoredPosition: {x: -24.499947, y: 101.500015}
   m_SizeDelta: {x: 68, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2092579174
