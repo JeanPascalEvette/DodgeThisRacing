@@ -98,7 +98,7 @@ public class IconCollider : MonoBehaviour {
             { SelectCar(); }
 
             //If the cursor is near the coin inside the area of the car icon and presses B he re-acquires the coin and deselects the car
-            if (Input.GetButtonDown("ButtonXJoyStick1") && l.is_joy1_taken &&ThisCarSelected)
+            if (Input.GetButtonDown("ButtonXJoyStick1") && l.is_joy1_taken && ThisCarSelected)
             { DeSelectCar(); }
 
         }
@@ -115,15 +115,15 @@ public class IconCollider : MonoBehaviour {
 
         else if (m.ThisPlayerControl == MoveSelector.ControlTypesHere.ArrowKeys)
         {
-            //Controls for normal players
+            //Controls for normal players Select
             if (Input.GetButtonDown("ButtonAArrows") && l.is_arrowKeys_taken && m.is_this_inside == true && !ThisCarSelected && !CPU.is_coin_cpu && m.playerID == CPU.CoinID)
             { SelectCar(); }
 
-            //Controls for CPU
+            //Controls for CPU Select
             else if (Input.GetButtonDown("ButtonAArrows") && l.is_arrowKeys_taken && m.is_this_inside == true && !ThisCarSelected && CPU.is_coin_cpu && m.playerID != CPU.CoinID)
             { CPUSelectCar(); }
 
-            //Controls for normal players
+            //Controls for normal players Deselect
             else if (Input.GetButtonDown("ButtonXArrows") && l.is_arrowKeys_taken && ThisCarSelected && m.playerID == CPU.CoinID)
             {
                 if (m.playerID != 1)
@@ -136,7 +136,7 @@ public class IconCollider : MonoBehaviour {
                     }
             }
 
-            //Controls for CPU
+            //Controls for CPU Deselect
             else if (Input.GetButtonDown("ButtonAArrows") && l.is_arrowKeys_taken && ThisCarSelected && CPU.is_coin_cpu && CPU.is_player_near && m.playerID != CPU.CoinID)
             { CPUDeSelectCar(); }
         }

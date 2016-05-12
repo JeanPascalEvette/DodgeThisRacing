@@ -179,6 +179,9 @@ public class PlayerSelector : MonoBehaviour
                         CPU_Controls = 2;
                     }
 
+                    Controls = 4;
+                    ControlManager();
+
                     break;
 
                 default:
@@ -295,65 +298,84 @@ public class PlayerSelector : MonoBehaviour
             switch (Controls)
             {
                 case 1:
-
-                    if (l.is_joy1_taken == false) 
+                    if (is_CPU) { return; }
+                    else
                     {
-                        m.ThisPlayerControl = MoveSelector.ControlTypesHere.Joy1;
-                        l.is_joy1_taken = true;
-                        Control_Type.text = "Joy1";
-                    }
+                        if (l.is_joy1_taken == false)
+                        {
+                            m.ThisPlayerControl = MoveSelector.ControlTypesHere.Joy1;
+                            l.is_joy1_taken = true;
+                            Control_Type.text = "Joy1";
+                        }
 
-                    else if (m.ThisPlayerControl == MoveSelector.ControlTypesHere.Joy1) { }
-                    else {
-                           m.ThisPlayerControl = MoveSelector.ControlTypesHere.NotAssigned;
-                           Control_Type.text = "Joy1 (N/A)";
-                         }
+                        else if (m.ThisPlayerControl == MoveSelector.ControlTypesHere.Joy1) { }
+                        else
+                        {
+                            m.ThisPlayerControl = MoveSelector.ControlTypesHere.NotAssigned;
+                            Control_Type.text = "Joy1 (N/A)";
+                        }
+                    }
 
                     break;
 
                 case 2:
-                    if (l.is_joy2_taken == false)
+                    if (is_CPU) { return; }
+                    else
                     {
-                        m.ThisPlayerControl = MoveSelector.ControlTypesHere.Joy2;
-                        l.is_joy2_taken = true;
-                        Control_Type.text = "Joy2";
-                    }
+                        if (l.is_joy2_taken == false)
+                        {
+                            m.ThisPlayerControl = MoveSelector.ControlTypesHere.Joy2;
+                            l.is_joy2_taken = true;
+                            Control_Type.text = "Joy2";
+                        }
 
-                    else if (m.ThisPlayerControl == MoveSelector.ControlTypesHere.Joy2) { }
-                    else {
-                           m.ThisPlayerControl = MoveSelector.ControlTypesHere.NotAssigned;
-                           Control_Type.text = "Joy2 (N/A)";
-                         }
+                        else if (m.ThisPlayerControl == MoveSelector.ControlTypesHere.Joy2) { }
+                        else
+                        {
+                            m.ThisPlayerControl = MoveSelector.ControlTypesHere.NotAssigned;
+                            Control_Type.text = "Joy2 (N/A)";
+                        }
+                    }
                     break;
 
                 case 3:
-                    if (l.is_arrowKeys_taken == false)
+                    if (is_CPU) { return; }
+                    else
                     {
-                        m.ThisPlayerControl = MoveSelector.ControlTypesHere.ArrowKeys;
-                        l.is_arrowKeys_taken = true;
-                        Control_Type.text = "ArrowKeys";
-                    }
+                        if (l.is_arrowKeys_taken == false)
+                        {
+                            m.ThisPlayerControl = MoveSelector.ControlTypesHere.ArrowKeys;
+                            l.is_arrowKeys_taken = true;
+                            Control_Type.text = "ArrowKeys";
+                        }
 
-                    else if (m.ThisPlayerControl == MoveSelector.ControlTypesHere.ArrowKeys) { }
-                    else {
-                           m.ThisPlayerControl = MoveSelector.ControlTypesHere.NotAssigned;
-                           Control_Type.text = "ArrowKeys (N/A)";
-                         }
+                        else if (m.ThisPlayerControl == MoveSelector.ControlTypesHere.ArrowKeys) { }
+                        else
+                        {
+                            m.ThisPlayerControl = MoveSelector.ControlTypesHere.NotAssigned;
+                            Control_Type.text = "ArrowKeys (N/A)";
+                        }
+                    }
                     break;
 
                 case 4:
-                    if (l.is_wsda_taken == false)
+                    if (is_CPU) { return; }
+                    else
                     {
-                        m.ThisPlayerControl = MoveSelector.ControlTypesHere.WSDA;
-                        l.is_wsda_taken = true;
-                        Control_Type.text = "WSDA";
-                    }
+                        if (l.is_wsda_taken == false)
+                        {
+                            m.ThisPlayerControl = MoveSelector.ControlTypesHere.WSDA;
+                            l.is_wsda_taken = true;
+                            Control_Type.text = "WSDA";
+                        }
 
-                    else if (m.ThisPlayerControl == MoveSelector.ControlTypesHere.WSDA) { }
-                    else {
-                           m.ThisPlayerControl = MoveSelector.ControlTypesHere.NotAssigned;
-                           Control_Type.text = "WSDA (N/A)";
-                         }
+                        else if (m.ThisPlayerControl == MoveSelector.ControlTypesHere.WSDA) { }
+                        else
+                        {
+                            m.ThisPlayerControl = MoveSelector.ControlTypesHere.NotAssigned;
+                            Control_Type.text = "WSDA (N/A)";
+                        }
+                    }
                     break;
 
                 default:

@@ -30,7 +30,8 @@ public class MoveSelector : MonoBehaviour {
         WSDA,
         Joy1,
         Joy2,
-        NotAssigned
+        NotAssigned,
+        CPUdefault
 
     }
 
@@ -105,39 +106,43 @@ public class MoveSelector : MonoBehaviour {
 
     //Handles the movement of the cursors according to the selected control Scheme
     void HandleMovement()
-    { 
-    
-        if (ThisPlayerControl == ControlTypesHere.ArrowKeys)
+    {
+        if (!ThisPlayerSelector.is_CPU)
         {
+            if (ThisPlayerControl == ControlTypesHere.ArrowKeys)
+            {
                 float translationY = Input.GetAxis("VerticalArrows") * move_player;
                 float translationX = Input.GetAxis("HorizontalArrows") * move_player;
                 playerButton.transform.Translate(0, translationY, 0);
                 playerButton.transform.Translate(translationX, 0, 0);
-        }
+            }
 
-        else  if (ThisPlayerControl == ControlTypesHere.WSDA)
-        {
+            else if (ThisPlayerControl == ControlTypesHere.WSDA)
+            {
                 float translationY = Input.GetAxis("VerticalWSDA") * move_player;
                 float translationX = Input.GetAxis("HorizontalWSDA") * move_player;
                 playerButton.transform.Translate(0, translationY, 0);
                 playerButton.transform.Translate(translationX, 0, 0);
-        }
+            }
 
-        else if (ThisPlayerControl == ControlTypesHere.Joy1)
-        {
+            else if (ThisPlayerControl == ControlTypesHere.Joy1)
+            {
                 float translationY = Input.GetAxis("VerticalJoyStickLeft1") * move_player;
                 float translationX = Input.GetAxis("HorizontalJoyStickLeft1") * move_player;
                 playerButton.transform.Translate(0, translationY, 0);
                 playerButton.transform.Translate(translationX, 0, 0);
-        }
+            }
 
-        else if (ThisPlayerControl == ControlTypesHere.Joy2)
-        {
+            else if (ThisPlayerControl == ControlTypesHere.Joy2)
+            {
                 float translationY = Input.GetAxis("VerticalJoyStickLeft2") * move_player;
                 float translationX = Input.GetAxis("HorizontalJoyStickLeft2") * move_player;
                 playerButton.transform.Translate(0, translationY, 0);
                 playerButton.transform.Translate(translationX, 0, 0);
+            }
         }
+
+       
     }
 
     public void CreatePlayerData()
