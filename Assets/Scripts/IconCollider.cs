@@ -93,24 +93,76 @@ public class IconCollider : MonoBehaviour {
         if (m.ThisPlayerControl == MoveSelector.ControlTypesHere.Joy1)
 
         {
-            //If the A button is pressed the coin is assigned to that car icon and the cursor doesn't move it around anymore (Selection of the car)
-            if (Input.GetButtonDown("ButtonAJoyStick1") && l.is_joy1_taken && m.is_this_inside == true && !ThisCarSelected)
+            ////If the A button is pressed the coin is assigned to that car icon and the cursor doesn't move it around anymore (Selection of the car)
+            //if (Input.GetButtonDown("ButtonAJoyStick1") && l.is_joy1_taken && m.is_this_inside == true && !ThisCarSelected)
+            //{ SelectCar(); }
+
+            ////If the cursor is near the coin inside the area of the car icon and presses B he re-acquires the coin and deselects the car
+            //if (Input.GetButtonDown("ButtonXJoyStick1") && l.is_joy1_taken && ThisCarSelected)
+            //{ DeSelectCar(); }
+
+            //Controls for normal players Select
+            if (Input.GetButtonDown("ButtonAJoyStick1") && l.is_joy1_taken && m.is_this_inside == true && !ThisCarSelected && !CPU.is_coin_cpu && m.playerID == CPU.CoinID)
             { SelectCar(); }
 
-            //If the cursor is near the coin inside the area of the car icon and presses B he re-acquires the coin and deselects the car
-            if (Input.GetButtonDown("ButtonXJoyStick1") && l.is_joy1_taken && ThisCarSelected)
-            { DeSelectCar(); }
+            //Controls for CPU Select
+            else if (Input.GetButtonDown("ButtonAJoyStick1") && l.is_joy1_taken && m.is_this_inside == true && !ThisCarSelected && CPU.is_coin_cpu && m.playerID != CPU.CoinID)
+            { CPUSelectCar(); }
+
+            //Controls for normal players Deselect
+            else if (Input.GetButtonDown("ButtonXJoyStick1") && l.is_joy1_taken && ThisCarSelected && m.playerID == CPU.CoinID)
+            {
+                if (m.playerID != 1)
+                { DeSelectCar(); }
+
+                else
+                {
+
+                    if (!C1.is_grabbed && !C2.is_grabbed && !C3.is_grabbed && !C4.is_grabbed)
+                    { DeSelectCar(); }
+                }
+            }
+
+            //Controls for CPU Deselect
+            else if (Input.GetButtonDown("ButtonAJoyStick1") && l.is_joy1_taken && ThisCarSelected && CPU.is_coin_cpu && CPU.is_player_near && m.playerID != CPU.CoinID)
+            { CPUDeSelectCar(); }
 
         }
 
         //Same for all the other control types
         else if (m.ThisPlayerControl == MoveSelector.ControlTypesHere.Joy2)
         {
-            if (Input.GetButtonDown("ButtonAJoyStick2") && l.is_joy2_taken && m.is_this_inside == true && !ThisCarSelected)
+            //if (Input.GetButtonDown("ButtonAJoyStick2") && l.is_joy2_taken && m.is_this_inside == true && !ThisCarSelected)
+            //{ SelectCar(); }
+
+            //if (Input.GetButtonDown("ButtonXJoyStick2") && l.is_joy2_taken && ThisCarSelected)
+            //{ DeSelectCar(); }
+
+            //Controls for normal players Select
+            if (Input.GetButtonDown("ButtonAJoyStick2") && l.is_joy2_taken && m.is_this_inside == true && !ThisCarSelected && !CPU.is_coin_cpu && m.playerID == CPU.CoinID)
             { SelectCar(); }
 
-            if (Input.GetButtonDown("ButtonXJoyStick2") && l.is_joy2_taken && ThisCarSelected)
-            { DeSelectCar(); }
+            //Controls for CPU Select
+            else if (Input.GetButtonDown("ButtonAJoyStick2") && l.is_joy2_taken && m.is_this_inside == true && !ThisCarSelected && CPU.is_coin_cpu && m.playerID != CPU.CoinID)
+            { CPUSelectCar(); }
+
+            //Controls for normal players Deselect
+            else if (Input.GetButtonDown("ButtonXJoyStick2") && l.is_joy2_taken && ThisCarSelected && m.playerID == CPU.CoinID)
+            {
+                if (m.playerID != 1)
+                { DeSelectCar(); }
+
+                else
+                {
+
+                    if (!C1.is_grabbed && !C2.is_grabbed && !C3.is_grabbed && !C4.is_grabbed)
+                    { DeSelectCar(); }
+                }
+            }
+
+            //Controls for CPU Deselect
+            else if (Input.GetButtonDown("ButtonAJoyStick2") && l.is_joy2_taken && ThisCarSelected && CPU.is_coin_cpu && CPU.is_player_near && m.playerID != CPU.CoinID)
+            { CPUDeSelectCar(); }
         }
 
         else if (m.ThisPlayerControl == MoveSelector.ControlTypesHere.ArrowKeys)
@@ -143,11 +195,37 @@ public class IconCollider : MonoBehaviour {
 
         else if (m.ThisPlayerControl == MoveSelector.ControlTypesHere.WSDA)
         {
-            if (Input.GetButtonDown("ButtonAWSDA") && l.is_wsda_taken && m.is_this_inside == true && !ThisCarSelected)
+            //if (Input.GetButtonDown("ButtonAWSDA") && l.is_wsda_taken && m.is_this_inside == true && !ThisCarSelected)
+            //{ SelectCar(); }
+
+            //else if (Input.GetButtonDown("ButtonXWSDA") && l.is_wsda_taken && ThisCarSelected)
+            //{ DeSelectCar(); }
+
+            //Controls for normal players Select
+            if (Input.GetButtonDown("ButtonAWSDA") && l.is_wsda_taken && m.is_this_inside == true && !ThisCarSelected && !CPU.is_coin_cpu && m.playerID == CPU.CoinID)
             { SelectCar(); }
 
-            else if (Input.GetButtonDown("ButtonXWSDA") && l.is_wsda_taken && ThisCarSelected)
-            { DeSelectCar(); }
+            //Controls for CPU Select
+            else if (Input.GetButtonDown("ButtonAWSDA") && l.is_wsda_taken && m.is_this_inside == true && !ThisCarSelected && CPU.is_coin_cpu && m.playerID != CPU.CoinID)
+            { CPUSelectCar(); }
+
+            //Controls for normal players Deselect
+            else if (Input.GetButtonDown("ButtonXWSDA") && l.is_wsda_taken && ThisCarSelected && m.playerID == CPU.CoinID)
+            {
+                if (m.playerID != 1)
+                { DeSelectCar(); }
+
+                else
+                {
+
+                    if (!C1.is_grabbed && !C2.is_grabbed && !C3.is_grabbed && !C4.is_grabbed)
+                    { DeSelectCar(); }
+                }
+            }
+
+            //Controls for CPU Deselect
+            else if (Input.GetButtonDown("ButtonAWSDA") && l.is_wsda_taken && ThisCarSelected && CPU.is_coin_cpu && CPU.is_player_near && m.playerID != CPU.CoinID)
+            { CPUDeSelectCar(); }
         }
     }
 

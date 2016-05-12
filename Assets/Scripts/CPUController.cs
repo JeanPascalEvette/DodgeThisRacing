@@ -54,20 +54,33 @@ public class CPUController : MonoBehaviour {
 
         if (player1Control.ThisPlayerControl == MoveSelector.ControlTypesHere.Joy1)
         {
-
+            if (Input.GetButtonDown("ButtonAJoystick1")) { CollectToken(); }
         }
-        else if (player1Control.ThisPlayerControl == MoveSelector.ControlTypesHere.Joy2) { }
+
+        else if (player1Control.ThisPlayerControl == MoveSelector.ControlTypesHere.Joy2)
+        {
+            if (Input.GetButtonDown("ButtonAJoystick2")) { CollectToken(); }
+        }
+
         else if (player1Control.ThisPlayerControl == MoveSelector.ControlTypesHere.ArrowKeys)
         {
-            if (Input.GetButtonDown("ButtonAArrows")) {
-
-                transform.parent = player.transform;
-                is_grabbed = true;
-                player.GetComponent<Collider2D>().enabled = false;
-                Player1Panel.Hand.sprite = Player1Panel.hand_closed;
-            }
+            if (Input.GetButtonDown("ButtonAArrows")) {CollectToken();}
         }
-        else if (player1Control.ThisPlayerControl == MoveSelector.ControlTypesHere.WSDA) { }
+
+        else if (player1Control.ThisPlayerControl == MoveSelector.ControlTypesHere.WSDA)
+        {
+            if (Input.GetButtonDown("ButtonAWSDA")) { CollectToken(); }
+        }
+
+    }
+
+    void CollectToken()
+
+    {
+        transform.parent = player.transform;
+        is_grabbed = true;
+        player.GetComponent<Collider2D>().enabled = false;
+        Player1Panel.Hand.sprite = Player1Panel.hand_closed;
 
     }
 
