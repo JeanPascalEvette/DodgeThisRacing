@@ -8,12 +8,13 @@ public class PlayerSelector : MonoBehaviour
     public Text cpuText;
     public Text Control_Type;
 
-    public int switch_case = 0;
+    public int switch_case = 1;
     public int Controls = 0;
     public int CPU_Controls = -1;
     public int PanelNumber;
 
-    public GameObject playerCoin;
+    public GameObject playerCoin,playerToken;
+    public CPUController CoinController;
     public IconCollider Car1, Car2, Car3, Car4;
     public LevelManager l;
     public MoveSelector m;
@@ -136,6 +137,11 @@ public class PlayerSelector : MonoBehaviour
                         cpuText.text = nameplayer;
                         t.text = nameplayer;
 
+                        Hand.sprite = hand_closed;
+                        m.Hand.SetAsLastSibling();
+                        if (m.playerID == 1) { m.GetComponent<Collider2D>().enabled = false; }
+
+
                         if (l.num_players < m.playerID) { l.num_players++; }
 
                         if      (m.playerID == 1) { l.is_p1_active = true; }
@@ -182,6 +188,7 @@ public class PlayerSelector : MonoBehaviour
                         print("deleting player");
 
                         playerCoin.SetActive(false);
+                        //playerToken.SetActive(false);
 
                         if (m.ThisPlayerControl == MoveSelector.ControlTypesHere.Joy1)
                         {
@@ -213,18 +220,20 @@ public class PlayerSelector : MonoBehaviour
                         else if (m.playerID == 4) { l.is_p4_active = false; }
 
                         l.num_players--;
-
                         m.is_this_active = false;
                         is_CPU = false;
+
                     }
 
                     switch_case = 0;
                     playerCoin.transform.position = m.playerPosition;
+                    carImage.sprite = default_Empty;
 
-                    if      (Car1.ThisCarSelected == true && m.playerID == Car1.ID) { Car1.CheckPlayerActivation();}
-                    else if (Car2.ThisCarSelected == true && m.playerID == Car2.ID) { Car2.CheckPlayerActivation();}
-                    else if (Car3.ThisCarSelected == true && m.playerID == Car3.ID) { Car3.CheckPlayerActivation();}
-                    else if (Car4.ThisCarSelected == true && m.playerID == Car4.ID) { Car4.CheckPlayerActivation();}
+                    if      (Car1.ThisCarSelected == true && m.playerID == Car1.ID) { Car1.CheckPlayerActivation(); }
+                    else if (Car2.ThisCarSelected == true && m.playerID == Car2.ID) { Car2.CheckPlayerActivation(); }
+                    else if (Car3.ThisCarSelected == true && m.playerID == Car3.ID) { Car3.CheckPlayerActivation(); }
+                    else if (Car4.ThisCarSelected == true && m.playerID == Car4.ID) { Car4.CheckPlayerActivation(); }
+                    
 
                     CPU_Controls = 0;
                     t.text = "N/A";

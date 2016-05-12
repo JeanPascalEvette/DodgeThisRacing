@@ -1279,6 +1279,8 @@ GameObject:
   - 114: {fileID: 510256571}
   - 114: {fileID: 510256570}
   - 114: {fileID: 510256569}
+  - 61: {fileID: 510256574}
+  - 50: {fileID: 510256573}
   m_Layer: 5
   m_Name: P_Button2
   m_TagString: p2
@@ -1400,6 +1402,37 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 510256567}
+--- !u!50 &510256573
+Rigidbody2D:
+  serializedVersion: 2
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 510256567}
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
+--- !u!61 &510256574
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 510256567}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Size: {x: 60, y: 25}
 --- !u!1 &510688235 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 116298, guid: 3cfec0dd1c27b5245b265515ecd148bd, type: 2}
@@ -2463,11 +2496,12 @@ MonoBehaviour:
   t: {fileID: 1506169409}
   cpuText: {fileID: 444208911}
   Control_Type: {fileID: 16601275}
-  switch_case: 0
+  switch_case: 1
   Controls: 0
   CPU_Controls: -1
   PanelNumber: 2
   playerCoin: {fileID: 444208906}
+  CoinController: {fileID: 1428113747}
   Car1: {fileID: 346784880}
   Car2: {fileID: 228496795}
   Car3: {fileID: 941973853}
@@ -2539,6 +2573,8 @@ GameObject:
   - 114: {fileID: 984705796}
   - 114: {fileID: 984705795}
   - 114: {fileID: 984705794}
+  - 61: {fileID: 984705799}
+  - 50: {fileID: 984705798}
   m_Layer: 5
   m_Name: P_Button 4
   m_TagString: p
@@ -2660,6 +2696,37 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 984705792}
+--- !u!50 &984705798
+Rigidbody2D:
+  serializedVersion: 2
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 984705792}
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
+--- !u!61 &984705799
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 984705792}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Size: {x: 60, y: 25}
 --- !u!1 &1006530411
 GameObject:
   m_ObjectHideFlags: 0
@@ -2857,11 +2924,12 @@ MonoBehaviour:
   t: {fileID: 315248632}
   cpuText: {fileID: 752248856}
   Control_Type: {fileID: 759524891}
-  switch_case: 0
+  switch_case: 1
   Controls: 0
   CPU_Controls: -1
   PanelNumber: 4
   playerCoin: {fileID: 752248851}
+  CoinController: {fileID: 510688236}
   Car1: {fileID: 346784880}
   Car2: {fileID: 228496795}
   Car3: {fileID: 941973853}
@@ -3145,11 +3213,12 @@ MonoBehaviour:
   t: {fileID: 1011840230}
   cpuText: {fileID: 1263739612}
   Control_Type: {fileID: 482416532}
-  switch_case: 0
+  switch_case: 1
   Controls: 0
   CPU_Controls: -1
   PanelNumber: 3
   playerCoin: {fileID: 1263739607}
+  CoinController: {fileID: 1581721570}
   Car1: {fileID: 346784880}
   Car2: {fileID: 228496795}
   Car3: {fileID: 941973853}
@@ -3219,11 +3288,12 @@ MonoBehaviour:
   t: {fileID: 1798023839}
   cpuText: {fileID: 2062963156}
   Control_Type: {fileID: 406755420}
-  switch_case: 0
+  switch_case: 1
   Controls: 0
   CPU_Controls: -1
   PanelNumber: 1
   playerCoin: {fileID: 2062963151}
+  CoinController: {fileID: 1176644638}
   Car1: {fileID: 346784880}
   Car2: {fileID: 228496795}
   Car3: {fileID: 941973853}
@@ -5019,6 +5089,8 @@ GameObject:
   - 114: {fileID: 2092579176}
   - 114: {fileID: 2092579175}
   - 114: {fileID: 2092579174}
+  - 61: {fileID: 2092579179}
+  - 50: {fileID: 2092579178}
   m_Layer: 5
   m_Name: P_Button 3
   m_TagString: p
@@ -5140,6 +5212,37 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2092579172}
+--- !u!50 &2092579178
+Rigidbody2D:
+  serializedVersion: 2
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2092579172}
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
+--- !u!61 &2092579179
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2092579172}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Size: {x: 60, y: 25}
 --- !u!1001 &2113395917
 Prefab:
   m_ObjectHideFlags: 0

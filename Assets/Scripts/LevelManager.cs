@@ -238,10 +238,13 @@ public class LevelManager : MonoBehaviour
                 break;
 
         }
-
+            newPlayer.Hand.SetAsLastSibling();
+            if (newPlayer.playerID == 1) { newPlayer.GetComponent<Collider2D>().enabled = false; }
             newPlayer.is_this_active = true;
             ps.CPU_Controls = 1;
             ps.switch_case  = 1;
+            ps.Hand.sprite = ps.hand_closed;
+            
         }
 
         setControlScheme();
