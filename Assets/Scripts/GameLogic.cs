@@ -136,7 +136,7 @@ public class GameLogic : MonoBehaviour
             float maxDist = 5.0f;
             for (int i = 0; i < trackPiece.transform.childCount; i++)
             {
-                if (trackPiece.transform.GetChild(i).name.Substring(0, 4) == "Road")
+                if (trackPiece.transform.GetChild(i).name.Substring(0, 4) == "Road" || (trackPiece.transform.GetChild(i).name.Length >= 8 && trackPiece.transform.GetChild(i).name.Substring(0, 8) == "CityRoad"))
                 {
                     trackPiece = trackPiece.transform.GetChild(i).gameObject;
                     break;
