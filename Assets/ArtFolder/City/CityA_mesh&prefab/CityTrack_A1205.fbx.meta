@@ -47,8 +47,8 @@ ModelImporter:
     4300006: CityAI_A
     4300008: CityWall_A
     4300010: CitySidewalk_A
-    4300012: CityA_Wall_R
-    4300014: CityA_Wall_L
+    4300012: CityA_Wall_L
+    4300014: CityA_Wall_R
     9500000: //RootNode
   materials:
     importMaterials: 1

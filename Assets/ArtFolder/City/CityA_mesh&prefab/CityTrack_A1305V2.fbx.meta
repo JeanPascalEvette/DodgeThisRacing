@@ -37,6 +37,12 @@ ModelImporter:
     4300006: CityAI_A
     4300008: CityA_Wall_R
     4300010: CityA_Wall_L
+    6400000: CityA_Wall_L
+    6400002: CityA_Wall_R
+    6400004: CityAI_A
+    6400006: CityCorner_A
+    6400008: CityRoad_A
+    6400010: CitySidewalk_A
   materials:
     importMaterials: 1
     materialName: 0
@@ -63,7 +69,7 @@ ModelImporter:
     lODScreenPercentages: []
     globalScale: 1
     meshCompression: 0
-    addColliders: 0
+    addColliders: 1
     importBlendShapes: 1
     swapUVChannels: 0
     generateSecondaryUV: 0
