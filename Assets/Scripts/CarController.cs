@@ -260,7 +260,7 @@ public class CarController : MonoBehaviour
         if (transform.position.z < (bDestroyer.GetPushingWall()) )
             transform.position = new Vector3(transform.position.x, transform.position.y, (bDestroyer.GetPushingWall()));
         var txtMsh = transform.Find("Text").GetComponent<TextMesh>();
-        txtMsh.text = (rb.velocity.magnitude).ToString();
+        txtMsh.text = "P" + myPlayerData.getID();//(rb.velocity.magnitude).ToString();
 
 
 
