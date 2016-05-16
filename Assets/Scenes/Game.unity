@@ -394,7 +394,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c580f524826dee947bb2ee95275fedc6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rotateSpeed: 4
+  rotateSpeed: 2
   lightsOn: 0
 --- !u!108 &237479176
 Light:
@@ -1367,10 +1367,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target:
   - {fileID: 0}
-  - {fileID: 0}
   leadingGameObject: {fileID: 0}
-  xDist: 16
-  yDist: 13
+  xDist: 25
+  yDist: 14
   myCameraType: 0
 --- !u!81 &1321642224
 AudioListener:
@@ -1411,7 +1410,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 75
+  field of view: 55
   orthographic: 0
   orthographic size: 5
   m_Depth: -1
@@ -1814,6 +1813,7 @@ MonoBehaviour:
   NumberOfCars: 1
   Track: {fileID: 0}
   obstacleList: []
+  trackDPullBackDistance: 6
 --- !u!1 &1849084773
 GameObject:
   m_ObjectHideFlags: 0

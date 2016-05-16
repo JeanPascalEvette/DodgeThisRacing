@@ -9,7 +9,7 @@ public class GameLogic : MonoBehaviour
     public int winner;
     public int lastDeath;
 
-    public readonly int NUMBEROFCARS = 4;
+    public readonly int NUMBEROFCARS = 1;
 
 
     private List<GameObject> trackPartsList;
