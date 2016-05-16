@@ -174,11 +174,13 @@ public class PlayerSelector : MonoBehaviour
                         m.is_this_active = true;
                         l.num_players++;
 
-                        if      (m.playerID == 1) { l.is_p1_active = true; }
+                        if (m.playerID == 1) { l.is_p1_active = true; }
                         else if (m.playerID == 2) { l.is_p2_active = true; }
                         else if (m.playerID == 3) { l.is_p3_active = true; }
                         else if (m.playerID == 4) { l.is_p4_active = true; }
                     }
+
+                   
 
                     if (m.is_this_active)
                     {
@@ -189,6 +191,7 @@ public class PlayerSelector : MonoBehaviour
                         carImage.sprite = default_Empty;
                         Controls = 4;
                         ControlManager();
+                        //resetControlsCPU();
                     }
 
                     break;
@@ -301,6 +304,50 @@ public class PlayerSelector : MonoBehaviour
 
         //this.gameObject.GetComponent<Image>().sprite = CurrentCar;
         carImage.sprite = CurrentCar;
+    }
+
+    void resetControlsCPU()
+
+    {
+        if (m.ThisPlayerControl == MoveSelector.ControlTypesHere.Joy1)
+        {
+            m.ThisPlayerControl = MoveSelector.ControlTypesHere.NotAssigned;
+            l.is_joy1_taken = false;
+        }
+
+        else if (m.ThisPlayerControl == MoveSelector.ControlTypesHere.Joy2)
+        {
+            m.ThisPlayerControl = MoveSelector.ControlTypesHere.NotAssigned;
+            l.is_joy2_taken = false;
+        }
+
+        else if (m.ThisPlayerControl == MoveSelector.ControlTypesHere.ArrowKeys)
+        {
+            m.ThisPlayerControl = MoveSelector.ControlTypesHere.NotAssigned;
+            l.is_arrowKeys_taken = false;
+        }
+
+        else if (m.ThisPlayerControl == MoveSelector.ControlTypesHere.WSDA)
+        {
+            m.ThisPlayerControl = MoveSelector.ControlTypesHere.NotAssigned;
+            l.is_wsda_taken = false;
+        }
+
+        playerCoin.transform.position = m.playerPosition;
+        carImage.sprite = default_Empty;
+
+        if      (Car1.ThisCarSelected == true && CoinController.CoinID == Car1.ID) { Car1.CheckPlayerActivation(); }
+        else if (Car2.ThisCarSelected == true && CoinController.CoinID == Car2.ID) { Car2.CheckPlayerActivation(); }
+        else if (Car3.ThisCarSelected == true && CoinController.CoinID == Car3.ID) { Car3.CheckPlayerActivation(); }
+        else if (Car4.ThisCarSelected == true && CoinController.CoinID == Car4.ID) { Car4.CheckPlayerActivation(); }
+
+        CPU_Controls = 0;
+
+        if (m.playerID == 1)
+        {
+            buttonController.SetOverlay(false);
+            controlController.SetOverlay(false);
+        }
     }
 
     public void ControlManager() {
