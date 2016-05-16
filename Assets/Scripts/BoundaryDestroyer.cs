@@ -36,6 +36,7 @@ public class BoundaryDestroyer : MonoBehaviour {
 
     void OnDrawGizmos()
     {
+        if (Data.GetPlayerData() == null) return;
         var leadingCar = UnityEngine.Camera.main.GetComponent<Camera>().GetLeadingPlayerPosition();
         leadingCar.z -= UnityEngine.Camera.main.GetComponent<Camera>().getZoomZDiff() + 20.0f;
         UnityEditor.Handles.color = Color.red;
