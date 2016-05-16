@@ -304,7 +304,7 @@ public class PlayerSelector : MonoBehaviour
         carImage.sprite = CurrentCar;
     }
 
-    //IMPORVE THIS FUNCTION AND CALL IT AT THE RIGHT TIME
+    //IMPORVE THIS FUNCTION AND CALL IT AT THE RIGHT TIME (Not called anywhere at the moment)
     void resetControlsCPU()
 
     {
