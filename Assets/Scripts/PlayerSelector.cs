@@ -129,6 +129,7 @@ public class PlayerSelector : MonoBehaviour
         else { switch_reset(); }
     }
 
+    //Change this function (If statements....)
     public void PanelManager()
     {
         if (l.num_players == m.playerID || l.num_players == m.playerID - 1)
@@ -268,7 +269,7 @@ public class PlayerSelector : MonoBehaviour
         }
 
         else if(m.is_this_active)
-        {
+        {//Add stuff here
 
             CPU_Controls++;
 
@@ -301,6 +302,51 @@ public class PlayerSelector : MonoBehaviour
 
         //this.gameObject.GetComponent<Image>().sprite = CurrentCar;
         carImage.sprite = CurrentCar;
+    }
+
+    //IMPORVE THIS FUNCTION AND CALL IT AT THE RIGHT TIME
+    void resetControlsCPU()
+
+    {
+        if (m.ThisPlayerControl == MoveSelector.ControlTypesHere.Joy1)
+        {
+            m.ThisPlayerControl = MoveSelector.ControlTypesHere.NotAssigned;
+            l.is_joy1_taken = false;
+        }
+
+        else if (m.ThisPlayerControl == MoveSelector.ControlTypesHere.Joy2)
+        {
+            m.ThisPlayerControl = MoveSelector.ControlTypesHere.NotAssigned;
+            l.is_joy2_taken = false;
+        }
+
+        else if (m.ThisPlayerControl == MoveSelector.ControlTypesHere.ArrowKeys)
+        {
+            m.ThisPlayerControl = MoveSelector.ControlTypesHere.NotAssigned;
+            l.is_arrowKeys_taken = false;
+        }
+
+        else if (m.ThisPlayerControl == MoveSelector.ControlTypesHere.WSDA)
+        {
+            m.ThisPlayerControl = MoveSelector.ControlTypesHere.NotAssigned;
+            l.is_wsda_taken = false;
+        }
+
+        playerCoin.transform.position = m.playerPosition;
+        carImage.sprite = default_Empty;
+
+        if (Car1.ThisCarSelected == true && CoinController.CoinID == Car1.ID) { Car1.CheckPlayerActivation(); }
+        else if (Car2.ThisCarSelected == true && CoinController.CoinID == Car2.ID) { Car2.CheckPlayerActivation(); }
+        else if (Car3.ThisCarSelected == true && CoinController.CoinID == Car3.ID) { Car3.CheckPlayerActivation(); }
+        else if (Car4.ThisCarSelected == true && CoinController.CoinID == Car4.ID) { Car4.CheckPlayerActivation(); }
+
+        CPU_Controls = 0;
+
+        if (m.playerID == 1)
+        {
+            buttonController.SetOverlay(false);
+            controlController.SetOverlay(false);
+        }
     }
 
     public void ControlManager() {
