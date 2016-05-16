@@ -12,6 +12,8 @@ public class shieldScript : MonoBehaviour {
     float pulseDuration = 0.75f;
     Color color1 = new Color32(125, 125, 125, 255);
     Color color2 = new Color32(255, 255, 255, 255);
+    Color eColor1 = new Color32(125, 125, 125, 255);
+    Color eColor2 = new Color32(0, 0, 0, 255);
 
     // Use this for initialization
     void Start () {
@@ -23,6 +25,6 @@ public class shieldScript : MonoBehaviour {
         pulse = Mathf.PingPong(Time.time, pulseDuration) / pulseDuration;
         shieldRenderer.material.renderQueue = 3001 ;
         shieldRenderer.material.SetColor("_Color", Color.Lerp(color1, color2, pulse));
-        shieldRenderer.material.SetColor("_EmissionColor", Color.Lerp(color1, color2, pulse));
+        shieldRenderer.material.SetColor("_EmissionColor", Color.Lerp(eColor1, eColor2, pulse));
     }
 }

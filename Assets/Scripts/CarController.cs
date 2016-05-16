@@ -128,6 +128,9 @@ public class CarController : MonoBehaviour
     private float respawnInvTime = -1.0f;
     private float respawnBlinkTime = -1.0f;
 
+
+    public bool isShielded;
+
     // Use this for initialization
     void Start()
     {   

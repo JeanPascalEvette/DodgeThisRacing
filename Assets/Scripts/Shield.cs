@@ -3,6 +3,15 @@ using System.Collections;
 
 public class Shield : MonoBehaviour
 {
+    void Start()
+    {
+        CarController car = transform.root.GetComponent<CarController>();
+        GameObject shield = Instantiate(Resources.Load("Prefabs/Pickups/Shield")) as GameObject;
+        shield.transform.parent = car.transform;
+        shield.transform.position = car.transform.position;
+    }
+
+    /*
     bool notCreated = false;
     public void createShield(bool collided, CarController car)
     {
@@ -20,4 +29,5 @@ public class Shield : MonoBehaviour
             }
         }
     }
+    */
 }

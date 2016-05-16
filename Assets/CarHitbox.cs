@@ -26,7 +26,7 @@ public class CarHitbox : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        shieldDome = new Shield();
+        shieldDome = null;
         car = transform.root.GetComponent<CarController>();
         carModel = car.GetComponent<Rigidbody>();
 
@@ -52,7 +52,7 @@ public class CarHitbox : MonoBehaviour
         if (col.transform.root == transform.root)
             return; // Ignore self collisions
         
-        if(col.transform.root.tag == "Pickups")
+        if(col.transform.root.tag == "Pickups" && col.gameObject.GetComponent<Pickups>() != null)
         {
             if (col.gameObject.GetComponent<Pickups>().healthPickup)
             {
@@ -70,10 +70,16 @@ public class CarHitbox : MonoBehaviour
 
             else if(col.gameObject.GetComponent<Pickups>().shieldPickup)
             {
-                shieldDome.createShield(true, car);
-                shieldTime = col.gameObject.GetComponent<Pickups>().shield;
-                carShield = car.gameObject.GetComponentInChildren<shieldScript>().gameObject;
-                Destroy(col.gameObject);
+                if (!car.isShielded)
+                {
+                    GameObject shield = Instantiate(Resources.Load("Prefabs/Pickups/Shield")) as GameObject;
+                    shield.transform.parent = transform.root;
+                    shield.transform.position = transform.root.position;
+                    car.isShielded = true;
+                    shieldTime = col.gameObject.GetComponent<Pickups>().shield;
+                    carShield = car.gameObject.GetComponentInChildren<shieldScript>().gameObject;
+                    Destroy(col.gameObject);
+                }
             }
 
             else if(col.gameObject.GetComponent<Pickups>().speedPickup)
@@ -165,6 +171,7 @@ public class CarHitbox : MonoBehaviour
         }
         else
         {
+            car.isShielded = false;
             Destroy(carShield);
         }
     }
