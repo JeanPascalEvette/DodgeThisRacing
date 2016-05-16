@@ -20,6 +20,7 @@ public class CarHitbox : MonoBehaviour
     private float damageCaused;
     public float carSpeed;
 
+    
     private float collisionCD = -1;
     private GameObject explHolder;
     // Use this for initialization
@@ -32,6 +33,7 @@ public class CarHitbox : MonoBehaviour
         explHolder = GameObject.Find("ExplosionHolder");
         if (explHolder == null)
             explHolder = new GameObject("ExplosionHolder");
+        
     }
 
     // COLLISION DETECTION
@@ -45,13 +47,14 @@ public class CarHitbox : MonoBehaviour
             return;
         if (col.gameObject.name == "Track")
             return; // Ignore collisions with ground
+        if (col.gameObject.name.Contains("Ramp"))
+            return; // Ignore collisions with ramp
         if (col.transform.root == transform.root)
             return; // Ignore self collisions
         
         if(col.transform.root.tag == "Pickups")
         {
-            
-            if(col.gameObject.GetComponent<Pickups>().healthPickup)
+            if (col.gameObject.GetComponent<Pickups>().healthPickup)
             {
                 car.currentHealth += (int) col.gameObject.GetComponent<Pickups>().health;
                 if (car.currentHealth > 100)
@@ -61,7 +64,7 @@ public class CarHitbox : MonoBehaviour
 
             else if(col.gameObject.GetComponent<Pickups>().lifePickup)
             {
-                car.myPlayerData.addLives();
+                car.myPlayerData.addLives(Time.time);
                 Destroy(col.gameObject);
             }
 
@@ -151,7 +154,6 @@ public class CarHitbox : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
         // We calculate the speed of the car for the collision force
         carSpeed = carModel.velocity.magnitude;
         if (collisionCD > 0)

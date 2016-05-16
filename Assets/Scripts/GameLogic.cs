@@ -51,6 +51,8 @@ public class GameLogic : MonoBehaviour
         if (Track == null)
             Track = new GameObject("Track");
 
+        Track.layer = LayerMask.NameToLayer("Track");
+
         explHolder = GameObject.Find("ExplosionHolder");
         if (explHolder == null)
             explHolder = new GameObject("ExplosionHolder");
