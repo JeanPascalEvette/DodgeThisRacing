@@ -29,6 +29,9 @@ public class GameLogic : MonoBehaviour
     private Camera myCamera;
     private GameObject explHolder;
 
+    [SerializeField]
+    private float trackDPullBackDistance;
+
     // Use this for initialization
     void Start()
     {
@@ -386,7 +389,7 @@ public class GameLogic : MonoBehaviour
             }
             else if (UnityEngine.Camera.main.GetComponent<Camera>().GetLeadingPlayerPosition().z >= trackBounds.min.z)
             {
-                float dist = 4.0f;
+                float dist = trackDPullBackDistance;
                 if (trackPiece.name.Length >= 8 && trackPiece.name.Substring(0, 8) == "Track_DE")
                     dist = 9.0f;
                 UnityEngine.Camera.main.GetComponent<Camera>().ZoomOut(dist);

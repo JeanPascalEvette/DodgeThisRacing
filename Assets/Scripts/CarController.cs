@@ -232,6 +232,9 @@ public class CarController : MonoBehaviour
             {
                 col.GetChild(i).gameObject.layer = LayerMask.NameToLayer("CarCollisionHitbox");
             }
+            var renderers = GetComponentsInChildren<Renderer>();
+            foreach (var renderer in renderers)
+                renderer.enabled = true;
             respawnInvTime = -1.0f;
         }
 
