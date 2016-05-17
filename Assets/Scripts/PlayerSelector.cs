@@ -18,6 +18,7 @@ public class PlayerSelector : MonoBehaviour
     public IconCollider Car1, Car2, Car3, Car4;
     public LevelManager l;
     public MoveSelector m;
+    
 
     string nameplayer;
     public bool is_CPU = false;
@@ -72,7 +73,7 @@ public class PlayerSelector : MonoBehaviour
             else if (m.ThisPlayerControl == MoveSelector.ControlTypesHere.Joy2)      { Control_Type.text = "Joy2"; }
             else if (m.ThisPlayerControl == MoveSelector.ControlTypesHere.ArrowKeys) { Control_Type.text = "ArrowKeys"; }
             else if (m.ThisPlayerControl == MoveSelector.ControlTypesHere.WSDA)      { Control_Type.text = "WSDA"; }
-            else                                                                     { Control_Type.text = "Not Assigned"; }
+            //else                                                                     { Control_Type.text = "Not Assigned"; }
         }
 
         else { Control_Type.text = "Not Assigned"; }
@@ -89,6 +90,7 @@ public class PlayerSelector : MonoBehaviour
             else if (m.ThisPlayerControl == MoveSelector.ControlTypesHere.Joy2)      { Control_Type.text = "Joy2"; }
             else if (m.ThisPlayerControl == MoveSelector.ControlTypesHere.ArrowKeys) { Control_Type.text = "ArrowKeys"; }
             else if (m.ThisPlayerControl == MoveSelector.ControlTypesHere.WSDA)      { Control_Type.text = "WSDA"; }
+            //else                                                                     { Control_Type.text = "Not Assigned"; }
 
             if      (PanelNumber == 1 && switch_case != 2 && !is_CPU)                { t.text = "P1"; }
             else if (PanelNumber == 2 && switch_case != 2 && !is_CPU)                { t.text = "P2"; }
@@ -132,8 +134,8 @@ public class PlayerSelector : MonoBehaviour
     //Change this function (If statements....)
     public void PanelManager()
     {
-        if (l.num_players == m.playerID || l.num_players == m.playerID - 1)
-        //if ((l.num_players == m.playerID || l.num_players == m.playerID - 1) && (!m.is_this_ready))
+        //if (l.num_players == m.playerID || l.num_players == m.playerID - 1)
+        if ((l.num_players == m.playerID || l.num_players == m.playerID - 1) && (!m.is_this_ready))
         {
             switch_case++;
             switch (switch_case)
@@ -189,6 +191,9 @@ public class PlayerSelector : MonoBehaviour
                         CPU_Controls = 2;
                         carImage.sprite = default_Empty;
                         Controls = 4;
+
+                        resetControlsCPU();
+
                         ControlManager();
                     }
 
@@ -288,11 +293,15 @@ public class PlayerSelector : MonoBehaviour
                     is_CPU = true;
                     CPU_Controls = 0;
                     switch_case = 2;
+                    resetControlsCPU();
+                    ControlManager();
+                    m.ThisPlayerControl = MoveSelector.ControlTypesHere.NotAssigned;
                     break;
 
                 default:
                     switch_case = 0;
                     CPU_Controls = 0;
+                    is_CPU = false;
                     break;
             }
         }
@@ -332,7 +341,7 @@ public class PlayerSelector : MonoBehaviour
             l.is_wsda_taken = false;
         }
 
-        playerCoin.transform.position = m.playerPosition;
+        if (l.num_players > m.playerID) { playerCoin.transform.position = m.playerPosition; }
         carImage.sprite = default_Empty;
 
         if (Car1.ThisCarSelected == true && CoinController.CoinID == Car1.ID) { Car1.CheckPlayerActivation(); }
@@ -358,7 +367,10 @@ public class PlayerSelector : MonoBehaviour
             switch (Controls)
             {
                 case 1:
-                    if (is_CPU) { return; }
+                    if (is_CPU) {
+                        m.ThisPlayerControl = MoveSelector.ControlTypesHere.NotAssigned;
+                        Control_Type.text = "Not Assigned";
+                        return; }
                     else
                     {
                         if (l.is_joy1_taken == false)
@@ -379,7 +391,10 @@ public class PlayerSelector : MonoBehaviour
                     break;
 
                 case 2:
-                    if (is_CPU) { return; }
+                    if (is_CPU) {
+                        m.ThisPlayerControl = MoveSelector.ControlTypesHere.NotAssigned;
+                        Control_Type.text = "Not Assigned";
+                        return; }
                     else
                     {
                         if (l.is_joy2_taken == false)
@@ -399,7 +414,10 @@ public class PlayerSelector : MonoBehaviour
                     break;
 
                 case 3:
-                    if (is_CPU) { return; }
+                    if (is_CPU) {
+                        m.ThisPlayerControl = MoveSelector.ControlTypesHere.NotAssigned;
+                        Control_Type.text = "Not Assigned";
+                        return; }
                     else
                     {
                         if (l.is_arrowKeys_taken == false)
@@ -413,13 +431,16 @@ public class PlayerSelector : MonoBehaviour
                         else
                         {
                             m.ThisPlayerControl = MoveSelector.ControlTypesHere.NotAssigned;
-                            Control_Type.text = "ArrowKeys (N/A)";
+                            Control_Type.text = "Arrow (N/A)";
                         }
                     }
                     break;
 
                 case 4:
-                    if (is_CPU) { return; }
+                    if (is_CPU) {
+                        m.ThisPlayerControl = MoveSelector.ControlTypesHere.NotAssigned;
+                        Control_Type.text = "Not Assigned";
+                        return; }
                     else
                     {
                         if (l.is_wsda_taken == false)

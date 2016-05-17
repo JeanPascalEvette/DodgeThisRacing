@@ -198,10 +198,12 @@ public class LevelManager : MonoBehaviour
             ps = panel4.GetComponent<PlayerSelector>();
         }
 
+        
+
         //If there are no active players it creates a new player and assigns the control scheme detected
         else {
 
-            if (num_players < 4) { num_players++; }
+            if (num_players <= 4) { num_players++; }
 
             switch (num_players)
         {
@@ -235,6 +237,7 @@ public class LevelManager : MonoBehaviour
                 break;
 
             default:
+                    num_players = 4;
                 break;
 
         }
@@ -256,7 +259,7 @@ public class LevelManager : MonoBehaviour
     {
         if (ps.is_CPU) {
 
-            newPlayer.ThisPlayerControl = MoveSelector.ControlTypesHere.CPUdefault;
+            newPlayer.ThisPlayerControl = MoveSelector.ControlTypesHere.NotAssigned;
             
                        }
         else
