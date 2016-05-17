@@ -206,7 +206,7 @@ public class WheelController : MonoBehaviour {
             direction = Quaternion.Euler(i*360/numRaycast, 0, 0) * direction;
             direction = transform.root.rotation * direction;
             myRay = new Ray(transform.position, direction.normalized);
-            if (Physics.Raycast(myRay, wheelHeight))
+            if (Physics.Raycast(myRay, wheelHeight, ~(1 << LayerMask.NameToLayer("CarCollisionHitbox"))))
             {
                 isOnGround = true;
                 myColor = Color.green;

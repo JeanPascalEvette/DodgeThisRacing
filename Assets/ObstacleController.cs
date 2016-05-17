@@ -27,16 +27,32 @@ public class ObstacleController : MonoBehaviour
     void OnCollisionEnter(Collision col)
     {
         var colCC = col.gameObject.transform.root.GetComponentInChildren<CarController>();
-        if(colCC != null)
+        if (colCC != null)
+        {
+            foreach (var existingCD in hitCoolDowns)
+                if (existingCD.Key == colCC.gameObject)
+                    return;
+            hitCoolDowns.Add(new KeyValuePair<GameObject, float>(colCC.gameObject, Time.time));
+           
+                colCC.ReduceSpeed();
+        }
+    }
+
+
+    void OnTriggerEnter(Collider col)
+    {
+        var colCC = col.gameObject.transform.root.GetComponentInChildren<CarController>();
+        if (colCC != null)
         {
             foreach (var existingCD in hitCoolDowns)
                 if (existingCD.Key == colCC.gameObject)
                     return;
             hitCoolDowns.Add(new KeyValuePair<GameObject, float>(colCC.gameObject, Time.time));
 
-            if(transform.name.Contains("Water"))
+            if (transform.name.Contains("Water"))
             {
                 //Here code for effect of water
+                colCC.ReduceSpeed();
             }
             else
             {

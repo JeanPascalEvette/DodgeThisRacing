@@ -25,7 +25,7 @@ RenderSettings:
   m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
   m_AmbientIntensity: 1
   m_AmbientMode: 0
-  m_SkyboxMaterial: {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
+  m_SkyboxMaterial: {fileID: 2100000, guid: ff330f6226d1d44838ee63a8824f8def, type: 2}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -34,7 +34,7 @@ RenderSettings:
   m_DefaultReflectionMode: 0
   m_DefaultReflectionResolution: 128
   m_ReflectionBounces: 1
-  m_ReflectionIntensity: 1
+  m_ReflectionIntensity: 0.1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
 --- !u!157 &3
@@ -66,8 +66,7 @@ LightmapSettings:
     m_FinalGather: 0
     m_FinalGatherRayCount: 1024
     m_ReflectionCompression: 2
-  m_LightingDataAsset: {fileID: 112000001, guid: f7eac8648156a8e49bd437518aa6e7e8,
-    type: 2}
+  m_LightingDataAsset: {fileID: 0}
   m_RuntimeCPUUsage: 25
 --- !u!196 &4
 NavMeshSettings:
@@ -394,7 +393,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c580f524826dee947bb2ee95275fedc6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rotateSpeed: 4
+  rotateSpeed: 2
   lightsOn: 0
 --- !u!108 &237479176
 Light:
@@ -407,13 +406,13 @@ Light:
   serializedVersion: 6
   m_Type: 1
   m_Color: {r: 0.97444224, g: 1, b: 0.53676474, a: 1}
-  m_Intensity: 1.06
+  m_Intensity: 1
   m_Range: 10
   m_SpotAngle: 30
   m_CookieSize: 10
   m_Shadows:
     m_Type: 1
-    m_Resolution: 3
+    m_Resolution: 2
     m_Strength: 1
     m_Bias: 0.1
     m_NormalBias: 0.1
@@ -865,10 +864,10 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: fe77a366b8685af48ae57170cd23ff19, type: 3}
+  m_audioClip: {fileID: 8300000, guid: f2faf4ea821d67f499503346ae6f6ddc, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
-  m_Pitch: 1
+  m_Volume: 0.17
+  m_Pitch: 0.9
   Loop: 1
   Mute: 0
   Spatialize: 0
@@ -1367,12 +1366,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target:
   - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
   leadingGameObject: {fileID: 0}
-  xDist: 17
-  yDist: 15
+  xDist: 25
+  yDist: 14
   myCameraType: 0
 --- !u!81 &1321642224
 AudioListener:
@@ -1413,7 +1409,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 100
+  field of view: 55
   orthographic: 0
   orthographic size: 5
   m_Depth: -1
@@ -1442,6 +1438,48 @@ Transform:
   - {fileID: 851432733}
   m_Father: {fileID: 0}
   m_RootOrder: 1
+--- !u!1001 &1322769067
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 484296, guid: 58672b9b341d5304da1ba0686a9f60e4, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 484296, guid: 58672b9b341d5304da1ba0686a9f60e4, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 484296, guid: 58672b9b341d5304da1ba0686a9f60e4, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 484296, guid: 58672b9b341d5304da1ba0686a9f60e4, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 484296, guid: 58672b9b341d5304da1ba0686a9f60e4, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 484296, guid: 58672b9b341d5304da1ba0686a9f60e4, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 484296, guid: 58672b9b341d5304da1ba0686a9f60e4, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 484296, guid: 58672b9b341d5304da1ba0686a9f60e4, type: 2}
+      propertyPath: m_RootOrder
+      value: 7
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 58672b9b341d5304da1ba0686a9f60e4, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1 &1344818352
 GameObject:
   m_ObjectHideFlags: 0
@@ -1817,6 +1855,7 @@ MonoBehaviour:
   NumberOfCars: 1
   Track: {fileID: 0}
   obstacleList: []
+  trackDPullBackDistance: 6
 --- !u!1 &1849084773
 GameObject:
   m_ObjectHideFlags: 0
