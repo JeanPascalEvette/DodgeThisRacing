@@ -290,6 +290,12 @@ public class GameLogic : MonoBehaviour
 
             Debug.DrawLine(trackPartsList[trackPartsList.Count - 1].transform.position + new Vector3(0, 1, 0), startPos + new Vector3(0, 1, 0), Color.red, 9999.0f, false);
         }
+
+        if(trackPrefab.name.Contains("CityA_"))
+        {
+            startPos.y += 0.5f;
+        }
+
         var newTrackPart = (GameObject)Instantiate(trackPrefab, startPos, trackPrefab.transform.rotation);
         trackPartsList.Add(newTrackPart);
         newTrackPart.transform.parent = Track.transform;
