@@ -73,7 +73,7 @@ public class PlayerSelector : MonoBehaviour
             else if (m.ThisPlayerControl == MoveSelector.ControlTypesHere.Joy2)      { Control_Type.text = "Joy2"; }
             else if (m.ThisPlayerControl == MoveSelector.ControlTypesHere.ArrowKeys) { Control_Type.text = "ArrowKeys"; }
             else if (m.ThisPlayerControl == MoveSelector.ControlTypesHere.WSDA)      { Control_Type.text = "WSDA"; }
-            //else                                                                     { Control_Type.text = "Not Assigned"; }
+            else                                                                     { Control_Type.text = "Not Assigned"; }
         }
 
         else { Control_Type.text = "Not Assigned"; }
@@ -90,7 +90,7 @@ public class PlayerSelector : MonoBehaviour
             else if (m.ThisPlayerControl == MoveSelector.ControlTypesHere.Joy2)      { Control_Type.text = "Joy2"; }
             else if (m.ThisPlayerControl == MoveSelector.ControlTypesHere.ArrowKeys) { Control_Type.text = "ArrowKeys"; }
             else if (m.ThisPlayerControl == MoveSelector.ControlTypesHere.WSDA)      { Control_Type.text = "WSDA"; }
-            //else                                                                     { Control_Type.text = "Not Assigned"; }
+            //else                                                                   { Control_Type.text = "Not Assigned"; }
 
             if      (PanelNumber == 1 && switch_case != 2 && !is_CPU)                { t.text = "P1"; }
             else if (PanelNumber == 2 && switch_case != 2 && !is_CPU)                { t.text = "P2"; }
@@ -131,154 +131,193 @@ public class PlayerSelector : MonoBehaviour
         else { switch_reset(); }
     }
 
-    //Change this function (If statements....)
+    
     public void PanelManager()
     {
-        if (l.num_players == m.playerID || l.num_players == m.playerID - 1)
-        //if ((l.num_players == m.playerID || l.num_players == m.playerID - 1) && (!m.is_this_ready))
+        if (m.playerID != 1)
         {
-            switch_case++;
-            switch (switch_case)
+            if (!CoinController.is_grabbed)
             {
-                case 1:
-
-                    if (l.num_players == m.playerID - 1 && !m.is_this_active)
+                if (l.num_players == m.playerID || l.num_players == m.playerID - 1)
+                //if ((l.num_players == m.playerID || l.num_players == m.playerID - 1) && (m.playerID != 1))
+                {
+                    switch_case++;
+                    switch (switch_case)
                     {
+                        case 1:
 
-                        playerCoin.SetActive(true);
-                        cpuText.text = nameplayer;
-                        t.text = nameplayer;
+                            if (l.num_players == m.playerID - 1 && !m.is_this_active)
+                            {
 
-                        Hand.sprite = hand_closed;
-                        m.Hand.SetAsLastSibling();
-                        if (m.playerID == 1) { m.GetComponent<Collider2D>().enabled = false; }
+                                playerCoin.SetActive(true);
+                                cpuText.text = nameplayer;
+                                t.text = nameplayer;
+
+                                Hand.sprite = hand_closed;
+                                m.Hand.SetAsLastSibling();
+                                if (m.playerID == 1) { m.GetComponent<Collider2D>().enabled = false; }
 
 
-                        if (l.num_players < m.playerID) { l.num_players++; }
+                                if (l.num_players < m.playerID) { l.num_players++; }
 
-                        if      (m.playerID == 1) { l.is_p1_active = true; }
-                        else if (m.playerID == 2) { l.is_p2_active = true; }
-                        else if (m.playerID == 3) { l.is_p3_active = true; }
-                        else if (m.playerID == 4) { l.is_p4_active = true; }
+                                if (m.playerID == 1) { l.is_p1_active = true; }
+                                else if (m.playerID == 2) { l.is_p2_active = true; }
+                                else if (m.playerID == 3) { l.is_p3_active = true; }
+                                else if (m.playerID == 4) { l.is_p4_active = true; }
 
-                        m.is_this_active = true;
-                        CPU_Controls = 1;
-                        is_CPU = false;
-                        carImage.sprite = default_Empty;
+                                m.is_this_active = true;
+                                CPU_Controls = 1;
+                                is_CPU = false;
+                                carImage.sprite = default_Empty;
+                            }
+
+                            break;
+
+                        case 2:
+
+                            if (l.num_players == m.playerID - 1 && !m.is_this_active)
+                            {
+                                playerCoin.SetActive(true);
+                                m.is_this_active = true;
+                                l.num_players++;
+
+                                if (m.playerID == 1) { l.is_p1_active = true; }
+                                else if (m.playerID == 2) { l.is_p2_active = true; }
+                                else if (m.playerID == 3) { l.is_p3_active = true; }
+                                else if (m.playerID == 4) { l.is_p4_active = true; }
+                            }
+
+                            if (m.is_this_active)
+                            {
+                                cpuText.text = "CPU";
+                                t.text = "CPU";
+                                is_CPU = true;
+                                CPU_Controls = 2;
+                                carImage.sprite = default_Empty;
+                                Controls = 4;
+
+                                resetControlsCPU();
+
+                                ControlManager();
+                            }
+
+                            break;
+
+                        default:
+
+                            if (l.num_players == m.playerID && m.is_this_active)
+
+                            {
+                                print("deleting player");
+
+                                playerCoin.SetActive(false);
+
+
+                                if (m.ThisPlayerControl == MoveSelector.ControlTypesHere.Joy1)
+                                {
+                                    m.ThisPlayerControl = MoveSelector.ControlTypesHere.NotAssigned;
+                                    l.is_joy1_taken = false;
+                                }
+
+                                else if (m.ThisPlayerControl == MoveSelector.ControlTypesHere.Joy2)
+                                {
+                                    m.ThisPlayerControl = MoveSelector.ControlTypesHere.NotAssigned;
+                                    l.is_joy2_taken = false;
+                                }
+
+                                else if (m.ThisPlayerControl == MoveSelector.ControlTypesHere.ArrowKeys)
+                                {
+                                    m.ThisPlayerControl = MoveSelector.ControlTypesHere.NotAssigned;
+                                    l.is_arrowKeys_taken = false;
+                                }
+
+                                else if (m.ThisPlayerControl == MoveSelector.ControlTypesHere.WSDA)
+                                {
+                                    m.ThisPlayerControl = MoveSelector.ControlTypesHere.NotAssigned;
+                                    l.is_wsda_taken = false;
+                                }
+
+                                if (m.playerID == 1) { l.is_p1_active = false; }
+                                else if (m.playerID == 2) { l.is_p2_active = false; }
+                                else if (m.playerID == 3) { l.is_p3_active = false; }
+                                else if (m.playerID == 4) { l.is_p4_active = false; }
+
+                                l.num_players--;
+                                m.is_this_active = false;
+                                is_CPU = false;
+                                CoinController.is_car_selected = false;
+
+                            }
+
+                            Debug.Log("Ciao");
+
+                            switch_case = 0;
+                            playerCoin.transform.position = m.playerPosition;
+                            //carImage.sprite = default_Empty;
+                            carImage.sprite = default_notActive;
+
+                            //if      (Car1.ThisCarSelected == true && m.playerID == Car1.ID) { Car1.CheckPlayerActivation(); }
+                            //else if (Car2.ThisCarSelected == true && m.playerID == Car2.ID) { Car2.CheckPlayerActivation(); }
+                            //else if (Car3.ThisCarSelected == true && m.playerID == Car3.ID) { Car3.CheckPlayerActivation(); }
+                            //else if (Car4.ThisCarSelected == true && m.playerID == Car4.ID) { Car4.CheckPlayerActivation(); }
+
+                            if (Car1.ThisCarSelected == true && CoinController.CoinID == Car1.ID) { Car1.CheckPlayerActivation(); }
+                            else if (Car2.ThisCarSelected == true && CoinController.CoinID == Car2.ID) { Car2.CheckPlayerActivation(); }
+                            else if (Car3.ThisCarSelected == true && CoinController.CoinID == Car3.ID) { Car3.CheckPlayerActivation(); }
+                            else if (Car4.ThisCarSelected == true && CoinController.CoinID == Car4.ID) { Car4.CheckPlayerActivation(); }
+
+                            //m.Hand.SetAsLastSibling();
+                            CPU_Controls = 0;
+                            t.text = "N/A";
+                            cpuText.text = nameplayer;
+
+                            if (m.playerID == 1)
+                            {
+                                buttonController.SetOverlay(false);
+                                controlController.SetOverlay(false);
+                            }
+
+                            break;
                     }
+                }
 
-                    break;
+                else if (m.is_this_active /*&& m.playerID!=1*/)
+                {//Add stuff here
 
-                case 2:
+                    CPU_Controls++;
 
-                    if (l.num_players == m.playerID - 1 && !m.is_this_active)
+                    switch (CPU_Controls)
                     {
-                        playerCoin.SetActive(true);
-                        m.is_this_active = true;
-                        l.num_players++;
+                        case 1:
+                            cpuText.text = nameplayer;
+                            t.text = nameplayer;
+                            is_CPU = false;
+                            switch_case = 1;
+                            break;
 
-                        if      (m.playerID == 1) { l.is_p1_active = true; }
-                        else if (m.playerID == 2) { l.is_p2_active = true; }
-                        else if (m.playerID == 3) { l.is_p3_active = true; }
-                        else if (m.playerID == 4) { l.is_p4_active = true; }
-                    }
-
-                    if (m.is_this_active)
-                    {
-                        cpuText.text = "CPU";
-                        t.text = "CPU";
-                        is_CPU = true;
-                        CPU_Controls = 2;
-                        carImage.sprite = default_Empty;
-                        Controls = 4;
-
-                        resetControlsCPU();
-
-                        ControlManager();
-                    }
-
-                    break;
-
-                default:
-
-                    if (l.num_players == m.playerID && m.is_this_active)
-
-                    {
-                        print("deleting player");
-
-                        playerCoin.SetActive(false);
-                       
-
-                        if (m.ThisPlayerControl == MoveSelector.ControlTypesHere.Joy1)
-                        {
+                        case 2:
+                            cpuText.text = "CPU";
+                            t.text = "CPU";
+                            is_CPU = true;
+                            CPU_Controls = 0;
+                            switch_case = 2;
+                            resetControlsCPU();
+                            ControlManager();
+                            //AdjustPosition();
                             m.ThisPlayerControl = MoveSelector.ControlTypesHere.NotAssigned;
-                            l.is_joy1_taken = false;
-                        }
+                            break;
 
-                        else if (m.ThisPlayerControl == MoveSelector.ControlTypesHere.Joy2)
-                        {
-                            m.ThisPlayerControl = MoveSelector.ControlTypesHere.NotAssigned;
-                            l.is_joy2_taken = false;
-                        }
-
-                        else if (m.ThisPlayerControl == MoveSelector.ControlTypesHere.ArrowKeys)
-                        {
-                            m.ThisPlayerControl = MoveSelector.ControlTypesHere.NotAssigned;
-                            l.is_arrowKeys_taken = false;
-                        }
-
-                        else if (m.ThisPlayerControl == MoveSelector.ControlTypesHere.WSDA)
-                        {
-                            m.ThisPlayerControl = MoveSelector.ControlTypesHere.NotAssigned;
-                            l.is_wsda_taken = false;
-                        }
-
-                        if      (m.playerID == 1) { l.is_p1_active = false; }
-                        else if (m.playerID == 2) { l.is_p2_active = false; }
-                        else if (m.playerID == 3) { l.is_p3_active = false; }
-                        else if (m.playerID == 4) { l.is_p4_active = false; }
-
-                        l.num_players--;
-                        m.is_this_active = false;
-                        is_CPU = false;
-                        CoinController.is_car_selected = false;
-
+                        default:
+                            switch_case = 0;
+                            CPU_Controls = 0;
+                            is_CPU = false;
+                            break;
                     }
-
-                    Debug.Log("Ciao");
-
-                    switch_case = 0;
-                    playerCoin.transform.position = m.playerPosition;
-                    //carImage.sprite = default_Empty;
-                    carImage.sprite = default_notActive;
-
-                    //if      (Car1.ThisCarSelected == true && m.playerID == Car1.ID) { Car1.CheckPlayerActivation(); }
-                    //else if (Car2.ThisCarSelected == true && m.playerID == Car2.ID) { Car2.CheckPlayerActivation(); }
-                    //else if (Car3.ThisCarSelected == true && m.playerID == Car3.ID) { Car3.CheckPlayerActivation(); }
-                    //else if (Car4.ThisCarSelected == true && m.playerID == Car4.ID) { Car4.CheckPlayerActivation(); }
-
-                    if      (Car1.ThisCarSelected == true && CoinController.CoinID == Car1.ID) { Car1.CheckPlayerActivation(); }
-                    else if (Car2.ThisCarSelected == true && CoinController.CoinID == Car2.ID) { Car2.CheckPlayerActivation(); }
-                    else if (Car3.ThisCarSelected == true && CoinController.CoinID == Car3.ID) { Car3.CheckPlayerActivation(); }
-                    else if (Car4.ThisCarSelected == true && CoinController.CoinID == Car4.ID) { Car4.CheckPlayerActivation(); }
-
-                    //m.Hand.SetAsLastSibling();
-                    CPU_Controls = 0;
-                    t.text = "N/A";
-                    cpuText.text = nameplayer;
-
-                    if (m.playerID == 1)
-                    {
-                        buttonController.SetOverlay(false);
-                        controlController.SetOverlay(false);
-                    }
-
-                    break;
+                }
             }
         }
 
-        else if(m.is_this_active)
-        {//Add stuff here
+        else {
 
             CPU_Controls++;
 
@@ -297,9 +336,10 @@ public class PlayerSelector : MonoBehaviour
                     is_CPU = true;
                     CPU_Controls = 0;
                     switch_case = 2;
-                    resetControlsCPU();
-                    ControlManager();
-                    m.ThisPlayerControl = MoveSelector.ControlTypesHere.NotAssigned;
+                    //resetControlsCPU();
+                    //ControlManager();
+                    //AdjustPosition();
+                    //m.ThisPlayerControl = MoveSelector.ControlTypesHere.NotAssigned;
                     break;
 
                 default:
@@ -345,8 +385,9 @@ public class PlayerSelector : MonoBehaviour
             l.is_wsda_taken = false;
         }
 
-        if (l.num_players > m.playerID) { playerCoin.transform.position = m.playerPosition; }
+        Control_Type.text = "Not Assigned";
         carImage.sprite = default_Empty;
+        playerCoin.transform.position = m.playerPosition;
 
         if      (Car1.ThisCarSelected == true && CoinController.CoinID == Car1.ID) { Car1.CheckPlayerActivation(); }
         else if (Car2.ThisCarSelected == true && CoinController.CoinID == Car2.ID) { Car2.CheckPlayerActivation(); }
@@ -363,6 +404,8 @@ public class PlayerSelector : MonoBehaviour
             controlController.SetOverlay(false);
         }
     }
+
+   // void AdjustPosition() { playerCoin.transform.position = m.playerPosition; }
 
     public void ControlManager() {
 

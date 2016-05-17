@@ -2630,7 +2630,7 @@ MonoBehaviour:
   t: {fileID: 1506169409}
   cpuText: {fileID: 444208911}
   Control_Type: {fileID: 16601275}
-  switch_case: 1
+  switch_case: 0
   Controls: 0
   CPU_Controls: -1
   PanelNumber: 2
@@ -3074,7 +3074,7 @@ MonoBehaviour:
   t: {fileID: 315248632}
   cpuText: {fileID: 752248856}
   Control_Type: {fileID: 759524891}
-  switch_case: 1
+  switch_case: 0
   Controls: 0
   CPU_Controls: -1
   PanelNumber: 4
@@ -3366,7 +3366,7 @@ MonoBehaviour:
   t: {fileID: 1011840230}
   cpuText: {fileID: 1263739612}
   Control_Type: {fileID: 482416532}
-  switch_case: 1
+  switch_case: 0
   Controls: 0
   CPU_Controls: -1
   PanelNumber: 3
@@ -3444,9 +3444,9 @@ MonoBehaviour:
   t: {fileID: 1798023839}
   cpuText: {fileID: 2062963156}
   Control_Type: {fileID: 406755420}
-  switch_case: 1
+  switch_case: 0
   Controls: 0
-  CPU_Controls: -1
+  CPU_Controls: 1
   PanelNumber: 1
   playerCoin: {fileID: 2062963151}
   playerToken: {fileID: 1176644637}

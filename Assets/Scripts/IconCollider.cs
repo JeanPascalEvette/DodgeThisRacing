@@ -108,7 +108,7 @@ public class IconCollider : MonoBehaviour {
             //{ DeSelectCar(); }
 
             //Controls for normal players Select
-            if (Input.GetButtonDown("ButtonAJoyStick1") && l.is_joy1_taken && m.is_this_inside == true && !ThisCarSelected && !CPU.is_coin_cpu && m.playerID == CPU.CoinID)
+            if (Input.GetButtonDown("ButtonAJoyStick1") && l.is_joy1_taken && m.is_this_inside == true && !ThisCarSelected /*&& !CPU.is_coin_cpu*/ && m.playerID == CPU.CoinID)
             { SelectCar(); }
 
             //Controls for CPU Select
@@ -148,7 +148,7 @@ public class IconCollider : MonoBehaviour {
             //{ DeSelectCar(); }
 
             //Controls for normal players Select
-            if (Input.GetButtonDown("ButtonAJoyStick2") && l.is_joy2_taken && m.is_this_inside == true && !ThisCarSelected && !CPU.is_coin_cpu && m.playerID == CPU.CoinID)
+            if (Input.GetButtonDown("ButtonAJoyStick2") && l.is_joy2_taken && m.is_this_inside == true && !ThisCarSelected /*&& !CPU.is_coin_cpu*/ && m.playerID == CPU.CoinID)
             { SelectCar(); }
 
             //Controls for CPU Select
@@ -180,7 +180,7 @@ public class IconCollider : MonoBehaviour {
         else if (m.ThisPlayerControl == MoveSelector.ControlTypesHere.ArrowKeys)
         {
             //Controls for normal players Select
-            if (Input.GetButtonDown("ButtonAArrows") && l.is_arrowKeys_taken && m.is_this_inside == true && !ThisCarSelected && !CPU.is_coin_cpu && m.playerID == CPU.CoinID)
+            if (Input.GetButtonDown("ButtonAArrows") && l.is_arrowKeys_taken && m.is_this_inside == true && !ThisCarSelected /*&& !CPU.is_coin_cpu*/ && m.playerID == CPU.CoinID)
             { SelectCar(); }
 
             //Controls for CPU Select
@@ -217,7 +217,7 @@ public class IconCollider : MonoBehaviour {
             //{ DeSelectCar(); }
 
             //Controls for normal players Select
-            if (Input.GetButtonDown("ButtonAWSDA") && l.is_wsda_taken && m.is_this_inside == true && !ThisCarSelected && !CPU.is_coin_cpu && m.playerID == CPU.CoinID)
+            if (Input.GetButtonDown("ButtonAWSDA") && l.is_wsda_taken && m.is_this_inside == true && !ThisCarSelected /*&& !CPU.is_coin_cpu*/ && m.playerID == CPU.CoinID)
             { SelectCar(); }
 
             //Controls for CPU Select

@@ -19,6 +19,7 @@ public class MoveSelector : MonoBehaviour {
     public bool is_this_active = false; //Bool variable that tells if this player is active or not
 
     public bool is_this_ready = false; //Bool variable to be used to check if player is ready to start
+    //public bool created_first_time = false;
 
     public float xMaximum, yMaximum;
 
@@ -107,8 +108,44 @@ public class MoveSelector : MonoBehaviour {
     //Handles the movement of the cursors according to the selected control Scheme
     void HandleMovement()
     {
-        if (!ThisPlayerSelector.is_CPU)
+        if (!ThisPlayerSelector.is_CPU && playerID !=1)
         {
+            if (ThisPlayerControl == ControlTypesHere.ArrowKeys)
+            {
+                float translationY = Input.GetAxis("VerticalArrows") * move_player;
+                float translationX = Input.GetAxis("HorizontalArrows") * move_player;
+                playerButton.transform.Translate(0, translationY, 0);
+                playerButton.transform.Translate(translationX, 0, 0);
+            }
+
+            else if (ThisPlayerControl == ControlTypesHere.WSDA)
+            {
+                float translationY = Input.GetAxis("VerticalWSDA") * move_player;
+                float translationX = Input.GetAxis("HorizontalWSDA") * move_player;
+                playerButton.transform.Translate(0, translationY, 0);
+                playerButton.transform.Translate(translationX, 0, 0);
+            }
+
+            else if (ThisPlayerControl == ControlTypesHere.Joy1)
+            {
+                float translationY = Input.GetAxis("VerticalJoyStickLeft1") * move_player;
+                float translationX = Input.GetAxis("HorizontalJoyStickLeft1") * move_player;
+                playerButton.transform.Translate(0, translationY, 0);
+                playerButton.transform.Translate(translationX, 0, 0);
+            }
+
+            else if (ThisPlayerControl == ControlTypesHere.Joy2)
+            {
+                float translationY = Input.GetAxis("VerticalJoyStickLeft2") * move_player;
+                float translationX = Input.GetAxis("HorizontalJoyStickLeft2") * move_player;
+                playerButton.transform.Translate(0, translationY, 0);
+                playerButton.transform.Translate(translationX, 0, 0);
+            }
+        }
+
+        else if (playerID == 1)
+        {
+
             if (ThisPlayerControl == ControlTypesHere.ArrowKeys)
             {
                 float translationY = Input.GetAxis("VerticalArrows") * move_player;
