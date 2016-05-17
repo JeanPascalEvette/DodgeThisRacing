@@ -471,21 +471,25 @@ public class IconCollider : MonoBehaviour {
                     m1.ThisPlayerCar = 0;
                     t.transform.parent = m1.transform;
                     t.transform.position = m1.CoinPosition;
+                    m1.is_this_ready = false;
                     break;
                 case 2:
                     m2.ThisPlayerCar = 0;
                     t.transform.parent = m2.transform;
                     t.transform.position = m2.CoinPosition;
+                    m2.is_this_ready = false;
                     break;
                 case 3:
                     m3.ThisPlayerCar = 0;
                     t.transform.parent = m3.transform;
                     t.transform.position = m3.CoinPosition;
+                    m3.is_this_ready = false;
                     break;
                 case 4:
                     m4.ThisPlayerCar = 0;
                     t.transform.parent = m4.transform;
                     t.transform.position = m4.CoinPosition;
+                    m4.is_this_ready = false;
                     break;
             }
 

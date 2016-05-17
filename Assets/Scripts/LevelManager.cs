@@ -25,6 +25,7 @@ public class LevelManager : MonoBehaviour
 
     MoveSelector newPlayer; //A generic MoveSelector object that gets assigned to a player on its activation
     PlayerSelector ps;      //An instance of the script PlayerSelector (handles how the panels behave)
+    public PlayerSelector ps1, ps2, ps3, ps4;
 
     public Text TextColorGo;       //An instance of the Text Element of the GO Object
    
@@ -174,25 +175,25 @@ public class LevelManager : MonoBehaviour
     void Create_Player()
     {
         //If some Players are already active it assigns a control scheme to them (works progressively from player 1 to 4)
-        if (is_p1_active == true && player1move.ThisPlayerControl == MoveSelector.ControlTypesHere.NotAssigned)
+        if (is_p1_active == true && player1move.ThisPlayerControl == MoveSelector.ControlTypesHere.NotAssigned && !ps1.is_CPU)
         {
             newPlayer = player1move;
             ps = panel1.GetComponent<PlayerSelector>();
         }
 
-        else if (is_p2_active == true && player2move.ThisPlayerControl == MoveSelector.ControlTypesHere.NotAssigned)
+        else if (is_p2_active == true && player2move.ThisPlayerControl == MoveSelector.ControlTypesHere.NotAssigned && !ps2.is_CPU)
         {
             newPlayer = player2move;
             ps = panel2.GetComponent<PlayerSelector>();
         }
 
-        else if (is_p3_active == true && player3move.ThisPlayerControl == MoveSelector.ControlTypesHere.NotAssigned)
+        else if (is_p3_active == true && player3move.ThisPlayerControl == MoveSelector.ControlTypesHere.NotAssigned && !ps3.is_CPU)
         {
             newPlayer = player3move;
             ps = panel3.GetComponent<PlayerSelector>();
         }
 
-        else if (is_p4_active == true && player4move.ThisPlayerControl == MoveSelector.ControlTypesHere.NotAssigned)
+        else if (is_p4_active == true && player4move.ThisPlayerControl == MoveSelector.ControlTypesHere.NotAssigned && !ps4.is_CPU)
         {
             newPlayer = player4move;
             ps = panel4.GetComponent<PlayerSelector>();

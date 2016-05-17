@@ -134,8 +134,8 @@ public class PlayerSelector : MonoBehaviour
     //Change this function (If statements....)
     public void PanelManager()
     {
-        //if (l.num_players == m.playerID || l.num_players == m.playerID - 1)
-        if ((l.num_players == m.playerID || l.num_players == m.playerID - 1) && (!m.is_this_ready))
+        if (l.num_players == m.playerID || l.num_players == m.playerID - 1)
+        //if ((l.num_players == m.playerID || l.num_players == m.playerID - 1) && (!m.is_this_ready))
         {
             switch_case++;
             switch (switch_case)
@@ -241,8 +241,11 @@ public class PlayerSelector : MonoBehaviour
                         l.num_players--;
                         m.is_this_active = false;
                         is_CPU = false;
+                        CoinController.is_car_selected = false;
 
                     }
+
+                    Debug.Log("Ciao");
 
                     switch_case = 0;
                     playerCoin.transform.position = m.playerPosition;
@@ -259,6 +262,7 @@ public class PlayerSelector : MonoBehaviour
                     else if (Car3.ThisCarSelected == true && CoinController.CoinID == Car3.ID) { Car3.CheckPlayerActivation(); }
                     else if (Car4.ThisCarSelected == true && CoinController.CoinID == Car4.ID) { Car4.CheckPlayerActivation(); }
 
+                    //m.Hand.SetAsLastSibling();
                     CPU_Controls = 0;
                     t.text = "N/A";
                     cpuText.text = nameplayer;
@@ -344,12 +348,14 @@ public class PlayerSelector : MonoBehaviour
         if (l.num_players > m.playerID) { playerCoin.transform.position = m.playerPosition; }
         carImage.sprite = default_Empty;
 
-        if (Car1.ThisCarSelected == true && CoinController.CoinID == Car1.ID) { Car1.CheckPlayerActivation(); }
+        if      (Car1.ThisCarSelected == true && CoinController.CoinID == Car1.ID) { Car1.CheckPlayerActivation(); }
         else if (Car2.ThisCarSelected == true && CoinController.CoinID == Car2.ID) { Car2.CheckPlayerActivation(); }
         else if (Car3.ThisCarSelected == true && CoinController.CoinID == Car3.ID) { Car3.CheckPlayerActivation(); }
         else if (Car4.ThisCarSelected == true && CoinController.CoinID == Car4.ID) { Car4.CheckPlayerActivation(); }
 
         CPU_Controls = 0;
+        m.Hand.SetAsLastSibling();
+        CoinController.is_car_selected = false;
 
         if (m.playerID == 1)
         {
