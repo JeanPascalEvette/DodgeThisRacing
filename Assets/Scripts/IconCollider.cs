@@ -63,19 +63,21 @@ public class IconCollider : MonoBehaviour {
         t = trigger.gameObject;                        //Set the generic t object to the cursor/trigger
         old = t.transform.parent;                     //Save the current parent of the coin (the cursor) so it can be reassigned to the coin later
 
-        if (!CPU.is_coin_cpu)
+        ID = CPU.CoinID;
+
+        if (!CPU.is_coin_cpu || CPU.CoinID == 1)
         {
             
-            ID = m.playerID;           //Get the ID of the player that entered that icon area
+           // ID = m.playerID;           //Get the ID of the player that entered that icon area
               
             ParentPosition = t.transform.localPosition;
         }
 
-        else {
+        //else {
 
-            ID = CPU.CoinID;
+        //    ID = CPU.CoinID;
 
-             }
+        //     }
     }
 
     //void OnTriggerStay2D(Collider2D trigger)
@@ -335,7 +337,7 @@ public class IconCollider : MonoBehaviour {
     {
          
         t.transform.parent = old;                      //The coin is given the old parent back (the cursor)
-        t.transform.localPosition = ParentPosition;    
+        t.transform.localPosition = ParentPosition;   
         m.is_this_inside = false;
         m.ResetChildPosition(); 
         TextColorCar.color = Color.white;    

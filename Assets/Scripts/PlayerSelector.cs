@@ -18,15 +18,18 @@ public class PlayerSelector : MonoBehaviour
     public IconCollider Car1, Car2, Car3, Car4;
     public LevelManager l;
     public MoveSelector m;
+    public GameObject HandObject;
     
 
     string nameplayer;
     public bool is_CPU = false;
 
     public Sprite default_Empty, CurrentCar,hand_closed,hand_opened,default_notActive;
+    public Sprite CPU_Token, Player_Token;
 
     public Image carImage;
     public Image Hand;
+    public Image Token;
 
     private ButtonController buttonController;
     private ControlsController controlController;
@@ -148,9 +151,11 @@ public class PlayerSelector : MonoBehaviour
 
                             if (l.num_players == m.playerID - 1 && !m.is_this_active)
                             {
+                                Token.sprite = Player_Token;
+                                HandObject.SetActive(true);
 
                                 playerCoin.SetActive(true);
-                                cpuText.text = nameplayer;
+                                cpuText.text = "";
                                 t.text = nameplayer;
 
                                 Hand.sprite = hand_closed;
@@ -189,15 +194,18 @@ public class PlayerSelector : MonoBehaviour
 
                             if (m.is_this_active)
                             {
-                                cpuText.text = "CPU";
+                                cpuText.text = "";
                                 t.text = "CPU";
                                 is_CPU = true;
                                 CPU_Controls = 2;
                                 carImage.sprite = default_Empty;
                                 Controls = 4;
 
-                                resetControlsCPU();
+                                HandObject.SetActive(false);
+                                Token.sprite = CPU_Token;
+                                
 
+                                resetControlsCPU();
                                 ControlManager();
                             }
 
@@ -282,28 +290,40 @@ public class PlayerSelector : MonoBehaviour
                 }
 
                 else if (m.is_this_active /*&& m.playerID!=1*/)
-                {//Add stuff here
+                {
 
                     CPU_Controls++;
 
                     switch (CPU_Controls)
                     {
                         case 1:
-                            cpuText.text = nameplayer;
+
+                            resetControlsCPU();
+                            //ControlManager();
+                            Hand.sprite = hand_closed;
+                            cpuText.text = "";
                             t.text = nameplayer;
                             is_CPU = false;
                             switch_case = 1;
+
+                            Token.sprite = Player_Token;
+                            HandObject.SetActive(true);
+                            CPU_Controls = 1;
+                            
                             break;
 
                         case 2:
-                            cpuText.text = "CPU";
+                            cpuText.text = "";
                             t.text = "CPU";
                             is_CPU = true;
                             CPU_Controls = 0;
                             switch_case = 2;
                             resetControlsCPU();
-                            ControlManager();
-                            //AdjustPosition();
+                            //ControlManager();
+
+                            HandObject.SetActive(false);
+                            Token.sprite = CPU_Token;
+
                             m.ThisPlayerControl = MoveSelector.ControlTypesHere.NotAssigned;
                             break;
 
@@ -324,17 +344,19 @@ public class PlayerSelector : MonoBehaviour
             switch (CPU_Controls)
             {
                 case 1:
-                    cpuText.text = nameplayer;
+                    cpuText.text = "";
                     t.text = nameplayer;
                     is_CPU = false;
                     switch_case = 1;
+                    Token.sprite = Player_Token;
                     break;
 
                 case 2:
-                    cpuText.text = "CPU";
+                    cpuText.text = "";
                     t.text = "CPU";
                     is_CPU = true;
                     CPU_Controls = 0;
+                    Token.sprite = CPU_Token;
                     switch_case = 2;
                     //resetControlsCPU();
                     //ControlManager();

@@ -3,7 +3,7 @@ using System.Collections;
 
 public class ButtonController : MonoBehaviour {
 
-    private bool overlay = false;
+    private bool overlay2 = false;
     private PlayerSelector playerSelector;
     public MoveSelector player1Control;
 
@@ -20,7 +20,7 @@ public class ButtonController : MonoBehaviour {
     {
         if (other.gameObject.tag == "Player1")
         {
-            overlay = true;
+            overlay2 = true;
         }
     }
 
@@ -28,13 +28,13 @@ public class ButtonController : MonoBehaviour {
     {
         if (other.gameObject.tag == "Player1")
         {
-            overlay = false;
+            overlay2 = false;
         }
     }
 
     void Update()
     {
-        if (overlay)
+        if (overlay2)
         {
             if (player1Control.ThisPlayerControl == MoveSelector.ControlTypesHere.Joy1)
             {
@@ -61,7 +61,7 @@ public class ButtonController : MonoBehaviour {
 
     public void SetOverlay(bool state)
     {
-        overlay = state;
+        overlay2 = state;
     }
 
 }

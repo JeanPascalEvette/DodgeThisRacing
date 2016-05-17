@@ -1698,7 +1698,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11453880, guid: 3cfec0dd1c27b5245b265515ecd148bd, type: 2}
       propertyPath: m_Text
-      value: 2P
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 11478248, guid: 3cfec0dd1c27b5245b265515ecd148bd, type: 2}
       propertyPath: playerButton
@@ -2171,7 +2171,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11453880, guid: 3cfec0dd1c27b5245b265515ecd148bd, type: 2}
       propertyPath: m_Text
-      value: 4P
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 11478248, guid: 3cfec0dd1c27b5245b265515ecd148bd, type: 2}
       propertyPath: playerButton
@@ -2338,7 +2338,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11453880, guid: 3cfec0dd1c27b5245b265515ecd148bd, type: 2}
       propertyPath: m_Text
-      value: 3P
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 11478248, guid: 3cfec0dd1c27b5245b265515ecd148bd, type: 2}
       propertyPath: playerButton
@@ -2643,14 +2643,18 @@ MonoBehaviour:
   Car4: {fileID: 372341583}
   l: {fileID: 397500428}
   m: {fileID: 444208909}
+  HandObject: {fileID: 1006530411}
   is_CPU: 0
   default_Empty: {fileID: 21300000, guid: eff195a5206b1d640b8c91a23cb32a4d, type: 3}
   CurrentCar: {fileID: 0}
   hand_closed: {fileID: 21300000, guid: 3f918271710d51b4c9bdd934bcf78a89, type: 3}
   hand_opened: {fileID: 21300000, guid: 4cb28ca158457fa45a8a9395dafa5ba9, type: 3}
   default_notActive: {fileID: 21300000, guid: bdf933a5cc9ef3549be87941f757c107, type: 3}
+  CPU_Token: {fileID: 21300000, guid: 90fcb5c8bdbde8545a1d0e6cbe66ab6c, type: 3}
+  Player_Token: {fileID: 21300000, guid: f476072f609131644a9887e19bf19886, type: 3}
   carImage: {fileID: 0}
   Hand: {fileID: 1006530413}
+  Token: {fileID: 1689129573}
 --- !u!224 &886345490 stripped
 RectTransform:
   m_PrefabParentObject: {fileID: 22410116, guid: 56d85edf13363e84186bda7089f36bcd,
@@ -3087,14 +3091,18 @@ MonoBehaviour:
   Car4: {fileID: 372341583}
   l: {fileID: 397500428}
   m: {fileID: 752248854}
+  HandObject: {fileID: 151109574}
   is_CPU: 0
   default_Empty: {fileID: 21300000, guid: c3a6dddc7d1645b48a673f658a907c14, type: 3}
   CurrentCar: {fileID: 0}
   hand_closed: {fileID: 21300000, guid: 244f1c2530bb0ea4cb34fb4e74c82610, type: 3}
   hand_opened: {fileID: 21300000, guid: 05e4a9c7123dc404b9974fd2e14febd9, type: 3}
   default_notActive: {fileID: 21300000, guid: bdf933a5cc9ef3549be87941f757c107, type: 3}
+  CPU_Token: {fileID: 21300000, guid: 8bc5eb366c68c6c4080a81895db181c2, type: 3}
+  Player_Token: {fileID: 21300000, guid: f5a228cdf5a71114ba603a469fefcfae, type: 3}
   carImage: {fileID: 0}
   Hand: {fileID: 151109576}
+  Token: {fileID: 863731530}
 --- !u!1 &1141588965
 GameObject:
   m_ObjectHideFlags: 0
@@ -3379,14 +3387,18 @@ MonoBehaviour:
   Car4: {fileID: 372341583}
   l: {fileID: 397500428}
   m: {fileID: 1263739610}
+  HandObject: {fileID: 1896442175}
   is_CPU: 0
   default_Empty: {fileID: 21300000, guid: 06636fabecdeac744be61d41550e1e26, type: 3}
   CurrentCar: {fileID: 0}
   hand_closed: {fileID: 21300000, guid: b4b4c3393dec899478485e1e0ac62c05, type: 3}
   hand_opened: {fileID: 21300000, guid: 499e293136183d0428caa163853d7868, type: 3}
   default_notActive: {fileID: 21300000, guid: bdf933a5cc9ef3549be87941f757c107, type: 3}
+  CPU_Token: {fileID: 21300000, guid: 4c6d22b3accfbc441986263999a309e2, type: 3}
+  Player_Token: {fileID: 21300000, guid: 9f5c33875c34baa4e96790e663aad570, type: 3}
   carImage: {fileID: 0}
   Hand: {fileID: 1896442177}
+  Token: {fileID: 1822149338}
 --- !u!1 &1359102853
 GameObject:
   m_ObjectHideFlags: 0
@@ -3457,14 +3469,18 @@ MonoBehaviour:
   Car4: {fileID: 372341583}
   l: {fileID: 397500428}
   m: {fileID: 2062963154}
+  HandObject: {fileID: 1668059610}
   is_CPU: 0
   default_Empty: {fileID: 21300000, guid: 8c34c65a65cd5f145a126e7928818ff7, type: 3}
   CurrentCar: {fileID: 0}
   hand_closed: {fileID: 21300000, guid: 12c23baa3e5e98c45b9068289c8d4825, type: 3}
   hand_opened: {fileID: 21300000, guid: ea885fb2941b3cb46a008549a7d22c3c, type: 3}
   default_notActive: {fileID: 21300000, guid: bdf933a5cc9ef3549be87941f757c107, type: 3}
+  CPU_Token: {fileID: 21300000, guid: e585e05a0114b8b4587a530674d79d58, type: 3}
+  Player_Token: {fileID: 21300000, guid: 4a8e1dca30d00d440a7b348c44e15f1b, type: 3}
   carImage: {fileID: 0}
   Hand: {fileID: 1668059612}
+  Token: {fileID: 1627265280}
 --- !u!1 &1428113740 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 116298, guid: 3cfec0dd1c27b5245b265515ecd148bd, type: 2}
@@ -4067,6 +4083,10 @@ Prefab:
       propertyPath: Hand
       value: 
       objectReference: {fileID: 1668059611}
+    - target: {fileID: 11453880, guid: 3cfec0dd1c27b5245b265515ecd148bd, type: 2}
+      propertyPath: m_Text
+      value: 
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 11429000, guid: 3cfec0dd1c27b5245b265515ecd148bd, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 3cfec0dd1c27b5245b265515ecd148bd, type: 2}
