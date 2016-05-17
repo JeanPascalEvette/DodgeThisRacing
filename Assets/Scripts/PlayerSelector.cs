@@ -135,14 +135,14 @@ public class PlayerSelector : MonoBehaviour
     public void PanelManager()
     {
         //if (l.num_players == m.playerID || l.num_players == m.playerID - 1)
-        if ((l.num_players == CoinController.CoinID || l.num_players == CoinController.CoinID - 1) && (!m.is_this_ready))
+        if ((l.num_players == m.playerID || l.num_players == m.playerID - 1) && (!m.is_this_ready))
         {
             switch_case++;
             switch (switch_case)
             {
                 case 1:
 
-                    if (l.num_players == CoinController.CoinID - 1 && !m.is_this_active)
+                    if (l.num_players == m.playerID - 1 && !m.is_this_active)
                     {
 
                         playerCoin.SetActive(true);
@@ -154,7 +154,7 @@ public class PlayerSelector : MonoBehaviour
                         if (m.playerID == 1) { m.GetComponent<Collider2D>().enabled = false; }
 
 
-                        if (l.num_players < CoinController.CoinID) { l.num_players++; }
+                        if (l.num_players < m.playerID) { l.num_players++; }
 
                         if      (m.playerID == 1) { l.is_p1_active = true; }
                         else if (m.playerID == 2) { l.is_p2_active = true; }
@@ -171,7 +171,7 @@ public class PlayerSelector : MonoBehaviour
 
                 case 2:
 
-                    if (l.num_players == CoinController.CoinID - 1 && !m.is_this_active)
+                    if (l.num_players == m.playerID - 1 && !m.is_this_active)
                     {
                         playerCoin.SetActive(true);
                         m.is_this_active = true;
@@ -201,7 +201,7 @@ public class PlayerSelector : MonoBehaviour
 
                 default:
 
-                    if (l.num_players == CoinController.CoinID && m.is_this_active)
+                    if (l.num_players == m.playerID && m.is_this_active)
 
                     {
                         print("deleting player");
@@ -341,7 +341,7 @@ public class PlayerSelector : MonoBehaviour
             l.is_wsda_taken = false;
         }
 
-        if (l.num_players > CoinController.CoinID) { playerCoin.transform.position = m.playerPosition; }
+        if (l.num_players > m.playerID) { playerCoin.transform.position = m.playerPosition; }
         carImage.sprite = default_Empty;
 
         if (Car1.ThisCarSelected == true && CoinController.CoinID == Car1.ID) { Car1.CheckPlayerActivation(); }
