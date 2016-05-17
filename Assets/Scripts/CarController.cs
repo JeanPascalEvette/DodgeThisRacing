@@ -5,7 +5,7 @@ using System.Threading;
 
 public class CarController : MonoBehaviour
 {
-    
+
     //These variables might need some tuning
     [SerializeField]
     private float mEngineForce = 10.0f;
@@ -23,6 +23,7 @@ public class CarController : MonoBehaviour
     public float startingHealth = 100;
     public float currentHealth;
     public Slider healthSlider;
+    public Slider healthSlider2;
     private float damageCaused;
     bool carBroken;
     bool carDamaged;
@@ -88,7 +89,7 @@ public class CarController : MonoBehaviour
     private AnimationCurve testRpmResistance;
     [SerializeField]
     private float boostValue;
-    
+
     // private string[] plan;
     // private int frameGenerated;
     // private HTNPlanner planner;
@@ -98,7 +99,7 @@ public class CarController : MonoBehaviour
     // private State currentState;
     // private int frameCounter = 0;
     // private GameObject[] allCars;
-    
+
 
 
     public int carUniqueID;
@@ -133,7 +134,7 @@ public class CarController : MonoBehaviour
 
     // Use this for initialization
     void Start()
-    {   
+    {
 
         myAI = GetComponent<AIController>();
         bDestroyer = UnityEngine.Camera.main.GetComponentInChildren<BoundaryDestroyer>();
@@ -169,7 +170,7 @@ public class CarController : MonoBehaviour
 
         // Text over the car with the player it is
         var txtMsh = transform.Find("Text").GetComponent<TextMesh>();
-        txtMsh.text = "P"+(myPlayerData.getID()).ToString();
+        txtMsh.text = "P" + (myPlayerData.getID()).ToString();
 
         switch (myPlayerData.getID())
         {
@@ -180,7 +181,7 @@ public class CarController : MonoBehaviour
         }
 
         //Vector2 screenPoint = RectTransformUtility.WorldToScreenPoint(UnityEngine.Camera.main, transform.position);
-        
+
 
         //Vector2 pos = gameObject.transform.position;  // get the game object position
         //Vector2 viewportPoint = UnityEngine.Camera.main.WorldToViewportPoint(pos);  //convert game object position to VievportPoint
@@ -190,12 +191,14 @@ public class CarController : MonoBehaviour
 
         // We set the health slider to each player
         healthSlider = GameObject.Find("HealthSliderP" + (myPlayerData.GetCarType() + 1).ToString()).GetComponentInChildren<Slider>();
+        healthSlider2 = GameObject.Find("HealthSliderP" + (myPlayerData.GetCarType() + 1).ToString() + "2").GetComponentInChildren<Slider>();
         // We try to set the background colour as well the same as appear in top of the car
         healthSlider.transform.GetChild(1).GetChild(0).GetComponent<Image>().color = txtMsh.color;
+        healthSlider2.transform.GetChild(1).GetChild(0).GetComponent<Image>().color = txtMsh.color;
 
         sounds = GetComponents<AudioSource>();
-            noise1 = sounds[0];
-            noise2 = sounds[1];
+        noise1 = sounds[0];
+        noise2 = sounds[1];
 
         // We set the initial health of the car+
         currentHealth = startingHealth;
@@ -207,30 +210,34 @@ public class CarController : MonoBehaviour
         else
         {
             noise1.mute = true;
-    }
+        }
 
         // If this is a respawn
-        if(transform.position.z > 3.0f)
+        if (transform.position.z > 3.0f)
         {
             respawnInvTime = 3.0f;
             var col = transform.Find("Colliders");
             col.gameObject.layer = LayerMask.NameToLayer("CarRespawningHitbox");
-            for(int i = 0; i < col.transform.childCount; i++)
+            for (int i = 0; i < col.transform.childCount; i++)
             {
                 col.GetChild(i).gameObject.layer = LayerMask.NameToLayer("CarRespawningHitbox");
-    }
+            }
         }
     }
 
     void Update()
     {
+
+        var wantedPos = UnityEngine.Camera.main.WorldToScreenPoint(transform.position);
+        healthSlider.transform.position = wantedPos;
+
         if (respawnInvTime > 0.0f)
         {
 
 
-                respawnInvTime -= Time.deltaTime;
+            respawnInvTime -= Time.deltaTime;
             respawnBlinkTime -= Time.deltaTime;
-             var renderers = GetComponentsInChildren<Renderer>();
+            var renderers = GetComponentsInChildren<Renderer>();
             if (respawnBlinkTime < 0f)
             {
                 respawnBlinkTime = 0.3f;
@@ -238,7 +245,7 @@ public class CarController : MonoBehaviour
                     renderer.enabled = !renderer.enabled;
             }
         }
-        else if(respawnInvTime != -1.0f)
+        else if (respawnInvTime != -1.0f)
         {
             var col = transform.Find("Colliders");
             col.gameObject.layer = LayerMask.NameToLayer("CarCollisionHitbox");
@@ -252,13 +259,14 @@ public class CarController : MonoBehaviour
             respawnInvTime = -1.0f;
         }
 
-        foreach(var exhaust in exhausts)
+        foreach (var exhaust in exhausts)
         {
-            exhaust.emissionRate =  rpm;
+            exhaust.emissionRate = rpm;
         }
 
 
         healthSlider.value = currentHealth;
+        healthSlider2.value = currentHealth;
         if (currentHealth < 0)
         {
             GameLogic.myInstance.DestroyCar(myPlayerData, true);
@@ -269,12 +277,12 @@ public class CarController : MonoBehaviour
             //   showDebug = !showDebug;
         }
     }
-    
+
 
     // Update is called once per frame
     void FixedUpdate()
     {
-        if (transform.position.z < (bDestroyer.GetPushingWall()) )
+        if (transform.position.z < (bDestroyer.GetPushingWall()))
             transform.position = new Vector3(transform.position.x, transform.position.y, (bDestroyer.GetPushingWall()));
         var txtMsh = transform.Find("Text").GetComponent<TextMesh>();
         txtMsh.text = "P" + myPlayerData.getID();//(rb.velocity.magnitude).ToString();
@@ -392,11 +400,11 @@ public class CarController : MonoBehaviour
         var speed = Mathf.Sqrt(TractionForce.x * TractionForce.x + TractionForce.z * TractionForce.z);
         DragForce = new Vector3(-mCDrag * TractionForce.x * speed, 0, -mCDrag * TractionForce.z * speed);
         if (boostValue > 0) // Increase acceleration when behind
-            DragForce *= 1.0f+(boostValue/2.0f);
+            DragForce *= 1.0f + (boostValue / 2.0f);
         RollingResistance = -mCRolRes * TractionForce;
 
 
-        
+
 
         LongtitudinalForce = TractionForce + DragForce + RollingResistance; //Flong = Ftraction + Fdrag + Frr
         Acceleration = LongtitudinalForce / rb.mass;                    // a = F + M
@@ -439,7 +447,7 @@ public class CarController : MonoBehaviour
         }
 
 
-        
+
         //if (rpm >= 1000.0f && rpm < 5000.0f)
         // {
         rpmToTorque = ((rpm - 1000.0f) * 0.012f) + 300.0f;                                          // rpm converter to torque from 1000- 5000 rpm
@@ -453,7 +461,7 @@ public class CarController : MonoBehaviour
         //     rpmToTorque = 300.0f - (rpm * 0.05f) + 300.0f;
         //}
 
-        if (currentGear > 0 && rpm < gearsMaxRpm[currentGear-1] *0.9f)
+        if (currentGear > 0 && rpm < gearsMaxRpm[currentGear - 1] * 0.9f)
         {                                                               // when rpm gets below 1000 gear is decreased
             decreaseGear();
         }
@@ -515,8 +523,8 @@ public class CarController : MonoBehaviour
 
 
         HandlePartialyOnGround();
-        if(noise1 != null && noise2 != null)
-        soundOfEngine();
+        if (noise1 != null && noise2 != null)
+            soundOfEngine();
 
     }
 
@@ -563,7 +571,7 @@ public class CarController : MonoBehaviour
         {
             height = rearLeftWheel.transform.position.y;
         }
-        
+
         if (height > 0)
         {
             rb.angularVelocity = new Vector3(0, 0, 0);
@@ -576,7 +584,7 @@ public class CarController : MonoBehaviour
             {
                 transform.rotation = Quaternion.Euler(Mathf.SmoothDampAngle(transform.rotation.eulerAngles.x, 0, ref currentRotationVelocityX, landingTime), Mathf.SmoothDampAngle(transform.rotation.eulerAngles.y, 180, ref currentRotationVelocityY, landingTime), Mathf.SmoothDampAngle(transform.rotation.eulerAngles.z, 0, ref currentRotationVelocityZ, landingTime));
             }
-    }
+        }
         return;
     }
 
@@ -634,9 +642,9 @@ public class CarController : MonoBehaviour
         return 0;
     }
 
-   public bool IsGoing(char direction)
+    public bool IsGoing(char direction)
     {
-        
+
         KeyCode directionCode = KeyCode.Alpha0;
         if (myPlayerData.GetControlScheme() == PlayerData.ControlScheme.WASD)
         {
@@ -666,11 +674,12 @@ public class CarController : MonoBehaviour
                 directionCode = KeyCode.Joystick1Button0;
             else if (direction == 'S')
                 directionCode = KeyCode.Joystick1Button2;
-            if (direction == 'A'  && Input.GetAxis("HorizontalJoyStickLeft1") < 0)
+            if (direction == 'A' && Input.GetAxis("HorizontalJoyStickLeft1") < 0)
             {
                 //   directionCode = KeyCode.A;
                 return true;
-            } else if ( direction == 'D' && Input.GetAxis("HorizontalJoyStickLeft1") > 0)
+            }
+            else if (direction == 'D' && Input.GetAxis("HorizontalJoyStickLeft1") > 0)
             {
                 //   directionCode = KeyCode.A;
                 return true;
@@ -678,7 +687,7 @@ public class CarController : MonoBehaviour
 
 
         }
-        
+
         else if (myPlayerData.GetControlScheme() == PlayerData.ControlScheme.XboxController2)
         {
             if (direction == 'W')
@@ -690,7 +699,8 @@ public class CarController : MonoBehaviour
             {
                 //   directionCode = KeyCode.A;
                 return true;
-            } else if (direction == 'D' && Input.GetAxis("HorizontalJoyStickLeft2") > 0)
+            }
+            else if (direction == 'D' && Input.GetAxis("HorizontalJoyStickLeft2") > 0)
             {
                 //   directionCode = KeyCode.A;
                 return true;
@@ -722,25 +732,25 @@ public class CarController : MonoBehaviour
 
     private void soundOfEngine()
     {
-        if(audioCountdown > 0)
+        if (audioCountdown > 0)
         {
             audioCountdown -= Time.deltaTime; // so the crashing sound doesn't occur constantly when 2 objects collide continuesly, it will make it more realistic
         }
 
         //0.70 - 1.20  probably ideal pitch for looping through
         if (myAI == null)
-        noise1.pitch = (rpm / 10000) + 0.7f; // formula to reach ideal pitch from rpm
+            noise1.pitch = (rpm / 10000) + 0.7f; // formula to reach ideal pitch from rpm
     }
 
     void OnCollisionEnter(Collision other)
-     {
-        
-        if(other.gameObject.tag == "Player" && myAI == null && audioCountdown <= 0) // or hit on everything?
+    {
+
+        if (other.gameObject.tag == "Player" && myAI == null && audioCountdown <= 0) // or hit on everything?
         {
             audioCountdown = 1.2f;
             noise2.Play();
         }
-     }
+    }
 
     public void SetLights(bool isOn)
     {
@@ -750,7 +760,7 @@ public class CarController : MonoBehaviour
             l.enabled = isOn;
         }
     }
-   }
+}
 
 
 // car's position -- p = p + dt * v
