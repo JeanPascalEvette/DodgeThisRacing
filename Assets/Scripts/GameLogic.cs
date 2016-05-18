@@ -395,7 +395,7 @@ public class GameLogic : MonoBehaviour
                 UnityEngine.Camera.main.GetComponent<Camera>().ZoomIn();
                 //trackPiece.transform.Find("Canyon_Middle_D").GetComponent<MeshRenderer>().enabled = true;
             }
-            else if (UnityEngine.Camera.main.GetComponent<Camera>().GetLeadingPlayerPosition().z >= trackBounds.min.z)
+            else if (UnityEngine.Camera.main.GetComponent<Camera>().GetLeadingPlayerPosition().z >= trackBounds.min.z + 180.0f)
             {
                 float dist = trackDPullBackDistance;
                 if (trackPiece.name.Length >= 8 && trackPiece.name.Substring(0, 8) == "Track_DE")

@@ -1,0 +1,193 @@
+fileFormatVersion: 2
+guid: f40ac7e94b3fde14582d2a96506f3eca
+timeCreated: 1463444076
+licenseType: Free
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: Building_A
+    100002: Building_B
+    100004: Building_C
+    100006: Building_D
+    100008: Building_E
+    100010: BUS_STOP
+    100012: City_fence
+    100014: City_Wall
+    100016: CityAI_mesh
+    100018: CityRoad
+    100020: //RootNode
+    100022: Corner
+    100024: Guard
+    100026: Mountain
+    100028: PedestrainCrossing
+    100030: Rd_Light
+    100032: Sand
+    100034: SideWalk
+    100036: St_Light
+    100038: Traffic_light
+    100040: Tunnel
+    100042: TunnelRoad
+    100044: Welcome_Signal
+    100046: Traffic_Signal
+    100048: Welcome
+    400000: Building_A
+    400002: Building_B
+    400004: Building_C
+    400006: Building_D
+    400008: Building_E
+    400010: BUS_STOP
+    400012: City_fence
+    400014: City_Wall
+    400016: CityAI_mesh
+    400018: CityRoad
+    400020: //RootNode
+    400022: Corner
+    400024: Guard
+    400026: Mountain
+    400028: PedestrainCrossing
+    400030: Rd_Light
+    400032: Sand
+    400034: SideWalk
+    400036: St_Light
+    400038: Traffic_light
+    400040: Tunnel
+    400042: TunnelRoad
+    400044: Welcome_Signal
+    400046: Traffic_Signal
+    400048: Welcome
+    2300000: Building_A
+    2300002: Building_B
+    2300004: Building_C
+    2300006: Building_D
+    2300008: Building_E
+    2300010: BUS_STOP
+    2300012: City_fence
+    2300014: City_Wall
+    2300016: CityAI_mesh
+    2300018: CityRoad
+    2300020: Corner
+    2300022: Guard
+    2300024: Mountain
+    2300026: PedestrainCrossing
+    2300028: Rd_Light
+    2300030: Sand
+    2300032: SideWalk
+    2300034: St_Light
+    2300036: Traffic_light
+    2300038: Tunnel
+    2300040: TunnelRoad
+    2300042: Welcome_Signal
+    2300044: Traffic_Signal
+    2300046: Welcome
+    3300000: Building_A
+    3300002: Building_B
+    3300004: Building_C
+    3300006: Building_D
+    3300008: Building_E
+    3300010: BUS_STOP
+    3300012: City_fence
+    3300014: City_Wall
+    3300016: CityAI_mesh
+    3300018: CityRoad
+    3300020: Corner
+    3300022: Guard
+    3300024: Mountain
+    3300026: PedestrainCrossing
+    3300028: Rd_Light
+    3300030: Sand
+    3300032: SideWalk
+    3300034: St_Light
+    3300036: Traffic_light
+    3300038: Tunnel
+    3300040: TunnelRoad
+    3300042: Welcome_Signal
+    3300044: Traffic_Signal
+    3300046: Welcome
+    4300000: CityAI_mesh
+    4300002: City_Wall
+    4300004: SideWalk
+    4300006: Corner
+    4300008: CityRoad
+    4300010: TunnelRoad
+    4300012: Sand
+    4300014: Guard
+    4300016: Tunnel
+    4300018: Rd_Light
+    4300020: St_Light
+    4300022: Building_A
+    4300024: Building_D
+    4300026: Building_C
+    4300028: Building_B
+    4300030: Building_E
+    4300032: Traffic_light
+    4300034: City_fence
+    4300036: PedestrainCrossing
+    4300038: BUS_STOP
+    4300040: Mountain
+    4300042: Welcome_Signal
+    4300044: Traffic_Signal
+    4300046: Welcome
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleRotations: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
