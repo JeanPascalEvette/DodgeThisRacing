@@ -6,7 +6,8 @@ public class CPUController : MonoBehaviour {
     public GameObject player;
     public MoveSelector player1Control;
     public PlayerSelector Panel,Player1Panel;
-
+    public ControlsController ControlButton;
+    public ButtonController ActivationButton;
 
     public bool is_player_near = false;
     public bool is_coin_cpu = false;
@@ -82,6 +83,8 @@ public class CPUController : MonoBehaviour {
         player.GetComponent<Collider2D>().enabled = false;
         Player1Panel.Hand.sprite = Player1Panel.hand_closed;
         player1Control.Hand.SetAsLastSibling();
+        ControlButton.SetOverlay(false);
+        ActivationButton.SetOverlay(false);
 
     }
 

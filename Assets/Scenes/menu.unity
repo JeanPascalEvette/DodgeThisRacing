@@ -1595,6 +1595,8 @@ MonoBehaviour:
   player1Control: {fileID: 2062963154}
   Panel: {fileID: 1137373016}
   Player1Panel: {fileID: 1359102857}
+  ControlButton: {fileID: 1695360365}
+  ActivationButton: {fileID: 984705794}
   is_player_near: 0
   is_coin_cpu: 0
   CoinID: 4
@@ -3246,6 +3248,8 @@ MonoBehaviour:
   player1Control: {fileID: 2062963154}
   Panel: {fileID: 1359102857}
   Player1Panel: {fileID: 1359102857}
+  ControlButton: {fileID: 1755242672}
+  ActivationButton: {fileID: 1530483}
   is_player_near: 0
   is_coin_cpu: 0
   CoinID: 1
@@ -3530,6 +3534,8 @@ MonoBehaviour:
   player1Control: {fileID: 2062963154}
   Panel: {fileID: 867536395}
   Player1Panel: {fileID: 1359102857}
+  ControlButton: {fileID: 215446492}
+  ActivationButton: {fileID: 510256569}
   is_player_near: 0
   is_coin_cpu: 1
   CoinID: 2
@@ -3918,6 +3924,8 @@ MonoBehaviour:
   player1Control: {fileID: 2062963154}
   Panel: {fileID: 1306703004}
   Player1Panel: {fileID: 1359102857}
+  ControlButton: {fileID: 114217958}
+  ActivationButton: {fileID: 2092579174}
   is_player_near: 0
   is_coin_cpu: 0
   CoinID: 3
