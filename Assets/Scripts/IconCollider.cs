@@ -50,6 +50,7 @@ public class IconCollider : MonoBehaviour {
     {
         if (isActive)
         {
+           // CPU2 = trigger.GetComponent<CPUController>();
             isBooked = true;
             return;
         }
@@ -71,42 +72,31 @@ public class IconCollider : MonoBehaviour {
         AddTempCar();
 
         if (!CPU.is_coin_cpu || CPU.CoinID == 1)
-        {
-            
-           // ID = m.playerID;           //Get the ID of the player that entered that icon area
-              
+        {            
             ParentPosition = t.transform.localPosition;
         }
 
-        //else {
-
-        //    ID = CPU.CoinID;
-
-        //     }
+       
     }
-
-    //void OnTriggerStay2D(Collider2D trigger)
-    //{
-
-    //}
 
     //Function to detect a cursor exiting from the trigger area of the Car selection icon
     void OnTriggerExit2D(Collider2D trigger)
     {
-        if (isBooked)
+        if (isBooked && trigger.gameObject.name != CPU.gameObject.name)
         {
             isBooked = false;
             return;
         }  
 
         isActive = false;
-        
         TextColorCar = this.GetComponent<Text>(); //The car text goes back to white
         TextColorCar.color = Color.white;
         m.is_this_inside = false;               //The specific cursor is not inside the icon area anymore
         RemoveTempCar();
 
     }
+
+   // void OnTriggerStay2D() { Debug.Log("STAYING"); }
 
   //This function checks the control types used by the cursor entering the car icon area and then makes it possible to select or deselect it
     void checkControlType() {
