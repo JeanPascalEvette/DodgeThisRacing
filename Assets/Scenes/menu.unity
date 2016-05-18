@@ -780,6 +780,7 @@ MonoBehaviour:
   ThisCarSelected: 0
   ThisCarType: 1
   ThisCarImage: {fileID: 21300000, guid: 12f7480bf2630374a9d3dbad61442c57, type: 3}
+  ThisCarImageTemp: {fileID: 21300000, guid: ea0dc6c543cbcea4fb96a8a1a132bea2, type: 3}
 --- !u!224 &244530151 stripped
 RectTransform:
   m_PrefabParentObject: {fileID: 22410116, guid: 56d85edf13363e84186bda7089f36bcd,
@@ -979,6 +980,7 @@ MonoBehaviour:
   ThisCarSelected: 0
   ThisCarType: 0
   ThisCarImage: {fileID: 21300000, guid: d8988e60cba5b08468f9be3737b486bd, type: 3}
+  ThisCarImageTemp: {fileID: 21300000, guid: b8a6394170d20264384c57945afae03c, type: 3}
 --- !u!1 &367396833
 GameObject:
   m_ObjectHideFlags: 0
@@ -1100,6 +1102,7 @@ MonoBehaviour:
   ThisCarSelected: 0
   ThisCarType: 3
   ThisCarImage: {fileID: 21300000, guid: cf4dd36ac063b954db85eb328ad18124, type: 3}
+  ThisCarImageTemp: {fileID: 21300000, guid: 4ac6d52b0b399224d82cda246f37baa2, type: 3}
 --- !u!1 &394415472
 GameObject:
   m_ObjectHideFlags: 0
@@ -2714,6 +2717,7 @@ MonoBehaviour:
   ThisCarSelected: 0
   ThisCarType: 2
   ThisCarImage: {fileID: 21300000, guid: e7ffdb2f75f700f4b85acbb16db444c1, type: 3}
+  ThisCarImageTemp: {fileID: 21300000, guid: 1c6071bded7ae8f48a4c7f92c1a3dabb, type: 3}
 --- !u!1 &984705792
 GameObject:
   m_ObjectHideFlags: 0

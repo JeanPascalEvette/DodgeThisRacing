@@ -21,12 +21,12 @@ public class IconCollider : MonoBehaviour {
  
     Transform old;  //A variable of type transform to save the position/parent of a specific object in the script in order to go back to it.
 
-    private bool isActive, isBooked; //Bool variable to control whether a certain car icon is active or not at that moment (if a cursor is pointing at one of them) 
+    public bool isActive, isBooked; //Bool variable to control whether a certain car icon is active or not at that moment (if a cursor is pointing at one of them) 
     public GameObject Car; // The Object of the specific car icon this script is attached to
 
     public bool ThisCarSelected = false; // Bool Variable teeling if this car has been selected by the player
     public int ThisCarType;              //A public int (set in the inspector) to differentiate each Car Icon object
-    public Sprite ThisCarImage;
+    public Sprite ThisCarImage, ThisCarImageTemp;
     private Vector3 ParentPosition;
 
     //Initializing
@@ -68,6 +68,7 @@ public class IconCollider : MonoBehaviour {
         old = t.transform.parent;                     //Save the current parent of the coin (the cursor) so it can be reassigned to the coin later
 
         ID = CPU.CoinID;
+        AddTempCar();
 
         if (!CPU.is_coin_cpu || CPU.CoinID == 1)
         {
@@ -103,7 +104,8 @@ public class IconCollider : MonoBehaviour {
         TextColorCar = this.GetComponent<Text>(); //The car text goes back to white
         TextColorCar.color = Color.white;
         m.is_this_inside = false;               //The specific cursor is not inside the icon area anymore
-       
+        RemoveTempCar();
+
     }
 
   //This function checks the control types used by the cursor entering the car icon area and then makes it possible to select or deselect it
@@ -267,6 +269,7 @@ public class IconCollider : MonoBehaviour {
         ThisCarSelected = true;                           //Bool variable telling the player has selected this car
         m.is_this_ready = true;                           //This player has selected the car and is ready to GO
         l.num_ready_players++;                            // Increase the number of players who are ready to GO
+
         if (m.playerID == 1) { CPU.player.GetComponent<Collider2D>().enabled = true; }
 
         switch (m.playerID)   //Assign the car image to the correct player
@@ -455,6 +458,62 @@ public class IconCollider : MonoBehaviour {
         controlscontroller3.SetOverlay(false);
         controlscontroller4.SetOverlay(false);
     }
+
+    void AddTempCar()
+
+    {
+        switch (CPU.CoinID)   //Assign the car image to the correct player
+        {
+            case 1:
+                p1.CurrentCar = ThisCarImageTemp;
+                p1.ImageSwapper();
+                
+                break;
+            case 2:
+                p2.CurrentCar = ThisCarImageTemp;
+                p2.ImageSwapper();
+               
+                break;
+            case 3:
+                p3.CurrentCar = ThisCarImageTemp;
+                p3.ImageSwapper();
+                
+                break;
+            case 4:
+                p4.CurrentCar = ThisCarImageTemp;
+                p4.ImageSwapper();
+                
+                break;
+        }
+
+    }
+
+    void RemoveTempCar()
+
+    {
+        switch (CPU.CoinID) //Assign the "NO Car" image to the correct player
+        {
+            case 1:
+                p1.CurrentCar = p1.default_Empty;
+                p1.ImageSwapper();
+                break;
+            case 2:
+                p2.CurrentCar = p2.default_Empty;
+                p2.ImageSwapper();
+                break;
+            case 3:
+                p3.CurrentCar = p3.default_Empty;
+                p3.ImageSwapper();
+                break;
+            case 4:
+                p4.CurrentCar = p4.default_Empty;
+                p4.ImageSwapper();
+                break;
+        }
+
+     }
+
+
 
     //This function is called in the script PlayerSelector controlling the panels. If a player is deactivated by a panel the coin, the cursor and their positions are re-set to default
     public void CheckPlayerActivation()
