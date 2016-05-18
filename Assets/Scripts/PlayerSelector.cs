@@ -277,7 +277,7 @@ public class PlayerSelector : MonoBehaviour
                             //m.Hand.SetAsLastSibling();
                             CPU_Controls = 0;
                             t.text = "N/A";
-                            cpuText.text = nameplayer;
+                            cpuText.text = "";
 
                             if (m.playerID == 1)
                             {

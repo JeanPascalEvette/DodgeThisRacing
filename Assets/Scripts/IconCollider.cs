@@ -21,7 +21,7 @@ public class IconCollider : MonoBehaviour {
  
     Transform old;  //A variable of type transform to save the position/parent of a specific object in the script in order to go back to it.
 
-    public bool isActive, isBooked; //Bool variable to control whether a certain car icon is active or not at that moment (if a cursor is pointing at one of them) 
+    public bool isActive; //Bool variable to control whether a certain car icon is active or not at that moment (if a cursor is pointing at one of them) 
     public GameObject Car; // The Object of the specific car icon this script is attached to
 
     public bool ThisCarSelected = false; // Bool Variable teeling if this car has been selected by the player
@@ -34,7 +34,7 @@ public class IconCollider : MonoBehaviour {
     {
         l = GameObject.FindWithTag("LevelManager").GetComponent<LevelManager>(); //Getting an instance of the level manager
         isActive = false;
-        isBooked = false;
+        
         
     }
 
@@ -50,8 +50,7 @@ public class IconCollider : MonoBehaviour {
     {
         if (isActive)
         {
-           // CPU2 = trigger.GetComponent<CPUController>();
-            isBooked = true;
+          
             return;
         }
 
@@ -82,9 +81,9 @@ public class IconCollider : MonoBehaviour {
     //Function to detect a cursor exiting from the trigger area of the Car selection icon
     void OnTriggerExit2D(Collider2D trigger)
     {
-        if (isBooked && trigger.gameObject.name != CPU.gameObject.name)
+        if (trigger.gameObject.name != CPU.gameObject.name)
         {
-            isBooked = false;
+            
             return;
         }  
 

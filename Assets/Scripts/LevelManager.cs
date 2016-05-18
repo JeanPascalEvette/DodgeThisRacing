@@ -247,6 +247,8 @@ public class LevelManager : MonoBehaviour
             newPlayer.is_this_active = true;
             ps.CPU_Controls = 1;
             ps.switch_case  = 1;
+            ps.HandObject.SetActive(true);
+            ps.Token.sprite = ps.Player_Token;
             ps.Hand.sprite = ps.hand_closed;
             ps.carImage.sprite = ps.default_Empty;
 
