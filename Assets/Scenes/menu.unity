@@ -777,7 +777,6 @@ MonoBehaviour:
   p4: {fileID: 1137373016}
   ID: 0
   isActive: 0
-  isBooked: 0
   Car: {fileID: 228496793}
   ThisCarSelected: 0
   ThisCarType: 1
@@ -979,7 +978,6 @@ MonoBehaviour:
   p4: {fileID: 1137373016}
   ID: 0
   isActive: 0
-  isBooked: 0
   Car: {fileID: 346784878}
   ThisCarSelected: 0
   ThisCarType: 0
@@ -1103,7 +1101,6 @@ MonoBehaviour:
   p4: {fileID: 1137373016}
   ID: 0
   isActive: 0
-  isBooked: 0
   Car: {fileID: 372341581}
   ThisCarSelected: 0
   ThisCarType: 3
@@ -2722,7 +2719,6 @@ MonoBehaviour:
   p4: {fileID: 1137373016}
   ID: 0
   isActive: 0
-  isBooked: 0
   Car: {fileID: 941973851}
   ThisCarSelected: 0
   ThisCarType: 2
@@ -4109,7 +4105,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 116298, guid: 3cfec0dd1c27b5245b265515ecd148bd, type: 2}
       propertyPath: m_TagString
-      value: Coin1
+      value: Coin
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 11429000, guid: 3cfec0dd1c27b5245b265515ecd148bd, type: 2}
