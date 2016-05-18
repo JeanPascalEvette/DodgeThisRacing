@@ -1776,6 +1776,22 @@ Prefab:
       propertyPath: Hand
       value: 
       objectReference: {fileID: 1006530412}
+    - target: {fileID: 11478248, guid: 3cfec0dd1c27b5245b265515ecd148bd, type: 2}
+      propertyPath: Car1
+      value: 
+      objectReference: {fileID: 346784880}
+    - target: {fileID: 11478248, guid: 3cfec0dd1c27b5245b265515ecd148bd, type: 2}
+      propertyPath: Car2
+      value: 
+      objectReference: {fileID: 228496795}
+    - target: {fileID: 11478248, guid: 3cfec0dd1c27b5245b265515ecd148bd, type: 2}
+      propertyPath: Car3
+      value: 
+      objectReference: {fileID: 941973853}
+    - target: {fileID: 11478248, guid: 3cfec0dd1c27b5245b265515ecd148bd, type: 2}
+      propertyPath: Car4
+      value: 
+      objectReference: {fileID: 372341583}
     m_RemovedComponents:
     - {fileID: 11429000, guid: 3cfec0dd1c27b5245b265515ecd148bd, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 3cfec0dd1c27b5245b265515ecd148bd, type: 2}
@@ -2253,6 +2269,22 @@ Prefab:
       propertyPath: Hand
       value: 
       objectReference: {fileID: 151109575}
+    - target: {fileID: 11478248, guid: 3cfec0dd1c27b5245b265515ecd148bd, type: 2}
+      propertyPath: Car1
+      value: 
+      objectReference: {fileID: 346784880}
+    - target: {fileID: 11478248, guid: 3cfec0dd1c27b5245b265515ecd148bd, type: 2}
+      propertyPath: Car2
+      value: 
+      objectReference: {fileID: 228496795}
+    - target: {fileID: 11478248, guid: 3cfec0dd1c27b5245b265515ecd148bd, type: 2}
+      propertyPath: Car3
+      value: 
+      objectReference: {fileID: 941973853}
+    - target: {fileID: 11478248, guid: 3cfec0dd1c27b5245b265515ecd148bd, type: 2}
+      propertyPath: Car4
+      value: 
+      objectReference: {fileID: 372341583}
     m_RemovedComponents:
     - {fileID: 11429000, guid: 3cfec0dd1c27b5245b265515ecd148bd, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 3cfec0dd1c27b5245b265515ecd148bd, type: 2}
@@ -2416,6 +2448,22 @@ Prefab:
       propertyPath: Hand
       value: 
       objectReference: {fileID: 1896442176}
+    - target: {fileID: 11478248, guid: 3cfec0dd1c27b5245b265515ecd148bd, type: 2}
+      propertyPath: Car1
+      value: 
+      objectReference: {fileID: 346784880}
+    - target: {fileID: 11478248, guid: 3cfec0dd1c27b5245b265515ecd148bd, type: 2}
+      propertyPath: Car2
+      value: 
+      objectReference: {fileID: 228496795}
+    - target: {fileID: 11478248, guid: 3cfec0dd1c27b5245b265515ecd148bd, type: 2}
+      propertyPath: Car3
+      value: 
+      objectReference: {fileID: 941973853}
+    - target: {fileID: 11478248, guid: 3cfec0dd1c27b5245b265515ecd148bd, type: 2}
+      propertyPath: Car4
+      value: 
+      objectReference: {fileID: 372341583}
     m_RemovedComponents:
     - {fileID: 11429000, guid: 3cfec0dd1c27b5245b265515ecd148bd, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 3cfec0dd1c27b5245b265515ecd148bd, type: 2}
@@ -4107,6 +4155,22 @@ Prefab:
       propertyPath: m_TagString
       value: Coin
       objectReference: {fileID: 0}
+    - target: {fileID: 11478248, guid: 3cfec0dd1c27b5245b265515ecd148bd, type: 2}
+      propertyPath: Car1
+      value: 
+      objectReference: {fileID: 346784880}
+    - target: {fileID: 11478248, guid: 3cfec0dd1c27b5245b265515ecd148bd, type: 2}
+      propertyPath: Car2
+      value: 
+      objectReference: {fileID: 228496795}
+    - target: {fileID: 11478248, guid: 3cfec0dd1c27b5245b265515ecd148bd, type: 2}
+      propertyPath: Car3
+      value: 
+      objectReference: {fileID: 941973853}
+    - target: {fileID: 11478248, guid: 3cfec0dd1c27b5245b265515ecd148bd, type: 2}
+      propertyPath: Car4
+      value: 
+      objectReference: {fileID: 372341583}
     m_RemovedComponents:
     - {fileID: 11429000, guid: 3cfec0dd1c27b5245b265515ecd148bd, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 3cfec0dd1c27b5245b265515ecd148bd, type: 2}

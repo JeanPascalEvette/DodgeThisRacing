@@ -28,6 +28,7 @@ public class IconCollider : MonoBehaviour {
     public int ThisCarType;              //A public int (set in the inspector) to differentiate each Car Icon object
     public Sprite ThisCarImage, ThisCarImageTemp;
     private Vector3 ParentPosition;
+    
 
     //Initializing
     void Start()

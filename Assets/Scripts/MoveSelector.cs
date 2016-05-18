@@ -45,6 +45,7 @@ public class MoveSelector : MonoBehaviour {
     public int ThisPlayerCar;
 
     public RectTransform Hand;
+    public IconCollider Car1, Car2, Car3, Car4;
 
     //initialization
     void Start()
@@ -185,6 +186,15 @@ public class MoveSelector : MonoBehaviour {
     public void CreatePlayerData()
     {
         UpdatePlayerData();
+
+        if (!is_this_ready && ThisPlayerSelector.is_CPU)
+        {
+            if      (!Car1.ThisCarSelected) { ThisPlayerCar = 0; Car1.ThisCarSelected = true; }
+            else if (!Car2.ThisCarSelected) { ThisPlayerCar = 1; Car2.ThisCarSelected = true; }
+            else if (!Car3.ThisCarSelected) { ThisPlayerCar = 2; Car3.ThisCarSelected = true; }
+            else if (!Car4.ThisCarSelected) { ThisPlayerCar = 3; Car4.ThisCarSelected = true; }
+        }
+
         ThisPlayerData = new PlayerData(playerID,ThisPlayerCar, ThisControlScheme, ThisPlayerType);
     }
 

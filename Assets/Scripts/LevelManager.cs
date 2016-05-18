@@ -73,7 +73,7 @@ public class LevelManager : MonoBehaviour
         CheckControlinUse();  //Function to keep the current control scheme used by each player up to date
 
         //If all players have selected their cars the GO text becomes green
-        if (num_players == num_ready_players && num_players > 0)
+        if ((num_players == num_ready_players && num_players > 0) /*|| ps2.is_CPU*/) //Change here for automatic CPU car selection
         {
             TextColorGo.color = Color.green;
 
