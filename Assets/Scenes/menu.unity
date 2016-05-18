@@ -202,7 +202,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.18971673, g: 0.1945442, b: 0.8897059, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -298,7 +298,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -428,7 +428,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.18506138, g: 0.9705882, b: 0.15700689, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -662,7 +662,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.9558824, g: 0.14057095, b: 0.14057095, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -780,8 +780,8 @@ MonoBehaviour:
   Car: {fileID: 228496793}
   ThisCarSelected: 0
   ThisCarType: 1
-  ThisCarImage: {fileID: 21300000, guid: 12f7480bf2630374a9d3dbad61442c57, type: 3}
-  ThisCarImageTemp: {fileID: 21300000, guid: ea0dc6c543cbcea4fb96a8a1a132bea2, type: 3}
+  ThisCarImage: {fileID: 21300000, guid: d1cd0570bcb30aa46acadd50127f2ef1, type: 3}
+  ThisCarImageTemp: {fileID: 21300000, guid: 76570c99b482150408e9b8fdb567db4e, type: 3}
 --- !u!224 &244530151 stripped
 RectTransform:
   m_PrefabParentObject: {fileID: 22410116, guid: 56d85edf13363e84186bda7089f36bcd,
@@ -900,7 +900,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -981,8 +981,8 @@ MonoBehaviour:
   Car: {fileID: 346784878}
   ThisCarSelected: 0
   ThisCarType: 0
-  ThisCarImage: {fileID: 21300000, guid: d8988e60cba5b08468f9be3737b486bd, type: 3}
-  ThisCarImageTemp: {fileID: 21300000, guid: b8a6394170d20264384c57945afae03c, type: 3}
+  ThisCarImage: {fileID: 21300000, guid: eb0f45a2a7436084ba71a367b1128839, type: 3}
+  ThisCarImageTemp: {fileID: 21300000, guid: 4ae2f82ae103f384b917bae3f47973cb, type: 3}
 --- !u!1 &367396833
 GameObject:
   m_ObjectHideFlags: 0
@@ -1036,7 +1036,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: d8988e60cba5b08468f9be3737b486bd, type: 3}
+  m_Sprite: {fileID: 21300000, guid: a3d8bd09afed97b4b94635f3863c9c9f, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1104,8 +1104,8 @@ MonoBehaviour:
   Car: {fileID: 372341581}
   ThisCarSelected: 0
   ThisCarType: 3
-  ThisCarImage: {fileID: 21300000, guid: cf4dd36ac063b954db85eb328ad18124, type: 3}
-  ThisCarImageTemp: {fileID: 21300000, guid: 4ac6d52b0b399224d82cda246f37baa2, type: 3}
+  ThisCarImage: {fileID: 21300000, guid: d38c702a1d23c1241a27d51db0fa5ef3, type: 3}
+  ThisCarImageTemp: {fileID: 21300000, guid: 4c5271abfc7edaf499082b4375c13951, type: 3}
 --- !u!1 &394415472
 GameObject:
   m_ObjectHideFlags: 0
@@ -1285,7 +1285,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -1379,7 +1379,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -1521,7 +1521,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.9558824, g: 0.14057095, b: 0.14057095, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -1967,7 +1967,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 12f7480bf2630374a9d3dbad61442c57, type: 3}
+  m_Sprite: {fileID: 21300000, guid: d1497aa8d05ba2842837536b464ad54d, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2487,7 +2487,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -2722,8 +2722,8 @@ MonoBehaviour:
   Car: {fileID: 941973851}
   ThisCarSelected: 0
   ThisCarType: 2
-  ThisCarImage: {fileID: 21300000, guid: e7ffdb2f75f700f4b85acbb16db444c1, type: 3}
-  ThisCarImageTemp: {fileID: 21300000, guid: 1c6071bded7ae8f48a4c7f92c1a3dabb, type: 3}
+  ThisCarImage: {fileID: 21300000, guid: d2ec64aa506746449bfd0853105d3add, type: 3}
+  ThisCarImageTemp: {fileID: 21300000, guid: 2a348ed590936334d9d712d11e6eecd4, type: 3}
 --- !u!1 &984705792
 GameObject:
   m_ObjectHideFlags: 0
@@ -2839,7 +2839,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.92190677, g: 1, b: 0.19117647, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -3004,7 +3004,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -3590,7 +3590,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: e7ffdb2f75f700f4b85acbb16db444c1, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 8503bfcf00293fd419eb8b7dadd874e9, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -3864,7 +3864,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -4516,7 +4516,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.92190677, g: 1, b: 0.19117647, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -4683,7 +4683,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.18971673, g: 0.1945442, b: 0.8897059, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -4860,7 +4860,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -5116,7 +5116,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: cf4dd36ac063b954db85eb328ad18124, type: 3}
+  m_Sprite: {fileID: 21300000, guid: af9ee072470bf784697b0ad9258c395e, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -5483,7 +5483,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.18506138, g: 0.9705882, b: 0.15700689, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
