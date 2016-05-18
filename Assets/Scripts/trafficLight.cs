@@ -27,6 +27,7 @@ public class trafficLight : MonoBehaviour
         if (startTimer >= 7f)
         {
             Destroy(gameObject);
+
         }
         else if (startTimer >= 4.6f)
         {
