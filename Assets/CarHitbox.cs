@@ -11,20 +11,29 @@ public class CarHitbox : MonoBehaviour
 
     private CarController car;
     public Rigidbody carModel;
+
+    //
+    Shield shieldDome;
+    GameObject carShield;
+    float shieldTime;
+
     private float damageCaused;
     public float carSpeed;
 
+    
     private float collisionCD = -1;
     private GameObject explHolder;
     // Use this for initialization
     void Start()
     {
+        shieldDome = null;
         car = transform.root.GetComponent<CarController>();
         carModel = car.GetComponent<Rigidbody>();
 
         explHolder = GameObject.Find("ExplosionHolder");
         if (explHolder == null)
             explHolder = new GameObject("ExplosionHolder");
+        
     }
 
     // COLLISION DETECTION
@@ -38,11 +47,61 @@ public class CarHitbox : MonoBehaviour
             return;
         if (col.gameObject.name == "Track")
             return; // Ignore collisions with ground
+        if (col.gameObject.name.Contains("Ramp"))
+            return; // Ignore collisions with ramp
         if (col.transform.root == transform.root)
             return; // Ignore self collisions
-                    //{
-                    // We need to find out which sphere collider we are hitting here
+        
+        if(col.transform.root.tag == "Pickups" && col.gameObject.GetComponent<Pickups>() != null)
+        {
+            if (col.gameObject.GetComponent<Pickups>().healthPickup)
+            {
+                car.currentHealth += (int) col.gameObject.GetComponent<Pickups>().health;
+                if (car.currentHealth > 100)
+                    car.currentHealth = 100;
+                Destroy(col.gameObject);
+            }
 
+            else if(col.gameObject.GetComponent<Pickups>().lifePickup)
+            {
+                car.myPlayerData.addLives(Time.time);
+                Destroy(col.gameObject);
+            }
+
+            else if(col.gameObject.GetComponent<Pickups>().shieldPickup)
+            {
+                if (!car.isShielded)
+                {
+                    GameObject shield = Instantiate(Resources.Load("Prefabs/Pickups/Shield")) as GameObject;
+                    shield.transform.parent = transform.root;
+                    shield.transform.position = transform.root.position;
+                    car.isShielded = true;
+                    shieldTime = col.gameObject.GetComponent<Pickups>().shield;
+                    carShield = car.gameObject.GetComponentInChildren<shieldScript>().gameObject;
+                    Destroy(col.gameObject);
+                }
+            }
+
+            else if(col.gameObject.GetComponent<Pickups>().speedPickup)
+            {
+                Vector3 speedIncrease = new Vector3(0, 0, col.gameObject.GetComponent<Pickups>().speed);
+                car.GetComponent<Rigidbody>().velocity += speedIncrease;
+            }
+            return;
+        }
+
+        if(col.gameObject.GetComponent<shieldScript>())
+        {
+            RaycastHit shieldHit;
+            if(Physics.Raycast(transform.position, (col.transform.position - transform.position), out shieldHit))
+            {
+                GameObject collisionEffect = Instantiate(Resources.Load("Prefabs/Pickups/ShieldCollisionEffect"), shieldHit.point, Quaternion.identity) as GameObject;
+                collisionEffect.transform.parent = col.transform;
+            }
+        }
+        //{
+        // We need to find out which sphere collider we are hitting here
+        
 
         RaycastHit hit;
         if (Physics.Raycast(transform.position, (col.transform.position - transform.position), out hit))
@@ -90,6 +149,8 @@ public class CarHitbox : MonoBehaviour
         car.currentHealth -= Mathf.FloorToInt(damageCaused * 0.01f);
 
 
+
+
         collisionCD = 0.1f;
         // check the health of the car
         // Explosion anitmation ARTISTS
@@ -99,11 +160,20 @@ public class CarHitbox : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
         // We calculate the speed of the car for the collision force
         carSpeed = carModel.velocity.magnitude;
         if (collisionCD > 0)
             collisionCD -= Time.deltaTime;
+
+        if(shieldTime > 0)
+        {
+            shieldTime -= Time.deltaTime;
+        }
+        else
+        {
+            car.isShielded = false;
+            Destroy(carShield);
+        }
     }
     
 }

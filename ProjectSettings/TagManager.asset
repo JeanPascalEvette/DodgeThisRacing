@@ -18,6 +18,7 @@ TagManager:
   - Coin
   - Player1
   - Obstacle
+  - Pickups
   layers:
   - Default
   - TransparentFX
@@ -31,7 +32,7 @@ TagManager:
   - CarCollisionHitbox
   - CarRespawningHitbox
   - AIGuide
-  - wheelGUI
+  - Track
   - 
   - 
   - 

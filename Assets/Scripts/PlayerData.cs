@@ -14,6 +14,8 @@ public class PlayerData
     private int _lives;
     private int ID;
 
+    private float lifeUpTimer;
+
     public enum ControlScheme { WASD, Arrows, XboxController1, XboxController2, NotAssigned };
     public enum PlayerType { AI, Player, None };
     public PlayerData() {  }
@@ -59,6 +61,20 @@ public class PlayerData
     public void reduceLives()
     {
         _lives--;
+    }
+
+    public void addLives(float pickupTime = -1f)
+    {
+        if (pickupTime < 0f)
+            _lives++;
+        else
+        {
+            if (Mathf.Abs(lifeUpTimer - pickupTime) > 0.1f)
+            {
+                _lives++;
+                lifeUpTimer = pickupTime;
+            }
+        }
     }
 
     public void AttachGameObject(GameObject car)

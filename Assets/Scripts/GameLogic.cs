@@ -9,7 +9,7 @@ public class GameLogic : MonoBehaviour
     public int winner;
     public int lastDeath;
 
-    public readonly int NUMBEROFCARS = 4;
+    public readonly int NUMBEROFCARS = 1;
 
 
     private List<GameObject> trackPartsList;
@@ -29,6 +29,9 @@ public class GameLogic : MonoBehaviour
     private Camera myCamera;
     private GameObject explHolder;
 
+    [SerializeField]
+    private float trackDPullBackDistance;
+
     // Use this for initialization
     void Start()
     {
@@ -47,6 +50,8 @@ public class GameLogic : MonoBehaviour
             Track = GameObject.Find("Track");
         if (Track == null)
             Track = new GameObject("Track");
+
+        Track.layer = LayerMask.NameToLayer("Track");
 
         explHolder = GameObject.Find("ExplosionHolder");
         if (explHolder == null)
@@ -136,7 +141,7 @@ public class GameLogic : MonoBehaviour
             float maxDist = 5.0f;
             for (int i = 0; i < trackPiece.transform.childCount; i++)
             {
-                if (trackPiece.transform.GetChild(i).name.Substring(0, 4) == "Road")
+                if (trackPiece.transform.GetChild(i).name.Substring(0, 4) == "Road" || (trackPiece.transform.GetChild(i).name.Length >= 8 && trackPiece.transform.GetChild(i).name.Substring(0, 8) == "CityRoad"))
                 {
                     trackPiece = trackPiece.transform.GetChild(i).gameObject;
                     break;
@@ -285,6 +290,12 @@ public class GameLogic : MonoBehaviour
 
             Debug.DrawLine(trackPartsList[trackPartsList.Count - 1].transform.position + new Vector3(0, 1, 0), startPos + new Vector3(0, 1, 0), Color.red, 9999.0f, false);
         }
+
+        if(trackPrefab.name.Contains("CityA_"))
+        {
+            startPos.y += 0.5f;
+        }
+
         var newTrackPart = (GameObject)Instantiate(trackPrefab, startPos, trackPrefab.transform.rotation);
         trackPartsList.Add(newTrackPart);
         newTrackPart.transform.parent = Track.transform;
@@ -384,9 +395,9 @@ public class GameLogic : MonoBehaviour
                 UnityEngine.Camera.main.GetComponent<Camera>().ZoomIn();
                 //trackPiece.transform.Find("Canyon_Middle_D").GetComponent<MeshRenderer>().enabled = true;
             }
-            else if (UnityEngine.Camera.main.GetComponent<Camera>().GetLeadingPlayerPosition().z >= trackBounds.min.z)
+            else if (UnityEngine.Camera.main.GetComponent<Camera>().GetLeadingPlayerPosition().z >= trackBounds.min.z + 180.0f)
             {
-                float dist = 4.0f;
+                float dist = trackDPullBackDistance;
                 if (trackPiece.name.Length >= 8 && trackPiece.name.Substring(0, 8) == "Track_DE")
                     dist = 9.0f;
                 UnityEngine.Camera.main.GetComponent<Camera>().ZoomOut(dist);
