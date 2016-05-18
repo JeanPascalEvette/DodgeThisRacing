@@ -13,6 +13,8 @@ public class Camera : MonoBehaviour {
     Vector3 leadingPosition;
     bool zoomOut = false;
     float zoomOutTime;
+    public GameObject boundary;
+    public inGameGUI guiWinCondition;
     // Use this for initialization
 
     public enum CameraType
@@ -53,6 +55,11 @@ public class Camera : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
     {
+        if (guiWinCondition.camCheck == true)
+        {
+            victoryZoom();
+        }
+
         if (zoomOut && currentZoomOut < maxZoomOut)
         {
             currentZoomOut = Mathf.Lerp(minZoomOut, maxZoomOut, Time.time - zoomOutTime);
@@ -96,5 +103,13 @@ public class Camera : MonoBehaviour {
             zoomOut = false;
             zoomOutTime = Time.time;
         }
+    }
+
+    public void victoryZoom()
+    {
+        Destroy(boundary);
+        xDist = -8.8f;
+        yDist = 3.3f;
+
     }
 }

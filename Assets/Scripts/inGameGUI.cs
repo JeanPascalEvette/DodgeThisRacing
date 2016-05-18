@@ -17,7 +17,10 @@ public class inGameGUI : MonoBehaviour {
     private bool countdown;
     private int x = 0;
 
+    public bool camCheck;
+
     void Start () {
+        camCheck = false;
         score1.text = "";
         score2.text = "";
         score3.text = "";
@@ -95,6 +98,7 @@ public class inGameGUI : MonoBehaviour {
             timer = 7;
             countdown = true;
             rand = Random.Range(1, 8);
+            camCheck = true;
             switch (rand)
             {
                 case 1:
