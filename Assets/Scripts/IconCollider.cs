@@ -201,7 +201,7 @@ public class IconCollider : MonoBehaviour {
 
                 else {
 
-                    if (!C1.is_grabbed && !C2.is_grabbed && !C3.is_grabbed && !C4.is_grabbed)
+                    if (!C1.is_grabbed && !C2.is_grabbed && !C3.is_grabbed && !C4.is_grabbed && !l.isP1onButton)
                        {
                         ResetOverlay();
                         DeSelectCar();
@@ -239,7 +239,7 @@ public class IconCollider : MonoBehaviour {
                 else
                 {
 
-                    if (!C1.is_grabbed && !C2.is_grabbed && !C3.is_grabbed && !C4.is_grabbed)
+                    if (!C1.is_grabbed && !C2.is_grabbed && !C3.is_grabbed && !C4.is_grabbed && !l.isP1onButton)
                     {
                         ResetOverlay();
                         DeSelectCar();

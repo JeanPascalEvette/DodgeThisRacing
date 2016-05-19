@@ -93,7 +93,7 @@ public class PlayerSelector : MonoBehaviour
             else if (m.ThisPlayerControl == MoveSelector.ControlTypesHere.Joy2)      { Control_Type.text = "Joy2"; }
             else if (m.ThisPlayerControl == MoveSelector.ControlTypesHere.ArrowKeys) { Control_Type.text = "ArrowKeys"; }
             else if (m.ThisPlayerControl == MoveSelector.ControlTypesHere.WSDA)      { Control_Type.text = "WSDA"; }
-            //else                                                                   { Control_Type.text = "Not Assigned"; }
+            else if (is_CPU)                                                         { Control_Type.text = "AI Controller"; }
 
             if      (PanelNumber == 1 && switch_case != 2 && !is_CPU)                { t.text = "P1"; }
             else if (PanelNumber == 2 && switch_case != 2 && !is_CPU)                { t.text = "P2"; }
