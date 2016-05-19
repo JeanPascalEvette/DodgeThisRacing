@@ -65,7 +65,7 @@ public class ButtonController : MonoBehaviour {
     public void SetOverlay(bool state)
     {
         overlay2 = state;
-        l.isP1onButton = false;
+        //l.isP1onButton = false;
     }
 
 }
