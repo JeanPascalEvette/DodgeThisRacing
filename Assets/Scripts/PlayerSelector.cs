@@ -203,8 +203,8 @@ public class PlayerSelector : MonoBehaviour
 
                                 HandObject.SetActive(false);
                                 Token.sprite = CPU_Token;
-                                
 
+                                l.num_CPU_Players++;
                                 resetControlsCPU();
                                 ControlManager();
                             }
@@ -251,6 +251,7 @@ public class PlayerSelector : MonoBehaviour
                                 else if (m.playerID == 4) { l.is_p4_active = false; }
 
                                 l.num_players--;
+                                l.num_CPU_Players--;
                                 m.is_this_active = false;
                                 is_CPU = false;
                                 CoinController.is_car_selected = false;
@@ -269,7 +270,7 @@ public class PlayerSelector : MonoBehaviour
                             //else if (Car3.ThisCarSelected == true && m.playerID == Car3.ID) { Car3.CheckPlayerActivation(); }
                             //else if (Car4.ThisCarSelected == true && m.playerID == Car4.ID) { Car4.CheckPlayerActivation(); }
 
-                            if (Car1.ThisCarSelected == true && CoinController.CoinID == Car1.ID) { Car1.CheckPlayerActivation(); }
+                            if      (Car1.ThisCarSelected == true && CoinController.CoinID == Car1.ID) { Car1.CheckPlayerActivation(); }
                             else if (Car2.ThisCarSelected == true && CoinController.CoinID == Car2.ID) { Car2.CheckPlayerActivation(); }
                             else if (Car3.ThisCarSelected == true && CoinController.CoinID == Car3.ID) { Car3.CheckPlayerActivation(); }
                             else if (Car4.ThisCarSelected == true && CoinController.CoinID == Car4.ID) { Car4.CheckPlayerActivation(); }
@@ -309,7 +310,8 @@ public class PlayerSelector : MonoBehaviour
                             Token.sprite = Player_Token;
                             HandObject.SetActive(true);
                             CPU_Controls = 1;
-                            
+                            l.num_CPU_Players--;
+
                             break;
 
                         case 2:
@@ -321,6 +323,7 @@ public class PlayerSelector : MonoBehaviour
                             resetControlsCPU();
                             //ControlManager();
 
+                            l.num_CPU_Players++;
                             HandObject.SetActive(false);
                             Token.sprite = CPU_Token;
 

@@ -189,13 +189,17 @@ public class MoveSelector : MonoBehaviour {
 
         if (!is_this_ready && ThisPlayerSelector.is_CPU)
         {
-            if      (!Car1.ThisCarSelected) { ThisPlayerCar = 0; Car1.ThisCarSelected = true; }
-            else if (!Car2.ThisCarSelected) { ThisPlayerCar = 1; Car2.ThisCarSelected = true; }
-            else if (!Car3.ThisCarSelected) { ThisPlayerCar = 2; Car3.ThisCarSelected = true; }
-            else if (!Car4.ThisCarSelected) { ThisPlayerCar = 3; Car4.ThisCarSelected = true; }
+            if      (!Car1.ThisCarSelected) { ThisPlayerCar = 0; Car1.ThisCarSelected = true; ThisPlayerSelector.CurrentCar = Car1.ThisCarImage; Coin.transform.position = Car1.ThisCarIconPosition; }
+            else if (!Car2.ThisCarSelected) { ThisPlayerCar = 1; Car2.ThisCarSelected = true; ThisPlayerSelector.CurrentCar = Car2.ThisCarImage; Coin.transform.position = Car2.ThisCarIconPosition; }
+            else if (!Car3.ThisCarSelected) { ThisPlayerCar = 2; Car3.ThisCarSelected = true; ThisPlayerSelector.CurrentCar = Car3.ThisCarImage; Coin.transform.position = Car3.ThisCarIconPosition; }
+            else if (!Car4.ThisCarSelected) { ThisPlayerCar = 3; Car4.ThisCarSelected = true; ThisPlayerSelector.CurrentCar = Car4.ThisCarImage; Coin.transform.position = Car4.ThisCarIconPosition; }
+
+            ThisPlayerSelector.ImageSwapper();
+            
         }
 
         ThisPlayerData = new PlayerData(playerID,ThisPlayerCar, ThisControlScheme, ThisPlayerType);
+   
     }
 
     void UpdatePlayerData()

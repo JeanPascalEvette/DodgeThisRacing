@@ -15,6 +15,7 @@ public class IconCollider : MonoBehaviour {
     public CPUController C1, C2, C3, C4;
     public ButtonController buttoncontroller1, buttoncontroller2, buttoncontroller3, buttoncontroller4;
     public ControlsController controlscontroller1, controlscontroller2, controlscontroller3, controlscontroller4;
+    public Vector3 ThisCarIconPosition;
 
     public PlayerSelector p1, p2, p3, p4; //Instances of The PlayerSelector scripts attached to each Panel controlling each player
     public int ID = 0;                    
@@ -35,8 +36,8 @@ public class IconCollider : MonoBehaviour {
     {
         l = GameObject.FindWithTag("LevelManager").GetComponent<LevelManager>(); //Getting an instance of the level manager
         isActive = false;
-        
-        
+        ThisCarIconPosition = transform.position;
+          
     }
 
     void Update()
@@ -297,6 +298,7 @@ public class IconCollider : MonoBehaviour {
         Car.GetComponent<Collider2D>().enabled = false;
         ThisCarSelected = true;
         l.num_ready_players++;
+        l.num_CPU_SelectedCar++;
 
         CPU.player.GetComponent<Collider2D>().enabled = true;
         CPU.is_car_selected = true;
@@ -393,6 +395,7 @@ public class IconCollider : MonoBehaviour {
         ThisCarSelected = false;
         isActive = false;
         l.num_ready_players--;
+        l.num_CPU_SelectedCar--;
         Car.GetComponent<Collider2D>().enabled = true;
 
         CPU.is_car_selected = false;
@@ -562,6 +565,7 @@ public class IconCollider : MonoBehaviour {
             if (ThisCarSelected)
             {
                 l.num_ready_players--;                          //The number of ready players is decreased
+                l.num_CPU_SelectedCar--;
             }
             ThisCarSelected = false;                        //The boolian for the car selection is set to false
 

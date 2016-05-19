@@ -771,6 +771,7 @@ MonoBehaviour:
   controlscontroller2: {fileID: 215446492}
   controlscontroller3: {fileID: 114217958}
   controlscontroller4: {fileID: 1695360365}
+  ThisCarIconPosition: {x: 0, y: 0, z: 0}
   p1: {fileID: 1359102857}
   p2: {fileID: 867536395}
   p3: {fileID: 1306703004}
@@ -927,6 +928,73 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 315248630}
+--- !u!1 &328823064
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 224: {fileID: 328823065}
+  - 222: {fileID: 328823067}
+  - 114: {fileID: 328823066}
+  m_Layer: 5
+  m_Name: Image - Go
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &328823065
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 328823064}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 611398157}
+  m_RootOrder: 2
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 428, y: 13}
+  m_SizeDelta: {x: 189, y: 60}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &328823066
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 328823064}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -765806418, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_Sprite: {fileID: 21300000, guid: 1e2c826384736a34190b7961d7738dfe, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+--- !u!222 &328823067
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 328823064}
 --- !u!1 &346784878 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 169640, guid: 56d85edf13363e84186bda7089f36bcd, type: 2}
@@ -972,6 +1040,7 @@ MonoBehaviour:
   controlscontroller2: {fileID: 215446492}
   controlscontroller3: {fileID: 114217958}
   controlscontroller4: {fileID: 1695360365}
+  ThisCarIconPosition: {x: 0, y: 0, z: 0}
   p1: {fileID: 1359102857}
   p2: {fileID: 867536395}
   p3: {fileID: 1306703004}
@@ -1095,6 +1164,7 @@ MonoBehaviour:
   controlscontroller2: {fileID: 215446492}
   controlscontroller3: {fileID: 114217958}
   controlscontroller4: {fileID: 1695360365}
+  ThisCarIconPosition: {x: 0, y: 0, z: 0}
   p1: {fileID: 1359102857}
   p2: {fileID: 867536395}
   p3: {fileID: 1306703004}
@@ -1215,6 +1285,8 @@ MonoBehaviour:
   TextColorGo: {fileID: 2071835277}
   num_players: 0
   num_ready_players: 0
+  num_CPU_Players: 0
+  num_CPU_SelectedCar: 0
   is_joy1_taken: 0
   is_arrowKeys_taken: 0
   is_wsda_taken: 0
@@ -1886,6 +1958,8 @@ RectTransform:
   m_Children:
   - {fileID: 840815930}
   - {fileID: 1948037375}
+  - {fileID: 328823065}
+  - {fileID: 2071835275}
   m_Father: {fileID: 1141588969}
   m_RootOrder: 1
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -2021,7 +2095,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 22410116, guid: 56d85edf13363e84186bda7089f36bcd, type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: -121
+      value: -121.00003
       objectReference: {fileID: 0}
     - target: {fileID: 22410116, guid: 56d85edf13363e84186bda7089f36bcd, type: 2}
       propertyPath: m_AnchoredPosition.y
@@ -2120,8 +2194,8 @@ RectTransform:
   m_RootOrder: 0
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.0010528825, y: -0.0025024414}
-  m_SizeDelta: {x: 1536, y: 864}
+  m_AnchoredPosition: {x: 0.0036544409, y: 6.2500153}
+  m_SizeDelta: {x: 1066.2, y: 612.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &711084985
 MonoBehaviour:
@@ -2623,7 +2697,7 @@ GameObject:
   - 222: {fileID: 840815932}
   - 114: {fileID: 840815931}
   m_Layer: 5
-  m_Name: Image
+  m_Name: Image-Title
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2878,6 +2952,7 @@ MonoBehaviour:
   controlscontroller2: {fileID: 215446492}
   controlscontroller3: {fileID: 114217958}
   controlscontroller4: {fileID: 1695360365}
+  ThisCarIconPosition: {x: 0, y: 0, z: 0}
   p1: {fileID: 1359102857}
   p2: {fileID: 867536395}
   p3: {fileID: 1306703004}
@@ -3377,7 +3452,6 @@ RectTransform:
   - {fileID: 444208907}
   - {fileID: 1263739608}
   - {fileID: 752248852}
-  - {fileID: 2071835275}
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_AnchorMin: {x: 0, y: 0}
@@ -5449,7 +5523,7 @@ GameObject:
   - 114: {fileID: 1948037377}
   - 114: {fileID: 1948037376}
   m_Layer: 5
-  m_Name: Text
+  m_Name: Text-Title
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5575,6 +5649,7 @@ GameObject:
   - 224: {fileID: 2071835275}
   - 222: {fileID: 2071835278}
   - 114: {fileID: 2071835277}
+  - 114: {fileID: 2071835276}
   m_Layer: 5
   m_Name: Go
   m_TagString: Go
@@ -5592,13 +5667,27 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 1141588969}
-  m_RootOrder: 14
+  m_Father: {fileID: 611398157}
+  m_RootOrder: 3
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -429, y: -266.5}
-  m_SizeDelta: {x: 160, y: 30}
+  m_AnchoredPosition: {x: 440, y: 8}
+  m_SizeDelta: {x: 190, y: 56.5}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &2071835276
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2071835274}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -900027084, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 1, g: 1, b: 1, a: 1}
+  m_EffectDistance: {x: 1, y: -1}
+  m_UseGraphicAlpha: 1
 --- !u!114 &2071835277
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5611,7 +5700,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.99264705, g: 0.99994594, b: 0.99994594, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -5619,19 +5708,19 @@ MonoBehaviour:
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
-    m_Font: {fileID: 12800000, guid: 554632dbcd16851458b1d7fd37ca2658, type: 3}
-    m_FontSize: 22
+    m_Font: {fileID: 12800000, guid: 71a5990998055f24a9b7941b806746b8, type: 3}
+    m_FontSize: 42
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 0
-    m_MaxSize: 40
+    m_MaxSize: 42
     m_Alignment: 1
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: GO!!!
+  m_Text: GO
 --- !u!222 &2071835278
 CanvasRenderer:
   m_ObjectHideFlags: 0
