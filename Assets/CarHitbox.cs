@@ -122,12 +122,12 @@ public class CarHitbox : MonoBehaviour
             partAffected = DetachableParts[elementPosition];
         // We check if the piece chosen has any health left or has been 
         carSpeed = carModel.velocity.magnitude;
+        float defaultMass = 1.0f;
         if (partAffected != null && partAffected.GetComponent<DetachableElementBehaviour>() != null)
         {
             // We have health so we make all the calculation with the piece data
             // We calculate the force of the impact with the obstacle
             // Force = (mass * speed * speed)/2
-            damageCaused = (partAffected.GetComponent<DetachableElementBehaviour>().pieceMass * carSpeed * carSpeed) / 2;
             // We reduce the health of the detachable part and check if the drop flag must be true
             //partAffected.GetComponent<DetachableElementBehaviour>().pieceHealth -= damageCaused;
             // If the piece hasn´t left health we detach the piece
@@ -139,13 +139,9 @@ public class CarHitbox : MonoBehaviour
             // We remove the part from the list so it´s not available any more
             //    DetachableParts[elementPosition] = null;
             //}
+        }
+        damageCaused = defaultMass * Mathf.Pow(carSpeed, 2) * 0.5f;
 
-        }
-        else
-        {
-            // The piece has been detached so we only reduce the health of the car
-            damageCaused = (1 * carSpeed * carSpeed) / 2;
-        }
         // We reduce the car health & the slider at the same time (round down to have more health) ***** POSSIBLE CHANGE OF CAR HEALTH TO FLOAT *******
         car.currentHealth -= Mathf.FloorToInt(damageCaused * 0.01f);
         // The total slider is reduced in a smallest amount
