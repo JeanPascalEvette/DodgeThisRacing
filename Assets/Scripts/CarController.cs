@@ -585,6 +585,7 @@ public class CarController : MonoBehaviour
     {
         decreaseGear();
         rpm *= 0.6f;
+        rb.velocity *= 0.6f;
     }
 
     public float GearValue()
