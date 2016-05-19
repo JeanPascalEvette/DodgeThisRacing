@@ -29,8 +29,14 @@ public class IconCollider : MonoBehaviour {
     public int ThisCarType;              //A public int (set in the inspector) to differentiate each Car Icon object
     public Sprite ThisCarImage, ThisCarImageTemp;
     private Vector3 ParentPosition;
+
+
+    private AudioSource source;
+    public AudioClip click; //creates instance to select sound
+
     private Image WheelImage;
     
+
 
     //Initializing
     void Start()
@@ -38,7 +44,8 @@ public class IconCollider : MonoBehaviour {
         l = GameObject.FindWithTag("LevelManager").GetComponent<LevelManager>(); //Getting an instance of the level manager
         isActive = false;
         ThisCarIconPosition = transform.position;
-          
+        source = GetComponent<AudioSource>(); //initialize audio source
+
     }
 
     void Update()
@@ -263,6 +270,7 @@ public class IconCollider : MonoBehaviour {
         ThisCarSelected = true;                           //Bool variable telling the player has selected this car
         m.is_this_ready = true;                           //This player has selected the car and is ready to GO
         l.num_ready_players++;                            // Increase the number of players who are ready to GO
+        source.PlayOneShot(click);
 
         if (m.playerID == 1) { CPU.player.GetComponent<Collider2D>().enabled = true; }
 
@@ -302,6 +310,7 @@ public class IconCollider : MonoBehaviour {
         ThisCarSelected = true;
         l.num_ready_players++;
         l.num_CPU_SelectedCar++;
+        source.PlayOneShot(click);
 
         CPU.player.GetComponent<Collider2D>().enabled = true;
         CPU.is_car_selected = true;
