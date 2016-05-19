@@ -228,7 +228,7 @@ public class CarController : MonoBehaviour
     void Update()
     {
 
-        var wantedPos = UnityEngine.Camera.main.WorldToScreenPoint(transform.position);
+        var wantedPos = UnityEngine.Camera.main.WorldToScreenPoint(transform.position) + new Vector3(0, 50, 0);
         healthSlider.transform.position = wantedPos;
 
         if (respawnInvTime > 0.0f)
