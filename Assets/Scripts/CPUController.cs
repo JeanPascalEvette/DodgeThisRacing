@@ -8,6 +8,7 @@ public class CPUController : MonoBehaviour {
     public PlayerSelector Panel,Player1Panel;
     public ControlsController ControlButton;
     public ButtonController ActivationButton;
+    public LevelManager l;
 
     public bool is_player_near = false;
     public bool is_coin_cpu = false;
@@ -38,6 +39,7 @@ public class CPUController : MonoBehaviour {
     {
         
         if (trigger.gameObject == player) { is_player_near = true;
+            l.isP1onButton = true;
             Debug.Log("Player is near");
         }
 
@@ -46,6 +48,7 @@ public class CPUController : MonoBehaviour {
     void OnTriggerExit2D(Collider2D trigger) {
 
         if (trigger.gameObject == player) { is_player_near = false;
+            l.isP1onButton = false;
             Debug.Log("Player exited");
         }
 

@@ -6,6 +6,7 @@ public class ControlsController : MonoBehaviour {
     private bool overlay = false;
     private PlayerSelector playerSelector;
     public MoveSelector player1Control;
+    public LevelManager l;
 
     void Start()
     {
@@ -21,6 +22,7 @@ public class ControlsController : MonoBehaviour {
         if (other.gameObject.tag == "Player1")
         {
             overlay = true;
+            l.isP1onButton = true;
         }
     }
 
@@ -29,6 +31,7 @@ public class ControlsController : MonoBehaviour {
         if (other.gameObject.tag == "Player1")
         {
             overlay = false;
+            l.isP1onButton = false;
         }
     }
 
@@ -62,6 +65,7 @@ public class ControlsController : MonoBehaviour {
     public void SetOverlay(bool state)
     {
         overlay = state;
+        l.isP1onButton = false;
     }
 
 }
