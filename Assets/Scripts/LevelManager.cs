@@ -38,6 +38,7 @@ public class LevelManager : MonoBehaviour
     public bool is_joy1_taken, is_arrowKeys_taken, is_wsda_taken, is_joy2_taken = false; //Bool variables to check if a control type has already been assigned or not
     public bool is_joy1_used, is_arrowKeys_used, is_wsda_used, is_joy2_used = false;     //Bool variables to check if a control type is being used at that moment
     public bool is_p1_active, is_p2_active, is_p3_active, is_p4_active = false;          //Bool Variable to check if each player is active or not
+    public bool hasGameStarted = false;
 
     //Initialization. Player 1 is set active by default and controllable with Joystick 1
     void Start()
@@ -130,6 +131,7 @@ public class LevelManager : MonoBehaviour
 
     {
         SceneManager.LoadScene("Game");
+        hasGameStarted = false;
     }
 
     //Function to detect a control input

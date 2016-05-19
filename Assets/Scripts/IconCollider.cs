@@ -455,30 +455,32 @@ public class IconCollider : MonoBehaviour {
     void AddTempCar()
 
     {
-        switch (CPU.CoinID)   //Assign the car image to the correct player
+        if (!l.hasGameStarted)
         {
-            case 1:
-                p1.CurrentCar = ThisCarImageTemp;
-                p1.ImageSwapper();
-                
-                break;
-            case 2:
-                p2.CurrentCar = ThisCarImageTemp;
-                p2.ImageSwapper();
-               
-                break;
-            case 3:
-                p3.CurrentCar = ThisCarImageTemp;
-                p3.ImageSwapper();
-                
-                break;
-            case 4:
-                p4.CurrentCar = ThisCarImageTemp;
-                p4.ImageSwapper();
-                
-                break;
-        }
+            switch (CPU.CoinID)   //Assign the car image to the correct player
+            {
+                case 1:
+                    p1.CurrentCar = ThisCarImageTemp;
+                    p1.ImageSwapper();
 
+                    break;
+                case 2:
+                    p2.CurrentCar = ThisCarImageTemp;
+                    p2.ImageSwapper();
+
+                    break;
+                case 3:
+                    p3.CurrentCar = ThisCarImageTemp;
+                    p3.ImageSwapper();
+
+                    break;
+                case 4:
+                    p4.CurrentCar = ThisCarImageTemp;
+                    p4.ImageSwapper();
+
+                    break;
+            }
+        }
     }
 
     void RemoveTempCar()
