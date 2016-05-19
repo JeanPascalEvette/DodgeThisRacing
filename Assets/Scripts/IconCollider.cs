@@ -29,6 +29,7 @@ public class IconCollider : MonoBehaviour {
     public int ThisCarType;              //A public int (set in the inspector) to differentiate each Car Icon object
     public Sprite ThisCarImage, ThisCarImageTemp;
     private Vector3 ParentPosition;
+    private Image WheelImage;
     
 
     //Initializing
@@ -52,7 +53,8 @@ public class IconCollider : MonoBehaviour {
     {
         if (isActive)
         {
-          
+            WheelImage = trigger.GetComponentInChildren<Image>();
+            WheelImage.color = new Color(1f, 1f, 1f, .5f);
             return;
         }
 
@@ -85,7 +87,8 @@ public class IconCollider : MonoBehaviour {
     {
         if (trigger.gameObject.name != CPU.gameObject.name)
         {
-            
+            WheelImage = trigger.GetComponentInChildren<Image>();
+            WheelImage.color = new Color(1f, 1f, 1f, 1f);
             return;
         }  
 
