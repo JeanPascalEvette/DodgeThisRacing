@@ -39,7 +39,7 @@ public class CPUController : MonoBehaviour {
     {
         
         if (trigger.gameObject == player) { is_player_near = true;
-            l.isP1onButton = true;
+            if (CoinID != 1) { l.isP1onButton = true; }
             Debug.Log("Player is near");
         }
 
