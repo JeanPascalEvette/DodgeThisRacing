@@ -51,7 +51,7 @@ public class IconCollider : MonoBehaviour {
     void Update()
     {
 
-        if (isActive)        { checkControlType(); } //If a cursor is on the Icon call the function for interaction with it
+        if (isActive) { checkControlType(); } //If a cursor is on the Icon call the function for interaction with it
        
     }
 

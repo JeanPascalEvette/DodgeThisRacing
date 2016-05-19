@@ -1075,9 +1075,9 @@ BoxCollider2D:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_UsedByEffector: 0
-  m_Offset: {x: 6.447693, y: -66.55844}
+  m_Offset: {x: 6.66539, y: -13.349045}
   serializedVersion: 2
-  m_Size: {x: 85.84755, y: 84.6953}
+  m_Size: {x: 82.78822, y: 80.10628}
 --- !u!114 &228496795
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1434,9 +1434,9 @@ BoxCollider2D:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_UsedByEffector: 0
-  m_Offset: {x: 2.0767517, y: -67.65057}
+  m_Offset: {x: -4.04187, y: -12.584274}
   serializedVersion: 2
-  m_Size: {x: 90.43372, y: 86.87927}
+  m_Size: {x: 84.315056, y: 86.87944}
 --- !u!114 &346784880
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1582,7 +1582,7 @@ RectTransform:
   m_RootOrder: 0
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 2, y: -66}
+  m_AnchoredPosition: {x: -4, y: -12}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &367396835
@@ -1633,9 +1633,9 @@ BoxCollider2D:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_UsedByEffector: 0
-  m_Offset: {x: 11.913269, y: -69.12674}
+  m_Offset: {x: 9.618805, y: -13.294205}
   serializedVersion: 2
-  m_Size: {x: 91.96232, y: 95.95025}
+  m_Size: {x: 87.3735, y: 85.24004}
 --- !u!114 &372341583
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2741,7 +2741,7 @@ RectTransform:
   m_RootOrder: 0
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 8, y: -64}
+  m_AnchoredPosition: {x: 8, y: -12}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &667027723
@@ -2822,7 +2822,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 22410116, guid: 56d85edf13363e84186bda7089f36bcd, type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: 224
+      value: 174
       objectReference: {fileID: 0}
     - target: {fileID: 22410116, guid: 56d85edf13363e84186bda7089f36bcd, type: 2}
       propertyPath: m_SizeDelta.x
@@ -3905,9 +3905,9 @@ BoxCollider2D:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_UsedByEffector: 0
-  m_Offset: {x: 4.2618713, y: -68.68787}
+  m_Offset: {x: 2.7322845, y: -12.091629}
   serializedVersion: 2
-  m_Size: {x: 93.49198, y: 92.01107}
+  m_Size: {x: 90.43276, y: 82.836}
 --- !u!114 &941973853
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5029,7 +5029,7 @@ RectTransform:
   m_RootOrder: 0
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 2, y: -66}
+  m_AnchoredPosition: {x: 2, y: -12}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1431870249
@@ -5716,7 +5716,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 22410116, guid: 56d85edf13363e84186bda7089f36bcd, type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: 224.26
+      value: 174
       objectReference: {fileID: 0}
     - target: {fileID: 22410116, guid: 56d85edf13363e84186bda7089f36bcd, type: 2}
       propertyPath: m_SizeDelta.x
@@ -6446,7 +6446,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 22410116, guid: 56d85edf13363e84186bda7089f36bcd, type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: 224
+      value: 174
       objectReference: {fileID: 0}
     - target: {fileID: 22410116, guid: 56d85edf13363e84186bda7089f36bcd, type: 2}
       propertyPath: m_SizeDelta.x
@@ -6608,7 +6608,7 @@ RectTransform:
   m_RootOrder: 0
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 10, y: -66.130005}
+  m_AnchoredPosition: {x: 10, y: -12}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1848035856
@@ -7140,7 +7140,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 22410116, guid: 56d85edf13363e84186bda7089f36bcd, type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: 224.13
+      value: 174
       objectReference: {fileID: 0}
     - target: {fileID: 22410116, guid: 56d85edf13363e84186bda7089f36bcd, type: 2}
       propertyPath: m_SizeDelta.x

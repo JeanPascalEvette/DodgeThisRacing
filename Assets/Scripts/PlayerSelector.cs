@@ -505,7 +505,7 @@ public class PlayerSelector : MonoBehaviour
                         else
                         {
                             m.ThisPlayerControl = MoveSelector.ControlTypesHere.NotAssigned;
-                            Control_Type.text = "Arrow (N/A)";
+                            Control_Type.text = "Arrows (N/A)";
                         }
                     }
                     break;
