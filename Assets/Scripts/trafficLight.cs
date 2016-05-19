@@ -11,9 +11,11 @@ public class trafficLight : MonoBehaviour
     public Image fanari;
 
     private float startTimer;
+    private float realTimeTimer;
     // Use this for initialization
     void Start()
     {
+        realTimeTimer = Time.realtimeSinceStartup;
         startTimer = 0;
         Time.timeScale = 0F;
     }
@@ -24,12 +26,12 @@ public class trafficLight : MonoBehaviour
 
         startTimer = Time.realtimeSinceStartup;
 
-        if (startTimer >= 7f)
+        if (startTimer - realTimeTimer >= 7f)
         {
             Destroy(gameObject);
 
         }
-        else if (startTimer >= 4.6f)
+        else if (startTimer - realTimeTimer >= 4.6f)
         {
             Color c = fanari.color;
             Color r = redLight.color;
@@ -44,7 +46,7 @@ public class trafficLight : MonoBehaviour
             orangeLight.color = o;
             greenLight.color = g;
         }
-        else if (startTimer >= 4.5f)
+        else if (startTimer - realTimeTimer >= 4.5f)
         {
             //PLAY MUSIC
             // ADD DINGS
@@ -52,12 +54,12 @@ public class trafficLight : MonoBehaviour
             //  orangeLight.color = new Color(199, 136, 0);
             Time.timeScale = 1;
         }
-        else if (startTimer >= 3f)
+        else if (startTimer - realTimeTimer >= 3f)
         {
             orangeLight.color = new Color(255, 136, 0);
             //  redLight.color = new Color(123, 0, 0);
         }
-        else if (startTimer >= 1.5f) 
+        else if (startTimer - realTimeTimer >= 1.5f) 
         {
             redLight.color = new Color(255, 0, 0);
         }
