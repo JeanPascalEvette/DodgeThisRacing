@@ -2073,6 +2073,8 @@ MonoBehaviour:
   leadingGameObject: {fileID: 0}
   xDist: 25
   yDist: 14
+  boundary: {fileID: 0}
+  guiWinCondition: {fileID: 1344818357}
   myCameraType: 0
 --- !u!81 &1321642224
 AudioListener:
@@ -2142,48 +2144,6 @@ Transform:
   - {fileID: 851432733}
   m_Father: {fileID: 0}
   m_RootOrder: 1
---- !u!1001 &1322769067
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 484296, guid: 58672b9b341d5304da1ba0686a9f60e4, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 484296, guid: 58672b9b341d5304da1ba0686a9f60e4, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 484296, guid: 58672b9b341d5304da1ba0686a9f60e4, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 484296, guid: 58672b9b341d5304da1ba0686a9f60e4, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 484296, guid: 58672b9b341d5304da1ba0686a9f60e4, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 484296, guid: 58672b9b341d5304da1ba0686a9f60e4, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 484296, guid: 58672b9b341d5304da1ba0686a9f60e4, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 484296, guid: 58672b9b341d5304da1ba0686a9f60e4, type: 2}
-      propertyPath: m_RootOrder
-      value: 7
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: 58672b9b341d5304da1ba0686a9f60e4, type: 2}
-  m_IsPrefabParent: 0
 --- !u!1 &1344818352
 GameObject:
   m_ObjectHideFlags: 0
@@ -2255,7 +2215,6 @@ Canvas:
   m_ReceivesEvents: 1
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
-  m_SortingBucketNormalizedSize: 0
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
@@ -2298,6 +2257,7 @@ MonoBehaviour:
   score4: {fileID: 220586434}
   middleText: {fileID: 1199249123}
   gmlg: {fileID: 1701829129}
+  camCheck: 0
 --- !u!1 &1500884169
 GameObject:
   m_ObjectHideFlags: 0
