@@ -1586,7 +1586,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 116368}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.403, y: 0.34, z: -1.45}
+  m_LocalPosition: {x: 0.403, y: 0.34, z: -1.52}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 469958}
@@ -1611,7 +1611,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 180432}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.244, y: 0.57, z: -0.13}
+  m_LocalPosition: {x: -0.13, y: 0.57, z: -0.13}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 469958}
@@ -1744,7 +1744,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 116008}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.421, y: 0.37, z: 1.03}
+  m_LocalPosition: {x: 0.421, y: 0.37, z: 1.14}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 469958}
@@ -1890,7 +1890,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 177368}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.136, y: 0.66, z: -0.12}
+  m_LocalPosition: {x: 0.1, y: 0.66, z: -0.12}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 469958}
@@ -2037,7 +2037,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 132416}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.418, y: 0.36, z: -1.41}
+  m_LocalPosition: {x: -0.418, y: 0.36, z: -1.48}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 469958}
@@ -2109,7 +2109,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 193558}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.459, y: 0.35, z: 1.04}
+  m_LocalPosition: {x: -0.459, y: 0.35, z: 1.15}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 469958}
@@ -3523,7 +3523,7 @@ HingeJoint:
   m_Anchor: {x: 0.5, y: 0, z: 0}
   m_Axis: {x: 0, y: 1, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0.43300572, y: 0, z: 0.2500121}
+  m_ConnectedAnchor: {x: 0.43301967, y: 0, z: -0.24998794}
   m_UseSpring: 0
   m_Spring:
     spring: 0
@@ -3587,7 +3587,7 @@ HingeJoint:
   m_Anchor: {x: -0.5, y: 0, z: 0}
   m_Axis: {x: -1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.15399358, y: 0.003939837, z: -0.2484783}
+  m_ConnectedAnchor: {x: -0.15399373, y: 0.003939837, z: 0.2515217}
   m_UseSpring: 0
   m_Spring:
     spring: 0
@@ -3651,7 +3651,7 @@ HingeJoint:
   m_Anchor: {x: -0.5, y: 0, z: 0}
   m_Axis: {x: 0, y: 1, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.43301967, y: 0, z: -0.24998794}
+  m_ConnectedAnchor: {x: -0.43300572, y: 0, z: 0.2500121}
   m_UseSpring: 0
   m_Spring:
     spring: 0
@@ -3843,7 +3843,7 @@ HingeJoint:
   m_Anchor: {x: 0.5, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0.15400708, y: 0.003939837, z: 0.25152147}
+  m_ConnectedAnchor: {x: 0.15400723, y: 0.003939837, z: -0.24847853}
   m_UseSpring: 0
   m_Spring:
     spring: 0
@@ -5121,6 +5121,7 @@ MonoBehaviour:
   startingHealth: 100
   currentHealth: 0
   healthSlider: {fileID: 0}
+  healthSlider2: {fileID: 0}
   currentGear: 0
   gears:
   - 1.8
@@ -5365,7 +5366,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.4
+  m_Radius: 0.6
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!135 &13533888
 SphereCollider:
@@ -5389,7 +5390,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.4
+  m_Radius: 0.6
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!135 &13544522
 SphereCollider:
@@ -5449,7 +5450,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.4
+  m_Radius: 0.6
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!135 &13586456
 SphereCollider:
@@ -5473,7 +5474,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.4
+  m_Radius: 0.6
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!138 &13831290
 FixedJoint:

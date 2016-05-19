@@ -4251,6 +4251,7 @@ MonoBehaviour:
   startingHealth: 100
   currentHealth: 0
   healthSlider: {fileID: 0}
+  healthSlider2: {fileID: 0}
   currentGear: 0
   gears:
   - 1.8
@@ -4883,8 +4884,8 @@ SphereCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 1
-  m_Center: {x: 0, y: 0, z: -1.5}
+  m_Radius: 1.1
+  m_Center: {x: 0, y: -1.15, z: -1.5}
 --- !u!135 &13538356
 SphereCollider:
   m_ObjectHideFlags: 1
