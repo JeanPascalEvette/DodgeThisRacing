@@ -42,10 +42,15 @@ Ultimately, this was a very good simulation of a game development team that gave
 Thanks to the Extra month we were given to polish the game I was able to improve the GUI's functionalities that now include: 
 
 -Player 1 now controls the CPU players tokens in the selection screen, can change other player's control schemes as well as activating/deactivating them.
+
 -Automatic car selection for CPU players if no cars are selected.
+
 -Booking system for the car selection with visual indications.
+
 -Overall graphical improvements with new assets from the Artists.
+
 -Added sounds.
+
 -Other small performance and cosmetics changes.
 
 ##Images
