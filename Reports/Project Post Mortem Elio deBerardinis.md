@@ -40,7 +40,10 @@ Ultimately, this was a very good simulation of a game development team that gave
 ##Images
 
 **Intro Screen**
-![Alt text](https://github.com/JeanPascalEvette/DodgeThisRacing/blob/master/Reports/Pictures/Elio/CarGameIntro.JPG?raw=true"Screen 1")
+![Alt text](https://github.com/JeanPascalEvette/DodgeThisRacing/blob/master/Reports/Pictures/Elio/New_Title.JPG?raw=true"Screen 1")
 
-**Car Select Screen**
-![Alt text](https://github.com/JeanPascalEvette/DodgeThisRacing/blob/master/Reports/Pictures/Elio/SelectScreen.JPG?raw=true"Screen 2")
+**Car Select Screen 1**
+![Alt text](https://github.com/JeanPascalEvette/DodgeThisRacing/blob/master/Reports/Pictures/Elio/NewGui1.JPG?raw=true"Screen 2")
+
+**Car Select Screen 2**
+![Alt text](https://github.com/JeanPascalEvette/DodgeThisRacing/blob/master/Reports/Pictures/Elio/NewGui3.JPG?raw=true"Screen 3")
