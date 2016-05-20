@@ -146,4 +146,30 @@ public class Data : MonoBehaviour {
         }
         return bodyCount;
     }
+
+    static int GetSumChanceToOccur()
+    {
+        int sum = 0;
+        for(int i = 0; i < TrackPartsAvailable.Length; i++)
+        {
+            sum += TrackPartsAvailable[i][0].GetComponent<TrackPieceController>().ChanceToOccur;
+        }
+        return sum;
+    }
+
+    internal static int GetRandomTrackNumber()
+    {
+        int number = 0;
+        number = UnityEngine.Random.Range(0, GetSumChanceToOccur());
+
+        int sum = 0;
+        for (int i = 0; i < TrackPartsAvailable.Length; i++)
+        {
+            sum += TrackPartsAvailable[i][0].GetComponent<TrackPieceController>().ChanceToOccur;
+            if (number <= sum)
+                return i;
+        }
+
+        return -1;
+    }
 }
