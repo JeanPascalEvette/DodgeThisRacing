@@ -1,22 +1,34 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 using System.Collections;
 
-public class MusicPlayer : MonoBehaviour {
-    //initialize to null because at first there will be no defined call instance
-    static MusicPlayer instance = null;
+public class MusicPlayer : MonoBehaviour
+{
 
-    void Awake () {
-        if (instance != null) {
+    static MusicPlayer instance = null;
+    //initialize to null because at first there will be no defined thing call instance
+
+    void Awake()
+    {
+        if (instance != null)
+        {
             Destroy(gameObject);
-            print("Duplicate music player self-destructing!");
-        } else {
+        }
+
+        else
+        {
             instance = this;
             GameObject.DontDestroyOnLoad(gameObject);
         }
     }
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
+
+    //Update is called once per frame
+    void Update()
+    {
+       if(SceneManager.GetActiveScene().name == "Game")
+        {
+            Destroy(gameObject);
+        }
+
+    }
 }

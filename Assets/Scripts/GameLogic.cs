@@ -281,7 +281,7 @@ public class GameLogic : MonoBehaviour
     void AddNewTrackPart()
     {
         GameObject trackPrefab;
-        int choice = Random.Range(0, Data.GetNumberTrackPartAvailable());
+        int choice = Data.GetRandomTrackNumber();
         if (trackPartsList.Count == 0)
             trackPrefab = Data.getTrackPart(0);
         else

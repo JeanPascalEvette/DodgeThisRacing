@@ -37,10 +37,29 @@ Federico and I were in a particular position this time as we worked on a very se
 I definitely learned how to compromise with people and I think this really helped me and the others in the team. When you work in solo you often think your ideas are the best. You only realize this is not the case when you are challenged by another person who makes you look at the problem from another angle. I wish I had more chances for healthy discussions with more experienced programmers such as Jean-Pascal and also with the artists with whom I had very little contact unfortunately.
 Ultimately, this was a very good simulation of a game development team that gave me insights on the many aspects this job entails. Especially, teamwork, people skills, organization play a vital role and are not less important that the core technical skills some co-workers might or might not have. Amazing skills can do nothing against poor time management, disagreement and lack of respect among the team members. I’m glad we were able to pull through our difficulties efficiently and finally produce a working game at this point. I look forward to the polishing session until the end of May.
 
+**EXTRA MONTH UPDATE**
+
+Thanks to the Extra month we were given to polish the game I was able to improve the GUI's functionalities that now include: 
+
+-Player 1 now controls the CPU players tokens in the selection screen, can change other player's control schemes as well as activating/deactivating them.
+
+-Automatic car selection for CPU players if no cars are selected.
+
+-Booking system for the car selection with visual indications.
+
+-Overall graphical improvements with new assets from the Artists.
+
+-Added sounds.
+
+-Other small performance and cosmetics changes.
+
 ##Images
 
 **Intro Screen**
-![Alt text](https://github.com/JeanPascalEvette/DodgeThisRacing/blob/master/Reports/Pictures/Elio/CarGameIntro.JPG?raw=true"Screen 1")
+![Alt text](https://github.com/JeanPascalEvette/DodgeThisRacing/blob/master/Reports/Pictures/Elio/New_Title.JPG?raw=true"Screen 1")
 
-**Car Select Screen**
-![Alt text](https://github.com/JeanPascalEvette/DodgeThisRacing/blob/master/Reports/Pictures/Elio/SelectScreen.JPG?raw=true"Screen 2")
+**Car Select Screen 1**
+![Alt text](https://github.com/JeanPascalEvette/DodgeThisRacing/blob/master/Reports/Pictures/Elio/NewGui1.JPG?raw=true"Screen 2")
+
+**Car Select Screen 2**
+![Alt text](https://github.com/JeanPascalEvette/DodgeThisRacing/blob/master/Reports/Pictures/Elio/NewGui3.JPG?raw=true"Screen 3")

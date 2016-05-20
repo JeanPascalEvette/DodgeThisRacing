@@ -18,7 +18,8 @@ public class MoveSelector : MonoBehaviour {
     public bool is_this_inside = false; //Bool variable that tells if the current cursor is inside a Car Icon
     public bool is_this_active = false; //Bool variable that tells if this player is active or not
 
-    public bool is_on_button1 = false; //Bool variable to be used in the Script PlayerActivation (Currently not in use)
+    public bool is_this_ready = false; //Bool variable to be used to check if player is ready to start
+    //public bool created_first_time = false;
 
     public float xMaximum, yMaximum;
 
@@ -30,7 +31,8 @@ public class MoveSelector : MonoBehaviour {
         WSDA,
         Joy1,
         Joy2,
-        NotAssigned
+        NotAssigned,
+        CPUdefault
 
     }
 
@@ -41,6 +43,9 @@ public class MoveSelector : MonoBehaviour {
     private PlayerData.ControlScheme ThisControlScheme;
     private PlayerData.PlayerType ThisPlayerType;
     public int ThisPlayerCar;
+
+    public RectTransform Hand;
+    public IconCollider Car1, Car2, Car3, Car4;
 
     //initialization
     void Start()
@@ -60,6 +65,13 @@ public class MoveSelector : MonoBehaviour {
     void Update()
     {
         HandleMovement();
+
+        if (playerID == 1)
+        {
+            if (!is_this_ready) { playerButton.GetComponent<Collider2D>().enabled = false; }
+            //else              { playerButton.GetComponent<Collider2D>().enabled = true; }
+        }
+        
     }
 
     void LateUpdate()
@@ -88,47 +100,108 @@ public class MoveSelector : MonoBehaviour {
         }
     }
 
+    //Function to correctly position the wheel behind the hand when deselecting a car
+    public void ResetChildPosition() {
+
+        Hand.SetAsLastSibling();
+    }
+
     //Handles the movement of the cursors according to the selected control Scheme
     void HandleMovement()
-    { 
-    
-        if (ThisPlayerControl == ControlTypesHere.ArrowKeys)
+    {
+        if (!ThisPlayerSelector.is_CPU && playerID !=1)
         {
+            if (ThisPlayerControl == ControlTypesHere.ArrowKeys)
+            {
                 float translationY = Input.GetAxis("VerticalArrows") * move_player;
                 float translationX = Input.GetAxis("HorizontalArrows") * move_player;
                 playerButton.transform.Translate(0, translationY, 0);
                 playerButton.transform.Translate(translationX, 0, 0);
-        }
+            }
 
-        else  if (ThisPlayerControl == ControlTypesHere.WSDA)
-        {
+            else if (ThisPlayerControl == ControlTypesHere.WSDA)
+            {
                 float translationY = Input.GetAxis("VerticalWSDA") * move_player;
                 float translationX = Input.GetAxis("HorizontalWSDA") * move_player;
                 playerButton.transform.Translate(0, translationY, 0);
                 playerButton.transform.Translate(translationX, 0, 0);
-        }
+            }
 
-        else if (ThisPlayerControl == ControlTypesHere.Joy1)
-        {
+            else if (ThisPlayerControl == ControlTypesHere.Joy1)
+            {
                 float translationY = Input.GetAxis("VerticalJoyStickLeft1") * move_player;
                 float translationX = Input.GetAxis("HorizontalJoyStickLeft1") * move_player;
                 playerButton.transform.Translate(0, translationY, 0);
                 playerButton.transform.Translate(translationX, 0, 0);
-        }
+            }
 
-        else if (ThisPlayerControl == ControlTypesHere.Joy2)
-        {
+            else if (ThisPlayerControl == ControlTypesHere.Joy2)
+            {
                 float translationY = Input.GetAxis("VerticalJoyStickLeft2") * move_player;
                 float translationX = Input.GetAxis("HorizontalJoyStickLeft2") * move_player;
                 playerButton.transform.Translate(0, translationY, 0);
                 playerButton.transform.Translate(translationX, 0, 0);
+            }
         }
+
+        else if (playerID == 1)
+        {
+
+            if (ThisPlayerControl == ControlTypesHere.ArrowKeys)
+            {
+                float translationY = Input.GetAxis("VerticalArrows") * move_player;
+                float translationX = Input.GetAxis("HorizontalArrows") * move_player;
+                playerButton.transform.Translate(0, translationY, 0);
+                playerButton.transform.Translate(translationX, 0, 0);
+            }
+
+            else if (ThisPlayerControl == ControlTypesHere.WSDA)
+            {
+                float translationY = Input.GetAxis("VerticalWSDA") * move_player;
+                float translationX = Input.GetAxis("HorizontalWSDA") * move_player;
+                playerButton.transform.Translate(0, translationY, 0);
+                playerButton.transform.Translate(translationX, 0, 0);
+            }
+
+            else if (ThisPlayerControl == ControlTypesHere.Joy1)
+            {
+                float translationY = Input.GetAxis("VerticalJoyStickLeft1") * move_player;
+                float translationX = Input.GetAxis("HorizontalJoyStickLeft1") * move_player;
+                playerButton.transform.Translate(0, translationY, 0);
+                playerButton.transform.Translate(translationX, 0, 0);
+            }
+
+            else if (ThisPlayerControl == ControlTypesHere.Joy2)
+            {
+                float translationY = Input.GetAxis("VerticalJoyStickLeft2") * move_player;
+                float translationX = Input.GetAxis("HorizontalJoyStickLeft2") * move_player;
+                playerButton.transform.Translate(0, translationY, 0);
+                playerButton.transform.Translate(translationX, 0, 0);
+            }
+        }
+
+       
     }
 
     public void CreatePlayerData()
     {
         UpdatePlayerData();
+
+        if (!is_this_ready && ThisPlayerSelector.is_CPU)
+        {
+            l.hasGameStarted = true;
+
+            if      (!Car1.ThisCarSelected) { ThisPlayerCar = 0; Car1.ThisCarSelected = true; ThisPlayerSelector.CurrentCar = Car1.ThisCarImage; Coin.transform.position = Car1.ThisCarIconPosition; }
+            else if (!Car2.ThisCarSelected) { ThisPlayerCar = 1; Car2.ThisCarSelected = true; ThisPlayerSelector.CurrentCar = Car2.ThisCarImage; Coin.transform.position = Car2.ThisCarIconPosition; }
+            else if (!Car3.ThisCarSelected) { ThisPlayerCar = 2; Car3.ThisCarSelected = true; ThisPlayerSelector.CurrentCar = Car3.ThisCarImage; Coin.transform.position = Car3.ThisCarIconPosition; }
+            else if (!Car4.ThisCarSelected) { ThisPlayerCar = 3; Car4.ThisCarSelected = true; ThisPlayerSelector.CurrentCar = Car4.ThisCarImage; Coin.transform.position = Car4.ThisCarIconPosition; }
+
+            ThisPlayerSelector.ImageSwapper();
+            
+        }
+
         ThisPlayerData = new PlayerData(playerID,ThisPlayerCar, ThisControlScheme, ThisPlayerType);
+   
     }
 
     void UpdatePlayerData()
