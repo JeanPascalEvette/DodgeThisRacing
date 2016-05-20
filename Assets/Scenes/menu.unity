@@ -2586,7 +2586,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11401754, guid: 3cfec0dd1c27b5245b265515ecd148bd, type: 2}
       propertyPath: m_Text
-      value: C2
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 11429000, guid: 3cfec0dd1c27b5245b265515ecd148bd, type: 2}
       propertyPath: l
@@ -3198,7 +3198,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11401754, guid: 3cfec0dd1c27b5245b265515ecd148bd, type: 2}
       propertyPath: m_Text
-      value: C4
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 11429000, guid: 3cfec0dd1c27b5245b265515ecd148bd, type: 2}
       propertyPath: l
@@ -3444,7 +3444,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11401754, guid: 3cfec0dd1c27b5245b265515ecd148bd, type: 2}
       propertyPath: m_Text
-      value: C3
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 11429000, guid: 3cfec0dd1c27b5245b265515ecd148bd, type: 2}
       propertyPath: l
