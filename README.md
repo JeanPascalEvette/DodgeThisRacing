@@ -9,4 +9,4 @@
 | Elio de Berardinis  |   |
 | Stefanos Katsaros  |   |
 | <a href="https://github.com/JeanPascalEvette/DodgeThisRacing/blob/master/Reports/PostMortemFederico.md">Federico Soncini  |   |
-| Javier Osa Escalada  |   |
+| <a href="https://github.com/JeanPascalEvette/DodgeThisRacing/blob/master/Reports/Project%20Post%20Mortem%20Javier%20de%20la%20Osa.md">Javier Osa Escalada  |   |
