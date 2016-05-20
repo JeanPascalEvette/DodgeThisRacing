@@ -487,6 +487,7 @@ GameObject:
   - 4: {fileID: 453278}
   - 33: {fileID: 3363068}
   - 23: {fileID: 2330764}
+  - 64: {fileID: 6462202}
   m_Layer: 0
   m_Name: Tunnel
   m_TagString: Untagged
@@ -8567,6 +8568,18 @@ MeshCollider:
   serializedVersion: 2
   m_Convex: 0
   m_Mesh: {fileID: 4300000, guid: 2447809408893f44687093fa485e6b86, type: 3}
+--- !u!64 &6462202
+MeshCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 114546}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Convex: 0
+  m_Mesh: {fileID: 4300014, guid: 2447809408893f44687093fa485e6b86, type: 3}
 --- !u!65 &6597202
 BoxCollider:
   m_ObjectHideFlags: 1
