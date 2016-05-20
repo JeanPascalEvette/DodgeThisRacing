@@ -195,7 +195,7 @@ public class LevelManager : MonoBehaviour
     void Create_Player()
     {
         //If some Players are already active it assigns a control scheme to them (works progressively from player 1 to 4)
-        if (is_p1_active == true && player1move.ThisPlayerControl == MoveSelector.ControlTypesHere.NotAssigned && !ps1.is_CPU)
+        if (is_p1_active == true && player1move.ThisPlayerControl == MoveSelector.ControlTypesHere.NotAssigned /*&& !ps1.is_CPU*/)
         {
             newPlayer = player1move;
             ps = panel1.GetComponent<PlayerSelector>();
@@ -283,8 +283,10 @@ public class LevelManager : MonoBehaviour
         if (ps.is_CPU) {
 
             newPlayer.ThisPlayerControl = MoveSelector.ControlTypesHere.NotAssigned;
-            
-                       }
+            ps.Controls = 0;
+            ps.ControlManager();
+
+        }
         else
         {
             //If the Control Scheme is not already in use and is the one being currently detected assign it to the Player
@@ -292,7 +294,8 @@ public class LevelManager : MonoBehaviour
 
             {
                 newPlayer.ThisPlayerControl = MoveSelector.ControlTypesHere.ArrowKeys;
-                ps.Controls = 3;
+                ps.Controls = 2;
+                ps.ControlManager();
                 is_arrowKeys_taken = true;
                 is_arrowKeys_used = false;
             }
@@ -301,7 +304,8 @@ public class LevelManager : MonoBehaviour
 
             {
                 newPlayer.ThisPlayerControl = MoveSelector.ControlTypesHere.WSDA;
-                ps.Controls = 4;
+                ps.Controls = 3;
+                ps.ControlManager();
                 is_wsda_taken = true;
                 is_wsda_used = false;
             }
@@ -310,7 +314,8 @@ public class LevelManager : MonoBehaviour
 
             {
                 newPlayer.ThisPlayerControl = MoveSelector.ControlTypesHere.Joy2;
-                ps.Controls = 2;
+                ps.Controls = 1;
+                ps.ControlManager();
                 is_joy2_taken = true;
                 is_joy2_used = false;
             }
@@ -319,7 +324,8 @@ public class LevelManager : MonoBehaviour
 
             {
                 newPlayer.ThisPlayerControl = MoveSelector.ControlTypesHere.Joy1;
-                ps.Controls = 1;
+                ps.Controls = 0;
+                ps.ControlManager();
                 is_joy1_taken = true;
                 is_joy1_used = false;
             }
