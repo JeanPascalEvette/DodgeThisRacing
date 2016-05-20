@@ -140,7 +140,22 @@ public class CarHitbox : MonoBehaviour
             //    DetachableParts[elementPosition] = null;
             //}
         }
-        damageCaused = defaultMass * Mathf.Pow(carSpeed, 2) * 0.5f;
+        // We create a coefficient to reduce the damage cause for lateral impact
+        float damageCoefficient = 1.0f; // Default it´s 1 but we modify this value is lateral impact
+        Vector3 impactDirection = (col.transform.position - transform.position);
+
+        float angle = Vector3.Angle(impactDirection, car.transform.forward);
+        Debug.Log("ANGLE: " + angle);
+
+        if (car.transform.forward.Equals( impactDirection))
+        {
+            Debug.Log("SAME DIRECTION");
+        } else
+        {
+            Debug.Log("LATERAL DIRECTION");
+        }
+
+        damageCaused = defaultMass * Mathf.Pow(carSpeed, 2) * 0.5f * damageCoefficient;
 
         // We reduce the car health & the slider at the same time (round down to have more health) ***** POSSIBLE CHANGE OF CAR HEALTH TO FLOAT *******
         car.currentHealth -= Mathf.FloorToInt(damageCaused * 0.01f);
