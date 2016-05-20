@@ -115,7 +115,7 @@ public class CarHitbox : MonoBehaviour
         if (col.transform.root.tag == "Player")
             return;
 
-
+        // We randomly choose one the detachable parts associated of the collider 
         int elementPosition = Random.Range(0, DetachableParts.Count);
         Transform partAffected = null;
         if (elementPosition >= 0 && DetachableParts.Count > 0)

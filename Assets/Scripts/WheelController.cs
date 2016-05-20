@@ -154,7 +154,6 @@ public class WheelController : MonoBehaviour {
         spinningSpeed = carSpeed;
         // Wheel linear velocity 
         angularVelocity = carSpeed / wheelRadius;
-
        
         // Slip ratio using the wheel velocity and the car speed
         slipRatio = -(wheelLinearVelocity - carSpeed) / Mathf.Abs(carSpeed);
@@ -174,12 +173,6 @@ public class WheelController : MonoBehaviour {
         //*********************** TRACTION OR LONGTITUDINAL FORCE ***********************//
         // Longtitudinal force
         longtitudinalForce = tractionConstant * slipRatio;
-        // Normalized Longtitudinal Force
-        normLongForce = longtitudinalForce / tyreLoad;
-        // We create a vector to apply the force into the car
-        //Vector3 tractionVector = carModel.transform.forward * normLongForce;
-        // We should apply this force to the car itself
-        //carModel.AddForceAtPosition(tractionVector, carModel.position);
         //*********************** END TRACTION OR LONGTITUDINAL FORCE ***********************//
 
         //*********************** TRACTION TORQUE ON DRIVE WHEELS ***********************//
