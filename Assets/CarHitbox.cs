@@ -143,16 +143,27 @@ public class CarHitbox : MonoBehaviour
         // We create a coefficient to reduce the damage cause for lateral impact
         float damageCoefficient = 1.0f; // Default it´s 1 but we modify this value is lateral impact
         Vector3 impactDirection = (col.transform.position - transform.position);
+        //impactDirection = impactDirection.normalized;
+
+        //Debug.Log("X DIR: " + impactDirection.x);
+        //Debug.Log("Y DIR: " + impactDirection.y);
+        //Debug.Log("Z DIR: " + impactDirection.z);
+
 
         float angle = Vector3.Angle(impactDirection, car.transform.forward);
-        Debug.Log("ANGLE: " + angle);
+        //Debug.Log("ANGLE: " + angle);
 
-        if (car.transform.forward.Equals( impactDirection))
+        // Trying different collision in the game we´ve calculated that between 0 and 6 degrees is frontal impact
+        // The same applies to 85 and 95 degrees
+        // And between 175 and 180
+        if ((angle > 0 && angle <=5) || (angle >= 85 && angle <= 95) || (angle >= 175 && angle <= 180))
         {
-            Debug.Log("SAME DIRECTION");
+            //Debug.Log("FRONTAL IMPACT");
+            //damageCoefficient = 1.3f;
         } else
         {
-            Debug.Log("LATERAL DIRECTION");
+            //Debug.Log("LATERAL IMPACT");
+            damageCoefficient = 0.6f;
         }
 
         damageCaused = defaultMass * Mathf.Pow(carSpeed, 2) * 0.5f * damageCoefficient;
