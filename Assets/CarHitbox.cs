@@ -121,7 +121,7 @@ public class CarHitbox : MonoBehaviour
         if (elementPosition >= 0 && DetachableParts.Count > 0)
             partAffected = DetachableParts[elementPosition];
         // We check if the piece chosen has any health left or has been 
-        carSpeed = carModel.velocity.magnitude;
+        carSpeed = car.currentSpeed;
         float defaultMass = 1.0f;
         if (partAffected != null && partAffected.GetComponent<DetachableElementBehaviour>() != null)
         {

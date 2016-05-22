@@ -132,6 +132,8 @@ public class CarController : MonoBehaviour
 
     public bool isShielded;
 
+    public float currentSpeed;
+
     // Use this for initialization
     void Start()
     {
@@ -293,7 +295,7 @@ public class CarController : MonoBehaviour
         IsCarOnGround = IsOnGround();
         //Update CoG
         currentCenterOfGravity = transform.rotation * CenterOfGravity;
-
+        currentSpeed = rb.velocity.magnitude;
         if (!IsOnGround())
         {
             if (transform.position.y >= 0)
