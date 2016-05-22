@@ -405,6 +405,23 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &130620
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 441462}
+  - 135: {fileID: 13592870}
+  - 114: {fileID: 11487578}
+  m_Layer: 9
+  m_Name: Frontal
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &130678
 GameObject:
   m_ObjectHideFlags: 0
@@ -1567,6 +1584,18 @@ Transform:
   - {fileID: 449894}
   m_Father: {fileID: 429850}
   m_RootOrder: 5
+--- !u!4 &441462
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 130620}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -14.878635, y: 2.591662, z: -285.0958}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 469958}
+  m_RootOrder: 6
 --- !u!4 &442040
 Transform:
   m_ObjectHideFlags: 1
@@ -1840,6 +1869,7 @@ Transform:
   - {fileID: 487544}
   - {fileID: 474334}
   - {fileID: 444684}
+  - {fileID: 441462}
   m_Father: {fileID: 458472}
   m_RootOrder: 1
 --- !u!4 &470906
@@ -3523,7 +3553,7 @@ HingeJoint:
   m_Anchor: {x: 0.5, y: 0, z: 0}
   m_Axis: {x: 0, y: 1, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0.43301967, y: 0, z: -0.24998794}
+  m_ConnectedAnchor: {x: 0.5, y: 0, z: 0.000013947487}
   m_UseSpring: 0
   m_Spring:
     spring: 0
@@ -3587,7 +3617,7 @@ HingeJoint:
   m_Anchor: {x: -0.5, y: 0, z: 0}
   m_Axis: {x: -1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.15399373, y: 0.003939837, z: 0.2515217}
+  m_ConnectedAnchor: {x: -0.08700663, y: 0.003939837, z: 0.0015217066}
   m_UseSpring: 0
   m_Spring:
     spring: 0
@@ -3651,7 +3681,7 @@ HingeJoint:
   m_Anchor: {x: -0.5, y: 0, z: 0}
   m_Axis: {x: 0, y: 1, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.43300572, y: 0, z: 0.2500121}
+  m_ConnectedAnchor: {x: -0.5, y: 0, z: 0.000013947487}
   m_UseSpring: 0
   m_Spring:
     spring: 0
@@ -3843,7 +3873,7 @@ HingeJoint:
   m_Anchor: {x: 0.5, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0.15400723, y: 0.003939837, z: -0.24847853}
+  m_ConnectedAnchor: {x: 0.0870201, y: 0.003939837, z: 0.0015214682}
   m_UseSpring: 0
   m_Spring:
     spring: 0
@@ -5302,6 +5332,23 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   currentRotation: {x: 0, y: 0, z: 0}
+--- !u!114 &11487578
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 130620}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4bb823983a201104d8646acceca912fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DetachableParts:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  carModel: {fileID: 0}
+  carSpeed: 0
 --- !u!114 &11492188
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5464,6 +5511,18 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.6
   m_Center: {x: 0, y: 0.6, z: 0}
+--- !u!135 &13592870
+SphereCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 130620}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!135 &13597476
 SphereCollider:
   m_ObjectHideFlags: 1
