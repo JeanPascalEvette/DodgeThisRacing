@@ -5,6 +5,7 @@ using System.Collections.Generic;
 
 public class CarHitbox : MonoBehaviour
 {
+
     [SerializeField]
     private List<Transform> DetachableParts;
     //Use this as the list of detachables that are linked with this hitbox
@@ -20,7 +21,7 @@ public class CarHitbox : MonoBehaviour
     private float damageCaused;
     public float carSpeed;
 
-    
+
     private float collisionCD = -1;
     private GameObject explHolder;
     // Use this for initialization
@@ -33,7 +34,7 @@ public class CarHitbox : MonoBehaviour
         explHolder = GameObject.Find("ExplosionHolder");
         if (explHolder == null)
             explHolder = new GameObject("ExplosionHolder");
-        
+
     }
 
     // COLLISION DETECTION
@@ -51,24 +52,24 @@ public class CarHitbox : MonoBehaviour
             return; // Ignore collisions with ramp
         if (col.transform.root == transform.root)
             return; // Ignore self collisions
-        
-        if(col.transform.root.tag == "Pickups" && col.gameObject.GetComponent<Pickups>() != null)
+
+        if (col.transform.root.tag == "Pickups" && col.gameObject.GetComponent<Pickups>() != null)
         {
             if (col.gameObject.GetComponent<Pickups>().healthPickup)
             {
-                car.currentHealth += (int) col.gameObject.GetComponent<Pickups>().health;
+                car.currentHealth += (int)col.gameObject.GetComponent<Pickups>().health;
                 if (car.currentHealth > 100)
                     car.currentHealth = 100;
                 Destroy(col.gameObject);
             }
 
-            else if(col.gameObject.GetComponent<Pickups>().lifePickup)
+            else if (col.gameObject.GetComponent<Pickups>().lifePickup)
             {
                 car.myPlayerData.addLives(Time.time);
                 Destroy(col.gameObject);
             }
 
-            else if(col.gameObject.GetComponent<Pickups>().shieldPickup)
+            else if (col.gameObject.GetComponent<Pickups>().shieldPickup)
             {
                 if (!car.isShielded)
                 {
@@ -82,7 +83,7 @@ public class CarHitbox : MonoBehaviour
                 }
             }
 
-            else if(col.gameObject.GetComponent<Pickups>().speedPickup)
+            else if (col.gameObject.GetComponent<Pickups>().speedPickup)
             {
                 Vector3 speedIncrease = new Vector3(0, 0, col.gameObject.GetComponent<Pickups>().speed);
                 car.GetComponent<Rigidbody>().velocity += speedIncrease;
@@ -90,10 +91,10 @@ public class CarHitbox : MonoBehaviour
             return;
         }
 
-        if(col.gameObject.GetComponent<shieldScript>())
+        if (col.gameObject.GetComponent<shieldScript>())
         {
             RaycastHit shieldHit;
-            if(Physics.Raycast(transform.position, (col.transform.position - transform.position), out shieldHit))
+            if (Physics.Raycast(transform.position, (col.transform.position - transform.position), out shieldHit))
             {
                 GameObject collisionEffect = Instantiate(Resources.Load("Prefabs/Pickups/ShieldCollisionEffect"), shieldHit.point, Quaternion.identity) as GameObject;
                 collisionEffect.transform.parent = col.transform;
@@ -101,7 +102,7 @@ public class CarHitbox : MonoBehaviour
         }
         //{
         // We need to find out which sphere collider we are hitting here
-        
+
 
         RaycastHit hit;
         if (Physics.Raycast(transform.position, (col.transform.position - transform.position), out hit))
@@ -113,43 +114,63 @@ public class CarHitbox : MonoBehaviour
 
         if (col.transform.root.tag == "Player")
             return;
-        
-        
+
+        // We randomly choose one the detachable parts associated of the collider 
         int elementPosition = Random.Range(0, DetachableParts.Count);
         Transform partAffected = null;
-        if(elementPosition >= 0 && DetachableParts.Count > 0)
+        if (elementPosition >= 0 && DetachableParts.Count > 0)
             partAffected = DetachableParts[elementPosition];
         // We check if the piece chosen has any health left or has been 
-        carSpeed = carModel.velocity.magnitude;
+        carSpeed = car.currentSpeed;
+        float defaultMass = 1.0f;
         if (partAffected != null && partAffected.GetComponent<DetachableElementBehaviour>() != null)
         {
             // We have health so we make all the calculation with the piece data
             // We calculate the force of the impact with the obstacle
             // Force = (mass * speed * speed)/2
-            damageCaused = (partAffected.GetComponent<DetachableElementBehaviour>().pieceMass * carSpeed * carSpeed) / 2;
             // We reduce the health of the detachable part and check if the drop flag must be true
             //partAffected.GetComponent<DetachableElementBehaviour>().pieceHealth -= damageCaused;
             // If the piece hasn´t left health we detach the piece
             //if (partAffected.GetComponent<DetachableElementBehaviour>().pieceHealth < 0)
             //{
             //    Debug.Log("Detach part");
-                partAffected.GetComponent<DetachableElementBehaviour>().isHanging = true;
+            partAffected.GetComponent<DetachableElementBehaviour>().isHanging = true;
             DetachableParts.Remove(partAffected);
-                // We remove the part from the list so it´s not available any more
+            // We remove the part from the list so it´s not available any more
             //    DetachableParts[elementPosition] = null;
             //}
+        }
+        // We create a coefficient to reduce the damage cause for lateral impact
+        float damageCoefficient = 1.0f; // Default it´s 1 but we modify this value is lateral impact
+        Vector3 impactDirection = (col.transform.position - transform.position);
+        //impactDirection = impactDirection.normalized;
 
-        }
-        else
+        //Debug.Log("X DIR: " + impactDirection.x);
+        //Debug.Log("Y DIR: " + impactDirection.y);
+        //Debug.Log("Z DIR: " + impactDirection.z);
+
+
+        float angle = Vector3.Angle(impactDirection, car.transform.forward);
+        //Debug.Log("ANGLE: " + angle);
+
+        // Trying different collision in the game we´ve calculated that between 0 and 6 degrees is frontal impact
+        // The same applies to 85 and 95 degrees
+        // And between 175 and 180
+        if ((angle > 0 && angle <=5) || (angle >= 85 && angle <= 95) || (angle >= 175 && angle <= 180))
         {
-            // The piece has been detached so we only reduce the health of the car
-            damageCaused = (1 * carSpeed * carSpeed) / 2;
+            //Debug.Log("FRONTAL IMPACT");
+            //damageCoefficient = 1.3f;
+        } else
+        {
+            //Debug.Log("LATERAL IMPACT");
+            damageCoefficient = 0.6f;
         }
+
+        damageCaused = defaultMass * Mathf.Pow(carSpeed, 2) * 0.5f * damageCoefficient;
+
         // We reduce the car health & the slider at the same time (round down to have more health) ***** POSSIBLE CHANGE OF CAR HEALTH TO FLOAT *******
         car.currentHealth -= Mathf.FloorToInt(damageCaused * 0.01f);
-
-
-
+        // The total slider is reduced in a smallest amount
 
         collisionCD = 0.1f;
         // check the health of the car
@@ -165,7 +186,7 @@ public class CarHitbox : MonoBehaviour
         if (collisionCD > 0)
             collisionCD -= Time.deltaTime;
 
-        if(shieldTime > 0)
+        if (shieldTime > 0)
         {
             shieldTime -= Time.deltaTime;
         }
@@ -175,7 +196,7 @@ public class CarHitbox : MonoBehaviour
             Destroy(carShield);
         }
     }
-    
+
 }
 
 
