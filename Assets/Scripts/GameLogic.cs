@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -90,6 +91,26 @@ public class GameLogic : MonoBehaviour
             AddNewTrackPart();
         }
 
+        // We need to hide the sliders not used
+        var idcars = new List<int>() { 1, 2, 3, 4 };
+        for (int i=0; i<myCars.Length; i++)
+        {
+            for (int j=0; j<idcars.Count; j++)
+            {
+                if (idcars[j] == myCars[i].getID())
+                {
+                    // Remove the element at this position
+                    idcars.RemoveAt(j);
+                }
+            }
+        }
+
+        for (int j = 0; j < idcars.Count; j++) {
+            var healthSlider = GameObject.Find("HealthSliderP" + idcars[j]);
+            Destroy(healthSlider);
+            var healthSlider2 = GameObject.Find("HealthSliderP" + idcars[j] + "2");
+            Destroy(healthSlider2);
+        }
     }
 
 
@@ -260,7 +281,7 @@ public class GameLogic : MonoBehaviour
     void AddNewTrackPart()
     {
         GameObject trackPrefab;
-        int choice = Random.Range(0, Data.GetNumberTrackPartAvailable());
+        int choice = Data.GetRandomTrackNumber();
         if (trackPartsList.Count == 0)
             trackPrefab = Data.getTrackPart(0);
         else
