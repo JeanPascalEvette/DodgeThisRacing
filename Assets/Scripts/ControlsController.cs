@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+//Script to detect the input from player 1 on the button to switch the control scheme of another player
 public class ControlsController : MonoBehaviour {
 
     private bool overlay = false;
@@ -17,6 +18,7 @@ public class ControlsController : MonoBehaviour {
         }
     }
 
+    //If the icon of player one is inside the collider of the button allow it to press it
     void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.tag == "Player1")
@@ -26,6 +28,7 @@ public class ControlsController : MonoBehaviour {
         }
     }
 
+    //if it's outside don't allow it
     void OnTriggerExit2D(Collider2D other)
     {
         if (other.gameObject.tag == "Player1")
@@ -35,6 +38,7 @@ public class ControlsController : MonoBehaviour {
         }
     }
 
+    //When the cursor is on top of the button and presses the "a" button call the control manager funcion that switches the control scheme in the playerselector script
     void Update()
     {
         if (overlay)
@@ -65,7 +69,7 @@ public class ControlsController : MonoBehaviour {
     public void SetOverlay(bool state)
     {
         overlay = state;
-        //l.isP1onButton = false;
+        
     }
 
 }

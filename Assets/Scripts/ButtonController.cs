@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+//Script that allows player 1 to press the activation button on other players' panels
 public class ButtonController : MonoBehaviour {
 
     private bool overlay2 = false;
@@ -17,6 +18,7 @@ public class ButtonController : MonoBehaviour {
         }
     }
 
+    //If the cursor s on top of the button make it possible to press it
     void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.tag == "Player1")
@@ -26,6 +28,7 @@ public class ButtonController : MonoBehaviour {
         }
     }
 
+    //Otherwise don't make it possible
     void OnTriggerExit2D(Collider2D other)
     {
         if (other.gameObject.tag == "Player1")
@@ -35,6 +38,7 @@ public class ButtonController : MonoBehaviour {
         }
     }
 
+    //If the button can be pressed check the control scheme and call the relative funcion in playerselector screen
     void Update()
     {
         if (overlay2)
@@ -62,10 +66,11 @@ public class ButtonController : MonoBehaviour {
         }
     }
 
+    //Resets the overlay bool
     public void SetOverlay(bool state)
     {
         overlay2 = state;
-       //l.isP1onButton = false;
+       
     }
 
 }

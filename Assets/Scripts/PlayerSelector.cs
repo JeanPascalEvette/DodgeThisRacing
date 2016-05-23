@@ -4,15 +4,18 @@ using UnityEngine.UI;
 //This script is attached to each panel controlling the status of a player and its control types
 public class PlayerSelector : MonoBehaviour
 {
+    //Instances of the text displayed on the panels
     public Text t;
     public Text cpuText;
     public Text Control_Type;
 
+    //Misc int variables used in switch cases 
     public int switch_case = 1;
     public int Controls = 0;
     public int CPU_Controls = -1;
     public int PanelNumber;
 
+    //Instances of the objects in the scene: Tokens, car icons and their scripts
     public GameObject playerCoin,playerToken;
     public CPUController CoinController;
     public IconCollider Car1, Car2, Car3, Car4;
@@ -20,23 +23,25 @@ public class PlayerSelector : MonoBehaviour
     public MoveSelector m;
     public GameObject HandObject;
     
-
     string nameplayer;
     public bool is_CPU = false;
 
+    //Sprites for the hand animations and car icons
     public Sprite default_Empty, CurrentCar,hand_closed,hand_opened,default_notActive;
     public Sprite CPU_Token, Player_Token;
     public Sprite NA, J1, J2, ArrowK, WASDIcon,CPUIcon;
 
+    //Images objects to which the sprites will be swapped on
     public Image carImage;
     public Image Hand;
     public Image Token;
     public Image ControlIcon;
     
-
+    //Instances of the controls and activation buttons on the panels
     private ButtonController buttonController;
     private ControlsController controlController;
-
+    
+    //Initialize variables, check the statuses of each panle and display the correct information
     void Start() {
 
         buttonController = GetComponentInChildren<ButtonController>();
@@ -87,6 +92,7 @@ public class PlayerSelector : MonoBehaviour
 
     }
 
+    //Check the status of each player and display the correct text
     void Update()
     {
         if (m.is_this_active)
@@ -97,27 +103,11 @@ public class PlayerSelector : MonoBehaviour
             else if (PanelNumber == 4 && switch_case != 2 && !is_CPU) { t.text = "P4"; }
         }
 
-        //if (m.is_this_active)
-        //{
-
-        //    if (m.ThisPlayerControl == MoveSelector.ControlTypesHere.Joy1) { Control_Type.text = "Joy1"; ControlIcon.sprite = J1; }
-        //    else if (m.ThisPlayerControl == MoveSelector.ControlTypesHere.Joy2) { Control_Type.text = "Joy2"; ControlIcon.sprite = J2; }
-        //    else if (m.ThisPlayerControl == MoveSelector.ControlTypesHere.ArrowKeys) { Control_Type.text = "ArrowKeys"; ControlIcon.sprite = ArrowK; }
-        //    else if (m.ThisPlayerControl == MoveSelector.ControlTypesHere.WSDA) { Control_Type.text = "WSDA"; ControlIcon.sprite = WASDIcon; }
-        //    else if (is_CPU) { Control_Type.text = "AI Controller"; ControlIcon.sprite = CPUIcon; }
-
-        //    if (PanelNumber == 1 && switch_case != 2 && !is_CPU) { t.text = "P1"; }
-        //    else if (PanelNumber == 2 && switch_case != 2 && !is_CPU) { t.text = "P2"; }
-        //    else if (PanelNumber == 3 && switch_case != 2 && !is_CPU) { t.text = "P3"; }
-        //    else if (PanelNumber == 4 && switch_case != 2 && !is_CPU) { t.text = "P4"; }
-        //}
-
-        //else { Control_Type.text = "Not Assigned"; ControlIcon.sprite = NA; }
-
     }
 
     void switch_reset() { switch_case = 0; }
 
+    //Function to display the correct information about the player when its status (active, cpu, not-active) is changed
     public void player_selector()
     {
         if (switch_case < 4)
@@ -143,21 +133,22 @@ public class PlayerSelector : MonoBehaviour
         else { switch_reset(); }
     }
 
-    
+    //This funciton is called when the activation button on the panel is pressed (changes the player status to active, non active or cpu)
     public void PanelManager()
     {
-        if (m.playerID != 1)
+        
+        if (m.playerID != 1) //Player 1 will have a slightly different behaviour
         {
             if (!CoinController.is_grabbed)
             {
+                //A new player can be activated only if it's the one right next to the highest currently activated player. e.g. if only player 1 is active you can activate player 2 but not player 3
                 if (l.num_players == m.playerID || l.num_players == m.playerID - 1)
-                //if ((l.num_players == m.playerID || l.num_players == m.playerID - 1) && (m.playerID != 1))
                 {
                     switch_case++;
                     switch (switch_case)
                     {
                         case 1:
-
+                            //Makes it an active player
                             if (l.num_players == m.playerID - 1 && !m.is_this_active)
                             {
                                 Token.sprite = Player_Token;
@@ -188,7 +179,7 @@ public class PlayerSelector : MonoBehaviour
                             break;
 
                         case 2:
-
+                            //Makes it a CPU
                             if (l.num_players == m.playerID - 1 && !m.is_this_active)
                             {
                                 playerCoin.SetActive(true);
@@ -221,7 +212,7 @@ public class PlayerSelector : MonoBehaviour
                             break;
 
                         default:
-
+                            //Deactivates it and resets all its variables
                             if (l.num_players == m.playerID && m.is_this_active)
 
                             {
@@ -267,8 +258,6 @@ public class PlayerSelector : MonoBehaviour
 
                             }
 
-                            Debug.Log("Ciao");
-
                             switch_case = 0;
                             playerCoin.transform.position = m.playerPosition;
                             carImage.sprite = default_notActive;
@@ -288,15 +277,14 @@ public class PlayerSelector : MonoBehaviour
                                 controlController.SetOverlay(false);
                             }
 
-                            //is_CPU = false;
                             Controls = 4;
                             ControlManager();
 
                             break;
                     }
                 }
-
-                else if (m.is_this_active /*&& m.playerID!=1*/)
+                //If this is a middle player (e.g. player 2 when 3 players are active) only switches between CPU and active status. Player cannot be disabled
+                else if (m.is_this_active)
                 {
 
                     CPU_Controls++;
@@ -348,6 +336,7 @@ public class PlayerSelector : MonoBehaviour
             }
         }
 
+        //Player 1 can also not be deactivated as it controls other players' statuses and activation
         else {
 
             CPU_Controls++;
@@ -369,10 +358,6 @@ public class PlayerSelector : MonoBehaviour
                     CPU_Controls = 0;
                     Token.sprite = CPU_Token;
                     switch_case = 2;
-                    //resetControlsCPU();
-                    //ControlManager();
-                    //AdjustPosition();
-                    //m.ThisPlayerControl = MoveSelector.ControlTypesHere.NotAssigned;
                     break;
 
                 default:
@@ -384,13 +369,13 @@ public class PlayerSelector : MonoBehaviour
         }
     }
 
+    //Fnction to swap the panle images
     public void ImageSwapper() {
 
-        //this.gameObject.GetComponent<Image>().sprite = CurrentCar;
         carImage.sprite = CurrentCar;
     }
 
-    //IMPORVE THIS FUNCTION AND CALL IT AT THE RIGHT TIME (Not called anywhere at the moment)
+    //Resets some variables and statuses the a certain player is made a CPU
     void resetControlsCPU()
 
     {
@@ -438,8 +423,7 @@ public class PlayerSelector : MonoBehaviour
         }
     }
 
-   // void AdjustPosition() { playerCoin.transform.position = m.playerPosition; }
-
+    //This function is called when the control scheme button is pressed. If it's not already in use the relative control scheme is assigned to the player unless is a CPU
     public void ControlManager() {
 
         if (m.is_this_active && !m.is_this_ready)
@@ -449,6 +433,7 @@ public class PlayerSelector : MonoBehaviour
             switch (Controls)
             {
                 case 1:
+                    //Player 1 won't be given a dead control scheme in order to always be able to control the other players tokens 
                     if (is_CPU && m.playerID!=1)
                     {
                         m.ThisPlayerControl = MoveSelector.ControlTypesHere.NotAssigned;

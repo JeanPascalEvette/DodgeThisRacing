@@ -107,22 +107,12 @@ public class IconCollider : MonoBehaviour {
 
     }
 
-   // void OnTriggerStay2D() { Debug.Log("STAYING"); }
-
   //This function checks the control types used by the cursor entering the car icon area and then makes it possible to select or deselect it
     void checkControlType() {
 
         if (m.ThisPlayerControl == MoveSelector.ControlTypesHere.Joy1)
 
         {
-            ////If the A button is pressed the coin is assigned to that car icon and the cursor doesn't move it around anymore (Selection of the car)
-            //if (Input.GetButtonDown("ButtonAJoyStick1") && l.is_joy1_taken && m.is_this_inside == true && !ThisCarSelected)
-            //{ SelectCar(); }
-
-            ////If the cursor is near the coin inside the area of the car icon and presses B he re-acquires the coin and deselects the car
-            //if (Input.GetButtonDown("ButtonXJoyStick1") && l.is_joy1_taken && ThisCarSelected)
-            //{ DeSelectCar(); }
-
             //Controls for normal players Select
             if (Input.GetButtonDown("ButtonAJoyStick1") && l.is_joy1_taken && m.is_this_inside == true && !ThisCarSelected /*&& !CPU.is_coin_cpu*/ && m.playerID == CPU.CoinID)
             { SelectCar(); }
@@ -157,12 +147,6 @@ public class IconCollider : MonoBehaviour {
         //Same for all the other control types
         else if (m.ThisPlayerControl == MoveSelector.ControlTypesHere.Joy2)
         {
-            //if (Input.GetButtonDown("ButtonAJoyStick2") && l.is_joy2_taken && m.is_this_inside == true && !ThisCarSelected)
-            //{ SelectCar(); }
-
-            //if (Input.GetButtonDown("ButtonXJoyStick2") && l.is_joy2_taken && ThisCarSelected)
-            //{ DeSelectCar(); }
-
             //Controls for normal players Select
             if (Input.GetButtonDown("ButtonAJoyStick2") && l.is_joy2_taken && m.is_this_inside == true && !ThisCarSelected /*&& !CPU.is_coin_cpu*/ && m.playerID == CPU.CoinID)
             { SelectCar(); }
@@ -226,11 +210,6 @@ public class IconCollider : MonoBehaviour {
 
         else if (m.ThisPlayerControl == MoveSelector.ControlTypesHere.WSDA)
         {
-            //if (Input.GetButtonDown("ButtonAWSDA") && l.is_wsda_taken && m.is_this_inside == true && !ThisCarSelected)
-            //{ SelectCar(); }
-
-            //else if (Input.GetButtonDown("ButtonXWSDA") && l.is_wsda_taken && ThisCarSelected)
-            //{ DeSelectCar(); }
 
             //Controls for normal players Select
             if (Input.GetButtonDown("ButtonAWSDA") && l.is_wsda_taken && m.is_this_inside == true && !ThisCarSelected /*&& !CPU.is_coin_cpu*/ && m.playerID == CPU.CoinID)
@@ -446,6 +425,7 @@ public class IconCollider : MonoBehaviour {
         }
     }
 
+    //Reset the overlay bools on the buttons when player1 reobtains its token back and its colliders are deactivated
     void ResetOverlay() {
 
         C1.is_player_near = false;
@@ -464,6 +444,7 @@ public class IconCollider : MonoBehaviour {
         controlscontroller4.SetOverlay(false);
     }
 
+    //Shows a faded image of the car in the player's panle when it passes over the car icon
     void AddTempCar()
 
     {
@@ -495,6 +476,7 @@ public class IconCollider : MonoBehaviour {
         }
     }
 
+    //Removes the temporary car icon when the player exits the car icon area
     void RemoveTempCar()
 
     {
@@ -519,8 +501,6 @@ public class IconCollider : MonoBehaviour {
         }
 
      }
-
-
 
     //This function is called in the script PlayerSelector controlling the panels. If a player is deactivated by a panel the coin, the cursor and their positions are re-set to default
     public void CheckPlayerActivation()

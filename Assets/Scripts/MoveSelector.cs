@@ -76,6 +76,7 @@ public class MoveSelector : MonoBehaviour {
 
     void LateUpdate()
     {
+        //Avoid that the cursor goes outisde the screen view
         Vector3 pos = transform.localPosition;
         if (pos.x > xMaximum)
         {
@@ -144,6 +145,7 @@ public class MoveSelector : MonoBehaviour {
             }
         }
 
+        //Player one has special controls as it cannot be fully deactivated
         else if (playerID == 1)
         {
 
@@ -183,10 +185,12 @@ public class MoveSelector : MonoBehaviour {
        
     }
 
+    //Creates the playerdata from the variables selected by the players
     public void CreatePlayerData()
     {
         UpdatePlayerData();
 
+        //If this player is a CPU and a car has not been assigned to it, a car is automatically assigned
         if (!is_this_ready && ThisPlayerSelector.is_CPU)
         {
             l.hasGameStarted = true;
@@ -204,6 +208,7 @@ public class MoveSelector : MonoBehaviour {
    
     }
 
+    //Updates the variables to be passed to the main game after the GUI selection screen
     void UpdatePlayerData()
     {
         if      (ThisPlayerControl == ControlTypesHere.ArrowKeys) { ThisControlScheme = PlayerData.ControlScheme.Arrows; }

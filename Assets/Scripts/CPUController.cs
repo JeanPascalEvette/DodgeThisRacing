@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+//This script makes it possible for player 1 to grab another player's token if this is a CPU
 public class CPUController : MonoBehaviour {
 
     public GameObject player;
@@ -35,25 +36,28 @@ public class CPUController : MonoBehaviour {
 
     }
 
+    //If Player1 token is close to another token (CPU) make it possible to grab it
     void OnTriggerEnter2D(Collider2D trigger)
     {
         
         if (trigger.gameObject == player) { is_player_near = true;
             if (CoinID != 1) { l.isP1onButton = true; }
-            Debug.Log("Player is near");
+            //Debug.Log("Player is near");
         }
 
     }
 
+    //Otherwise make it not possible
     void OnTriggerExit2D(Collider2D trigger) {
 
         if (trigger.gameObject == player) { is_player_near = false;
             l.isP1onButton = false;
-            Debug.Log("Player exited");
+            //Debug.Log("Player exited");
         }
 
     }
 
+    //Check the control scheme
    public void TokenController() {
 
         if (player1Control.ThisPlayerControl == MoveSelector.ControlTypesHere.Joy1)
@@ -78,6 +82,7 @@ public class CPUController : MonoBehaviour {
 
     }
 
+    //Collect the token
     void CollectToken()
 
     {

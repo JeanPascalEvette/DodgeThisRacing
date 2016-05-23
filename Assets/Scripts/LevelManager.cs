@@ -72,11 +72,11 @@ public class LevelManager : MonoBehaviour
 
     void Update()
     {
-        //Debug messages (Delete Later on)
-        print("num players: "   + num_players);
-        print("ready players: " + num_ready_players);
-        print("CPU players: " + num_CPU_Players);
-        print("CPU selected Car: " + num_CPU_SelectedCar);
+        //Debug messages
+        //print("num players: "   + num_players);
+        //print("ready players: " + num_ready_players);
+        //print("CPU players: " + num_CPU_Players);
+        //print("CPU selected Car: " + num_CPU_SelectedCar);
 
         CheckWhichInput();    //Function to detect a control input
         CheckControlinUse();  //Function to keep the current control scheme used by each player up to date
@@ -138,7 +138,6 @@ public class LevelManager : MonoBehaviour
     //Function to detect a control input
     void CheckWhichInput() {
 
-        //Can probably be cut down to less code lines
         if (
 
        (
