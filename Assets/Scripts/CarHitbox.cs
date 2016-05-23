@@ -3,6 +3,8 @@ using System.Collections;
 using UnityEngine.UI;
 using System.Collections.Generic;
 
+
+//This class is used to detect collisions and impact the car 
 public class CarHitbox : MonoBehaviour
 {
 
@@ -31,9 +33,7 @@ public class CarHitbox : MonoBehaviour
         car = transform.root.GetComponent<CarController>();
         carModel = car.GetComponent<Rigidbody>();
 
-        explHolder = GameObject.Find("ExplosionHolder");
-        if (explHolder == null)
-            explHolder = new GameObject("ExplosionHolder");
+        explHolder = Helpers.FindOrCreateGameObject("ExplosionHolder");
 
     }
 
@@ -53,6 +53,8 @@ public class CarHitbox : MonoBehaviour
         if (col.transform.root == transform.root)
             return; // Ignore self collisions
 
+
+        //Handle pickupss and add effect
         if (col.transform.root.tag == "Pickups" && col.gameObject.GetComponent<Pickups>() != null)
         {
             if (col.gameObject.GetComponent<Pickups>().healthPickup)
@@ -103,7 +105,7 @@ public class CarHitbox : MonoBehaviour
         //{
         // We need to find out which sphere collider we are hitting here
 
-
+        //Add sparks effect
         RaycastHit hit;
         if (Physics.Raycast(transform.position, (col.transform.position - transform.position), out hit))
         {
@@ -114,6 +116,9 @@ public class CarHitbox : MonoBehaviour
 
         if (col.transform.root.tag == "Player")
             return;
+
+
+        //This section is going to do damage to the car and destroy parts of the car
 
         // We randomly choose one the detachable parts associated of the collider 
         int elementPosition = Random.Range(0, DetachableParts.Count);

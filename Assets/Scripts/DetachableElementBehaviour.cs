@@ -23,10 +23,7 @@ public class DetachableElementBehaviour : MonoBehaviour {
     // Use this for initialization
     void Start () {
         rb = GetComponent<Rigidbody>();
-        if (DebrisHolder == null)
-            DebrisHolder = GameObject.Find("DebrisHolder");
-        if (DebrisHolder == null)
-            DebrisHolder = new GameObject("DebrisHolder");
+        DebrisHolder = Helpers.FindOrCreateGameObject("DebrisHolder");
 
         setColliders(false);
         initialRotation = transform.localRotation;
@@ -44,6 +41,7 @@ public class DetachableElementBehaviour : MonoBehaviour {
             col.enabled = isEnabled;
     }
 
+    //Make sure it doesn't move until hanging
     void LateUpdate()
     {
         if (!isHanging)
@@ -54,6 +52,7 @@ public class DetachableElementBehaviour : MonoBehaviour {
     }
     // Update is called once per frame
     void Update() {
+        //First time it is detected to be hanging
         if (isHanging && timerBreak == -1f)
         {   
 
@@ -65,7 +64,7 @@ public class DetachableElementBehaviour : MonoBehaviour {
         else if(isHanging)
         {
             timerBreak -= Time.deltaTime;
-            if (timerBreak <= 0.0f)
+            if (timerBreak <= 0.0f) // if it has been hanging for long enough, then drop it
             {
                 SpringJoint[] components = transform.GetComponents<SpringJoint>();
                 foreach (SpringJoint sj in components)

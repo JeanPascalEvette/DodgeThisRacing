@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+
+//This keeps the gameobject facing the camera
 public class FloatingText : MonoBehaviour {
 
 

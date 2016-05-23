@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Camera : MonoBehaviour {
+public class CameraController : MonoBehaviour {
 
     public GameObject[] target;
     public GameObject leadingGameObject;
@@ -27,6 +27,7 @@ public class Camera : MonoBehaviour {
     void Start () {
 	}
 
+    //This calculates which player is leading (z pos) and returns its position
     public Vector3 GetLeadingPlayerPosition()
     {
         if (leadingGameObject != null)
@@ -46,13 +47,14 @@ public class Camera : MonoBehaviour {
             return leadingPosition;
     }
 
+    //This is used to move back the boundaryDestroyer when the camera zooms out
     public float getZoomZDiff()
     {
         float zoom = ((currentZoomOut - minZoomOut) / (maxZoomOut - minZoomOut));
-        return zoom * xDist * 3;
+        return zoom * xDist * 2;
     }
 	
-	// Update is called once per frame
+	// This creates some camera effect depending on the context of the game.
 	void Update ()
     {
         if (guiWinCondition.camCheck == true)
@@ -85,6 +87,7 @@ public class Camera : MonoBehaviour {
         transform.LookAt(new Vector3(0, 0, leadingPosition.z));
     }
 
+    //Zoomout and Zoomin are used to change the pov of the camerao n the canyon
     public void ZoomOut(float newMaxZoomOut = -1)
     {
         if (!zoomOut)

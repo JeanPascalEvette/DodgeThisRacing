@@ -37,10 +37,12 @@ public class AIController : MonoBehaviour
         myCarController = GetComponent<CarController>();
         allCars = Data.GetAllCars();
         planner = new HTNPlanner(1.5f);
-        plannerThread = new Thread(retrievePlanner); // TODO IMPLEMENT THREADING
+        plannerThread = new Thread(retrievePlanner);
         plannerThread.Start();
         myRand = new System.Random(System.Guid.NewGuid().GetHashCode());
     }
+
+    //This function is going the current input values based on the plan
     public string GetPlan()
     {
         try
@@ -49,13 +51,15 @@ public class AIController : MonoBehaviour
                 return "";
             return plan[frameCounter - frameGenerated];
         }
-        catch(System.Exception ex)
+        catch (System.Exception ex)
         {
             Debug.LogWarning("Error when Getting plan. Search value " + (frameCounter - frameGenerated).ToString() + " in array size " + plan.Length);
             return "";
         }
     }
 
+#if UNITY_EDITOR
+    //Debug only - draws 3d construct to see the AI's plan
     void OnDrawGizmos()
     {
 
@@ -95,7 +99,7 @@ public class AIController : MonoBehaviour
             }
             textPlan = textPlan.Substring(0, textPlan.Length - 1);
 
-#if UNITY_EDITOR
+
             UnityEditor.Handles.Label(transform.position, textPlan, style);
 
 
@@ -113,28 +117,25 @@ public class AIController : MonoBehaviour
 
             Vector3 midPos = transform.position + new Vector3(0, 0.5f, 25f);
             UnityEditor.Handles.DrawLine(midPos + new Vector3(1, 0, 0) * rayWidth / 2, midPos - new Vector3(1, 0, 0) * rayWidth / 2);
-#endif
-        }
-
-
 
         }
 
-        // Update is called once per frame
-        void Update()
-    {
 
 
     }
+#endif
+
 
     void FixedUpdate()
     {
-        //AI STUFF
+        //This if statement will query the Planner for a new plan every second
         if (frameCounter++ % (int)(1.0f / Time.fixedDeltaTime) == 0)
         {
             isAggresive = myRand.Next(0, 11) == 0;
             if (currentState != null && currentState.otherCars != null && currentState.otherCars.Length == 0)
                 isAggresive = false;
+
+
             currentState = new State();// Generate a state representing the world to be passed to the HTNPlanner
             currentState.myCar = new CarState(myCarController.carUniqueID, transform.position, GetComponent<Rigidbody>().velocity, transform.forward);
             if (allCars.Length > 0)
@@ -157,6 +158,7 @@ public class AIController : MonoBehaviour
                 }
             }
 
+
             if (GameLogic.myInstance != null)
             {
                 System.Collections.Generic.List<GameObject> obstacleList = GameLogic.myInstance.obstacleList;
@@ -172,39 +174,33 @@ public class AIController : MonoBehaviour
                 }
                 currentState.obstacles = obstacles;
             }
-            //Set the waitHandle to make sure that the planner can retrieve a new planning
 
-
+            //Use raycasting to calculate the direction of the track
             float zPos = Mathf.Max(myCarController.GetComponent<Rigidbody>().velocity.z * 1.0f, 5.0f);
             Vector3 midPos = new Vector3(transform.position.x, 0.5f, transform.position.z + zPos);
 
-            Ray targetRay = new Ray(midPos - new Vector3(1, 0, 0) * rayWidth/2, new Vector3(1, 0, 0));
+            Ray targetRay = new Ray(midPos - new Vector3(1, 0, 0) * rayWidth / 2, new Vector3(1, 0, 0));
             RaycastHit[] hits = Physics.RaycastAll(targetRay, rayWidth, 1 << LayerMask.NameToLayer("AIGuide"));
             Vector3[] targetPos = new Vector3[hits.Length];
             for (int i = 0; i < hits.Length; i++)
                 targetPos[i] = hits[i].point;
             currentState.targetPositions = targetPos;
 
+
+            //If cannot find road, assume it is lost somehow - destroy car to respawn.
             if (currentState.targetPositions.Length == 0)
             {
-                //GameLogic.myInstance.DestroyCar(myCarController.myPlayerData, true);
+                GameLogic.myInstance.DestroyCar(myCarController.myPlayerData, true);
                 Debug.LogWarning("Error : Could not find target position for car " + transform.gameObject.name + ". Killing car");
             }
 
+            //Set the waitHandle to make sure that the planner can retrieve a new planning
             waitHandle.Set();
 
         }
-        //END AI STUFF
 
     }
-
-    GameObject getCarByUniqueID(int id)
-    {
-        foreach (var car in allCars)
-            if (car.GetComponent<CarController>().carUniqueID == id)
-                return car;
-        return null;
-    }
+    
 
     void retrievePlanner()
     {

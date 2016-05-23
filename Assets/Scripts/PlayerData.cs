@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using UnityEngine;
 
+//Data holder that stores information about the player (i.e. car chosen, control schemes, lives, etc
 public class PlayerData
 {
     private int _carType;

@@ -84,7 +84,7 @@ public class WheelController : MonoBehaviour {
         return mFrictionCoef * mCarController.GetMassOnAxle(transform.localPosition.z);
     }
 
-
+    //Animation of wheels
     void LateUpdate()
     {
         currentRotation.x += spinningSpeed;
@@ -185,6 +185,8 @@ public class WheelController : MonoBehaviour {
         //*********************** END TRACTION TORQUE ON DRIVE WHEELS ***********************//
     }
     
+
+    //This uses raytracing to make sure that the wheels are hiting (or close to) the ground or any surface (except for the car itself)
     private void CheckWheelsAreOnGround()
     {
         isOnGround = false;

@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+
+//This class handles the invisible boundary which pushes car to keep up with the race, and also damages the ones that fall behind.
 public class BoundaryDestroyer : MonoBehaviour {
 
     private GameLogic GL;
@@ -27,29 +29,34 @@ public class BoundaryDestroyer : MonoBehaviour {
         OrgPosition = transform.position;
     }
 
+    //The boundaryDestroyer is a child of the camera. This makes sure that it will not be affected by the rotation of the camera in case of zoomout/zoomin
     void LateUpdate()
     {
         transform.rotation = OrgRotation;
-        transform.position = OrgPosition + new Vector3(0,0,transform.parent.position.z - UnityEngine.Camera.main.GetComponent<Camera>().getZoomZDiff());
+        transform.position = OrgPosition + new Vector3(0,0,transform.parent.position.z - UnityEngine.Camera.main.GetComponent<CameraController>().getZoomZDiff());
     }
 
 
+#if UNITY_EDITOR
     void OnDrawGizmos()
     {
         if (Data.GetPlayerData() == null) return;
-        var leadingCar = UnityEngine.Camera.main.GetComponent<Camera>().GetLeadingPlayerPosition();
-        leadingCar.z -= UnityEngine.Camera.main.GetComponent<Camera>().getZoomZDiff() + 20.0f;
+        var leadingCar = UnityEngine.Camera.main.GetComponent<CameraController>().GetLeadingPlayerPosition();
+        leadingCar.z -= UnityEngine.Camera.main.GetComponent<CameraController>().getZoomZDiff() + 20.0f;
         UnityEditor.Handles.color = Color.red;
         UnityEditor.Handles.DrawLine(leadingCar - new Vector3(20, 0, 0), leadingCar + new Vector3(20, 0, 0));
     }
-    
+#endif
+
+    //Returns the z coordinate of the pushing wall based on leading car.
     public float GetPushingWall()
     {
-        var leadingCar = UnityEngine.Camera.main.GetComponent<Camera>().GetLeadingPlayerPosition().z;
-        leadingCar -= UnityEngine.Camera.main.GetComponent<Camera>().getZoomZDiff() + lifeLossDistMin + 5.0f;
+        var leadingCar = UnityEngine.Camera.main.GetComponent<CameraController>().GetLeadingPlayerPosition().z;
+        leadingCar -= UnityEngine.Camera.main.GetComponent<CameraController>().getZoomZDiff() + lifeLossDistMin + 5.0f;
         return leadingCar;
     }
 
+    //In update we move the wall to follow the leading car, but also affect any car that is being left behind to help it get back in the race.
     void Update()
     {
         foreach(var pd in Data.GetPlayerData())
@@ -57,10 +64,10 @@ public class BoundaryDestroyer : MonoBehaviour {
             var car = pd.GetGameObject();
             if (car == null) continue;
 
-            var leadingCar = UnityEngine.Camera.main.GetComponent<Camera>().GetLeadingPlayerPosition();
-            leadingCar.z -= UnityEngine.Camera.main.GetComponent<Camera>().getZoomZDiff();
+            var leadingCar = UnityEngine.Camera.main.GetComponent<CameraController>().GetLeadingPlayerPosition();
+            leadingCar.z -= UnityEngine.Camera.main.GetComponent<CameraController>().getZoomZDiff();
 
-            //If vry far behind wall just kill the car
+            //If very far behind wall just kill the car
             if (car.transform.position.z < leadingCar.z - 200.0f)
                 GL.DestroyCar(pd, true);
             else if (car.transform.position.z < leadingCar.z - lifeLossDistMin) //If behind wall damage car progressively

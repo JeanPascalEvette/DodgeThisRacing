@@ -10,6 +10,7 @@ public class GameLogic : MonoBehaviour
     public int winner;
     public int lastDeath;
 
+    //Sets the number of car when starting from the scene. Not relevant in normal play.
     public readonly int NUMBEROFCARS = 1;
 
 
@@ -27,7 +28,7 @@ public class GameLogic : MonoBehaviour
 
     public static GameLogic myInstance;
 
-    private Camera myCamera;
+    private CameraController myCamera;
     private GameObject explHolder;
 
     [SerializeField]
@@ -45,18 +46,13 @@ public class GameLogic : MonoBehaviour
             myInstance = this;
 
 
-        myCamera = UnityEngine.Camera.main.GetComponent<Camera>();
-
-        if (Track == null)
-            Track = GameObject.Find("Track");
-        if (Track == null)
-            Track = new GameObject("Track");
+        myCamera = UnityEngine.Camera.main.GetComponent<CameraController>();
+        
+        Track = Helpers.FindOrCreateGameObject("Track");
 
         Track.layer = LayerMask.NameToLayer("Track");
 
-        explHolder = GameObject.Find("ExplosionHolder");
-        if (explHolder == null)
-            explHolder = new GameObject("ExplosionHolder");
+        explHolder = Helpers.FindOrCreateGameObject("ExplosionHolder");
 
         PlayerData[] myCars = new PlayerData[NUMBEROFCARS];
         if (Data.getNumberCarSelected() == 0) // IF did not go through main menu (DEBUG ONLY)
@@ -411,22 +407,22 @@ public class GameLogic : MonoBehaviour
         if (trackPiece != null && trackPiece.name.Substring(0, 7) == "Track_D")
         {
             var trackBounds = getBoundsOfTrackPiece(trackPiece.GetComponentsInChildren<MeshRenderer>());
-            if (UnityEngine.Camera.main.GetComponent<Camera>().GetLeadingPlayerPosition().z >= trackBounds.max.z)
+            if (UnityEngine.Camera.main.GetComponent<CameraController>().GetLeadingPlayerPosition().z >= trackBounds.max.z)
             {
-                UnityEngine.Camera.main.GetComponent<Camera>().ZoomIn();
+                UnityEngine.Camera.main.GetComponent<CameraController>().ZoomIn();
                 //trackPiece.transform.Find("Canyon_Middle_D").GetComponent<MeshRenderer>().enabled = true;
             }
-            else if (UnityEngine.Camera.main.GetComponent<Camera>().GetLeadingPlayerPosition().z >= trackBounds.min.z + 180.0f)
+            else if (UnityEngine.Camera.main.GetComponent<CameraController>().GetLeadingPlayerPosition().z >= trackBounds.min.z + 180.0f)
             {
                 float dist = trackDPullBackDistance;
                 if (trackPiece.name.Length >= 8 && trackPiece.name.Substring(0, 8) == "Track_DE")
                     dist = 9.0f;
-                UnityEngine.Camera.main.GetComponent<Camera>().ZoomOut(dist);
+                UnityEngine.Camera.main.GetComponent<CameraController>().ZoomOut(dist);
                 //trackPiece.transform.Find("Canyon_Middle_D").GetComponent<MeshRenderer>().enabled = false;
             }
         }
         else
-            UnityEngine.Camera.main.GetComponent<Camera>().ZoomIn();
+            UnityEngine.Camera.main.GetComponent<CameraController>().ZoomIn();
 
         foreach (PlayerData pd in Data.GetPlayerData())
         {

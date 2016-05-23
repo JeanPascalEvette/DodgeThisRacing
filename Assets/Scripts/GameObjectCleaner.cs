@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+
+//This monobehaviour destroys the objects after a set time. Used for ephemeral effects (i.e. sparks)
 public class GameObjectCleaner : MonoBehaviour {
 
     [SerializeField]

@@ -26,6 +26,7 @@ public class Data : MonoBehaviour {
     // Use this for initialization
     void Start ()
     {
+        //Loading prefabs
         var listTrackDirectories = System.IO.Directory.GetDirectories(System.IO.Directory.GetCurrentDirectory() + @"\Assets\Resources\Prefabs\TrackParts");
         CarsAvailable = Resources.LoadAll("Prefabs/Vehicules", typeof(GameObject)) 
              .Cast<GameObject>()
@@ -87,6 +88,7 @@ public class Data : MonoBehaviour {
         return ObstaclesAvailable.Length;
     }
 
+    //This generates default cars. Should not be used in normal play
     public static GameObject[] generateCars()
     {
         GameObject[] myCars = new GameObject[CarsSelected.Length];
@@ -97,6 +99,8 @@ public class Data : MonoBehaviour {
         return myCars;
     }
 
+
+    //Sets up the playerData
     public static void selectCars(PlayerData[] cars)
     {
         CarsSelected = cars;
@@ -117,7 +121,7 @@ public class Data : MonoBehaviour {
 
     public static GameObject GetCurrentTrackPiece()
     {
-        float zPos = UnityEngine.Camera.main.GetComponent<Camera>().GetLeadingPlayerPosition().z;
+        float zPos = UnityEngine.Camera.main.GetComponent<CameraController>().GetLeadingPlayerPosition().z;
         for (int i = 0; i < GameObject.Find("Track").transform.childCount; i++)
         {
             var tp = GameObject.Find("Track").transform.GetChild(i);
@@ -157,6 +161,7 @@ public class Data : MonoBehaviour {
         return sum;
     }
 
+    //Selects a random track based on the ChanceToOccur of each track piece
     internal static int GetRandomTrackNumber()
     {
         int number = 0;

@@ -141,12 +141,8 @@ public class CarController : MonoBehaviour
         myAI = GetComponent<AIController>();
         bDestroyer = UnityEngine.Camera.main.GetComponentInChildren<BoundaryDestroyer>();
         carUniqueID = carCounter++;
-        // allCars = GameObject.FindGameObjectsWithTag("Player");
-        // planner = new HTNPlanner(1.5f);
-        // plannerThread = new Thread(retrievePlanner); // TODO IMPLEMENT THREADING
-        // plannerThread.Start();
 
-        currentGear = 0; 			// bound to change in future // still in testing phase
+        currentGear = 0; 		
         rb = GetComponent<Rigidbody>();
 
         exhausts = GetComponentsInChildren<ParticleSystem>();
@@ -170,9 +166,9 @@ public class CarController : MonoBehaviour
         frontRightPosition = frontRightWheel.transform.localPosition.z;
         rearRightPosition = rearRightWheel.transform.localPosition.z;
 
-        // Text over the car with the player it is
+        // Text over the car with the player it is - now handled by sliders
         var txtMsh = transform.Find("Text").GetComponent<TextMesh>();
-        //txtMsh.text = "P" + (myPlayerData.getID()).ToString();
+        txtMsh.text = "";
 
         switch (myPlayerData.getID())
         {
@@ -181,16 +177,7 @@ public class CarController : MonoBehaviour
             case 3: txtMsh.color = Color.green; break;
             case 4: txtMsh.color = Color.yellow; break;
         }
-
-        //Vector2 screenPoint = RectTransformUtility.WorldToScreenPoint(UnityEngine.Camera.main, transform.position);
-
-
-        //Vector2 pos = gameObject.transform.position;  // get the game object position
-        //Vector2 viewportPoint = UnityEngine.Camera.main.WorldToViewportPoint(pos);  //convert game object position to VievportPoint
-        //healthSlider.transform.localPosition = new Vector3(viewportPoint.x, viewportPoint.y, 0);
-
-        //healthSlider = transform.GetChild(0).Find("HealthSlider").GetComponentInChildren<Slider>();
-
+        
         // We set the health slider to each player
         healthSlider = GameObject.Find("HealthSliderP" + (myPlayerData.GetCarType() + 1).ToString()).GetComponentInChildren<Slider>();
         healthSlider2 = GameObject.Find("HealthSliderP" + (myPlayerData.GetCarType() + 1).ToString() + "2").GetComponentInChildren<Slider>();
@@ -214,7 +201,7 @@ public class CarController : MonoBehaviour
             noise1.mute = true;
         }
 
-        // If this is a respawn
+        // If this is a respawn, the set a different layer to prevent collision with other cars
         if (transform.position.z > 3.0f)
         {
             respawnInvTime = 3.0f;
@@ -227,12 +214,15 @@ public class CarController : MonoBehaviour
         }
     }
 
+
+
     void Update()
     {
-
+        //Set up health slider
         var wantedPos = UnityEngine.Camera.main.WorldToScreenPoint(transform.position) + new Vector3(0, 50, 0);
         healthSlider.transform.position = wantedPos;
 
+        //If we are respawning the car, then create a blinking effect and some invulnerability frames
         if (respawnInvTime > 0.0f)
         {
 
@@ -284,18 +274,17 @@ public class CarController : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+        //This will push the car if it is falling too far behind. The goal is too make sure it cannot go so far behind that it is unable to catch up
         if (transform.position.z < (bDestroyer.GetPushingWall()))
             transform.position = new Vector3(transform.position.x, transform.position.y, (bDestroyer.GetPushingWall()));
-        var txtMsh = transform.Find("Text").GetComponent<TextMesh>();
-        //txtMsh.text = "P" + myPlayerData.getID();//(rb.velocity.magnitude).ToString();
-        txtMsh.text = "";//(rb.velocity.magnitude).ToString();
-
 
 
         IsCarOnGround = IsOnGround();
         //Update CoG
         currentCenterOfGravity = transform.rotation * CenterOfGravity;
         currentSpeed = rb.velocity.magnitude;
+
+        //This will help the cars land on their wheels when jumping.
         if (!IsOnGround())
         {
             if (transform.position.y >= 0)
@@ -315,7 +304,7 @@ public class CarController : MonoBehaviour
         direction = 0.0f;						//speed of object
 
         float maxTurn = 0;
-
+        //Inputs. The IsGoing function will correspond to a different type of input depending on the preset chosen and on whether or not the car is an AI
         if (IsGoing('A'))
         {
             maxTurn = -1;
@@ -325,6 +314,7 @@ public class CarController : MonoBehaviour
             maxTurn = 1;
         }
 
+        //Wheels turning
         if (LeftDirection != null)
             LeftDirection.gameObject.transform.localRotation = Quaternion.Euler(0, maxTurn * 30, 0);
         else
@@ -352,7 +342,8 @@ public class CarController : MonoBehaviour
 
         }
 
-
+        //Debug only - this triggers all detachable parts
+#if UNITY_EDITOR
         if (Input.GetKey(KeyCode.E))
         {
             foreach (var deb in GetComponentsInChildren<DetachableElementBehaviour>())
@@ -360,6 +351,8 @@ public class CarController : MonoBehaviour
                 deb.isHanging = true;
             }
         }
+#endif
+
         if (direction >= 0)														// the traction force is the force delivered by the engine via the rear wheels
         {
             if (rpm < 6000)
@@ -550,11 +543,13 @@ public class CarController : MonoBehaviour
         return (distance / wheelDist) * rb.mass;
     }
 
+    //True if at least a wheel touches the ground
     private bool IsOnGround()
     {
         return rearRightWheel.isOnGround || rearLeftWheel.isOnGround || frontLeftWheel.isOnGround || frontRightWheel.isOnGround;
     }
 
+    //If only partially on ground, then try to help it land
     private void HandlePartialyOnGround()
     {
         float height = -1;
@@ -624,28 +619,14 @@ public class CarController : MonoBehaviour
     {
         currentHealth -= health;
     }
-
-    private float HorizontalIsGoing()
-    {
-        if (myPlayerData.GetControlScheme() == PlayerData.ControlScheme.WASD)
-        {
-            return Input.GetAxis("HorizontalWSDA");
-        }
-        else if (myPlayerData.GetControlScheme() == PlayerData.ControlScheme.Arrows)
-        {
-            return Input.GetAxis("HorizontalArrows");
-        }
-        else if (myPlayerData.GetControlScheme() == PlayerData.ControlScheme.XboxController1)
-        {
-            return Input.GetAxis("HorizontalJoyStickLeft1");
-        }
-        else if (myPlayerData.GetControlScheme() == PlayerData.ControlScheme.XboxController2)
-        {
-            return Input.GetAxis("HorizontalJoyStickLeft2");
-        }
-        return 0;
-    }
-
+    
+    //This is converting the direction into whether or not the car's input scheme has this key pressed.
+    //Schemes : 
+    // WASD
+    // Arrows
+    // Joystick1
+    // Joystick2
+    // (AI)
     public bool IsGoing(char direction)
     {
 
@@ -756,6 +737,8 @@ public class CarController : MonoBehaviour
         }
     }
 
+
+    //Turns on the headlights. Called at night.
     public void SetLights(bool isOn)
     {
         var lights = GetComponentsInChildren<Light>();
