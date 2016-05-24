@@ -26,8 +26,15 @@ public class Data : MonoBehaviour {
     // Use this for initialization
     void Start ()
     {
+#if UNITY_EDITOR
         //Loading prefabs
         var listTrackDirectories = System.IO.Directory.GetDirectories(System.IO.Directory.GetCurrentDirectory() + @"\Assets\Resources\Prefabs\TrackParts");
+        System.IO.File.WriteAllText(Application.dataPath + "/Resources/Data/listTrackDirectories.txt", string.Join(",", listTrackDirectories.ToArray()));
+        UnityEditor.AssetDatabase.Refresh();
+#else
+        TextAsset stringListDirectories = Resources.Load<TextAsset>("Data/listTrackDirectories");
+        var listTrackDirectories = stringListDirectories.ToString().Split(',').ToArray();
+#endif
         CarsAvailable = Resources.LoadAll("Prefabs/Vehicules", typeof(GameObject)) 
              .Cast<GameObject>()
              .ToArray();
