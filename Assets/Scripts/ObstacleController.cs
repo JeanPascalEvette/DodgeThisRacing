@@ -26,6 +26,7 @@ public class ObstacleController : MonoBehaviour
 
     void OnCollisionEnter(Collision col)
     {
+        if (hitCoolDowns == null) return;
         var colCC = col.gameObject.transform.root.GetComponentInChildren<CarController>();
         if (colCC != null)
         {
