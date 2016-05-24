@@ -279,7 +279,7 @@ public class GameLogic : MonoBehaviour
         GameObject trackPrefab;
         int choice = Data.GetRandomTrackNumber();
         if (trackPartsList.Count == 0)
-            trackPrefab = Data.getTrackPart(0);
+            trackPrefab = Data.getTrackPart(0,0);
         else
             trackPrefab = Data.getTrackPart(choice);
         Vector3 startPos = new Vector3(0, 0, 0);

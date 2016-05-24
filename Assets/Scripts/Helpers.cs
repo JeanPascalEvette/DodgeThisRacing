@@ -10,7 +10,7 @@ static class Helpers
     {
         GameObject go = GameObject.Find(name);
         if (go == null)
-            go = new GameObject("Track");
+            go = new GameObject(name);
         return go;
     }
 }
