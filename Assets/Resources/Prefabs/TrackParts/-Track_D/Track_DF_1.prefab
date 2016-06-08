@@ -463,6 +463,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 418056}
   - 95: {fileID: 9513844}
+  - 114: {fileID: 11418082}
   m_Layer: 0
   m_Name: Track_DF_1
   m_TagString: Untagged
@@ -6933,13 +6934,29 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &11418082
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 131652}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 48dc6e3a9abf8274c8529624142c20d2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ChanceToOccur: 10
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 0}
-    m_Modifications: []
+    m_Modifications:
+    - target: {fileID: 0}
+      propertyPath: ChanceToOccur
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 131652}

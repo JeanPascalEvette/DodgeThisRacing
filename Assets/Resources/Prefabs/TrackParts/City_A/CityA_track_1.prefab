@@ -730,6 +730,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 487778}
+  - 114: {fileID: 11480272}
   m_Layer: 0
   m_Name: CityA_track_1
   m_TagString: Untagged
@@ -14968,6 +14969,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9990946ddd3089041b6187fc454a448e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &11480272
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 117676}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 48dc6e3a9abf8274c8529624142c20d2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ChanceToOccur: 10
 --- !u!114 &11482824
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -15137,7 +15150,11 @@ Prefab:
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 0}
-    m_Modifications: []
+    m_Modifications:
+    - target: {fileID: 0}
+      propertyPath: ChanceToOccur
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 117676}
