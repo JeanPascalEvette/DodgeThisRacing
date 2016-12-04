@@ -1236,7 +1236,6 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 458060}
-  - 114: {fileID: 11419642}
   m_Layer: 0
   m_Name: CityA_track_prefab
   m_TagString: Untagged
@@ -8950,18 +8949,6 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
---- !u!114 &11419642
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 152610}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 48dc6e3a9abf8274c8529624142c20d2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ChanceToOccur: 10
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
